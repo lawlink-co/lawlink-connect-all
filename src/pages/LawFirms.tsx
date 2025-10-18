@@ -3,10 +3,8 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { CheckCircle2, FileText, Users2, BarChart3, Shield, Lock, Database } from "lucide-react";
 import Navigation from "@/components/Navigation";
-
 const LawFirms = () => {
-  return (
-    <div className="min-h-screen bg-black text-white font-serif">
+  return <div className="min-h-screen bg-black text-white font-serif">
       <Navigation />
       
       {/* Hero Section */}
@@ -86,7 +84,7 @@ const LawFirms = () => {
             <TabsContent value="drafting" className="space-y-6">
               <Card className="bg-gray-900 border-gray-800">
                 <CardContent className="pt-8 pb-8">
-                  <h3 className="text-2xl font-bold mb-4">Context-Aware AI Drafting</h3>
+                  <h3 className="text-2xl font-bold mb-4 text-slate-50">Context-Aware AI Drafting</h3>
                   <p className="text-gray-300 mb-6 text-lg">
                     The AI reads your entire case file—pleadings, depositions, discovery—to draft accurate, 
                     relevant legal documents. Generate motions, memos, and briefs in minutes, not hours.
@@ -262,8 +260,6 @@ const LawFirms = () => {
           <p>&copy; 2025 LAWLINK. All rights reserved.</p>
         </div>
       </footer>
-    </div>
-  );
+    </div>;
 };
-
 export default LawFirms;
