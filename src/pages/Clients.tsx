@@ -1,112 +1,73 @@
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import { MessageSquare, Bell, FileCheck, Calendar, Shield, Smartphone } from "lucide-react";
+import { MessageSquare, Bell, FileSearch, Shield, Smartphone, Clock } from "lucide-react";
 import Navigation from "@/components/Navigation";
 
 const Clients = () => {
   return (
-    <div className="min-h-screen bg-white text-gray-900">
+    <div className="min-h-screen bg-white">
       <Navigation />
       
-      {/* Hero Section */}
-      <section className="pt-32 pb-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-blue-100 via-purple-50 to-pink-50">
+      {/* Hero Section - Light, Clear, Empowering */}
+      <section className="pt-32 pb-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-blue-50 via-white to-indigo-50">
         <div className="container mx-auto max-w-5xl text-center">
-          <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold mb-6 text-gray-900 animate-in fade-in duration-700">
-            Know What's Going On<br />in <span className="text-primary">Your Case</span>
+          <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold mb-8 text-gray-900 animate-fade-in-slow">
+            Know What's Happening<br />in Your Case
           </h1>
-          <p className="text-xl text-gray-700 mb-10 max-w-3xl mx-auto">
-            LAWLINK clients get updates directly from their lawyer's case system — no waiting, no confusion.
+          <p className="text-2xl sm:text-3xl text-gray-700 mb-12 max-w-3xl mx-auto leading-relaxed animate-fade-in">
+            LAWLINK clients get more — real updates, real context, real clarity.
           </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button size="lg" className="text-lg px-10 py-7 bg-primary hover:bg-primary/90 rounded-full shadow-lg hover:shadow-xl transition-all">
+          <div className="flex flex-col sm:flex-row gap-6 justify-center animate-slide-up">
+            <Button size="lg" className="w-full sm:w-auto text-lg px-12 py-7 bg-primary text-white hover:bg-primary/90 transition-all duration-300 hover:scale-105">
               Find a LAWLINK Lawyer
             </Button>
-            <Button size="lg" variant="outline" className="text-lg px-10 py-7 border-gray-300 text-gray-900 hover:bg-white hover:shadow-lg rounded-full transition-all">
+            <Button size="lg" variant="outline" className="w-full sm:w-auto text-lg px-12 py-7 border-gray-900 text-gray-900 hover:bg-gray-900 hover:text-white transition-all duration-300 hover:scale-105">
               Download the App
             </Button>
           </div>
         </div>
       </section>
 
-      {/* Features Section */}
-      <section className="py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-white to-blue-50">
+      {/* Mobile Demo Section */}
+      <section className="py-24 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-white to-blue-50">
         <div className="container mx-auto max-w-6xl">
-          <h2 className="text-3xl sm:text-4xl font-bold text-center mb-4 text-gray-900">
-            Legal Clarity, Finally
-          </h2>
-          <p className="text-center text-gray-700 mb-16 text-lg max-w-2xl mx-auto">
-            Everything you need to stay informed and engaged throughout your legal journey
-          </p>
-          
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            <Card className="border-2 hover:border-primary transition-all duration-300 hover:shadow-lg rounded-2xl">
-              <CardContent className="pt-6">
-                <div className="rounded-full bg-primary/10 w-14 h-14 flex items-center justify-center mb-4">
-                  <MessageSquare className="w-7 h-7 text-primary" />
-                </div>
-                <h3 className="text-xl font-semibold mb-2">AI Chatbot That Knows Your Case</h3>
-                <p className="text-gray-600">
-                  Get instant answers 24/7. Our AI knows all the details and explains everything in plain English.
+          <div className="text-center mb-16">
+            <Smartphone className="w-20 h-20 text-primary mx-auto mb-8 animate-scale-in" />
+            <h2 className="text-4xl sm:text-5xl font-bold mb-8 text-gray-900">
+              Your Case, in Your Pocket
+            </h2>
+            <p className="text-xl sm:text-2xl text-gray-700 max-w-3xl mx-auto leading-relaxed">
+              No more waiting on callbacks or reading confusing letters. LAWLINK gives you instant access to your case.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-16">
+            <Card className="bg-white border-2 border-gray-200 hover:border-primary hover:shadow-xl transition-all duration-300 rounded-2xl">
+              <CardContent className="pt-8">
+                <Bell className="w-12 h-12 text-primary mb-6" />
+                <h3 className="text-2xl font-bold mb-4 text-gray-900">Real-Time Updates</h3>
+                <p className="text-gray-700 text-lg leading-relaxed">
+                  Get instant notifications about every important development in your case—filings, hearings, and settlements.
                 </p>
               </CardContent>
             </Card>
 
-            <Card className="border-2 hover:border-primary transition-all duration-300 hover:shadow-lg rounded-2xl">
-              <CardContent className="pt-6">
-                <div className="rounded-full bg-primary/10 w-14 h-14 flex items-center justify-center mb-4">
-                  <Bell className="w-7 h-7 text-primary" />
-                </div>
-                <h3 className="text-xl font-semibold mb-2">Case Timeline & Status Updates</h3>
-                <p className="text-gray-600">
-                  Never wonder what's happening. Get notifications whenever there's progress on your case.
+            <Card className="bg-white border-2 border-gray-200 hover:border-primary hover:shadow-xl transition-all duration-300 rounded-2xl">
+              <CardContent className="pt-8">
+                <MessageSquare className="w-12 h-12 text-primary mb-6" />
+                <h3 className="text-2xl font-bold mb-4 text-gray-900">Direct Messaging</h3>
+                <p className="text-gray-700 text-lg leading-relaxed">
+                  Message your lawyer securely anytime. No more phone tag or waiting days for a response.
                 </p>
               </CardContent>
             </Card>
 
-            <Card className="border-2 hover:border-primary transition-all duration-300 hover:shadow-lg rounded-2xl">
-              <CardContent className="pt-6">
-                <div className="rounded-full bg-primary/10 w-14 h-14 flex items-center justify-center mb-4">
-                  <FileCheck className="w-7 h-7 text-primary" />
-                </div>
-                <h3 className="text-xl font-semibold mb-2">Real-Time Document Access</h3>
-                <p className="text-gray-600">
-                  Access all your case documents in one secure place. Review filings and correspondence anytime.
-                </p>
-              </CardContent>
-            </Card>
-
-            <Card className="border-2 hover:border-primary transition-all duration-300 hover:shadow-lg rounded-2xl">
-              <CardContent className="pt-6">
-                <div className="rounded-full bg-primary/10 w-14 h-14 flex items-center justify-center mb-4">
-                  <Calendar className="w-7 h-7 text-primary" />
-                </div>
-                <h3 className="text-xl font-semibold mb-2">Important Dates</h3>
-                <p className="text-gray-600">
-                  Keep track of court dates and appointments. Get reminders so you're always prepared.
-                </p>
-              </CardContent>
-            </Card>
-
-            <Card className="border-2 hover:border-primary transition-all duration-300 hover:shadow-lg rounded-2xl">
-              <CardContent className="pt-6">
-                <div className="rounded-full bg-primary/10 w-14 h-14 flex items-center justify-center mb-4">
-                  <Shield className="w-7 h-7 text-primary" />
-                </div>
-                <h3 className="text-xl font-semibold mb-2">Secure Messaging</h3>
-                <p className="text-gray-600">
-                  Your information is protected with bank-level security. Only you and your legal team have access.
-                </p>
-              </CardContent>
-            </Card>
-
-            <Card className="border-2 hover:border-primary transition-all duration-300 hover:shadow-lg rounded-2xl">
-              <CardContent className="pt-6">
-                <div className="rounded-full bg-primary/10 w-14 h-14 flex items-center justify-center mb-4">
-                  <Smartphone className="w-7 h-7 text-primary" />
-                </div>
-                <h3 className="text-xl font-semibold mb-2">Mobile-First Design</h3>
-                <p className="text-gray-600">
-                  Simple interface designed for everyone, accessible on your phone or computer.
+            <Card className="bg-white border-2 border-gray-200 hover:border-primary hover:shadow-xl transition-all duration-300 rounded-2xl">
+              <CardContent className="pt-8">
+                <FileSearch className="w-12 h-12 text-primary mb-6" />
+                <h3 className="text-2xl font-bold mb-4 text-gray-900">Document Access</h3>
+                <p className="text-gray-700 text-lg leading-relaxed">
+                  View all your case documents, pleadings, and evidence in one secure place on your phone.
                 </p>
               </CardContent>
             </Card>
@@ -114,115 +75,99 @@ const Clients = () => {
         </div>
       </section>
 
-      {/* How It Works */}
-      <section className="py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-blue-50 to-white">
-        <div className="container mx-auto max-w-6xl">
-          <h2 className="text-3xl sm:text-4xl font-bold text-center mb-16">
-            How LAWLINK Works for You
-          </h2>
-          
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
-            <div className="text-center">
-              <div className="rounded-full bg-primary w-20 h-20 flex items-center justify-center mx-auto mb-6 shadow-lg">
-                <span className="text-3xl font-bold text-white">1</span>
+      {/* AI Chat Section */}
+      <section className="py-24 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-blue-50 to-white">
+        <div className="container mx-auto max-w-5xl text-center">
+          <div className="bg-gradient-to-br from-primary/10 to-indigo-100 rounded-3xl p-12 shadow-xl">
+            <MessageSquare className="w-20 h-20 text-primary mx-auto mb-8 animate-scale-in" />
+            <h2 className="text-4xl sm:text-5xl font-bold mb-8 text-gray-900">
+              Chat with an AI That Knows Your Case
+            </h2>
+            <p className="text-xl sm:text-2xl text-gray-700 mb-12 max-w-3xl mx-auto leading-relaxed">
+              Every document, every update, every step. Ask questions anytime and get instant, accurate answers about your lawsuit.
+            </p>
+            
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-3xl mx-auto text-left">
+              <div className="flex items-start space-x-4">
+                <Clock className="w-8 h-8 text-primary flex-shrink-0 mt-1" />
+                <div>
+                  <h4 className="font-bold text-lg text-gray-900 mb-2">24/7 Availability</h4>
+                  <p className="text-gray-700">Get answers to your questions any time of day or night.</p>
+                </div>
               </div>
-              <h3 className="text-xl font-semibold mb-3">Your Lawyer Sets Up Your Case</h3>
-              <p className="text-gray-600">
-                Once you hire your attorney, they'll invite you to LAWLINK. You'll get access to all your case information instantly.
-              </p>
-            </div>
-
-            <div className="text-center">
-              <div className="rounded-full bg-primary w-20 h-20 flex items-center justify-center mx-auto mb-6 shadow-lg">
-                <span className="text-3xl font-bold text-white">2</span>
+              
+              <div className="flex items-start space-x-4">
+                <Shield className="w-8 h-8 text-primary flex-shrink-0 mt-1" />
+                <div>
+                  <h4 className="font-bold text-lg text-gray-900 mb-2">Completely Secure</h4>
+                  <p className="text-gray-700">Your conversations are encrypted and confidential.</p>
+                </div>
               </div>
-              <h3 className="text-xl font-semibold mb-3">Stay Informed Every Step</h3>
-              <p className="text-gray-600">
-                Get updates when anything happens. Ask the AI assistant questions anytime you want to understand more.
-              </p>
-            </div>
-
-            <div className="text-center">
-              <div className="rounded-full bg-primary w-20 h-20 flex items-center justify-center mx-auto mb-6 shadow-lg">
-                <span className="text-3xl font-bold text-white">3</span>
+              
+              <div className="flex items-start space-x-4">
+                <MessageSquare className="w-8 h-8 text-primary flex-shrink-0 mt-1" />
+                <div>
+                  <h4 className="font-bold text-lg text-gray-900 mb-2">Plain English</h4>
+                  <p className="text-gray-700">No legal jargon. Clear explanations you can understand.</p>
+                </div>
               </div>
-              <h3 className="text-xl font-semibold mb-3">Track Your Progress</h3>
-              <p className="text-gray-600">
-                See your case timeline, upcoming events, and progress toward resolution. Know exactly where things stand.
-              </p>
+              
+              <div className="flex items-start space-x-4">
+                <FileSearch className="w-8 h-8 text-primary flex-shrink-0 mt-1" />
+                <div>
+                  <h4 className="font-bold text-lg text-gray-900 mb-2">Complete Context</h4>
+                  <p className="text-gray-700">The AI knows every detail of your specific case.</p>
+                </div>
+              </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Benefits Section */}
-      <section className="py-20 px-4 sm:px-6 lg:px-8">
-        <div className="container mx-auto max-w-4xl">
-          <h2 className="text-3xl sm:text-4xl font-bold text-center mb-4">
-            LAWLINK Clients Get More
+      {/* Why Section */}
+      <section className="py-24 px-4 sm:px-6 lg:px-8 bg-white">
+        <div className="container mx-auto max-w-4xl text-center">
+          <h2 className="text-4xl sm:text-5xl font-bold mb-12 text-gray-900">
+            Why LAWLINK?
           </h2>
-          <p className="text-center text-xl text-primary font-semibold mb-12">
-            Friendly. Experienced. Prioritized.
-          </p>
-          
-          <div className="space-y-6">
-            <Card className="rounded-2xl shadow-md">
-              <CardContent className="pt-6">
-                <h3 className="text-xl font-semibold mb-3 flex items-center">
-                  <MessageSquare className="w-6 h-6 text-primary mr-3" />
-                  No More Phone Tag
-                </h3>
-                <p className="text-gray-600">
-                  Get answers to simple questions instantly through our AI assistant, without waiting for a callback. 
-                  Save your lawyer's time for the important conversations.
-                </p>
-              </CardContent>
-            </Card>
-
-            <Card className="rounded-2xl shadow-md">
-              <CardContent className="pt-6">
-                <h3 className="text-xl font-semibold mb-3 flex items-center">
-                  <Bell className="w-6 h-6 text-primary mr-3" />
-                  Always in the Loop
-                </h3>
-                <p className="text-gray-600">
-                  Never wonder if something is happening with your case. You'll be the first to know about any developments, 
-                  filings, or important dates.
-                </p>
-              </CardContent>
-            </Card>
-
-            <Card className="rounded-2xl shadow-md">
-              <CardContent className="pt-6">
-                <h3 className="text-xl font-semibold mb-3 flex items-center">
-                  <Shield className="w-6 h-6 text-primary mr-3" />
-                  Your Information, Protected
-                </h3>
-                <p className="text-gray-600">
-                  All your sensitive legal information is encrypted and secure. Only you and your legal team have access, 
-                  maintaining full attorney-client privilege.
-                </p>
-              </CardContent>
-            </Card>
+          <div className="space-y-8 text-left max-w-3xl mx-auto">
+            <div className="flex items-start space-x-4">
+              <div className="w-2 h-2 bg-primary rounded-full mt-3 flex-shrink-0"></div>
+              <p className="text-xl text-gray-700 leading-relaxed">
+                <strong className="text-gray-900">Transparency:</strong> See exactly what's happening in your case, when it's happening.
+              </p>
+            </div>
+            <div className="flex items-start space-x-4">
+              <div className="w-2 h-2 bg-primary rounded-full mt-3 flex-shrink-0"></div>
+              <p className="text-xl text-gray-700 leading-relaxed">
+                <strong className="text-gray-900">Control:</strong> You're not left in the dark. LAWLINK puts you in the driver's seat.
+              </p>
+            </div>
+            <div className="flex items-start space-x-4">
+              <div className="w-2 h-2 bg-primary rounded-full mt-3 flex-shrink-0"></div>
+              <p className="text-xl text-gray-700 leading-relaxed">
+                <strong className="text-gray-900">Peace of Mind:</strong> Stop worrying about what's next. Get real-time clarity instead.
+              </p>
+            </div>
           </div>
         </div>
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-t from-blue-50 to-white">
+      <section className="py-24 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-blue-50 via-indigo-50 to-white">
         <div className="container mx-auto max-w-4xl text-center">
-          <h2 className="text-4xl sm:text-5xl font-bold mb-6">
-            Take Control of Your Legal Matter
+          <h2 className="text-4xl sm:text-5xl font-bold mb-8 text-gray-900">
+            Your Case Deserves Better
           </h2>
-          <p className="text-xl text-gray-600 mb-10">
-            Ask your attorney if they use LAWLINK, or find a LAWLINK partner firm near you
+          <p className="text-xl text-gray-700 mb-12 max-w-2xl mx-auto">
+            Join thousands of clients who trust LAWLINK for modern, transparent legal representation.
           </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button size="lg" className="text-lg px-10 py-7 bg-primary hover:bg-primary/90 rounded-full">
-              Find a Law Firm
+          <div className="flex flex-col sm:flex-row gap-6 justify-center">
+            <Button size="lg" className="w-full sm:w-auto text-lg px-12 py-7 bg-primary text-white hover:bg-primary/90 transition-all duration-300 hover:scale-105">
+              Find a LAWLINK Lawyer
             </Button>
-            <Button size="lg" variant="outline" className="text-lg px-10 py-7 border-gray-300 text-gray-900 hover:bg-gray-100 rounded-full">
-              Learn More
+            <Button size="lg" variant="outline" className="w-full sm:w-auto text-lg px-12 py-7 border-gray-900 text-gray-900 hover:bg-gray-900 hover:text-white transition-all duration-300 hover:scale-105">
+              Download the App
             </Button>
           </div>
         </div>

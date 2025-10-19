@@ -36,6 +36,15 @@ All colors MUST be HSL.
     --sidebar-accent-foreground: 240 5.9% 10%;
     --sidebar-border: 220 13% 91%;
     --sidebar-ring: 225 12% 30%;
+    
+    /* Gradients for cinematic feel */
+    --gradient-dark: linear-gradient(to bottom, hsl(0, 0%, 0%), hsl(0, 0%, 10%));
+    --gradient-charcoal: linear-gradient(135deg, hsl(225, 12%, 8%), hsl(225, 12%, 18%));
+    --gradient-light: linear-gradient(to bottom, hsl(0, 0%, 100%), hsl(210, 100%, 98%));
+    
+    /* Animation speeds */
+    --transition-smooth: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-slow: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
   }
 
   .dark {
