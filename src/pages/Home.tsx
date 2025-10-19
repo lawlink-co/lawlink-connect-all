@@ -16,7 +16,7 @@ const Home = () => {
             Lawsuits, Reimagined.
           </h1>
           <p className="text-2xl sm:text-3xl text-zinc-300 mb-16 max-w-4xl mx-auto leading-relaxed animate-fade-in">
-            LAWLINK is building the modern backbone a lagging industry doesn't know it needs.
+            An AI-powered platform that connects lawyers and clients through automation and clarity.
           </p>
           <div className="flex flex-col sm:flex-row gap-6 justify-center animate-slide-up">
             <Link to="/law-firms">
@@ -25,8 +25,8 @@ const Home = () => {
               </Button>
             </Link>
             <Link to="/clients">
-              <Button size="lg" variant="outline" className="w-full sm:w-auto text-lg px-12 py-7 border-2 border-white text-white hover:bg-white hover:text-black transition-all duration-300 hover:scale-105">
-                For Clients
+              <Button size="lg" variant="outline" className="w-full sm:w-auto text-lg px-12 py-7 border-2 border-white hover:bg-white transition-all duration-300 hover:scale-105">
+                <span className="text-black">For Clients</span>
               </Button>
             </Link>
           </div>
@@ -234,7 +234,7 @@ const Home = () => {
             Where litigation meets intelligence.
           </p>
           <p className="text-2xl sm:text-3xl text-zinc-300 leading-relaxed">
-            LAWLINK will become the platform where lawsuits begin, move, and close.
+            LAWLINK is shaping the future of litigation — where cases flow from intake to resolution with intelligence and ease.
           </p>
           <div className="pt-8">
             <p className="text-3xl font-semibold text-white">Real context. Real results.</p>
@@ -266,8 +266,11 @@ const Home = () => {
 
       {/* Footer */}
       <footer className="border-t border-zinc-800 py-12 px-4 sm:px-6 lg:px-8 bg-black">
-        <div className="container mx-auto text-center text-zinc-500">
-          <p>&copy; 2025 LAWLINK. All rights reserved.</p>
+        <div className="container mx-auto text-center space-y-4">
+          <p className="text-sm text-zinc-500">
+            LAWLINK is built for confidentiality and reliability from the ground up.
+          </p>
+          <p className="text-zinc-500">&copy; 2025 LAWLINK. All rights reserved.</p>
         </div>
       </footer>
     </div>

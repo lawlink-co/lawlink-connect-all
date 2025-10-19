@@ -18,18 +18,18 @@ const Clients = () => {
                 Know What's Happening<br />in Your Case.
               </h1>
               <p className="text-2xl sm:text-3xl text-gray-700 leading-relaxed">
-                LAWLINK clients get more — real updates, real context, real clarity.
+                LAWLINK clients get real updates, real context, and real clarity.
               </p>
               <Button size="lg" className="text-lg px-10 py-7 bg-primary text-white hover:bg-primary/90 transition-all duration-300 hover:scale-105 shadow-lg">
                 Find a LAWLINK Lawyer
               </Button>
             </div>
-            <div className="relative animate-scale-in">
+            <div className="relative animate-scale-in lg:scale-125">
               <div className="absolute inset-0 bg-primary/10 blur-3xl rounded-full"></div>
               <img 
                 src={phoneMockup} 
                 alt="LAWLINK mobile app showing case overview with timeline and AI chat interface"
-                className="relative mx-auto max-w-sm drop-shadow-2xl"
+                className="relative mx-auto max-w-md drop-shadow-2xl"
               />
             </div>
           </div>
@@ -41,7 +41,7 @@ const Clients = () => {
         <div className="container mx-auto max-w-6xl text-center">
           <Smartphone className="w-20 h-20 text-primary mx-auto mb-8 animate-scale-in" />
           <h2 className="text-4xl sm:text-5xl font-bold mb-8 text-gray-900">
-            Your Case, Tangible
+            Your Case, in One View
           </h2>
           <p className="text-xl sm:text-2xl text-gray-700 max-w-4xl mx-auto leading-relaxed mb-16">
             LAWLINK turns lawsuits into something tangible. See every update, motion, and court filing — right in your pocket.
@@ -91,7 +91,7 @@ const Clients = () => {
                 Chat with Your Case — Literally
               </h2>
               <p className="text-xl sm:text-2xl text-gray-700 max-w-3xl mx-auto leading-relaxed">
-                LAWLINK's AI knows every document and event, so you don't have to ask twice.
+                LAWLINK's AI knows every document and event, so you never have to ask twice.
               </p>
             </div>
             
@@ -176,15 +176,9 @@ const Clients = () => {
           <h2 className="text-4xl sm:text-5xl font-bold mb-8 text-gray-900">
             Your Case Deserves Better
           </h2>
-          <p className="text-xl text-gray-700 mb-12 max-w-3xl mx-auto">
-            Join thousands of clients who trust LAWLINK for modern, transparent legal representation.
-          </p>
           <div className="flex flex-col sm:flex-row gap-6 justify-center">
             <Button size="lg" className="text-lg px-10 py-7 bg-primary text-white hover:bg-primary/90 transition-all duration-300 hover:scale-105 shadow-lg">
               Find a LAWLINK Lawyer
-            </Button>
-            <Button size="lg" variant="outline" className="text-lg px-10 py-7 border-2 border-gray-900 text-gray-900 hover:bg-gray-900 hover:text-white transition-all duration-300 hover:scale-105 shadow-lg">
-              LAWLINK Clients Get More
             </Button>
           </div>
         </div>
@@ -192,8 +186,11 @@ const Clients = () => {
 
       {/* Footer */}
       <footer className="border-t border-gray-200 py-12 px-4 sm:px-6 lg:px-8 bg-white">
-        <div className="container mx-auto text-center text-gray-500">
-          <p>&copy; 2025 LAWLINK. All rights reserved.</p>
+        <div className="container mx-auto text-center space-y-4">
+          <p className="text-sm text-gray-600">
+            Your information stays private. Only you and your lawyer have access.
+          </p>
+          <p className="text-gray-500">&copy; 2025 LAWLINK. All rights reserved.</p>
         </div>
       </footer>
     </div>

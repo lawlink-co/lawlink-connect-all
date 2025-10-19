@@ -87,4 +87,9 @@ All colors MUST be HSL.
   body {
     @apply bg-background text-foreground;
   }
+
+  /* Serif typography for law firms page */
+  .font-serif {
+    font-family: 'Times New Roman', Times, serif;
+  }
 }

@@ -16,8 +16,11 @@ const LawFirms = () => {
             Push Cases, Draft Briefs,<br />
             Keep Clients Satisfied
           </h1>
-          <p className="text-2xl sm:text-3xl text-zinc-400 font-light mb-12 animate-fade-in">
+          <p className="text-4xl sm:text-5xl text-white font-light mb-6 animate-fade-in">
             All on One Platform
+          </p>
+          <p className="text-xl sm:text-2xl text-zinc-400 font-light mb-12 animate-fade-in">
+            From drafting to client updates, every part of your practice connected by AI.
           </p>
           <div className="animate-slide-up">
             <Button size="lg" className="text-lg px-14 py-8 bg-white text-black hover:bg-zinc-200 transition-all duration-300 hover:scale-105 font-sans">
@@ -44,9 +47,6 @@ const LawFirms = () => {
             <p className="text-xl text-zinc-300 font-sans leading-relaxed">
               LAWLINK learns from prior pleadings and deposition transcripts — adapting your firm's language, not replacing it.
             </p>
-            <p className="text-lg text-zinc-400 font-sans">
-              Documents are stored in AWS S3 buckets and vectorized into case-specific embeddings for retrieval and reuse.
-            </p>
           </div>
         </div>
       </section>
@@ -59,17 +59,17 @@ const LawFirms = () => {
               Intelligent Document Management
             </h2>
             <p className="text-xl text-zinc-300 font-sans leading-relaxed max-w-4xl mx-auto">
-              LAWLINK's ETL layer (Sapphire) transforms case files into structured data accessible across your firm. Upload once — reference forever.
+              LAWLINK organizes every case file so your team can find what they need instantly and work from the same source of truth.
             </p>
             <p className="text-lg text-zinc-400 font-sans max-w-3xl mx-auto">
-              Every paragraph, every clause, every exhibit — searchable, reusable, and AI-ready.
+              Integrates seamlessly with your existing document tools and workflows.
             </p>
           </div>
           
           <ul className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto font-sans">
             <li className="flex flex-col items-center text-center space-y-4 p-6 bg-zinc-950 border border-zinc-800 rounded-lg">
               <CheckCircle2 className="w-12 h-12 text-primary flex-shrink-0" />
-              <span className="text-zinc-300 text-lg">Centralized document repository with version control</span>
+              <span className="text-zinc-300 text-lg">All your documents in one place — always up to date and easy to search</span>
             </li>
             <li className="flex flex-col items-center text-center space-y-4 p-6 bg-zinc-950 border border-zinc-800 rounded-lg">
               <CheckCircle2 className="w-12 h-12 text-primary flex-shrink-0" />
@@ -137,11 +137,14 @@ const LawFirms = () => {
       <section className="py-24 px-4 sm:px-6 lg:px-8 bg-black border-t border-zinc-800">
         <div className="container mx-auto max-w-4xl text-center">
           <p className="text-3xl sm:text-4xl font-light mb-12 leading-relaxed">
-            LAWLINK firms move faster, deliver better, and keep clients informed without lifting a finger.
+            LAWLINK firms move faster, work smarter, and deliver a client experience that feels effortless.
           </p>
-          <div className="pt-6">
+          <div className="flex flex-col sm:flex-row gap-6 justify-center pt-6">
             <Button size="lg" className="text-xl px-14 py-8 bg-white text-black hover:bg-zinc-200 transition-all duration-300 hover:scale-105 font-sans">
-              Book a Demo
+              See a Demo
+            </Button>
+            <Button size="lg" variant="outline" className="text-xl px-14 py-8 border-2 border-white text-white hover:bg-white hover:text-black transition-all duration-300 hover:scale-105 font-sans">
+              Talk to Our Team
             </Button>
           </div>
           <p className="text-sm text-zinc-500 mt-8 font-sans">
