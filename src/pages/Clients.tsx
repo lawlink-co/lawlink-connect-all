@@ -20,14 +20,9 @@ const Clients = () => {
               <p className="text-2xl sm:text-3xl text-gray-700 leading-relaxed">
                 LAWLINK clients get more — real updates, real context, real clarity.
               </p>
-              <div className="flex flex-col sm:flex-row gap-4">
-                <Button size="lg" className="text-lg px-10 py-7 bg-primary text-white hover:bg-primary/90 transition-all duration-300 hover:scale-105 shadow-lg">
-                  Find a LAWLINK Lawyer
-                </Button>
-                <Button size="lg" variant="outline" className="text-lg px-10 py-7 border-2 border-gray-900 text-gray-900 hover:bg-gray-900 hover:text-white transition-all duration-300 hover:scale-105 shadow-lg">
-                  LAWLINK Clients Get More
-                </Button>
-              </div>
+              <Button size="lg" className="text-lg px-10 py-7 bg-primary text-white hover:bg-primary/90 transition-all duration-300 hover:scale-105 shadow-lg">
+                Find a LAWLINK Lawyer
+              </Button>
             </div>
             <div className="relative animate-scale-in">
               <div className="absolute inset-0 bg-primary/10 blur-3xl rounded-full"></div>
