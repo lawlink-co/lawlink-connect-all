@@ -1,8 +1,8 @@
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import Navigation from "@/components/Navigation";
+import FeatureCarousel from "@/components/FeatureCarousel";
 import heroBackground from "@/assets/frame-1.jpg";
-import solutionVisual from "@/assets/special-discount.png";
 
 const Home = () => {
   return (
@@ -64,35 +64,8 @@ const Home = () => {
         </div>
       </section>
 
-      {/* Solution Section - Tech Flash */}
-      <section className="py-32 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-black to-zinc-950">
-        <div className="container mx-auto max-w-6xl">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-            <div className="space-y-8 animate-fade-in">
-              <h2 className="text-4xl sm:text-5xl font-bold">
-                Neural Infrastructure for Law
-              </h2>
-              <p className="text-xl sm:text-2xl text-zinc-300 leading-relaxed">
-                LAWLINK isn't just a case manager — it's a neural infrastructure for the practice of law.
-              </p>
-              <p className="text-lg text-zinc-400">
-                Every document, transcript, and deposition is parsed, embedded, and understood.
-              </p>
-              <p className="text-lg text-zinc-400">
-                Our AI agents work behind the scenes to analyze, summarize, and draft with human-grade precision.
-              </p>
-            </div>
-            <div className="relative animate-scale-in">
-              <div className="absolute inset-0 bg-blue-500/20 blur-3xl rounded-full"></div>
-              <img 
-                src={solutionVisual} 
-                alt="AI-powered legal drafting interface"
-                className="relative rounded-lg shadow-2xl"
-              />
-            </div>
-          </div>
-        </div>
-      </section>
+      {/* Feature Carousel - The New Architecture */}
+      <FeatureCarousel />
 
       {/* How It Works Section - Connection Between Client & Lawyer */}
       <section className="py-32 px-4 sm:px-6 lg:px-8 bg-black border-t border-zinc-800">
