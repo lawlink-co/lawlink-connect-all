@@ -9,19 +9,19 @@ const Clients = () => {
       <Navigation />
       
       {/* Hero Section */}
-      <section className="pt-32 pb-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-blue-50 to-white">
+      <section className="pt-32 pb-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-blue-100 via-purple-50 to-pink-50">
         <div className="container mx-auto max-w-5xl text-center">
-          <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold mb-6 text-gray-900">
+          <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold mb-6 text-gray-900 animate-in fade-in duration-700">
             Know What's Going On<br />in <span className="text-primary">Your Case</span>
           </h1>
-          <p className="text-xl text-gray-600 mb-10 max-w-3xl mx-auto">
+          <p className="text-xl text-gray-700 mb-10 max-w-3xl mx-auto">
             LAWLINK clients get updates directly from their lawyer's case system — no waiting, no confusion.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button size="lg" className="text-lg px-10 py-7 bg-primary hover:bg-primary/90 rounded-full">
+            <Button size="lg" className="text-lg px-10 py-7 bg-primary hover:bg-primary/90 rounded-full shadow-lg hover:shadow-xl transition-all">
               Find a LAWLINK Lawyer
             </Button>
-            <Button size="lg" variant="outline" className="text-lg px-10 py-7 border-gray-300 text-gray-900 hover:bg-gray-100 rounded-full">
+            <Button size="lg" variant="outline" className="text-lg px-10 py-7 border-gray-300 text-gray-900 hover:bg-white hover:shadow-lg rounded-full transition-all">
               Download the App
             </Button>
           </div>
@@ -29,12 +29,12 @@ const Clients = () => {
       </section>
 
       {/* Features Section */}
-      <section className="py-20 px-4 sm:px-6 lg:px-8">
+      <section className="py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-white to-blue-50">
         <div className="container mx-auto max-w-6xl">
-          <h2 className="text-3xl sm:text-4xl font-bold text-center mb-4">
+          <h2 className="text-3xl sm:text-4xl font-bold text-center mb-4 text-gray-900">
             Legal Clarity, Finally
           </h2>
-          <p className="text-center text-gray-600 mb-16 text-lg max-w-2xl mx-auto">
+          <p className="text-center text-gray-700 mb-16 text-lg max-w-2xl mx-auto">
             Everything you need to stay informed and engaged throughout your legal journey
           </p>
           

@@ -9,21 +9,21 @@ const LawFirms = () => {
       <Navigation />
       
       {/* Hero Section */}
-      <section className="pt-32 pb-20 px-4 sm:px-6 lg:px-8">
-        <div className="container mx-auto max-w-6xl">
-          <h1 className="text-6xl sm:text-7xl lg:text-8xl font-bold mb-12 leading-tight text-center">
-            Push Cases,<br />
-            Draft Briefs,<br />
-            Keep Clients Satisfied,<br />
-            <span className="text-primary">All on One Platform.</span>
-          </h1>
-          <div className="flex flex-col sm:flex-row gap-6 justify-center">
-            <Button size="lg" className="text-lg px-10 py-7 bg-primary hover:bg-primary/90">
-              Book a Demo
-            </Button>
-            <Button size="lg" variant="outline" className="text-lg px-10 py-7 border-white text-black bg-white hover:bg-white/90">
-              Join the Network
-            </Button>
+      <section className="pt-32 pb-24 px-4 sm:px-6 lg:px-8">
+        <div className="container mx-auto max-w-5xl">
+          <div className="text-center space-y-8">
+            <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold leading-tight">
+              Push Cases, Draft Briefs,<br />
+              Keep Clients Satisfied
+            </h1>
+            <p className="text-xl sm:text-2xl text-gray-400 max-w-3xl mx-auto">
+              All on One Platform
+            </p>
+            <div className="pt-4">
+              <Button size="lg" className="text-lg px-12 py-7 bg-primary hover:bg-primary/90 rounded-full">
+                Book a Demo
+              </Button>
+            </div>
           </div>
         </div>
       </section>
