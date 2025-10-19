@@ -27,7 +27,7 @@ const Home = () => {
               </Button>
             </Link>
             <Link to="/clients">
-              <Button size="lg" variant="outline" className="w-full sm:w-auto text-lg px-10 py-7 border-white text-white hover:bg-white hover:text-black">
+              <Button size="lg" variant="outline" className="w-full sm:w-auto text-lg px-10 py-7 border-white text-black bg-white hover:bg-white/90">
                 For Clients
               </Button>
             </Link>

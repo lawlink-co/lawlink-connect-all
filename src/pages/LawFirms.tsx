@@ -3,6 +3,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { CheckCircle2, FileText, Users2, BarChart3, Shield, Lock, Database } from "lucide-react";
 import Navigation from "@/components/Navigation";
+import aiKnowsCases from "@/assets/ai-knows-cases.jpg";
 const LawFirms = () => {
   return <div className="min-h-screen bg-black text-white font-serif">
       <Navigation />
@@ -11,18 +12,37 @@ const LawFirms = () => {
       <section className="pt-32 pb-20 px-4 sm:px-6 lg:px-8">
         <div className="container mx-auto max-w-6xl">
           <h1 className="text-6xl sm:text-7xl lg:text-8xl font-bold mb-12 leading-tight text-center">
-            Push Cases.<br />
-            Draft Briefs.<br />
-            Keep Clients Satisfied.<br />
+            Push Cases,<br />
+            Draft Briefs,<br />
+            Keep Clients Satisfied,<br />
             <span className="text-primary">All on One Platform.</span>
           </h1>
           <div className="flex flex-col sm:flex-row gap-6 justify-center">
             <Button size="lg" className="text-lg px-10 py-7 bg-primary hover:bg-primary/90">
               Book a Demo
             </Button>
-            <Button size="lg" variant="outline" className="text-lg px-10 py-7 border-white text-white hover:bg-white hover:text-black">
+            <Button size="lg" variant="outline" className="text-lg px-10 py-7 border-white text-black bg-white hover:bg-white/90">
               Join the Network
             </Button>
+          </div>
+        </div>
+      </section>
+
+      {/* AI Demo Image Section */}
+      <section className="py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-black to-gray-950">
+        <div className="container mx-auto max-w-7xl">
+          <img 
+            src={aiKnowsCases} 
+            alt="Your AI Should Know Your Cases - LAWLINK AI Interface" 
+            className="w-full rounded-lg shadow-2xl"
+          />
+          <div className="text-center mt-12">
+            <p className="text-xl text-gray-300 mb-4">
+              It reads your documents, case timeline, and discovery data, then drafts what you actually need.
+            </p>
+            <p className="text-3xl font-bold text-white">
+              Real context. Real results.
+            </p>
           </div>
         </div>
       </section>
@@ -34,7 +54,7 @@ const LawFirms = () => {
             <Card className="bg-black border-primary/30">
               <CardContent className="pt-6 text-center">
                 <FileText className="w-12 h-12 text-primary mx-auto mb-4" />
-                <h3 className="text-xl font-bold mb-2">Case Management</h3>
+                <h3 className="text-xl font-bold mb-2 text-white">Case Management</h3>
                 <p className="text-gray-400 text-sm">Complete oversight of all active cases</p>
               </CardContent>
             </Card>
@@ -42,7 +62,7 @@ const LawFirms = () => {
             <Card className="bg-black border-primary/30">
               <CardContent className="pt-6 text-center">
                 <FileText className="w-12 h-12 text-primary mx-auto mb-4" />
-                <h3 className="text-xl font-bold mb-2">Document Drafting</h3>
+                <h3 className="text-xl font-bold mb-2 text-white">Document Drafting</h3>
                 <p className="text-gray-400 text-sm">AI-assisted legal writing</p>
               </CardContent>
             </Card>
@@ -50,7 +70,7 @@ const LawFirms = () => {
             <Card className="bg-black border-primary/30">
               <CardContent className="pt-6 text-center">
                 <Users2 className="w-12 h-12 text-primary mx-auto mb-4" />
-                <h3 className="text-xl font-bold mb-2">Client Communication</h3>
+                <h3 className="text-xl font-bold mb-2 text-white">Client Communication</h3>
                 <p className="text-gray-400 text-sm">Automatic updates via mobile app</p>
               </CardContent>
             </Card>
@@ -58,7 +78,7 @@ const LawFirms = () => {
             <Card className="bg-black border-primary/30">
               <CardContent className="pt-6 text-center">
                 <BarChart3 className="w-12 h-12 text-primary mx-auto mb-4" />
-                <h3 className="text-xl font-bold mb-2">Case Analytics</h3>
+                <h3 className="text-xl font-bold mb-2 text-white">Case Analytics</h3>
                 <p className="text-gray-400 text-sm">Efficiency tracking & insights</p>
               </CardContent>
             </Card>
@@ -84,7 +104,7 @@ const LawFirms = () => {
             <TabsContent value="drafting" className="space-y-6">
               <Card className="bg-gray-900 border-gray-800">
                 <CardContent className="pt-8 pb-8">
-                  <h3 className="text-2xl font-bold mb-4 text-slate-50">Context-Aware AI Drafting</h3>
+                  <h3 className="text-2xl font-bold mb-4 text-white">Context-Aware AI Drafting</h3>
                   <p className="text-gray-300 mb-6 text-lg">
                     The AI reads your entire case file—pleadings, depositions, discovery—to draft accurate, 
                     relevant legal documents. Generate motions, memos, and briefs in minutes, not hours.
@@ -110,7 +130,7 @@ const LawFirms = () => {
             <TabsContent value="workflows" className="space-y-6">
               <Card className="bg-gray-900 border-gray-800">
                 <CardContent className="pt-8 pb-8">
-                  <h3 className="text-2xl font-bold mb-4">Automated Workflows</h3>
+                  <h3 className="text-2xl font-bold mb-4 text-white">Automated Workflows</h3>
                   <p className="text-gray-300 mb-6 text-lg">
                     Streamline repetitive tasks and focus on strategy. LAWLINK automates timeline generation, 
                     deadline tracking, and client notifications.
@@ -136,7 +156,7 @@ const LawFirms = () => {
             <TabsContent value="satisfaction" className="space-y-6">
               <Card className="bg-gray-900 border-gray-800">
                 <CardContent className="pt-8 pb-8">
-                  <h3 className="text-2xl font-bold mb-4">Client Satisfaction</h3>
+                  <h3 className="text-2xl font-bold mb-4 text-white">Client Satisfaction</h3>
                   <p className="text-gray-300 mb-6 text-lg">
                     Give your clients a mobile app with real-time case updates and an AI assistant that knows their case. 
                     Reduce routine calls and increase transparency.
@@ -162,7 +182,7 @@ const LawFirms = () => {
             <TabsContent value="access" className="space-y-6">
               <Card className="bg-gray-900 border-gray-800">
                 <CardContent className="pt-8 pb-8">
-                  <h3 className="text-2xl font-bold mb-4">Easy Data Access</h3>
+                  <h3 className="text-2xl font-bold mb-4 text-white">Easy Data Access</h3>
                   <p className="text-gray-300 mb-6 text-lg">
                     All case documents, discovery, and communications in one secure location. 
                     AI-powered search makes finding what you need instant.
@@ -206,7 +226,7 @@ const LawFirms = () => {
             <Card className="bg-black border-primary/30">
               <CardContent className="pt-6 text-center">
                 <Lock className="w-12 h-12 text-primary mx-auto mb-4" />
-                <h3 className="text-xl font-bold mb-3">End-to-End Encryption</h3>
+                <h3 className="text-xl font-bold mb-3 text-white">End-to-End Encryption</h3>
                 <p className="text-gray-400">
                   All data encrypted in transit and at rest with AES-256 encryption.
                 </p>
@@ -216,8 +236,8 @@ const LawFirms = () => {
             <Card className="bg-black border-primary/30">
               <CardContent className="pt-6 text-center">
                 <Shield className="w-12 h-12 text-primary mx-auto mb-4" />
-                <h3 className="text-xl font-bold mb-3">Attorney-Client Privilege</h3>
-                <p className="text-gray-400">
+                <h3 className="text-xl font-bold mb-3 text-white">Attorney-Client Privilege</h3>
+                <p className="text-gray-400 text-center">
                   Full compliance with confidentiality requirements and privilege protection.
                 </p>
               </CardContent>
@@ -226,7 +246,7 @@ const LawFirms = () => {
             <Card className="bg-black border-primary/30">
               <CardContent className="pt-6 text-center">
                 <Database className="w-12 h-12 text-primary mx-auto mb-4" />
-                <h3 className="text-xl font-bold mb-3">SOC 2 Compliant</h3>
+                <h3 className="text-xl font-bold mb-3 text-white">SOC 2 Compliant</h3>
                 <p className="text-gray-400">
                   Regular security audits and compliance with industry standards.
                 </p>
