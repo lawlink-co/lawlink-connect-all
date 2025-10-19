@@ -14,13 +14,13 @@ All colors MUST be HSL.
     --card-foreground: 0 0% 0%;
     --popover: 0 0% 100%;
     --popover-foreground: 0 0% 0%;
-    --primary: 225 12% 30%;
+    --primary: 220 80% 55%;
     --primary-foreground: 0 0% 100%;
     --secondary: 0 0% 85%;
     --secondary-foreground: 0 0% 0%;
     --muted: 0 0% 96%;
     --muted-foreground: 0 0% 40%;
-    --accent: 225 12% 30%;
+    --accent: 217 91% 60%;
     --accent-foreground: 0 0% 100%;
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 0 0% 100%;
@@ -38,13 +38,14 @@ All colors MUST be HSL.
     --sidebar-ring: 225 12% 30%;
     
     /* Gradients for cinematic feel */
-    --gradient-dark: linear-gradient(to bottom, hsl(0, 0%, 0%), hsl(0, 0%, 10%));
-    --gradient-charcoal: linear-gradient(135deg, hsl(225, 12%, 8%), hsl(225, 12%, 18%));
-    --gradient-light: linear-gradient(to bottom, hsl(0, 0%, 100%), hsl(210, 100%, 98%));
+    --gradient-dark: linear-gradient(180deg, hsl(0, 0%, 0%) 0%, hsl(0, 0%, 10%) 100%);
+    --gradient-charcoal: linear-gradient(135deg, hsl(0, 0%, 5%) 0%, hsl(220, 15%, 8%) 100%);
+    --gradient-light: linear-gradient(180deg, hsl(220, 50%, 98%) 0%, hsl(210, 100%, 97%) 100%);
+    --silver: 0 0% 75%;
     
     /* Animation speeds */
-    --transition-smooth: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-    --transition-slow: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-slow: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
   }
 
   .dark {
