@@ -10,15 +10,7 @@ const Home = () => {
       <Navigation />
       
       {/* Hero Section */}
-      <section 
-        className="relative pt-32 pb-32 px-4 sm:px-6 lg:px-8 overflow-hidden"
-        style={{
-          backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.8)), url(${heroBackground})`,
-          backgroundSize: 'cover',
-          backgroundPosition: 'center',
-          backgroundAttachment: 'fixed'
-        }}
-      >
+      <section className="relative pt-32 pb-32 px-4 sm:px-6 lg:px-8 overflow-hidden bg-black">
         <div className="container mx-auto text-center max-w-6xl relative z-10">
           <h1 className="text-6xl sm:text-7xl lg:text-8xl font-bold mb-8 tracking-tight animate-fade-in-slow">
             Lawsuits, Reimagined.
@@ -37,6 +29,20 @@ const Home = () => {
                 For Clients
               </Button>
             </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* Visual Section */}
+      <section className="py-16 px-4 sm:px-6 lg:px-8 bg-black">
+        <div className="container mx-auto max-w-5xl">
+          <div className="relative animate-scale-in">
+            <div className="absolute inset-0 bg-blue-500/10 blur-3xl rounded-full"></div>
+            <img 
+              src={heroBackground} 
+              alt="LAWLINK Platform Vision"
+              className="relative rounded-lg shadow-2xl w-full"
+            />
           </div>
         </div>
       </section>
