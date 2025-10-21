@@ -73,11 +73,12 @@ const FeatureCarousel = () => {
         <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-16 text-center text-white">
           The New Architecture of Legal Work
         </h2>
+      </div>
 
-        {/* Outer container for button positioning */}
-        <div className="relative">
-          {/* Inner content container */}
-          <div className="relative max-w-6xl mx-auto">
+      {/* Full-width container for button positioning */}
+      <div className="relative container mx-auto">
+        {/* Content container with max-width */}
+        <div className="max-w-6xl mx-auto">
             {/* Carousel Container */}
             <div className="overflow-hidden" ref={emblaRef}>
               <div className="flex">
@@ -146,8 +147,7 @@ const FeatureCarousel = () => {
             </Button>
           </div>
         </div>
-      </div>
-    </section>
+      </section>
   );
 };
 
