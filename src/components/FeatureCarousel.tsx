@@ -107,12 +107,12 @@ const FeatureCarousel = () => {
           </div>
 
           {/* Navigation Arrows */}
-          <div className="hidden lg:flex justify-between items-center absolute top-1/2 -translate-y-1/2 left-0 right-0 pointer-events-none px-4">
+          <div className="hidden lg:flex justify-between items-center absolute top-1/2 -translate-y-1/2 left-0 right-0 pointer-events-none px-12">
             <Button
               variant="outline"
               size="icon"
               onClick={scrollPrev}
-              className="pointer-events-auto bg-zinc-900/80 border-zinc-700 hover:bg-zinc-800 hover:border-zinc-600 backdrop-blur-sm"
+              className="pointer-events-auto bg-zinc-900/80 border-zinc-700 hover:bg-zinc-800 hover:border-zinc-600 backdrop-blur-sm opacity-70 hover:opacity-100 transition-opacity"
             >
               <ChevronLeft className="h-6 w-6" />
             </Button>
@@ -120,7 +120,7 @@ const FeatureCarousel = () => {
               variant="outline"
               size="icon"
               onClick={scrollNext}
-              className="pointer-events-auto bg-zinc-900/80 border-zinc-700 hover:bg-zinc-800 hover:border-zinc-600 backdrop-blur-sm"
+              className="pointer-events-auto bg-zinc-900/80 border-zinc-700 hover:bg-zinc-800 hover:border-zinc-600 backdrop-blur-sm opacity-70 hover:opacity-100 transition-opacity"
             >
               <ChevronRight className="h-6 w-6" />
             </Button>
