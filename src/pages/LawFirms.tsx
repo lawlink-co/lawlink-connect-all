@@ -1,6 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import { CheckCircle2, Shield, Lock, Database } from "lucide-react";
+import { CheckCircle2, Shield, Lock, Database, Briefcase, FileText, FolderSearch, MessageCircle } from "lucide-react";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import Navigation from "@/components/Navigation";
 import aiKnowsCases from "@/assets/ai-knows-cases.jpg";
 
@@ -51,35 +52,138 @@ const LawFirms = () => {
         </div>
       </section>
 
-      {/* Document Management Section */}
+      {/* All-in-One System Section */}
       <section className="py-24 px-4 sm:px-6 lg:px-8 bg-black border-t border-zinc-800">
         <div className="container mx-auto max-w-6xl">
-          <div className="text-center mb-16 space-y-8 animate-fade-in">
+          <div className="text-center mb-12 space-y-6 animate-fade-in">
             <h2 className="text-3xl sm:text-4xl font-semibold">
-              Intelligent Document Management
+              The All-in-One System for Modern Litigation
             </h2>
             <p className="text-xl text-zinc-300 font-sans leading-relaxed max-w-4xl mx-auto">
-              LAWLINK organizes every case file so your team can find what they need instantly and work from the same source of truth.
-            </p>
-            <p className="text-lg text-zinc-400 font-sans max-w-3xl mx-auto">
-              Integrates seamlessly with your existing document tools and workflows.
+              LAWLINK connects every part of a case — drafting, discovery, management, and client communication — under one intelligent infrastructure.
             </p>
           </div>
-          
-          <ul className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto font-sans">
-            <li className="flex flex-col items-center text-center space-y-4 p-6 bg-zinc-950 border border-zinc-800 rounded-lg">
-              <CheckCircle2 className="w-12 h-12 text-primary flex-shrink-0" />
-              <span className="text-zinc-300 text-lg">All your documents in one place — always up to date and easy to search</span>
-            </li>
-            <li className="flex flex-col items-center text-center space-y-4 p-6 bg-zinc-950 border border-zinc-800 rounded-lg">
-              <CheckCircle2 className="w-12 h-12 text-primary flex-shrink-0" />
-              <span className="text-zinc-300 text-lg">AI-powered discovery analysis and organization</span>
-            </li>
-            <li className="flex flex-col items-center text-center space-y-4 p-6 bg-zinc-950 border border-zinc-800 rounded-lg">
-              <CheckCircle2 className="w-12 h-12 text-primary flex-shrink-0" />
-              <span className="text-zinc-300 text-lg">Semantic search across all case documents</span>
-            </li>
-          </ul>
+
+          <Tabs defaultValue="case-management" className="w-full">
+            <TabsList className="grid w-full grid-cols-2 lg:grid-cols-4 bg-zinc-950 border border-zinc-800 mb-12">
+              <TabsTrigger 
+                value="case-management" 
+                className="text-base sm:text-lg data-[state=active]:bg-black data-[state=active]:text-white data-[state=active]:border-b-2 data-[state=active]:border-primary"
+              >
+                <Briefcase className="w-5 h-5 mr-2 hidden sm:inline" />
+                Case Management
+              </TabsTrigger>
+              <TabsTrigger 
+                value="drafting"
+                className="text-base sm:text-lg data-[state=active]:bg-black data-[state=active]:text-white data-[state=active]:border-b-2 data-[state=active]:border-primary"
+              >
+                <FileText className="w-5 h-5 mr-2 hidden sm:inline" />
+                Drafting
+              </TabsTrigger>
+              <TabsTrigger 
+                value="discovery"
+                className="text-base sm:text-lg data-[state=active]:bg-black data-[state=active]:text-white data-[state=active]:border-b-2 data-[state=active]:border-primary"
+              >
+                <FolderSearch className="w-5 h-5 mr-2 hidden sm:inline" />
+                Discovery
+              </TabsTrigger>
+              <TabsTrigger 
+                value="client-communication"
+                className="text-base sm:text-lg data-[state=active]:bg-black data-[state=active]:text-white data-[state=active]:border-b-2 data-[state=active]:border-primary"
+              >
+                <MessageCircle className="w-5 h-5 mr-2 hidden sm:inline" />
+                Client Communication
+              </TabsTrigger>
+            </TabsList>
+
+            <TabsContent value="case-management" className="animate-fade-in">
+              <div className="bg-zinc-950 border border-zinc-800 rounded-lg p-8 sm:p-12">
+                <p className="text-xl text-zinc-300 font-sans leading-relaxed mb-8">
+                  Organize, assign, and move cases through every stage with total visibility.
+                </p>
+                <ul className="space-y-4 font-sans">
+                  <li className="flex items-start space-x-3">
+                    <CheckCircle2 className="w-6 h-6 text-primary flex-shrink-0 mt-1" />
+                    <span className="text-zinc-300 text-lg">Unified dashboard for all active matters</span>
+                  </li>
+                  <li className="flex items-start space-x-3">
+                    <CheckCircle2 className="w-6 h-6 text-primary flex-shrink-0 mt-1" />
+                    <span className="text-zinc-300 text-lg">Task and deadline tracking tied directly to documents</span>
+                  </li>
+                  <li className="flex items-start space-x-3">
+                    <CheckCircle2 className="w-6 h-6 text-primary flex-shrink-0 mt-1" />
+                    <span className="text-zinc-300 text-lg">Secure collaboration within your team</span>
+                  </li>
+                </ul>
+              </div>
+            </TabsContent>
+
+            <TabsContent value="drafting" className="animate-fade-in">
+              <div className="bg-zinc-950 border border-zinc-800 rounded-lg p-8 sm:p-12">
+                <p className="text-xl text-zinc-300 font-sans leading-relaxed mb-8">
+                  LAWLINK's AI drafting engine learns from your prior work to produce new filings in your firm's own language.
+                </p>
+                <ul className="space-y-4 font-sans">
+                  <li className="flex items-start space-x-3">
+                    <CheckCircle2 className="w-6 h-6 text-primary flex-shrink-0 mt-1" />
+                    <span className="text-zinc-300 text-lg">Draft motions, memos, and pleadings automatically from your case data</span>
+                  </li>
+                  <li className="flex items-start space-x-3">
+                    <CheckCircle2 className="w-6 h-6 text-primary flex-shrink-0 mt-1" />
+                    <span className="text-zinc-300 text-lg">Built-in legal formatting and citation awareness</span>
+                  </li>
+                  <li className="flex items-start space-x-3">
+                    <CheckCircle2 className="w-6 h-6 text-primary flex-shrink-0 mt-1" />
+                    <span className="text-zinc-300 text-lg">Export directly to Word or PDF</span>
+                  </li>
+                </ul>
+              </div>
+            </TabsContent>
+
+            <TabsContent value="discovery" className="animate-fade-in">
+              <div className="bg-zinc-950 border border-zinc-800 rounded-lg p-8 sm:p-12">
+                <p className="text-xl text-zinc-300 font-sans leading-relaxed mb-8">
+                  Turn piles of evidence into structured knowledge.
+                </p>
+                <ul className="space-y-4 font-sans">
+                  <li className="flex items-start space-x-3">
+                    <CheckCircle2 className="w-6 h-6 text-primary flex-shrink-0 mt-1" />
+                    <span className="text-zinc-300 text-lg">Upload and tag transcripts, exhibits, and discovery responses</span>
+                  </li>
+                  <li className="flex items-start space-x-3">
+                    <CheckCircle2 className="w-6 h-6 text-primary flex-shrink-0 mt-1" />
+                    <span className="text-zinc-300 text-lg">AI-powered summarization and key-fact extraction</span>
+                  </li>
+                  <li className="flex items-start space-x-3">
+                    <CheckCircle2 className="w-6 h-6 text-primary flex-shrink-0 mt-1" />
+                    <span className="text-zinc-300 text-lg">Search across every document semantically</span>
+                  </li>
+                </ul>
+              </div>
+            </TabsContent>
+
+            <TabsContent value="client-communication" className="animate-fade-in">
+              <div className="bg-zinc-950 border border-zinc-800 rounded-lg p-8 sm:p-12">
+                <p className="text-xl text-zinc-300 font-sans leading-relaxed mb-8">
+                  Keep clients informed without lifting a finger.
+                </p>
+                <ul className="space-y-4 font-sans">
+                  <li className="flex items-start space-x-3">
+                    <CheckCircle2 className="w-6 h-6 text-primary flex-shrink-0 mt-1" />
+                    <span className="text-zinc-300 text-lg">Automatic updates sent through the LAWLINK client app</span>
+                  </li>
+                  <li className="flex items-start space-x-3">
+                    <CheckCircle2 className="w-6 h-6 text-primary flex-shrink-0 mt-1" />
+                    <span className="text-zinc-300 text-lg">Real-time progress tracking and notifications</span>
+                  </li>
+                  <li className="flex items-start space-x-3">
+                    <CheckCircle2 className="w-6 h-6 text-primary flex-shrink-0 mt-1" />
+                    <span className="text-zinc-300 text-lg">Built-in chat assistant that answers client questions instantly</span>
+                  </li>
+                </ul>
+              </div>
+            </TabsContent>
+          </Tabs>
         </div>
       </section>
 
