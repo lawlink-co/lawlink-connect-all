@@ -74,40 +74,60 @@ const FeatureCarousel = () => {
           The New Architecture of Legal Work
         </h2>
 
+        {/* Outer container for button positioning */}
         <div className="relative">
-          {/* Carousel Container */}
-          <div className="overflow-hidden" ref={emblaRef}>
-            <div className="flex">
-              {slides.map((slide, index) => (
-                <div key={index} className="flex-[0_0_100%] min-w-0">
-                  <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center px-4">
-                    {/* Text Content */}
-                    <div className="space-y-6 animate-fade-in">
-                      <h3 className="text-3xl sm:text-4xl font-bold text-white leading-tight">
-                        {slide.title}
-                      </h3>
-                      <p className="text-lg sm:text-xl text-zinc-400 leading-relaxed">
-                        {slide.description}
-                      </p>
-                    </div>
+          {/* Inner content container */}
+          <div className="relative max-w-6xl mx-auto">
+            {/* Carousel Container */}
+            <div className="overflow-hidden" ref={emblaRef}>
+              <div className="flex">
+                {slides.map((slide, index) => (
+                  <div key={index} className="flex-[0_0_100%] min-w-0">
+                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center px-4">
+                      {/* Text Content */}
+                      <div className="space-y-6 animate-fade-in">
+                        <h3 className="text-3xl sm:text-4xl font-bold text-white leading-tight">
+                          {slide.title}
+                        </h3>
+                        <p className="text-lg sm:text-xl text-zinc-400 leading-relaxed">
+                          {slide.description}
+                        </p>
+                      </div>
 
-                    {/* Image */}
-                    <div className="relative animate-scale-in">
-                      <div className="absolute inset-0 bg-blue-500/20 blur-3xl rounded-full"></div>
-                      <img
-                        src={slide.image}
-                        alt={slide.imageAlt}
-                        className="relative rounded-lg shadow-2xl w-full"
-                      />
+                      {/* Image */}
+                      <div className="relative animate-scale-in">
+                        <div className="absolute inset-0 bg-blue-500/20 blur-3xl rounded-full"></div>
+                        <img
+                          src={slide.image}
+                          alt={slide.imageAlt}
+                          className="relative rounded-lg shadow-2xl w-full"
+                        />
+                      </div>
                     </div>
                   </div>
-                </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Navigation Dots */}
+            <div className="flex justify-center gap-2 mt-12">
+              {slides.map((_, index) => (
+                <button
+                  key={index}
+                  onClick={() => scrollTo(index)}
+                  className={`h-2 rounded-full transition-all duration-300 ${
+                    index === selectedIndex
+                      ? "w-8 bg-white"
+                      : "w-2 bg-zinc-600 hover:bg-zinc-500"
+                  }`}
+                  aria-label={`Go to slide ${index + 1}`}
+                />
               ))}
             </div>
           </div>
 
-          {/* Navigation Arrows */}
-          <div className="hidden lg:flex justify-between items-center absolute top-1/2 -translate-y-1/2 left-0 right-0 pointer-events-none px-12">
+          {/* Navigation Arrows - Positioned in outer black space */}
+          <div className="hidden lg:flex justify-between items-center absolute top-1/2 -translate-y-1/2 left-0 right-0 pointer-events-none px-8">
             <Button
               variant="outline"
               size="icon"
@@ -124,22 +144,6 @@ const FeatureCarousel = () => {
             >
               <ChevronRight className="h-6 w-6" />
             </Button>
-          </div>
-
-          {/* Navigation Dots */}
-          <div className="flex justify-center gap-2 mt-12">
-            {slides.map((_, index) => (
-              <button
-                key={index}
-                onClick={() => scrollTo(index)}
-                className={`h-2 rounded-full transition-all duration-300 ${
-                  index === selectedIndex
-                    ? "w-8 bg-white"
-                    : "w-2 bg-zinc-600 hover:bg-zinc-500"
-                }`}
-                aria-label={`Go to slide ${index + 1}`}
-              />
-            ))}
           </div>
         </div>
       </div>
