@@ -61,9 +61,9 @@ const Clients = () => {
             <Card className="bg-white border-2 border-gray-200 hover:border-primary hover:shadow-xl transition-all duration-300 rounded-2xl">
               <CardContent className="pt-8">
                 <MessageSquare className="w-12 h-12 text-primary mb-6 mx-auto" />
-                <h3 className="text-2xl font-bold mb-4 text-gray-900">Direct Messaging</h3>
+                <h3 className="text-2xl font-bold mb-4 text-gray-900">AI Chat</h3>
                 <p className="text-gray-700 text-lg leading-relaxed">
-                  Message your lawyer securely anytime. No more phone tag or waiting days for a response.
+                  Talk directly to an AI that knows your case — every filing, message, and deadline. Ask questions, get updates, and understand your case in plain language, anytime.
                 </p>
               </CardContent>
             </Card>
@@ -71,9 +71,9 @@ const Clients = () => {
             <Card className="bg-white border-2 border-gray-200 hover:border-primary hover:shadow-xl transition-all duration-300 rounded-2xl">
               <CardContent className="pt-8">
                 <FileSearch className="w-12 h-12 text-primary mb-6 mx-auto" />
-                <h3 className="text-2xl font-bold mb-4 text-gray-900">Document Access</h3>
+                <h3 className="text-2xl font-bold mb-4 text-gray-900">Case Hub</h3>
                 <p className="text-gray-700 text-lg leading-relaxed">
-                  View all your case documents, pleadings, and evidence in one secure place on your phone.
+                  Every document, update, and message lives in one place. LAWLINK becomes the central hub for your entire case — clear, connected, and always in motion.
                 </p>
               </CardContent>
             </Card>
