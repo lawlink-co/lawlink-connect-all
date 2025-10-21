@@ -123,6 +123,20 @@ export default {
             transform: "scale(1)"
           }
         },
+        "fade-out": {
+          "0%": { opacity: "1" },
+          "100%": { opacity: "0" }
+        },
+        "bg-black-to-white": {
+          "0%": { backgroundColor: "hsl(0, 0%, 0%)" },
+          "50%": { backgroundColor: "hsl(0, 0%, 50%)" },
+          "100%": { backgroundColor: "hsl(0, 0%, 100%)" }
+        },
+        "bg-white-to-black": {
+          "0%": { backgroundColor: "hsl(0, 0%, 100%)" },
+          "50%": { backgroundColor: "hsl(0, 0%, 50%)" },
+          "100%": { backgroundColor: "hsl(0, 0%, 0%)" }
+        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
@@ -131,6 +145,9 @@ export default {
         "fade-in-slow": "fade-in-slow 1s ease-out",
         "slide-up": "slide-up 0.8s ease-out",
         "scale-in": "scale-in 0.5s ease-out",
+        "fade-out": "fade-out 0.4s ease-out forwards",
+        "bg-black-to-white": "bg-black-to-white 1s ease-in-out forwards",
+        "bg-white-to-black": "bg-white-to-black 1s ease-in-out forwards",
       },
     },
   },
