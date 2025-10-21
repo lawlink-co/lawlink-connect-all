@@ -7,8 +7,6 @@ import Home from "./pages/Home";
 import LawFirms from "./pages/LawFirms";
 import Clients from "./pages/Clients";
 import NotFound from "./pages/NotFound";
-import BackgroundTransition from "./components/BackgroundTransition";
-import PageTransition from "./components/PageTransition";
 
 const queryClient = new QueryClient();
 
@@ -18,16 +16,13 @@ const App = () => (
       <Toaster />
       <Sonner />
       <BrowserRouter>
-        <BackgroundTransition />
-        <PageTransition>
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/law-firms" element={<LawFirms />} />
-            <Route path="/clients" element={<Clients />} />
-            {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
-            <Route path="*" element={<NotFound />} />
-          </Routes>
-        </PageTransition>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/law-firms" element={<LawFirms />} />
+          <Route path="/clients" element={<Clients />} />
+          {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
+          <Route path="*" element={<NotFound />} />
+        </Routes>
       </BrowserRouter>
     </TooltipProvider>
   </QueryClientProvider>
