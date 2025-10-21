@@ -36,47 +36,59 @@ const Clients = () => {
         </div>
       </section>
 
-      {/* Updates Section */}
-      <section className="py-24 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-white to-blue-50">
-        <div className="container mx-auto max-w-6xl text-center">
-          <Smartphone className="w-20 h-20 text-primary mx-auto mb-8 animate-scale-in" />
-          <h2 className="text-4xl sm:text-5xl font-bold mb-8 text-gray-900">
-            Your Case, in One View
-          </h2>
-          <p className="text-xl sm:text-2xl text-gray-700 max-w-4xl mx-auto leading-relaxed mb-16">
-            LAWLINK turns lawsuits into something tangible. See every update, motion, and court filing — right in your pocket.
-          </p>
+      {/* Your Case, Made Tangible Section */}
+      <section className="py-32 px-4 sm:px-6 lg:px-8 bg-white">
+        <div className="container mx-auto max-w-6xl">
+          <div className="text-center mb-20 space-y-6">
+            <h2 className="text-5xl sm:text-6xl font-bold text-gray-900 leading-tight">
+              Your Case, Made Tangible.
+            </h2>
+            <p className="text-xl sm:text-2xl text-gray-700 max-w-4xl mx-auto leading-relaxed">
+              LAWLINK turns your case into something you can follow, question, and understand — every moment, every update, every step.
+            </p>
+          </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-12">
-            <Card className="bg-white border-2 border-gray-200 hover:border-primary hover:shadow-xl transition-all duration-300 rounded-2xl">
-              <CardContent className="pt-8">
-                <Bell className="w-12 h-12 text-primary mb-6 mx-auto" />
-                <h3 className="text-2xl font-bold mb-4 text-gray-900">Real-Time Updates</h3>
-                <p className="text-gray-700 text-lg leading-relaxed">
-                  Get instant notifications about every important development in your case—filings, hearings, and settlements.
-                </p>
-              </CardContent>
-            </Card>
+          {/* Large Centered Visual */}
+          <div className="relative mb-24 animate-fade-in">
+            <div className="absolute inset-0 bg-primary/5 blur-3xl rounded-full"></div>
+            <img 
+              src={phoneMockup}
+              alt="LAWLINK app interface showing AI chat and case progress"
+              className="relative mx-auto max-w-2xl drop-shadow-2xl rounded-2xl"
+            />
+          </div>
 
-            <Card className="bg-white border-2 border-gray-200 hover:border-primary hover:shadow-xl transition-all duration-300 rounded-2xl">
-              <CardContent className="pt-8">
-                <MessageSquare className="w-12 h-12 text-primary mb-6 mx-auto" />
-                <h3 className="text-2xl font-bold mb-4 text-gray-900">Direct Messaging</h3>
-                <p className="text-gray-700 text-lg leading-relaxed">
-                  Message your lawyer securely anytime. No more phone tag or waiting days for a response.
-                </p>
-              </CardContent>
-            </Card>
+          {/* Experience Statements */}
+          <div className="space-y-20 max-w-5xl mx-auto">
+            {/* Statement 1 */}
+            <div className="flex flex-col items-center text-center space-y-6 animate-fade-in" style={{ animationDelay: '0.2s' }}>
+              <h3 className="text-3xl sm:text-4xl font-bold text-gray-900">
+                Talk to Your Case
+              </h3>
+              <p className="text-lg sm:text-xl text-gray-700 max-w-3xl leading-relaxed">
+                LAWLINK's built-in AI isn't generic — it knows your case like your lawyer does. Ask it questions, get updates, and understand filings in plain language.
+              </p>
+            </div>
 
-            <Card className="bg-white border-2 border-gray-200 hover:border-primary hover:shadow-xl transition-all duration-300 rounded-2xl">
-              <CardContent className="pt-8">
-                <FileSearch className="w-12 h-12 text-primary mb-6 mx-auto" />
-                <h3 className="text-2xl font-bold mb-4 text-gray-900">Document Access</h3>
-                <p className="text-gray-700 text-lg leading-relaxed">
-                  View all your case documents, pleadings, and evidence in one secure place on your phone.
-                </p>
-              </CardContent>
-            </Card>
+            {/* Statement 2 */}
+            <div className="flex flex-col items-center text-center space-y-6 animate-fade-in" style={{ animationDelay: '0.4s' }}>
+              <h3 className="text-3xl sm:text-4xl font-bold text-gray-900">
+                A Constant Flow of Updates
+              </h3>
+              <p className="text-lg sm:text-xl text-gray-700 max-w-3xl leading-relaxed">
+                No more waiting for callbacks. As your lawyer files, uploads, or receives new information, you see it — instantly.
+              </p>
+            </div>
+
+            {/* Statement 3 */}
+            <div className="flex flex-col items-center text-center space-y-6 animate-fade-in" style={{ animationDelay: '0.6s' }}>
+              <h3 className="text-3xl sm:text-4xl font-bold text-gray-900">
+                Something You Can Follow
+              </h3>
+              <p className="text-lg sm:text-xl text-gray-700 max-w-3xl leading-relaxed">
+                Every document, update, and message lives in one place. LAWLINK becomes the central hub for your entire case — clear, connected, and always in motion.
+              </p>
+            </div>
           </div>
         </div>
       </section>
