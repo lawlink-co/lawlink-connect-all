@@ -21,7 +21,7 @@ const LawFirms = () => {
             </div>
           </h1>
           <p className="text-4xl sm:text-5xl text-white font-light mb-6 animate-fade-in">
-            All on One Platform
+            All On One Platform.
           </p>
           <p className="text-xl sm:text-2xl text-zinc-400 font-light mb-12 animate-fade-in">
             From drafting to client updates, every part of your practice connected by AI.
