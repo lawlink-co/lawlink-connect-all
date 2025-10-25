@@ -20,12 +20,12 @@ const Home = () => {
           </p>
           <div className="flex flex-col sm:flex-row gap-6 justify-center animate-slide-up">
             <Link to="/law-firms">
-              <Button size="lg" className="w-full sm:w-auto text-lg px-12 py-7 bg-white text-black hover:bg-zinc-200 transition-all duration-300 hover:scale-105">
+              <Button size="lg" className="w-full sm:w-auto text-lg px-12 py-7 bg-white text-black border-2 border-transparent hover:bg-zinc-200 transition-all duration-300 hover:scale-105">
                 For Law Firms
               </Button>
             </Link>
             <Link to="/clients">
-              <Button size="lg" className="w-full sm:w-auto text-lg px-12 py-7 bg-white/10 text-white border-2 border-white hover:bg-white hover:text-black transition-all duration-300 hover:scale-105">
+              <Button size="lg" className="w-full sm:w-auto text-lg px-12 py-7 bg-white/10 border-2 border-white text-white hover:bg-white hover:text-black transition-all duration-300 hover:scale-105">
                 For Clients
               </Button>
             </Link>
