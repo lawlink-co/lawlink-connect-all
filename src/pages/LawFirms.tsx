@@ -3,7 +3,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { CheckCircle2, Shield, Lock, Database, Briefcase, FileText, FolderSearch, MessageCircle } from "lucide-react";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import Navigation from "@/components/Navigation";
-import aiKnowsCases from "@/assets/ai-knows-cases.jpg";
+import aiKnowsCases from "@/assets/what-lawyers-used-to-do.svg";
 
 const LawFirms = () => {
   return (
