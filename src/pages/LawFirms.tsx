@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import { CheckCircle2, Shield, Lock, Database, Briefcase, FileText, FolderSearch, MessageCircle } from "lucide-react";
+import { CheckCircle2, Shield, Lock, Database, Briefcase, FileText, FolderSearch, MessageCircle, Settings } from "lucide-react";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import Navigation from "@/components/Navigation";
 import aiKnowsCases from "@/assets/what-lawyers-used-to-do.svg";
@@ -68,7 +68,7 @@ const LawFirms = () => {
           </div>
 
           <Tabs defaultValue="case-management" className="w-full">
-            <TabsList className="grid w-full grid-cols-2 lg:grid-cols-4 bg-zinc-950 border border-zinc-800 mb-12">
+            <TabsList className="grid w-full grid-cols-2 lg:grid-cols-5 bg-zinc-950 border border-zinc-800 mb-12">
               <TabsTrigger 
                 value="case-management" 
                 className="text-base sm:text-lg data-[state=active]:bg-black data-[state=active]:text-white data-[state=active]:border-b-2 data-[state=active]:border-primary"
@@ -96,6 +96,13 @@ const LawFirms = () => {
               >
                 <MessageCircle className="w-5 h-5 mr-2 hidden sm:inline" />
                 Client Communication
+              </TabsTrigger>
+              <TabsTrigger 
+                value="customization"
+                className="text-base sm:text-lg data-[state=active]:bg-black data-[state=active]:text-white data-[state=active]:border-b-2 data-[state=active]:border-primary"
+              >
+                <Settings className="w-5 h-5 mr-2 hidden sm:inline" />
+                Customization
               </TabsTrigger>
             </TabsList>
 
@@ -184,6 +191,59 @@ const LawFirms = () => {
                     <span className="text-zinc-300 text-lg">Built-in chat assistant that answers client questions instantly</span>
                   </li>
                 </ul>
+              </div>
+            </TabsContent>
+
+            <TabsContent value="customization" className="animate-fade-in">
+              <div className="bg-zinc-950 border border-zinc-800 rounded-lg p-8 sm:p-12">
+                {/* Video Placeholder */}
+                <div className="mb-10 bg-zinc-900 border border-zinc-700 rounded-lg aspect-video flex items-center justify-center">
+                  <div className="text-center text-zinc-500">
+                    <div className="w-20 h-20 mx-auto mb-4 rounded-full bg-zinc-800 flex items-center justify-center">
+                      <svg className="w-10 h-10 text-zinc-600" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M8 5v14l11-7z"/>
+                      </svg>
+                    </div>
+                    <p className="text-lg font-sans">Demo Video Coming Soon</p>
+                  </div>
+                </div>
+
+                <h3 className="text-2xl sm:text-3xl font-semibold mb-6 text-white">
+                  Build the Perfect Legal CRM — Your Way.
+                </h3>
+                
+                <p className="text-xl text-zinc-300 font-sans leading-relaxed mb-8">
+                  LAWLINK lets every firm create a completely personalized CRM experience. Within your dashboard, you can add or remove pages, contacts, and data fields to match your exact litigation workflow.
+                </p>
+
+                <div className="bg-zinc-900 border border-zinc-700 rounded-lg p-6 mb-8">
+                  <p className="text-lg text-zinc-300 font-sans leading-relaxed mb-6">
+                    Each section of your CRM can be structured with <span className="text-white font-semibold">items</span> (subpages or tabs) that contain <span className="text-white font-semibold">fields</span> (data text fields) and <span className="text-white font-semibold">contacts</span> (people or corporations). You can easily:
+                  </p>
+                  
+                  <ul className="space-y-3 font-sans">
+                    <li className="flex items-start space-x-3">
+                      <CheckCircle2 className="w-6 h-6 text-primary flex-shrink-0 mt-1" />
+                      <span className="text-zinc-300 text-lg">Add or delete titles, descriptions, contacts, and fields</span>
+                    </li>
+                    <li className="flex items-start space-x-3">
+                      <CheckCircle2 className="w-6 h-6 text-primary flex-shrink-0 mt-1" />
+                      <span className="text-zinc-300 text-lg">Drag, drop, and stretch items across a two-column layout to organize your workspace</span>
+                    </li>
+                    <li className="flex items-start space-x-3">
+                      <CheckCircle2 className="w-6 h-6 text-primary flex-shrink-0 mt-1" />
+                      <span className="text-zinc-300 text-lg">Save layouts as templates for future use</span>
+                    </li>
+                    <li className="flex items-start space-x-3">
+                      <CheckCircle2 className="w-6 h-6 text-primary flex-shrink-0 mt-1" />
+                      <span className="text-zinc-300 text-lg">Restrict access — only users with permissions will see the "+" buttons for creating or editing fields</span>
+                    </li>
+                  </ul>
+                </div>
+
+                <p className="text-xl text-zinc-300 font-sans leading-relaxed italic border-l-4 border-primary pl-6">
+                  This flexibility allows firms to design their own CRM architecture, ensuring that every page, field, and contact list fits their unique needs. LAWLINK is not a one-size-fits-all platform — it's a modular system where firms can craft their own structure for case management, data, and client relationships.
+                </p>
               </div>
             </TabsContent>
           </Tabs>
