@@ -19,12 +19,12 @@ const Home = () => {
           </p>
           <div className="flex flex-col sm:flex-row gap-6 justify-center animate-slide-up">
             <Link to="/law-firms">
-              <Button size="lg" className="w-full sm:w-auto text-lg px-12 bg-white text-black border-2 border-transparent hover:bg-zinc-200 transition-all duration-300 hover:scale-105">
+              <Button size="lg" className="w-full sm:min-w-[180px] text-lg px-12 bg-white text-black border-2 border-transparent hover:bg-zinc-200 transition-all duration-300 hover:scale-105">
                 For Law Firms
               </Button>
             </Link>
             <Link to="/clients">
-              <Button size="lg" className="w-full sm:w-auto text-lg px-12 bg-white text-black border-2 border-transparent hover:bg-zinc-200 transition-all duration-300 hover:scale-105">
+              <Button size="lg" className="w-full sm:min-w-[180px] text-lg px-12 bg-white text-black border-2 border-transparent hover:bg-zinc-200 transition-all duration-300 hover:scale-105">
                 For Clients
               </Button>
             </Link>
