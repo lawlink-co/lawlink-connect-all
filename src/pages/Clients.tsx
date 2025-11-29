@@ -136,10 +136,10 @@ const Clients = () => {
       <section className="py-24 px-4 sm:px-6 lg:px-8 bg-white">
         <div className="container mx-auto max-w-5xl text-center">
           <h2 className="text-4xl sm:text-5xl font-bold mb-12 text-gray-900">
-            Every Lawyer on LAWLINK
+            Your Information, Secured
           </h2>
           <p className="text-xl sm:text-2xl text-gray-700 mb-16 max-w-3xl mx-auto">
-            Every lawyer on LAWLINK uses the same secure infrastructure. No confusion. No lost files. No silence.
+            Every lawyer on LAWLINK uses the same secure infrastructure.<br />No confusion. No lost files. No silence.
           </p>
           
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl mx-auto">
