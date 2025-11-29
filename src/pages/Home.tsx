@@ -2,7 +2,6 @@ import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import Navigation from "@/components/Navigation";
 import FeatureCarousel from "@/components/FeatureCarousel";
-import heroBackground from "@/assets/frame-1.jpg";
 
 const Home = () => {
   return (
@@ -38,9 +37,12 @@ const Home = () => {
         <div className="container mx-auto max-w-5xl">
           <div className="relative animate-scale-in">
             <div className="absolute inset-0 bg-blue-500/10 blur-3xl rounded-full"></div>
-            <img 
-              src={heroBackground} 
-              alt="LAWLINK Platform Vision"
+            <video 
+              src="/videos/hero-video.mp4"
+              autoPlay
+              muted
+              loop
+              playsInline
               className="relative rounded-lg shadow-2xl w-full"
             />
           </div>
