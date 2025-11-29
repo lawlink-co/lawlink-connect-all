@@ -310,7 +310,7 @@ const LawFirms = () => {
             <Button size="lg" className="text-xl px-14 py-8 bg-white text-black hover:bg-zinc-200 transition-all duration-300 hover:scale-105 font-sans">
               See a Demo
             </Button>
-            <Button size="lg" className="text-xl px-14 py-8 bg-black text-white border-2 border-white hover:bg-zinc-900 transition-all duration-300 hover:scale-105 font-sans">
+            <Button size="lg" variant="outline" className="text-xl px-14 py-8 border-2 border-white text-white hover:bg-white hover:text-black transition-all duration-300 hover:scale-105 font-sans">
               Talk to Our Team
             </Button>
           </div>
