@@ -4,10 +4,8 @@ import { CheckCircle2, Shield, Lock, Database, Briefcase, FileText, FolderSearch
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import Navigation from "@/components/Navigation";
 import aiKnowsCases from "@/assets/what-lawyers-used-to-do.svg";
-
 const LawFirms = () => {
-  return (
-    <div className="min-h-screen bg-black text-white font-serif">
+  return <div className="min-h-screen bg-black text-white font-serif">
       <Navigation />
       
       {/* Hero Section */}
@@ -38,11 +36,7 @@ const LawFirms = () => {
       <section className="py-24 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-black to-zinc-950">
         <div className="container mx-auto max-w-7xl">
           <div className="mb-16 animate-scale-in">
-            <img 
-              src={aiKnowsCases} 
-              alt="LAWLINK CRM Dashboard - Case management interface showing case details, timeline, and documents"
-              className="w-full rounded-lg shadow-2xl border border-zinc-800"
-            />
+            <img src={aiKnowsCases} alt="LAWLINK CRM Dashboard - Case management interface showing case details, timeline, and documents" className="w-full rounded-lg shadow-2xl border border-zinc-800" />
           </div>
           <div className="text-center space-y-6 max-w-4xl mx-auto animate-fade-in">
             <h2 className="text-3xl sm:text-4xl font-semibold">
@@ -69,38 +63,23 @@ const LawFirms = () => {
 
           <Tabs defaultValue="case-management" className="w-full">
             <TabsList className="grid w-full grid-cols-2 lg:grid-cols-5 bg-zinc-950 border border-zinc-800 mb-12 items-center h-auto min-h-14">
-              <TabsTrigger 
-                value="case-management" 
-                className="text-base sm:text-lg py-4 h-full flex items-center justify-center data-[state=active]:bg-black data-[state=active]:text-white data-[state=active]:border-b-2 data-[state=active]:border-primary"
-              >
+              <TabsTrigger value="case-management" className="text-base sm:text-lg py-4 h-full flex items-center justify-center data-[state=active]:bg-black data-[state=active]:text-white data-[state=active]:border-b-2 data-[state=active]:border-primary">
                 <Briefcase className="w-5 h-5 mr-2 hidden sm:inline" />
                 Case Management
               </TabsTrigger>
-              <TabsTrigger 
-                value="drafting"
-                className="text-base sm:text-lg py-4 h-full flex items-center justify-center data-[state=active]:bg-black data-[state=active]:text-white data-[state=active]:border-b-2 data-[state=active]:border-primary"
-              >
+              <TabsTrigger value="drafting" className="text-base sm:text-lg py-4 h-full flex items-center justify-center data-[state=active]:bg-black data-[state=active]:text-white data-[state=active]:border-b-2 data-[state=active]:border-primary">
                 <FileText className="w-5 h-5 mr-2 hidden sm:inline" />
                 Drafting
               </TabsTrigger>
-              <TabsTrigger 
-                value="discovery"
-                className="text-base sm:text-lg py-4 h-full flex items-center justify-center data-[state=active]:bg-black data-[state=active]:text-white data-[state=active]:border-b-2 data-[state=active]:border-primary"
-              >
+              <TabsTrigger value="discovery" className="text-base sm:text-lg py-4 h-full flex items-center justify-center data-[state=active]:bg-black data-[state=active]:text-white data-[state=active]:border-b-2 data-[state=active]:border-primary">
                 <FolderSearch className="w-5 h-5 mr-2 hidden sm:inline" />
                 Discovery
               </TabsTrigger>
-              <TabsTrigger 
-                value="client-communication"
-                className="text-base sm:text-lg py-4 h-full flex items-center justify-center data-[state=active]:bg-black data-[state=active]:text-white data-[state=active]:border-b-2 data-[state=active]:border-primary"
-              >
-                <MessageCircle className="w-7 h-7 mr-2 hidden sm:inline" />
+              <TabsTrigger value="client-communication" className="text-base sm:text-lg py-4 h-full flex items-center justify-center data-[state=active]:bg-black data-[state=active]:text-white data-[state=active]:border-b-2 data-[state=active]:border-primary">
+                <MessageCircle className="mr-2 hidden sm:inline w-[48px] h-[48px]" />
                 Client Communication
               </TabsTrigger>
-              <TabsTrigger 
-                value="customization"
-                className="text-base sm:text-lg py-4 h-full flex items-center justify-center data-[state=active]:bg-black data-[state=active]:text-white data-[state=active]:border-b-2 data-[state=active]:border-primary"
-              >
+              <TabsTrigger value="customization" className="text-base sm:text-lg py-4 h-full flex items-center justify-center data-[state=active]:bg-black data-[state=active]:text-white data-[state=active]:border-b-2 data-[state=active]:border-primary">
                 <Settings className="w-5 h-5 mr-2 hidden sm:inline" />
                 Customization
               </TabsTrigger>
@@ -201,7 +180,7 @@ const LawFirms = () => {
                   <div className="text-center text-zinc-500">
                     <div className="w-20 h-20 mx-auto mb-4 rounded-full bg-zinc-800 flex items-center justify-center">
                       <svg className="w-10 h-10 text-zinc-600" fill="currentColor" viewBox="0 0 24 24">
-                        <path d="M8 5v14l11-7z"/>
+                        <path d="M8 5v14l11-7z" />
                       </svg>
                     </div>
                     <p className="text-lg font-sans">Demo Video Coming Soon</p>
@@ -326,8 +305,6 @@ const LawFirms = () => {
           <p>&copy; 2025 LAWLINK. All rights reserved.</p>
         </div>
       </footer>
-    </div>
-  );
+    </div>;
 };
-
 export default LawFirms;
