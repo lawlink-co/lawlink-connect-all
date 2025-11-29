@@ -68,38 +68,38 @@ const LawFirms = () => {
           </div>
 
           <Tabs defaultValue="case-management" className="w-full">
-            <TabsList className="grid w-full grid-cols-2 lg:grid-cols-5 bg-zinc-950 border border-zinc-800 mb-12">
+            <TabsList className="grid w-full grid-cols-2 lg:grid-cols-5 bg-zinc-950 border border-zinc-800 mb-12 items-center h-auto min-h-14">
               <TabsTrigger 
                 value="case-management" 
-                className="text-base sm:text-lg data-[state=active]:bg-black data-[state=active]:text-white data-[state=active]:border-b-2 data-[state=active]:border-primary"
+                className="text-base sm:text-lg py-4 h-full flex items-center justify-center data-[state=active]:bg-black data-[state=active]:text-white data-[state=active]:border-b-2 data-[state=active]:border-primary"
               >
                 <Briefcase className="w-5 h-5 mr-2 hidden sm:inline" />
                 Case Management
               </TabsTrigger>
               <TabsTrigger 
                 value="drafting"
-                className="text-base sm:text-lg data-[state=active]:bg-black data-[state=active]:text-white data-[state=active]:border-b-2 data-[state=active]:border-primary"
+                className="text-base sm:text-lg py-4 h-full flex items-center justify-center data-[state=active]:bg-black data-[state=active]:text-white data-[state=active]:border-b-2 data-[state=active]:border-primary"
               >
                 <FileText className="w-5 h-5 mr-2 hidden sm:inline" />
                 Drafting
               </TabsTrigger>
               <TabsTrigger 
                 value="discovery"
-                className="text-base sm:text-lg data-[state=active]:bg-black data-[state=active]:text-white data-[state=active]:border-b-2 data-[state=active]:border-primary"
+                className="text-base sm:text-lg py-4 h-full flex items-center justify-center data-[state=active]:bg-black data-[state=active]:text-white data-[state=active]:border-b-2 data-[state=active]:border-primary"
               >
                 <FolderSearch className="w-5 h-5 mr-2 hidden sm:inline" />
                 Discovery
               </TabsTrigger>
               <TabsTrigger 
                 value="client-communication"
-                className="text-base sm:text-lg data-[state=active]:bg-black data-[state=active]:text-white data-[state=active]:border-b-2 data-[state=active]:border-primary"
+                className="text-base sm:text-lg py-4 h-full flex items-center justify-center data-[state=active]:bg-black data-[state=active]:text-white data-[state=active]:border-b-2 data-[state=active]:border-primary"
               >
                 <MessageCircle className="w-5 h-5 mr-2 hidden sm:inline" />
                 Client Communication
               </TabsTrigger>
               <TabsTrigger 
                 value="customization"
-                className="text-base sm:text-lg data-[state=active]:bg-black data-[state=active]:text-white data-[state=active]:border-b-2 data-[state=active]:border-primary"
+                className="text-base sm:text-lg py-4 h-full flex items-center justify-center data-[state=active]:bg-black data-[state=active]:text-white data-[state=active]:border-b-2 data-[state=active]:border-primary"
               >
                 <Settings className="w-5 h-5 mr-2 hidden sm:inline" />
                 Customization
