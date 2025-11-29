@@ -94,7 +94,7 @@ const LawFirms = () => {
                 value="client-communication"
                 className="text-base sm:text-lg py-4 h-full flex items-center justify-center data-[state=active]:bg-black data-[state=active]:text-white data-[state=active]:border-b-2 data-[state=active]:border-primary"
               >
-                <MessageCircle className="w-6 h-6 mr-2 hidden sm:inline" />
+                <MessageCircle className="w-7 h-7 mr-2 hidden sm:inline" />
                 Client Communication
               </TabsTrigger>
               <TabsTrigger 
