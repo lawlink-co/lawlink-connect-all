@@ -83,7 +83,7 @@ const Clients = () => {
                 <Briefcase className="w-12 h-12 text-primary mb-6 mx-auto" />
                 <h3 className="text-2xl font-bold mb-4 text-gray-900">All Your Cases, One App</h3>
                 <p className="text-gray-700 text-lg leading-relaxed">
-                  Managing multiple legal matters? Keep all your ongoing cases organized in a single app, with appointments, deadlines, and updates for each — always at your fingertips.
+                  Keep all your ongoing cases organized in a single app, with appointments, deadlines, and updates for each — always at your fingertips.
                 </p>
               </CardContent>
             </Card>
