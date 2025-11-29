@@ -73,7 +73,7 @@ const Clients = () => {
                 <FileSearch className="w-12 h-12 text-primary mb-6 mx-auto" />
                 <h3 className="text-2xl font-bold mb-4 text-gray-900">Case Hub</h3>
                 <p className="text-gray-700 text-lg leading-relaxed">
-                  Every document, update, and message lives in one place. LAWLINK becomes the central hub for your entire case — clear, connected, and always in motion.
+                  Every document, update, appointment, and message lives in one place. Manage multiple ongoing cases in a single app — clear, connected, and always in motion.
                 </p>
               </CardContent>
             </Card>
