@@ -76,8 +76,8 @@ const LawFirms = () => {
                 Discovery
               </TabsTrigger>
               <TabsTrigger value="client-communication" className="text-base sm:text-lg py-4 h-full flex items-center justify-center data-[state=active]:bg-black data-[state=active]:text-white data-[state=active]:border-b-2 data-[state=active]:border-primary">
-                <MessageCircle className="mr-2 hidden sm:inline w-[48px] h-[48px]" />
-                Client Communication
+                <MessageCircle className="w-5 h-5 mr-2 hidden sm:inline" />
+                Client Comms.
               </TabsTrigger>
               <TabsTrigger value="customization" className="text-base sm:text-lg py-4 h-full flex items-center justify-center data-[state=active]:bg-black data-[state=active]:text-white data-[state=active]:border-b-2 data-[state=active]:border-primary">
                 <Settings className="w-5 h-5 mr-2 hidden sm:inline" />
