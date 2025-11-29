@@ -19,7 +19,7 @@ const slides: CarouselSlide[] = [
   },
   {
     title: "Infrastructure That Scales With Every Case",
-    description: "Behind the interface is a layered system built for volume and precision. From intake to resolution, every document, update, and deadline connects across one living database — your firm's new operating system. As your firm grows, customize your CRM to match: add pages, fields, and contacts, reorganize your workspace, and set permissions to fit your evolving workflow.",
+    description: "Behind the interface is a layered system built for volume and precision. As your firm grows, customize your CRM to match: create new pages, reorganize your workspace, and set permissions to fit your evolving workflow. From intake to resolution, every document, update, and deadline connects across one living database — your firm's new operating system.",
     image: "/src/assets/screenshot-dashboard.png",
     imageAlt: "Case dashboard and management system"
   },
