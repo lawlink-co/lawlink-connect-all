@@ -50,7 +50,7 @@ const Home = () => {
       </section>
 
       {/* Problem Section - Scrolling Typography */}
-      <section className="py-32 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-black via-zinc-950 to-black">
+      <section className="min-h-screen flex items-center px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-black via-zinc-950 to-black">
         <div className="container mx-auto max-w-5xl text-center space-y-12">
           <div className="space-y-8 animate-fade-in">
             <p className="text-3xl sm:text-4xl lg:text-5xl text-zinc-200 font-light leading-tight">
