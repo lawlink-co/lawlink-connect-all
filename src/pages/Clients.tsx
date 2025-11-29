@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import { MessageSquare, Bell, FileSearch, Shield, Smartphone, Clock, Check } from "lucide-react";
+import { MessageSquare, Bell, FileSearch, Shield, Smartphone, Clock, Check, Calendar, Briefcase } from "lucide-react";
 import Navigation from "@/components/Navigation";
 import phoneMockup from "@/assets/phone-mockup.png";
 
@@ -47,7 +47,7 @@ const Clients = () => {
             LAWLINK turns lawsuits into something tangible. See every update, motion, and court filing — right in your pocket.
           </p>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-12">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-12">
             <Card className="bg-white border-2 border-gray-200 hover:border-primary hover:shadow-xl transition-all duration-300 rounded-2xl">
               <CardContent className="pt-8">
                 <Bell className="w-12 h-12 text-primary mb-6 mx-auto" />
@@ -73,7 +73,17 @@ const Clients = () => {
                 <FileSearch className="w-12 h-12 text-primary mb-6 mx-auto" />
                 <h3 className="text-2xl font-bold mb-4 text-gray-900">Case Hub</h3>
                 <p className="text-gray-700 text-lg leading-relaxed">
-                  Every document, update, appointment, and message lives in one place. Manage multiple ongoing cases in a single app — clear, connected, and always in motion.
+                  Every document, update, and message lives in one place. LAWLINK becomes the central hub for your entire case — clear, connected, and always in motion.
+                </p>
+              </CardContent>
+            </Card>
+
+            <Card className="bg-white border-2 border-gray-200 hover:border-primary hover:shadow-xl transition-all duration-300 rounded-2xl">
+              <CardContent className="pt-8">
+                <Briefcase className="w-12 h-12 text-primary mb-6 mx-auto" />
+                <h3 className="text-2xl font-bold mb-4 text-gray-900">All Your Cases, One App</h3>
+                <p className="text-gray-700 text-lg leading-relaxed">
+                  Managing multiple legal matters? Keep all your ongoing cases organized in a single app, with appointments, deadlines, and updates for each — always at your fingertips.
                 </p>
               </CardContent>
             </Card>
