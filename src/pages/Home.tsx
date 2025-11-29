@@ -2,10 +2,8 @@ import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import Navigation from "@/components/Navigation";
 import FeatureCarousel from "@/components/FeatureCarousel";
-
 const Home = () => {
-  return (
-    <div className="min-h-screen bg-black text-white">
+  return <div className="min-h-screen bg-black text-white">
       <Navigation />
       
       {/* Hero Section */}
@@ -19,7 +17,7 @@ const Home = () => {
           </p>
           <div className="flex flex-col sm:flex-row gap-6 justify-center animate-slide-up">
             <Link to="/law-firms">
-              <Button size="lg" className="w-full sm:min-w-[180px] text-lg px-12 bg-white text-black border-2 border-transparent hover:bg-zinc-200 transition-all duration-300 hover:scale-105">
+              <Button size="lg" className="w-full sm:min-w-[180px] text-lg bg-white text-black border-2 border-transparent hover:bg-zinc-200 transition-all duration-300 hover:scale-105 px-[28px]">
                 For Law Firms
               </Button>
             </Link>
@@ -37,14 +35,7 @@ const Home = () => {
         <div className="container mx-auto max-w-5xl">
           <div className="relative animate-scale-in">
             <div className="absolute inset-0 bg-blue-500/10 blur-3xl rounded-full"></div>
-            <video 
-              src="/videos/hero-video.mp4"
-              autoPlay
-              muted
-              loop
-              playsInline
-              className="relative rounded-lg shadow-2xl w-full"
-            />
+            <video src="/videos/hero-video.mp4" autoPlay muted loop playsInline className="relative rounded-lg shadow-2xl w-full" />
           </div>
         </div>
       </section>
@@ -248,8 +239,6 @@ const Home = () => {
           <p className="text-zinc-500">&copy; 2025 LAWLINK. All rights reserved.</p>
         </div>
       </footer>
-    </div>
-  );
+    </div>;
 };
-
 export default Home;
