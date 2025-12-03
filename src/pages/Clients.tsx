@@ -6,6 +6,7 @@ import phoneAppMockup from "@/assets/phone-app-mockup.svg";
 import caseNotification from "@/assets/case-notification.svg";
 import phoneFrame from "@/assets/phone-frame.svg";
 import caseHubNetwork from "@/assets/case-hub-network.png";
+import casesToApp from "@/assets/cases-to-app.png";
 import { useEffect, useRef, useState } from "react";
 
 const Clients = () => {
@@ -241,6 +242,30 @@ const Clients = () => {
           
           <p className="text-xl sm:text-2xl text-white max-w-3xl mx-auto leading-relaxed">
             No more endless phone calls or wondering what's happening with your case. Everything you need — documents, updates, messages, and deadlines — lives in one place, accessible anytime.
+          </p>
+        </div>
+      </section>
+
+      {/* All Cases Section */}
+      <section className="py-24 px-4 sm:px-6 lg:px-8 bg-[#3b4fa8]">
+        <div className="container mx-auto max-w-5xl text-center">
+          <div className="flex items-center justify-center gap-4 mb-8">
+            <div className="w-16 h-16 bg-white/20 rounded-2xl flex items-center justify-center hover:bg-white/30 transition-all duration-300 hover:scale-110 cursor-pointer group">
+              <Briefcase className="w-10 h-10 text-white group-hover:text-white/80 transition-colors" />
+            </div>
+            <h2 className="text-4xl sm:text-5xl font-bold text-white">
+              Track Every Case, Instantly
+            </h2>
+          </div>
+          
+          <img 
+            src={casesToApp} 
+            alt="Filing cabinets funneling into a single app with case tracking"
+            className="mx-auto max-w-3xl w-full h-auto my-12 rounded-2xl shadow-2xl"
+          />
+          
+          <p className="text-xl sm:text-2xl text-white/90 max-w-3xl mx-auto leading-relaxed">
+            Ditch the scattered paperwork and endless folders. LAWLINK brings all your cases together — with appointments, deadlines, and updates for each — always at your fingertips.
           </p>
         </div>
       </section>
