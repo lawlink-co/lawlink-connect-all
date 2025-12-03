@@ -17,7 +17,7 @@ const Clients = () => {
           setNotificationVisible(true);
         }
       },
-      { threshold: 0.3 }
+      { threshold: 0.5, rootMargin: '-20% 0px -20% 0px' }
     );
 
     if (notificationSectionRef.current) {
@@ -113,51 +113,42 @@ const Clients = () => {
         </div>
       </section>
 
-      {/* Real-Time Updates Notification Section */}
+      {/* Catch Up Section */}
       <section 
         ref={notificationSectionRef}
-        className="py-24 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-blue-50 to-white min-h-[80vh] flex items-center"
+        className="py-32 px-4 sm:px-6 lg:px-8 bg-white min-h-screen flex flex-col justify-center"
       >
         <div className="container mx-auto max-w-5xl">
-          <div className="text-center mb-12">
-            <Bell className="w-16 h-16 text-primary mx-auto mb-6" />
-            <h2 className="text-4xl sm:text-5xl font-bold mb-6 text-gray-900">
-              Real-Time Updates
-            </h2>
-          </div>
+          <h2 className="text-5xl sm:text-6xl lg:text-7xl font-bold text-gray-900 mb-20">
+            Catch Up with Your Case
+          </h2>
           
           <div className="flex flex-col items-center">
             {/* Notification Image */}
             <div 
-              className={`transition-all duration-1000 ease-out ${
+              className={`transition-all duration-700 ease-out ${
                 notificationVisible 
-                  ? 'opacity-100 translate-y-0' 
-                  : 'opacity-0 -translate-y-20'
+                  ? 'opacity-100 translate-y-0 scale-100' 
+                  : 'opacity-0 -translate-y-12 scale-95'
               }`}
             >
               <img 
                 src={caseNotification} 
                 alt="Case update notification"
-                className="w-full max-w-xl mx-auto drop-shadow-2xl"
+                className="w-full max-w-2xl mx-auto drop-shadow-2xl"
               />
             </div>
             
             {/* Text Content */}
             <div 
-              className={`mt-12 max-w-3xl text-center transition-all duration-1000 delay-500 ease-out ${
+              className={`mt-16 max-w-3xl text-center transition-all duration-700 delay-300 ease-out ${
                 notificationVisible 
                   ? 'opacity-100 translate-y-0' 
                   : 'opacity-0 translate-y-10'
               }`}
             >
-              <h3 className="text-2xl sm:text-3xl font-bold mb-6 text-gray-900">
-                Never Be Left in the Dark Again
-              </h3>
-              <p className="text-xl text-gray-700 leading-relaxed mb-6">
-                Get a micro-view of your case and feel the progress as it happens. Every filing, every motion, every development — delivered straight to you in real-time.
-              </p>
-              <p className="text-lg text-gray-600 leading-relaxed">
-                No more legal jargon. Every update is written in clear, understandable language so you always know exactly what's happening and what it means for you.
+              <p className="text-xl sm:text-2xl text-gray-700 leading-relaxed">
+                Get a micro-view of your case and feel the progress as it happens — every filing, every motion, every development delivered in clear, understandable language so you always know exactly what's happening.
               </p>
             </div>
           </div>
