@@ -8,6 +8,9 @@ import phoneFrame from "@/assets/phone-frame.svg";
 import carouselSlide1 from "@/assets/carousel-slide-1.svg";
 import carouselSlide2 from "@/assets/carousel-slide-2.svg";
 import carouselSlide3 from "@/assets/carousel-slide-3.svg";
+import caseIconLeft from "@/assets/case-icon-left.svg";
+import caseIconRight from "@/assets/case-icon-right.svg";
+import casePhoneCenter from "@/assets/case-phone-center.svg";
 import { useEffect, useRef, useState, useCallback } from "react";
 
 const caseHubSlides = [
@@ -123,6 +126,84 @@ const CaseHubCarousel = () => {
         
         <p className="text-xl sm:text-2xl text-gray-700 max-w-3xl mx-auto leading-relaxed mt-8">
           No more endless phone calls or wondering what's happening with your case. Everything you need — documents, updates, messages, and deadlines — lives in one place, accessible anytime.
+        </p>
+      </div>
+    </section>
+  );
+};
+
+const AllCasesSection = () => {
+  const [isVisible, setIsVisible] = useState(false);
+  const sectionRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(([entry]) => {
+      if (entry.isIntersecting) {
+        setIsVisible(true);
+      }
+    }, {
+      threshold: 0.3,
+      rootMargin: '-10% 0px -10% 0px'
+    });
+    if (sectionRef.current) {
+      observer.observe(sectionRef.current);
+    }
+    return () => observer.disconnect();
+  }, []);
+
+  return (
+    <section ref={sectionRef} className="py-24 px-4 sm:px-6 lg:px-8 bg-gray-50">
+      <div className="container mx-auto max-w-5xl text-center">
+        <h2 className="text-4xl sm:text-5xl font-bold text-gray-900 mb-16">
+          Track Every Case, Instantly
+        </h2>
+        
+        {/* Icons Animation Container */}
+        <div className="relative flex items-center justify-center h-[300px] sm:h-[400px]">
+          {/* Left Icon */}
+          <div 
+            className={`absolute z-10 transition-all duration-1000 ease-out ${
+              isVisible 
+                ? 'left-[5%] sm:left-[15%] opacity-100' 
+                : 'left-1/2 -translate-x-1/2 opacity-0'
+            }`}
+          >
+            <img 
+              src={caseIconLeft} 
+              alt="Case document" 
+              className="w-[80px] sm:w-[120px] h-auto drop-shadow-xl"
+            />
+          </div>
+
+          {/* Center Phone */}
+          <div className="relative z-20">
+            <img 
+              src={casePhoneCenter} 
+              alt="LAWLINK app showing multiple cases" 
+              className="w-[120px] sm:w-[180px] h-auto drop-shadow-2xl"
+            />
+          </div>
+
+          {/* Right Icon */}
+          <div 
+            className={`absolute z-10 transition-all duration-1000 ease-out ${
+              isVisible 
+                ? 'right-[5%] sm:right-[15%] opacity-100' 
+                : 'right-1/2 translate-x-1/2 opacity-0'
+            }`}
+          >
+            <img 
+              src={caseIconRight} 
+              alt="Case files" 
+              className="w-[80px] sm:w-[120px] h-auto drop-shadow-xl"
+            />
+          </div>
+        </div>
+        
+        <p className={`text-xl sm:text-2xl text-gray-700 max-w-3xl mx-auto leading-relaxed mt-8 transition-all duration-700 delay-500 ${
+          isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+        }`}>
+          Ditch the scattered paperwork and endless folders. LAWLINK brings all your cases together — with appointments, deadlines, and updates for each — always at your fingertips.
         </p>
       </div>
     </section>
@@ -313,22 +394,7 @@ const Clients = () => {
       <CaseHubCarousel />
 
       {/* All Cases Section */}
-      <section className="py-24 px-4 sm:px-6 lg:px-8 bg-gray-50">
-        <div className="container mx-auto max-w-5xl text-center">
-          <div className="flex items-center justify-center gap-4 mb-8">
-            <div className="w-16 h-16 bg-primary/20 rounded-2xl flex items-center justify-center hover:bg-primary/30 transition-all duration-300 hover:scale-110 cursor-pointer group">
-              <Briefcase className="w-10 h-10 text-primary group-hover:text-primary/80 transition-colors" />
-            </div>
-            <h2 className="text-4xl sm:text-5xl font-bold text-gray-900">
-              Track Every Case, Instantly
-            </h2>
-          </div>
-          
-          <p className="text-xl sm:text-2xl text-gray-700 max-w-3xl mx-auto leading-relaxed">
-            Ditch the scattered paperwork and endless folders. LAWLINK brings all your cases together — with appointments, deadlines, and updates for each — always at your fingertips.
-          </p>
-        </div>
-      </section>
+      <AllCasesSection />
 
       {/* Security Section */}
       <section className="px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-gray-50 via-gray-900 via-30% to-black">
