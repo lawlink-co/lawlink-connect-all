@@ -22,10 +22,6 @@ const caseHubSlides = [
 const CaseHubCarousel = () => {
   const [activeIndex, setActiveIndex] = useState(0);
 
-  const getSlideIndex = (offset: number) => {
-    return (activeIndex + offset + caseHubSlides.length) % caseHubSlides.length;
-  };
-
   const scrollNext = useCallback(() => {
     setActiveIndex((prev) => (prev + 1) % caseHubSlides.length);
   }, []);
@@ -46,6 +42,45 @@ const CaseHubCarousel = () => {
     return () => clearInterval(interval);
   }, [scrollNext]);
 
+  // Calculate position for each slide
+  const getSlideStyle = (index: number) => {
+    const diff = index - activeIndex;
+    // Handle wrap-around
+    let normalizedDiff = diff;
+    if (diff > 1) normalizedDiff = diff - caseHubSlides.length;
+    if (diff < -1) normalizedDiff = diff + caseHubSlides.length;
+
+    if (normalizedDiff === 0) {
+      // Center (active)
+      return {
+        transform: 'translateX(-50%) scale(1)',
+        zIndex: 20,
+        opacity: 1,
+      };
+    } else if (normalizedDiff === -1) {
+      // Left
+      return {
+        transform: 'translateX(-170%) scale(0.8)',
+        zIndex: 10,
+        opacity: 0.6,
+      };
+    } else if (normalizedDiff === 1) {
+      // Right
+      return {
+        transform: 'translateX(70%) scale(0.8)',
+        zIndex: 10,
+        opacity: 0.6,
+      };
+    } else {
+      // Hidden
+      return {
+        transform: 'translateX(-50%) scale(0.6)',
+        zIndex: 0,
+        opacity: 0,
+      };
+    }
+  };
+
   return (
     <section className="py-24 px-4 sm:px-6 lg:px-8 bg-white overflow-hidden">
       <div className="container mx-auto max-w-6xl text-center">
@@ -56,40 +91,37 @@ const CaseHubCarousel = () => {
         
         {/* Carousel Container */}
         <div className="relative flex items-center justify-center h-[280px] sm:h-[340px]">
-          {/* Left Slide (Previous) */}
-          <div 
-            onClick={scrollPrev}
-            className="absolute left-1/2 z-10 cursor-pointer transition-all duration-700 ease-in-out"
-            style={{ transform: 'translateX(-120%) scale(0.8)' }}
-          >
-            <img 
-              src={caseHubSlides[getSlideIndex(-1)].image} 
-              alt={caseHubSlides[getSlideIndex(-1)].alt}
-              className="w-[150px] sm:w-[200px] h-auto rounded-xl shadow-lg opacity-60 hover:opacity-80 transition-opacity"
-            />
-          </div>
-
-          {/* Center Slide (Active) */}
-          <div className="relative z-20 transition-all duration-700 ease-in-out transform scale-100">
-            <img 
-              src={caseHubSlides[activeIndex].image} 
-              alt={caseHubSlides[activeIndex].alt}
-              className="w-[175px] sm:w-[250px] lg:w-[300px] h-auto rounded-xl shadow-2xl"
-            />
-          </div>
-
-          {/* Right Slide (Next) */}
-          <div 
-            onClick={scrollNext}
-            className="absolute left-1/2 z-10 cursor-pointer transition-all duration-700 ease-in-out"
-            style={{ transform: 'translateX(20%) scale(0.8)' }}
-          >
-            <img 
-              src={caseHubSlides[getSlideIndex(1)].image} 
-              alt={caseHubSlides[getSlideIndex(1)].alt}
-              className="w-[150px] sm:w-[200px] h-auto rounded-xl shadow-lg opacity-60 hover:opacity-80 transition-opacity"
-            />
-          </div>
+          {caseHubSlides.map((slide, index) => {
+            const style = getSlideStyle(index);
+            const isActive = index === activeIndex;
+            
+            return (
+              <div
+                key={index}
+                onClick={() => {
+                  const diff = index - activeIndex;
+                  let normalizedDiff = diff;
+                  if (diff > 1) normalizedDiff = diff - caseHubSlides.length;
+                  if (diff < -1) normalizedDiff = diff + caseHubSlides.length;
+                  
+                  if (normalizedDiff === -1) scrollPrev();
+                  else if (normalizedDiff === 1) scrollNext();
+                }}
+                className="absolute left-1/2 cursor-pointer transition-all duration-700 ease-in-out"
+                style={style}
+              >
+                <img
+                  src={slide.image}
+                  alt={slide.alt}
+                  className={`h-auto rounded-xl shadow-lg transition-shadow duration-700 ${
+                    isActive 
+                      ? 'w-[175px] sm:w-[250px] lg:w-[300px] shadow-2xl' 
+                      : 'w-[150px] sm:w-[200px] hover:opacity-80'
+                  }`}
+                />
+              </div>
+            );
+          })}
 
           {/* Navigation Arrows */}
           <button
