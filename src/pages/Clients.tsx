@@ -60,7 +60,7 @@ const CaseHubCarousel = () => {
           <div 
             onClick={scrollPrev}
             className="absolute left-1/2 z-10 cursor-pointer transition-all duration-700 ease-in-out"
-            style={{ transform: 'translateX(-180%) scale(0.8)' }}
+            style={{ transform: 'translateX(-120%) scale(0.8)' }}
           >
             <img 
               src={caseHubSlides[getSlideIndex(-1)].image} 
@@ -82,7 +82,7 @@ const CaseHubCarousel = () => {
           <div 
             onClick={scrollNext}
             className="absolute left-1/2 z-10 cursor-pointer transition-all duration-700 ease-in-out"
-            style={{ transform: 'translateX(80%) scale(0.8)' }}
+            style={{ transform: 'translateX(20%) scale(0.8)' }}
           >
             <img 
               src={caseHubSlides[getSlideIndex(1)].image} 
