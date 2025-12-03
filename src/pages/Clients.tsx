@@ -233,7 +233,7 @@ const Clients = () => {
             </h2>
           </div>
           
-          <img src={caseHubIcon} alt="Case hub illustration" className="w-[640px] h-auto mx-auto mb-6" />
+          <img src={caseHubIcon} alt="Case hub illustration" className="w-[960px] h-auto mx-auto mb-6" />
           
           <p className="text-xl sm:text-2xl text-gray-700 max-w-3xl mx-auto leading-relaxed">
             No more endless phone calls or wondering what's happening with your case. Everything you need — documents, updates, messages, and deadlines — lives in one place, accessible anytime.
