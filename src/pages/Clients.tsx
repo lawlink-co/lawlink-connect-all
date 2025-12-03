@@ -5,6 +5,7 @@ import Navigation from "@/components/Navigation";
 import phoneAppMockup from "@/assets/phone-app-mockup.svg";
 import caseNotification from "@/assets/case-notification.svg";
 import phoneFrame from "@/assets/phone-frame.svg";
+import caseHubNetwork from "@/assets/case-hub-network.png";
 import { useEffect, useRef, useState } from "react";
 
 const Clients = () => {
@@ -228,11 +229,11 @@ const Clients = () => {
             Access Everything Instantly
           </h2>
           
-          <div className="relative w-full max-w-md mx-auto mb-12">
+          <div className="relative w-full max-w-2xl mx-auto mb-12">
             <img 
-              src={phoneFrame} 
-              alt="Case hub interface"
-              className="w-full h-auto"
+              src={caseHubNetwork} 
+              alt="LAWLINK interconnected case management"
+              className="w-full h-auto rounded-2xl"
             />
           </div>
           
