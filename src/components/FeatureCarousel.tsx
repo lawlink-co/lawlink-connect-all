@@ -1,5 +1,6 @@
 import { useState, useCallback, useEffect } from "react";
 import useEmblaCarousel from "embla-carousel-react";
+import Fade from "embla-carousel-fade";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
@@ -32,7 +33,7 @@ const slides: CarouselSlide[] = [
 ];
 
 const FeatureCarousel = () => {
-  const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true });
+  const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true }, [Fade()]);
   const [selectedIndex, setSelectedIndex] = useState(0);
 
   const scrollPrev = useCallback(() => {
@@ -83,10 +84,13 @@ const FeatureCarousel = () => {
             <div className="overflow-hidden" ref={emblaRef}>
               <div className="flex">
                 {slides.map((slide, index) => (
-                  <div key={index} className="flex-[0_0_100%] min-w-0">
+                  <div 
+                    key={index} 
+                    className="flex-[0_0_100%] min-w-0 transition-opacity duration-500 ease-in-out"
+                  >
                     <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center px-4">
                       {/* Text Content */}
-                      <div className="space-y-6 animate-fade-in">
+                      <div className="space-y-6">
                         <h3 className="text-3xl sm:text-4xl font-bold text-white leading-tight">
                           {slide.title}
                         </h3>
@@ -96,7 +100,7 @@ const FeatureCarousel = () => {
                       </div>
 
                       {/* Image */}
-                      <div className="relative animate-scale-in">
+                      <div className="relative">
                         <div className="absolute inset-0 bg-blue-500/20 blur-3xl rounded-full"></div>
                         <img
                           src={slide.image}
