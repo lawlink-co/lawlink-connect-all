@@ -5,7 +5,6 @@ import Navigation from "@/components/Navigation";
 import phoneAppMockup from "@/assets/phone-app-mockup.svg";
 import caseNotification from "@/assets/case-notification.svg";
 import phoneFrame from "@/assets/phone-frame.svg";
-import lawlinkNetwork from "@/assets/lawlink-network.png";
 import { useEffect, useRef, useState } from "react";
 
 const Clients = () => {
@@ -171,26 +170,52 @@ const Clients = () => {
       </section>
 
       {/* AI Chat Section */}
-      <section className="py-24 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-white via-[#3b4fa8] to-[#1e2a6e]">
+      <section className="py-24 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-blue-50 to-white">
         <div className="container mx-auto max-w-6xl">
-          <div className="text-center mb-12">
-            <h2 className="text-4xl sm:text-5xl font-bold mb-4 text-white">
-              Ask Your Case Anything
-            </h2>
-          </div>
-          
-          <div className="flex justify-center mb-12">
-            <img 
-              src={lawlinkNetwork} 
-              alt="LAWLINK connected network"
-              className="max-w-md w-full h-auto"
-            />
-          </div>
-          
-          <div className="text-center max-w-3xl mx-auto">
-            <p className="text-xl sm:text-2xl text-white/90 leading-relaxed">
-              No more waiting on hold or wondering what's happening with your case. LAWLINK gives you instant access to every detail, deadline, and document — all in one place, whenever you need it.
-            </p>
+          <div className="bg-gradient-to-br from-primary/10 to-indigo-100 rounded-3xl p-12 shadow-2xl">
+            <div className="text-center mb-12">
+              <MessageSquare className="w-20 h-20 text-primary mx-auto mb-8 animate-scale-in" />
+              <h2 className="text-4xl sm:text-5xl font-bold mb-8 text-gray-900">
+                Chat with Your Case — Literally
+              </h2>
+              <p className="text-xl sm:text-2xl text-gray-700 max-w-3xl mx-auto leading-relaxed">
+                LAWLINK's AI knows every document and event, so you never have to ask twice.
+              </p>
+            </div>
+            
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
+              <div className="flex items-start space-x-4 bg-white/50 p-6 rounded-xl">
+                <Clock className="w-8 h-8 text-primary flex-shrink-0 mt-1" />
+                <div>
+                  <h4 className="font-bold text-lg text-gray-900 mb-2">24/7 Availability</h4>
+                  <p className="text-gray-700">Get answers to your questions any time of day or night.</p>
+                </div>
+              </div>
+              
+              <div className="flex items-start space-x-4 bg-white/50 p-6 rounded-xl">
+                <Shield className="w-8 h-8 text-primary flex-shrink-0 mt-1" />
+                <div>
+                  <h4 className="font-bold text-lg text-gray-900 mb-2">Completely Secure</h4>
+                  <p className="text-gray-700">Your conversations are encrypted and confidential.</p>
+                </div>
+              </div>
+              
+              <div className="flex items-start space-x-4 bg-white/50 p-6 rounded-xl">
+                <MessageSquare className="w-8 h-8 text-primary flex-shrink-0 mt-1" />
+                <div>
+                  <h4 className="font-bold text-lg text-gray-900 mb-2">Plain English</h4>
+                  <p className="text-gray-700">No legal jargon. Clear explanations you can understand.</p>
+                </div>
+              </div>
+              
+              <div className="flex items-start space-x-4 bg-white/50 p-6 rounded-xl">
+                <FileSearch className="w-8 h-8 text-primary flex-shrink-0 mt-1" />
+                <div>
+                  <h4 className="font-bold text-lg text-gray-900 mb-2">Complete Context</h4>
+                  <p className="text-gray-700">The AI knows every detail of your specific case.</p>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </section>
