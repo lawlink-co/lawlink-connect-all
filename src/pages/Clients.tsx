@@ -5,6 +5,7 @@ import Navigation from "@/components/Navigation";
 import phoneAppMockup from "@/assets/phone-app-mockup.svg";
 import caseNotification from "@/assets/case-notification.svg";
 import phoneFrame from "@/assets/phone-frame.svg";
+import caseHubNetwork from "@/assets/case-hub-network.png";
 import { useEffect, useRef, useState } from "react";
 
 const Clients = () => {
@@ -217,6 +218,30 @@ const Clients = () => {
               </div>
             </div>
           </div>
+        </div>
+      </section>
+
+      {/* Case Hub Section */}
+      <section className="py-24 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-white via-indigo-100 to-[#3b4fa8]">
+        <div className="container mx-auto max-w-5xl text-center">
+          <div className="flex items-center justify-center gap-4 mb-8">
+            <div className="w-16 h-16 bg-primary/20 rounded-2xl flex items-center justify-center hover:bg-primary/30 transition-all duration-300 hover:scale-110 cursor-pointer group">
+              <FileSearch className="w-10 h-10 text-primary group-hover:text-primary/80 transition-colors" />
+            </div>
+            <h2 className="text-4xl sm:text-5xl font-bold text-gray-900">
+              Your Case Hub
+            </h2>
+          </div>
+          
+          <img 
+            src={caseHubNetwork} 
+            alt="LAWLINK interconnected case management network"
+            className="mx-auto max-w-lg w-full h-auto my-12 drop-shadow-2xl"
+          />
+          
+          <p className="text-xl sm:text-2xl text-white max-w-3xl mx-auto leading-relaxed">
+            No more endless phone calls or wondering what's happening with your case. Everything you need — documents, updates, messages, and deadlines — lives in one place, accessible anytime.
+          </p>
         </div>
       </section>
 
