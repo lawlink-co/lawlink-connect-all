@@ -56,17 +56,18 @@ const CaseHubCarousel = () => {
           {/* Left Slide (Previous) */}
           <div 
             onClick={scrollPrev}
-            className="absolute left-[5%] sm:left-[10%] z-10 cursor-pointer transition-all duration-500 ease-out transform -translate-x-1/4 scale-75 opacity-50 hover:opacity-70"
+            className="absolute left-1/2 z-10 cursor-pointer transition-all duration-700 ease-in-out"
+            style={{ transform: 'translateX(-180%) scale(0.8)' }}
           >
             <img 
               src={caseHubSlides[getSlideIndex(-1)].image} 
               alt={caseHubSlides[getSlideIndex(-1)].alt}
-              className="w-[120px] sm:w-[160px] h-auto rounded-xl shadow-lg"
+              className="w-[120px] sm:w-[160px] h-auto rounded-xl shadow-lg opacity-60 hover:opacity-80 transition-opacity"
             />
           </div>
 
           {/* Center Slide (Active) */}
-          <div className="relative z-20 transition-all duration-500 ease-out transform scale-100">
+          <div className="relative z-20 transition-all duration-700 ease-in-out transform scale-100">
             <img 
               src={caseHubSlides[activeIndex].image} 
               alt={caseHubSlides[activeIndex].alt}
@@ -77,12 +78,13 @@ const CaseHubCarousel = () => {
           {/* Right Slide (Next) */}
           <div 
             onClick={scrollNext}
-            className="absolute right-[5%] sm:right-[10%] z-10 cursor-pointer transition-all duration-500 ease-out transform translate-x-1/4 scale-75 opacity-50 hover:opacity-70"
+            className="absolute left-1/2 z-10 cursor-pointer transition-all duration-700 ease-in-out"
+            style={{ transform: 'translateX(80%) scale(0.8)' }}
           >
             <img 
               src={caseHubSlides[getSlideIndex(1)].image} 
               alt={caseHubSlides[getSlideIndex(1)].alt}
-              className="w-[120px] sm:w-[160px] h-auto rounded-xl shadow-lg"
+              className="w-[120px] sm:w-[160px] h-auto rounded-xl shadow-lg opacity-60 hover:opacity-80 transition-opacity"
             />
           </div>
 
