@@ -29,7 +29,7 @@ const Clients = () => {
               <img 
                 src={phoneAppMockup} 
                 alt="LAWLINK mobile app interface"
-                className="relative mx-auto h-[500px] lg:h-[600px] w-auto object-contain drop-shadow-2xl"
+                className="relative mx-auto h-[425px] lg:h-[510px] w-auto object-contain drop-shadow-2xl"
               />
             </div>
           </div>
