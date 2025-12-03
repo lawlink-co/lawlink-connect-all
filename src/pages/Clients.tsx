@@ -228,9 +228,11 @@ const Clients = () => {
               <FileSearch className="w-10 h-10 text-primary group-hover:text-primary/80 transition-colors" />
             </div>
             <h2 className="text-4xl sm:text-5xl font-bold text-gray-900">
-              Your Case Hub
+              Everything you need in one app
             </h2>
           </div>
+          
+          <FileSearch className="w-16 h-16 text-primary mx-auto mb-6" />
           
           <p className="text-xl sm:text-2xl text-gray-700 max-w-3xl mx-auto leading-relaxed">
             No more endless phone calls or wondering what's happening with your case. Everything you need — documents, updates, messages, and deadlines — lives in one place, accessible anytime.
