@@ -9,8 +9,6 @@ import caseHubIcon from "@/assets/case-hub-icon.svg";
 import appFeature1 from "@/assets/app-feature-1.svg";
 import appFeature2 from "@/assets/app-feature-2.svg";
 import { useEffect, useRef, useState, useCallback } from "react";
-import useEmblaCarousel from "embla-carousel-react";
-import Fade from "embla-carousel-fade";
 
 const caseHubSlides = [
   { image: caseHubIcon, alt: "Case hub illustration" },
@@ -19,95 +17,98 @@ const caseHubSlides = [
 ];
 
 const CaseHubCarousel = () => {
-  const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true }, [Fade()]);
-  const [selectedIndex, setSelectedIndex] = useState(0);
+  const [activeIndex, setActiveIndex] = useState(0);
 
-  const scrollPrev = useCallback(() => {
-    if (emblaApi) emblaApi.scrollPrev();
-  }, [emblaApi]);
+  const getSlideIndex = (offset: number) => {
+    return (activeIndex + offset + caseHubSlides.length) % caseHubSlides.length;
+  };
 
   const scrollNext = useCallback(() => {
-    if (emblaApi) emblaApi.scrollNext();
-  }, [emblaApi]);
+    setActiveIndex((prev) => (prev + 1) % caseHubSlides.length);
+  }, []);
+
+  const scrollPrev = useCallback(() => {
+    setActiveIndex((prev) => (prev - 1 + caseHubSlides.length) % caseHubSlides.length);
+  }, []);
 
   const scrollTo = useCallback((index: number) => {
-    if (emblaApi) emblaApi.scrollTo(index);
-  }, [emblaApi]);
-
-  const onSelect = useCallback(() => {
-    if (!emblaApi) return;
-    setSelectedIndex(emblaApi.selectedScrollSnap());
-  }, [emblaApi]);
-
-  useEffect(() => {
-    if (!emblaApi) return;
-    onSelect();
-    emblaApi.on("select", onSelect);
-    emblaApi.on("reInit", onSelect);
-    return () => {
-      emblaApi.off("select", onSelect);
-      emblaApi.off("reInit", onSelect);
-    };
-  }, [emblaApi, onSelect]);
+    setActiveIndex(index);
+  }, []);
 
   return (
-    <section className="py-24 px-4 sm:px-6 lg:px-8 bg-white">
-      <div className="container mx-auto max-w-5xl text-center">
+    <section className="py-24 px-4 sm:px-6 lg:px-8 bg-white overflow-hidden">
+      <div className="container mx-auto max-w-6xl text-center">
         <FileSearch className="w-20 h-20 text-primary mx-auto mb-8" />
-        <h2 className="text-4xl sm:text-5xl font-bold text-gray-900 mb-8">
+        <h2 className="text-4xl sm:text-5xl font-bold text-gray-900 mb-12">
           Everything you need in one app
         </h2>
         
-        {/* Carousel */}
-        <div className="relative">
-          <div className="overflow-hidden" ref={emblaRef}>
-            <div className="flex">
-              {caseHubSlides.map((slide, index) => (
-                <div 
-                  key={index} 
-                  className="flex-[0_0_100%] min-w-0 transition-opacity duration-500 ease-in-out"
-                >
-                  <img 
-                    src={slide.image} 
-                    alt={slide.alt} 
-                    className="w-[960px] h-auto mx-auto mb-6" 
-                  />
-                </div>
-              ))}
-            </div>
+        {/* Carousel Container */}
+        <div className="relative flex items-center justify-center h-[400px] sm:h-[500px]">
+          {/* Left Slide (Previous) */}
+          <div 
+            onClick={scrollPrev}
+            className="absolute left-0 sm:left-[5%] z-10 cursor-pointer transition-all duration-500 ease-out transform -translate-x-1/4 scale-75 opacity-50 hover:opacity-70"
+          >
+            <img 
+              src={caseHubSlides[getSlideIndex(-1)].image} 
+              alt={caseHubSlides[getSlideIndex(-1)].alt}
+              className="w-[300px] sm:w-[400px] h-auto rounded-xl shadow-lg"
+            />
+          </div>
+
+          {/* Center Slide (Active) */}
+          <div className="relative z-20 transition-all duration-500 ease-out transform scale-100">
+            <img 
+              src={caseHubSlides[activeIndex].image} 
+              alt={caseHubSlides[activeIndex].alt}
+              className="w-[350px] sm:w-[500px] lg:w-[600px] h-auto rounded-xl shadow-2xl"
+            />
+          </div>
+
+          {/* Right Slide (Next) */}
+          <div 
+            onClick={scrollNext}
+            className="absolute right-0 sm:right-[5%] z-10 cursor-pointer transition-all duration-500 ease-out transform translate-x-1/4 scale-75 opacity-50 hover:opacity-70"
+          >
+            <img 
+              src={caseHubSlides[getSlideIndex(1)].image} 
+              alt={caseHubSlides[getSlideIndex(1)].alt}
+              className="w-[300px] sm:w-[400px] h-auto rounded-xl shadow-lg"
+            />
           </div>
 
           {/* Navigation Arrows */}
           <button
             onClick={scrollPrev}
-            className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 lg:-translate-x-12 w-12 h-12 bg-white border-2 border-gray-200 rounded-full flex items-center justify-center hover:border-primary hover:bg-gray-50 transition-all"
+            className="absolute left-2 sm:left-8 top-1/2 -translate-y-1/2 z-30 w-12 h-12 bg-white/90 border-2 border-gray-200 rounded-full flex items-center justify-center hover:border-primary hover:bg-white transition-all shadow-lg"
             aria-label="Previous slide"
           >
             <ChevronLeft className="w-6 h-6 text-gray-600" />
           </button>
           <button
             onClick={scrollNext}
-            className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 lg:translate-x-12 w-12 h-12 bg-white border-2 border-gray-200 rounded-full flex items-center justify-center hover:border-primary hover:bg-gray-50 transition-all"
+            className="absolute right-2 sm:right-8 top-1/2 -translate-y-1/2 z-30 w-12 h-12 bg-white/90 border-2 border-gray-200 rounded-full flex items-center justify-center hover:border-primary hover:bg-white transition-all shadow-lg"
             aria-label="Next slide"
           >
             <ChevronRight className="w-6 h-6 text-gray-600" />
           </button>
+        </div>
 
-          {/* Navigation Dots */}
-          <div className="flex justify-center gap-2 mt-6">
-            {caseHubSlides.map((_, index) => (
-              <button
-                key={index}
-                onClick={() => scrollTo(index)}
-                className={`h-2 rounded-full transition-all duration-300 ${
-                  index === selectedIndex
-                    ? "w-8 bg-primary"
-                    : "w-2 bg-gray-300 hover:bg-gray-400"
-                }`}
-                aria-label={`Go to slide ${index + 1}`}
-              />
-            ))}
-          </div>
+        {/* Navigation Dots */}
+        <div className="flex justify-center gap-2 mt-8">
+          {caseHubSlides.map((_, index) => (
+            <button
+              key={index}
+              onClick={() => scrollTo(index)}
+              className={`h-2 rounded-full transition-all duration-300 ${
+                index === activeIndex
+                  ? "w-8 bg-primary"
+                  : "w-2 bg-gray-300 hover:bg-gray-400"
+              }`}
+              aria-label={`Go to slide ${index + 1}`}
+            />
+          ))}
         </div>
         
         <p className="text-xl sm:text-2xl text-gray-700 max-w-3xl mx-auto leading-relaxed mt-8">
