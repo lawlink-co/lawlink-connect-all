@@ -257,9 +257,9 @@ const Clients = () => {
       </section>
 
       {/* Security Section */}
-      <section className="py-32 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-gray-50 via-gray-900 via-30% to-black">
+      <div className="h-32 bg-gradient-to-b from-gray-50 to-black"></div>
+      <section className="py-24 px-4 sm:px-6 lg:px-8 bg-black">
         <div className="container mx-auto max-w-5xl text-center">
-          <Shield className="w-20 h-20 text-primary mx-auto mb-8" />
           <h2 className="text-4xl sm:text-5xl font-bold mb-8 text-white">
             Your Information, Secured.
           </h2>
