@@ -2,7 +2,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { MessageSquare, Bell, FileSearch, Shield, Smartphone, Clock, Check, Calendar, Briefcase } from "lucide-react";
 import Navigation from "@/components/Navigation";
-import loginMockup from "@/assets/login-mockup.svg";
+import phoneAppMockup from "@/assets/phone-app-mockup.svg";
 
 const Clients = () => {
   return (
@@ -27,9 +27,9 @@ const Clients = () => {
             <div className="relative animate-scale-in flex items-center justify-center h-full">
               <div className="absolute inset-0 bg-primary/10 blur-3xl rounded-full"></div>
               <img 
-                src={loginMockup} 
-                alt="LAWLINK mobile app login interface"
-                className="relative mx-auto w-full h-auto max-h-[600px] object-contain drop-shadow-2xl"
+                src={phoneAppMockup} 
+                alt="LAWLINK mobile app interface"
+                className="relative mx-auto h-[500px] lg:h-[600px] w-auto object-contain drop-shadow-2xl"
               />
             </div>
           </div>
