@@ -191,12 +191,10 @@ const Clients = () => {
       {/* Case Hub Section */}
       <section className="py-24 px-4 sm:px-6 lg:px-8 bg-white">
         <div className="container mx-auto max-w-5xl text-center">
-          <div className="flex items-center justify-center gap-4 mb-8">
-            
-            <h2 className="text-4xl sm:text-5xl font-bold text-gray-900">
-              Everything you need in one app
-            </h2>
-          </div>
+          <FileSearch className="w-20 h-20 text-primary mx-auto mb-8" />
+          <h2 className="text-4xl sm:text-5xl font-bold text-gray-900 mb-8">
+            Everything you need in one app
+          </h2>
           
           <img src={caseHubIcon} alt="Case hub illustration" className="w-[960px] h-auto mx-auto mb-6" />
           
