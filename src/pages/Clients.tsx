@@ -24,12 +24,12 @@ const Clients = () => {
                 Find a LAWLINK Lawyer
               </Button>
             </div>
-            <div className="relative animate-scale-in lg:scale-125">
+            <div className="relative animate-scale-in flex items-center justify-center h-full">
               <div className="absolute inset-0 bg-primary/10 blur-3xl rounded-full"></div>
               <img 
                 src={loginMockup} 
                 alt="LAWLINK mobile app login interface"
-                className="relative mx-auto max-w-4xl w-full drop-shadow-2xl"
+                className="relative mx-auto w-full h-auto max-h-[600px] object-contain drop-shadow-2xl"
               />
             </div>
           </div>
