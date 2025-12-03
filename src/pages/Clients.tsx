@@ -6,7 +6,6 @@ import phoneAppMockup from "@/assets/phone-app-mockup.svg";
 import caseNotification from "@/assets/case-notification.svg";
 import phoneFrame from "@/assets/phone-frame.svg";
 import caseHubNetwork from "@/assets/case-hub-network.png";
-import casesFilingMockup from "@/assets/cases-filing-mockup.png";
 import { useEffect, useRef, useState } from "react";
 
 const Clients = () => {
@@ -103,21 +102,13 @@ const Clients = () => {
               </CardContent>
             </Card>
 
-            <Card className="bg-white border-2 border-gray-200 hover:border-primary hover:shadow-xl transition-all duration-300 rounded-2xl overflow-hidden">
-              <CardContent className="pt-8 pb-0">
-                <div className="flex items-center justify-center gap-2 mb-4">
-                  <Briefcase className="w-10 h-10 text-primary" />
-                  <Calendar className="w-8 h-8 text-primary/70" />
-                </div>
+            <Card className="bg-white border-2 border-gray-200 hover:border-primary hover:shadow-xl transition-all duration-300 rounded-2xl">
+              <CardContent className="pt-8">
+                <Briefcase className="w-12 h-12 text-primary mb-6 mx-auto" />
                 <h3 className="text-2xl font-bold mb-4 text-gray-900">All Your Cases, One App</h3>
-                <p className="text-gray-700 text-lg leading-relaxed mb-6">
+                <p className="text-gray-700 text-lg leading-relaxed">
                   Keep all your ongoing cases organized in a single app, with appointments, deadlines, and updates for each — always at your fingertips.
                 </p>
-                <img 
-                  src={casesFilingMockup} 
-                  alt="Cases filing and calendar management"
-                  className="w-full max-w-[280px] mx-auto object-contain"
-                />
               </CardContent>
             </Card>
           </div>
