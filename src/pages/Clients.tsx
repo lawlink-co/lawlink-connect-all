@@ -29,7 +29,7 @@ const Clients = () => {
               <img 
                 src={loginMockup} 
                 alt="LAWLINK mobile app login interface"
-                className="relative mx-auto max-w-2xl w-full drop-shadow-2xl"
+                className="relative mx-auto max-w-4xl w-full drop-shadow-2xl"
               />
             </div>
           </div>
