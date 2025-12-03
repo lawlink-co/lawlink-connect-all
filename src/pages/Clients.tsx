@@ -4,6 +4,7 @@ import { MessageSquare, Bell, FileSearch, Shield, Smartphone, Clock, Check, Cale
 import Navigation from "@/components/Navigation";
 import phoneAppMockup from "@/assets/phone-app-mockup.svg";
 import caseNotification from "@/assets/case-notification.svg";
+import phoneFrame from "@/assets/phone-frame.svg";
 import { useEffect, useRef, useState } from "react";
 
 const Clients = () => {
@@ -119,24 +120,37 @@ const Clients = () => {
         className="py-32 px-4 sm:px-6 lg:px-8 bg-white min-h-screen flex flex-col justify-center"
       >
         <div className="container mx-auto max-w-5xl">
-          <h2 className="text-5xl sm:text-6xl lg:text-7xl font-bold text-gray-900 mb-20">
-            Catch Up with Your Case
-          </h2>
+          <div className="text-center mb-16">
+            <Bell className="w-16 h-16 text-primary mx-auto mb-6" />
+            <h2 className="text-5xl sm:text-6xl lg:text-7xl font-bold text-gray-900">
+              Catch Up with Your Case
+            </h2>
+          </div>
           
           <div className="flex flex-col items-center">
-            {/* Notification Image */}
-            <div 
-              className={`transition-all duration-700 ease-out ${
-                notificationVisible 
-                  ? 'opacity-100 translate-y-0 scale-100' 
-                  : 'opacity-0 -translate-y-12 scale-95'
-              }`}
-            >
+            {/* Phone Frame with Notification */}
+            <div className="relative w-full max-w-md mx-auto">
+              {/* Phone Frame */}
               <img 
-                src={caseNotification} 
-                alt="Case update notification"
-                className="w-full max-w-2xl mx-auto drop-shadow-2xl"
+                src={phoneFrame} 
+                alt="Phone frame"
+                className="w-full h-auto"
               />
+              
+              {/* Notification - Positioned at top of phone, animates down */}
+              <div 
+                className={`absolute left-1/2 -translate-x-1/2 w-[85%] transition-all duration-700 ease-out ${
+                  notificationVisible 
+                    ? 'opacity-100 top-[12%]' 
+                    : 'opacity-0 top-0'
+                }`}
+              >
+                <img 
+                  src={caseNotification} 
+                  alt="Case update notification"
+                  className="w-full drop-shadow-2xl"
+                />
+              </div>
             </div>
             
             {/* Text Content */}
