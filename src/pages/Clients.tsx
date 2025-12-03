@@ -222,7 +222,7 @@ const Clients = () => {
       </section>
 
       {/* Case Hub Section */}
-      <section className="py-32 px-4 sm:px-6 lg:px-8 bg-[linear-gradient(to_bottom,white_0%,#e0e7ff_10%,#3b4fa8_25%,#3b4fa8_80%,#e0e7ff_92%,white_100%)]">
+      <section className="py-24 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-white via-indigo-100 to-[#3b4fa8]">
         <div className="container mx-auto max-w-5xl text-center">
           <div className="flex items-center justify-center gap-4 mb-8">
             <div className="w-16 h-16 bg-primary/20 rounded-2xl flex items-center justify-center hover:bg-primary/30 transition-all duration-300 hover:scale-110 cursor-pointer group">
