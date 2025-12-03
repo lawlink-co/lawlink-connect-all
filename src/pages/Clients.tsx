@@ -2,7 +2,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { MessageSquare, Bell, FileSearch, Shield, Smartphone, Clock, Check, Calendar, Briefcase } from "lucide-react";
 import Navigation from "@/components/Navigation";
-import phoneMockup from "@/assets/phone-mockup.png";
+import loginMockup from "@/assets/login-mockup.svg";
 
 const Clients = () => {
   return (
@@ -27,8 +27,8 @@ const Clients = () => {
             <div className="relative animate-scale-in lg:scale-125">
               <div className="absolute inset-0 bg-primary/10 blur-3xl rounded-full"></div>
               <img 
-                src={phoneMockup} 
-                alt="LAWLINK mobile app showing case overview with timeline and AI chat interface"
+                src={loginMockup} 
+                alt="LAWLINK mobile app login interface"
                 className="relative mx-auto max-w-md drop-shadow-2xl"
               />
             </div>
