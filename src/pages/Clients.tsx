@@ -1,12 +1,122 @@
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import { MessageSquare, Bell, FileSearch, Shield, Smartphone, Clock, Check, Calendar, Briefcase } from "lucide-react";
+import { MessageSquare, Bell, FileSearch, Shield, Smartphone, Clock, Check, Calendar, Briefcase, ChevronLeft, ChevronRight } from "lucide-react";
 import Navigation from "@/components/Navigation";
 import phoneAppMockup from "@/assets/phone-app-mockup.svg";
 import caseNotification from "@/assets/case-notification.svg";
 import phoneFrame from "@/assets/phone-frame.svg";
 import caseHubIcon from "@/assets/case-hub-icon.svg";
-import { useEffect, useRef, useState } from "react";
+import appFeature1 from "@/assets/app-feature-1.svg";
+import appFeature2 from "@/assets/app-feature-2.svg";
+import { useEffect, useRef, useState, useCallback } from "react";
+import useEmblaCarousel from "embla-carousel-react";
+import Fade from "embla-carousel-fade";
+
+const caseHubSlides = [
+  { image: caseHubIcon, alt: "Case hub illustration" },
+  { image: appFeature1, alt: "App feature - case management" },
+  { image: appFeature2, alt: "App feature - communication" },
+];
+
+const CaseHubCarousel = () => {
+  const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true }, [Fade()]);
+  const [selectedIndex, setSelectedIndex] = useState(0);
+
+  const scrollPrev = useCallback(() => {
+    if (emblaApi) emblaApi.scrollPrev();
+  }, [emblaApi]);
+
+  const scrollNext = useCallback(() => {
+    if (emblaApi) emblaApi.scrollNext();
+  }, [emblaApi]);
+
+  const scrollTo = useCallback((index: number) => {
+    if (emblaApi) emblaApi.scrollTo(index);
+  }, [emblaApi]);
+
+  const onSelect = useCallback(() => {
+    if (!emblaApi) return;
+    setSelectedIndex(emblaApi.selectedScrollSnap());
+  }, [emblaApi]);
+
+  useEffect(() => {
+    if (!emblaApi) return;
+    onSelect();
+    emblaApi.on("select", onSelect);
+    emblaApi.on("reInit", onSelect);
+    return () => {
+      emblaApi.off("select", onSelect);
+      emblaApi.off("reInit", onSelect);
+    };
+  }, [emblaApi, onSelect]);
+
+  return (
+    <section className="py-24 px-4 sm:px-6 lg:px-8 bg-white">
+      <div className="container mx-auto max-w-5xl text-center">
+        <FileSearch className="w-20 h-20 text-primary mx-auto mb-8" />
+        <h2 className="text-4xl sm:text-5xl font-bold text-gray-900 mb-8">
+          Everything you need in one app
+        </h2>
+        
+        {/* Carousel */}
+        <div className="relative">
+          <div className="overflow-hidden" ref={emblaRef}>
+            <div className="flex">
+              {caseHubSlides.map((slide, index) => (
+                <div 
+                  key={index} 
+                  className="flex-[0_0_100%] min-w-0 transition-opacity duration-500 ease-in-out"
+                >
+                  <img 
+                    src={slide.image} 
+                    alt={slide.alt} 
+                    className="w-[960px] h-auto mx-auto mb-6" 
+                  />
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Navigation Arrows */}
+          <button
+            onClick={scrollPrev}
+            className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 lg:-translate-x-12 w-12 h-12 bg-white border-2 border-gray-200 rounded-full flex items-center justify-center hover:border-primary hover:bg-gray-50 transition-all"
+            aria-label="Previous slide"
+          >
+            <ChevronLeft className="w-6 h-6 text-gray-600" />
+          </button>
+          <button
+            onClick={scrollNext}
+            className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 lg:translate-x-12 w-12 h-12 bg-white border-2 border-gray-200 rounded-full flex items-center justify-center hover:border-primary hover:bg-gray-50 transition-all"
+            aria-label="Next slide"
+          >
+            <ChevronRight className="w-6 h-6 text-gray-600" />
+          </button>
+
+          {/* Navigation Dots */}
+          <div className="flex justify-center gap-2 mt-6">
+            {caseHubSlides.map((_, index) => (
+              <button
+                key={index}
+                onClick={() => scrollTo(index)}
+                className={`h-2 rounded-full transition-all duration-300 ${
+                  index === selectedIndex
+                    ? "w-8 bg-primary"
+                    : "w-2 bg-gray-300 hover:bg-gray-400"
+                }`}
+                aria-label={`Go to slide ${index + 1}`}
+              />
+            ))}
+          </div>
+        </div>
+        
+        <p className="text-xl sm:text-2xl text-gray-700 max-w-3xl mx-auto leading-relaxed mt-8">
+          No more endless phone calls or wondering what's happening with your case. Everything you need — documents, updates, messages, and deadlines — lives in one place, accessible anytime.
+        </p>
+      </div>
+    </section>
+  );
+};
 const Clients = () => {
   const [notificationVisible, setNotificationVisible] = useState(false);
   const notificationSectionRef = useRef<HTMLDivElement>(null);
@@ -188,21 +298,8 @@ const Clients = () => {
         </div>
       </section>
 
-      {/* Case Hub Section */}
-      <section className="py-24 px-4 sm:px-6 lg:px-8 bg-white">
-        <div className="container mx-auto max-w-5xl text-center">
-          <FileSearch className="w-20 h-20 text-primary mx-auto mb-8" />
-          <h2 className="text-4xl sm:text-5xl font-bold text-gray-900 mb-8">
-            Everything you need in one app
-          </h2>
-          
-          <img src={caseHubIcon} alt="Case hub illustration" className="w-[960px] h-auto mx-auto mb-6" />
-          
-          <p className="text-xl sm:text-2xl text-gray-700 max-w-3xl mx-auto leading-relaxed">
-            No more endless phone calls or wondering what's happening with your case. Everything you need — documents, updates, messages, and deadlines — lives in one place, accessible anytime.
-          </p>
-        </div>
-      </section>
+      {/* Case Hub Section - Carousel */}
+      <CaseHubCarousel />
 
       {/* All Cases Section */}
       <section className="py-24 px-4 sm:px-6 lg:px-8 bg-gray-50">
