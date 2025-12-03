@@ -140,9 +140,9 @@ const Clients = () => {
               {/* Notification - Positioned at top of phone, animates down */}
               <div 
                 className={`absolute left-1/2 -translate-x-1/2 w-[85%] transition-all duration-700 ease-out ${
-                  notificationVisible 
-                    ? 'opacity-100 top-[12%]' 
-                    : 'opacity-0 top-0'
+                notificationVisible 
+                    ? 'opacity-100 top-[6%]' 
+                    : 'opacity-0 -top-[6%]'
                 }`}
               >
                 <img 
