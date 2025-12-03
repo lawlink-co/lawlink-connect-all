@@ -256,39 +256,58 @@ const Clients = () => {
         </div>
       </section>
 
-      {/* Trust Section */}
-      <section className="py-24 px-4 sm:px-6 lg:px-8 bg-white">
+      {/* Security Section */}
+      <section className="py-32 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-gray-50 via-gray-900 via-30% to-black">
         <div className="container mx-auto max-w-5xl text-center">
-          <h2 className="text-4xl sm:text-5xl font-bold mb-12 text-gray-900">
+          <Shield className="w-20 h-20 text-primary mx-auto mb-8" />
+          <h2 className="text-4xl sm:text-5xl font-bold mb-8 text-white">
             Your Information, Secured.
           </h2>
-          <p className="text-xl sm:text-2xl text-gray-700 mb-16 max-w-3xl mx-auto">
-            Every lawyer on LAWLINK uses the same secure infrastructure.<br />No confusion. No lost files. No silence.
+          <p className="text-xl sm:text-2xl text-gray-300 mb-16 max-w-3xl mx-auto leading-relaxed">
+            Attorney-client privilege is sacred. LAWLINK is built from the ground up to protect your most sensitive information with enterprise-grade security.
           </p>
           
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl mx-auto">
-            <div className="text-center">
-              <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
-                <Check className="w-8 h-8 text-primary" />
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto mb-16">
+            <div className="text-center bg-white/5 backdrop-blur-sm rounded-2xl p-8 border border-white/10">
+              <div className="w-16 h-16 bg-primary/20 rounded-full flex items-center justify-center mx-auto mb-4">
+                <Shield className="w-8 h-8 text-primary" />
               </div>
-              <h3 className="text-xl font-bold mb-2 text-gray-900">Transparency</h3>
-              <p className="text-gray-700">See exactly what's happening in your case, when it's happening.</p>
+              <h3 className="text-xl font-bold mb-3 text-white">End-to-End Encryption</h3>
+              <p className="text-gray-400">Every message, document, and update is encrypted in transit and at rest. Your data stays private.</p>
             </div>
             
-            <div className="text-center">
-              <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
+            <div className="text-center bg-white/5 backdrop-blur-sm rounded-2xl p-8 border border-white/10">
+              <div className="w-16 h-16 bg-primary/20 rounded-full flex items-center justify-center mx-auto mb-4">
                 <Check className="w-8 h-8 text-primary" />
               </div>
-              <h3 className="text-xl font-bold mb-2 text-gray-900">Control</h3>
-              <p className="text-gray-700">You're not left in the dark. LAWLINK puts you in the driver's seat.</p>
+              <h3 className="text-xl font-bold mb-3 text-white">Attorney-Client Privilege</h3>
+              <p className="text-gray-400">LAWLINK respects and preserves the confidentiality of all attorney-client communications. No exceptions.</p>
             </div>
             
-            <div className="text-center">
-              <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
+            <div className="text-center bg-white/5 backdrop-blur-sm rounded-2xl p-8 border border-white/10">
+              <div className="w-16 h-16 bg-primary/20 rounded-full flex items-center justify-center mx-auto mb-4">
                 <Check className="w-8 h-8 text-primary" />
               </div>
-              <h3 className="text-xl font-bold mb-2 text-gray-900">Peace of Mind</h3>
-              <p className="text-gray-700">Stop worrying about what's next. Get real-time clarity instead.</p>
+              <h3 className="text-xl font-bold mb-3 text-white">Access Control</h3>
+              <p className="text-gray-400">Only you and your lawyer can access your case. No third parties, no data selling, no compromise.</p>
+            </div>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+            <div className="text-center bg-white/5 backdrop-blur-sm rounded-2xl p-8 border border-white/10">
+              <div className="w-16 h-16 bg-primary/20 rounded-full flex items-center justify-center mx-auto mb-4">
+                <Check className="w-8 h-8 text-primary" />
+              </div>
+              <h3 className="text-xl font-bold mb-3 text-white">Secure Infrastructure</h3>
+              <p className="text-gray-400">Built on enterprise-grade cloud infrastructure with SOC 2 compliance and continuous security monitoring.</p>
+            </div>
+            
+            <div className="text-center bg-white/5 backdrop-blur-sm rounded-2xl p-8 border border-white/10">
+              <div className="w-16 h-16 bg-primary/20 rounded-full flex items-center justify-center mx-auto mb-4">
+                <Check className="w-8 h-8 text-primary" />
+              </div>
+              <h3 className="text-xl font-bold mb-3 text-white">Your Data, Your Control</h3>
+              <p className="text-gray-400">You own your data. Period. We never share, sell, or use your information for anything other than serving you.</p>
             </div>
           </div>
         </div>
