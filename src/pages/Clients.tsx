@@ -154,12 +154,8 @@ const AllCasesSection = () => {
   return (
     <section ref={sectionRef} className="py-24 px-4 sm:px-6 lg:px-8 bg-gray-50">
       <div className="container mx-auto max-w-5xl text-center">
-        <div className="flex items-center justify-center gap-3 mb-4">
-          <Briefcase className="w-8 h-8 text-primary" />
-          <span className="text-xl font-semibold text-primary">All Your Cases, One App</span>
-        </div>
         <h2 className="text-4xl sm:text-5xl font-bold text-gray-900 mb-16">
-          Home of All Your Legal Cases
+          Track Every Case, Instantly
         </h2>
         
         {/* Icons Animation Container */}
