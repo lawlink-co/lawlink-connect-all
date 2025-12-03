@@ -5,6 +5,7 @@ import Navigation from "@/components/Navigation";
 import phoneAppMockup from "@/assets/phone-app-mockup.svg";
 import caseNotification from "@/assets/case-notification.svg";
 import phoneFrame from "@/assets/phone-frame.svg";
+import caseHubIcon from "@/assets/case-hub-icon.svg";
 import { useEffect, useRef, useState } from "react";
 
 const Clients = () => {
@@ -232,7 +233,7 @@ const Clients = () => {
             </h2>
           </div>
           
-          <FileSearch className="w-16 h-16 text-primary mx-auto mb-6" />
+          <img src={caseHubIcon} alt="Case hub illustration" className="w-64 h-auto mx-auto mb-6" />
           
           <p className="text-xl sm:text-2xl text-gray-700 max-w-3xl mx-auto leading-relaxed">
             No more endless phone calls or wondering what's happening with your case. Everything you need — documents, updates, messages, and deadlines — lives in one place, accessible anytime.
