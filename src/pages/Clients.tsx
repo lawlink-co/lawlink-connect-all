@@ -35,6 +35,14 @@ const CaseHubCarousel = () => {
     setActiveIndex(index);
   }, []);
 
+  // Auto-scroll every 4 seconds
+  useEffect(() => {
+    const interval = setInterval(() => {
+      scrollNext();
+    }, 4000);
+    return () => clearInterval(interval);
+  }, [scrollNext]);
+
   return (
     <section className="py-24 px-4 sm:px-6 lg:px-8 bg-white overflow-hidden">
       <div className="container mx-auto max-w-6xl text-center">
@@ -44,16 +52,16 @@ const CaseHubCarousel = () => {
         </h2>
         
         {/* Carousel Container */}
-        <div className="relative flex items-center justify-center h-[400px] sm:h-[500px]">
+        <div className="relative flex items-center justify-center h-[280px] sm:h-[340px]">
           {/* Left Slide (Previous) */}
           <div 
             onClick={scrollPrev}
-            className="absolute left-0 sm:left-[5%] z-10 cursor-pointer transition-all duration-500 ease-out transform -translate-x-1/4 scale-75 opacity-50 hover:opacity-70"
+            className="absolute left-[5%] sm:left-[10%] z-10 cursor-pointer transition-all duration-500 ease-out transform -translate-x-1/4 scale-75 opacity-50 hover:opacity-70"
           >
             <img 
               src={caseHubSlides[getSlideIndex(-1)].image} 
               alt={caseHubSlides[getSlideIndex(-1)].alt}
-              className="w-[300px] sm:w-[400px] h-auto rounded-xl shadow-lg"
+              className="w-[120px] sm:w-[160px] h-auto rounded-xl shadow-lg"
             />
           </div>
 
@@ -62,36 +70,36 @@ const CaseHubCarousel = () => {
             <img 
               src={caseHubSlides[activeIndex].image} 
               alt={caseHubSlides[activeIndex].alt}
-              className="w-[350px] sm:w-[500px] lg:w-[600px] h-auto rounded-xl shadow-2xl"
+              className="w-[140px] sm:w-[200px] lg:w-[240px] h-auto rounded-xl shadow-2xl"
             />
           </div>
 
           {/* Right Slide (Next) */}
           <div 
             onClick={scrollNext}
-            className="absolute right-0 sm:right-[5%] z-10 cursor-pointer transition-all duration-500 ease-out transform translate-x-1/4 scale-75 opacity-50 hover:opacity-70"
+            className="absolute right-[5%] sm:right-[10%] z-10 cursor-pointer transition-all duration-500 ease-out transform translate-x-1/4 scale-75 opacity-50 hover:opacity-70"
           >
             <img 
               src={caseHubSlides[getSlideIndex(1)].image} 
               alt={caseHubSlides[getSlideIndex(1)].alt}
-              className="w-[300px] sm:w-[400px] h-auto rounded-xl shadow-lg"
+              className="w-[120px] sm:w-[160px] h-auto rounded-xl shadow-lg"
             />
           </div>
 
           {/* Navigation Arrows */}
           <button
             onClick={scrollPrev}
-            className="absolute left-2 sm:left-8 top-1/2 -translate-y-1/2 z-30 w-12 h-12 bg-white/90 border-2 border-gray-200 rounded-full flex items-center justify-center hover:border-primary hover:bg-white transition-all shadow-lg"
+            className="absolute left-2 sm:left-16 top-1/2 -translate-y-1/2 z-30 w-10 h-10 bg-white/90 border-2 border-gray-200 rounded-full flex items-center justify-center hover:border-primary hover:bg-white transition-all shadow-lg"
             aria-label="Previous slide"
           >
-            <ChevronLeft className="w-6 h-6 text-gray-600" />
+            <ChevronLeft className="w-5 h-5 text-gray-600" />
           </button>
           <button
             onClick={scrollNext}
-            className="absolute right-2 sm:right-8 top-1/2 -translate-y-1/2 z-30 w-12 h-12 bg-white/90 border-2 border-gray-200 rounded-full flex items-center justify-center hover:border-primary hover:bg-white transition-all shadow-lg"
+            className="absolute right-2 sm:right-16 top-1/2 -translate-y-1/2 z-30 w-10 h-10 bg-white/90 border-2 border-gray-200 rounded-full flex items-center justify-center hover:border-primary hover:bg-white transition-all shadow-lg"
             aria-label="Next slide"
           >
-            <ChevronRight className="w-6 h-6 text-gray-600" />
+            <ChevronRight className="w-5 h-5 text-gray-600" />
           </button>
         </div>
 
