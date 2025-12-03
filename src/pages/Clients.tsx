@@ -65,7 +65,7 @@ const CaseHubCarousel = () => {
             <img 
               src={caseHubSlides[getSlideIndex(-1)].image} 
               alt={caseHubSlides[getSlideIndex(-1)].alt}
-              className="w-[120px] sm:w-[160px] h-auto rounded-xl shadow-lg opacity-60 hover:opacity-80 transition-opacity"
+              className="w-[150px] sm:w-[200px] h-auto rounded-xl shadow-lg opacity-60 hover:opacity-80 transition-opacity"
             />
           </div>
 
@@ -74,7 +74,7 @@ const CaseHubCarousel = () => {
             <img 
               src={caseHubSlides[activeIndex].image} 
               alt={caseHubSlides[activeIndex].alt}
-              className="w-[140px] sm:w-[200px] lg:w-[240px] h-auto rounded-xl shadow-2xl"
+              className="w-[175px] sm:w-[250px] lg:w-[300px] h-auto rounded-xl shadow-2xl"
             />
           </div>
 
@@ -87,7 +87,7 @@ const CaseHubCarousel = () => {
             <img 
               src={caseHubSlides[getSlideIndex(1)].image} 
               alt={caseHubSlides[getSlideIndex(1)].alt}
-              className="w-[120px] sm:w-[160px] h-auto rounded-xl shadow-lg opacity-60 hover:opacity-80 transition-opacity"
+              className="w-[150px] sm:w-[200px] h-auto rounded-xl shadow-lg opacity-60 hover:opacity-80 transition-opacity"
             />
           </div>
 
