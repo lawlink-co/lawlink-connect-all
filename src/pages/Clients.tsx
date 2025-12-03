@@ -222,7 +222,7 @@ const Clients = () => {
       </section>
 
       {/* Case Hub Section */}
-      <section className="py-24 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-white via-indigo-100 to-[#3b4fa8]">
+      <section className="pt-24 pb-32 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-white via-indigo-50 via-40% to-[#3b4fa8]">
         <div className="container mx-auto max-w-5xl text-center">
           <div className="flex items-center justify-center gap-4 mb-8">
             <div className="w-16 h-16 bg-primary/20 rounded-2xl flex items-center justify-center hover:bg-primary/30 transition-all duration-300 hover:scale-110 cursor-pointer group">
@@ -246,7 +246,7 @@ const Clients = () => {
       </section>
 
       {/* Trust Section */}
-      <section className="py-24 px-4 sm:px-6 lg:px-8 bg-white">
+      <section className="py-24 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-[#3b4fa8] via-indigo-200 via-30% to-white">
         <div className="container mx-auto max-w-5xl text-center">
           <h2 className="text-4xl sm:text-5xl font-bold mb-12 text-gray-900">
             Your Information, Secured.
