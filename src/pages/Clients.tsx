@@ -5,15 +5,15 @@ import Navigation from "@/components/Navigation";
 import phoneAppMockup from "@/assets/phone-app-mockup.svg";
 import caseNotification from "@/assets/case-notification.svg";
 import phoneFrame from "@/assets/phone-frame.svg";
-import caseHubIcon from "@/assets/case-hub-icon.svg";
-import appFeature1 from "@/assets/app-feature-1.svg";
-import appFeature2 from "@/assets/app-feature-2.svg";
+import carouselSlide1 from "@/assets/carousel-slide-1.svg";
+import carouselSlide2 from "@/assets/carousel-slide-2.svg";
+import carouselSlide3 from "@/assets/carousel-slide-3.svg";
 import { useEffect, useRef, useState, useCallback } from "react";
 
 const caseHubSlides = [
-  { image: caseHubIcon, alt: "Case hub illustration" },
-  { image: appFeature1, alt: "App feature - case management" },
-  { image: appFeature2, alt: "App feature - communication" },
+  { image: carouselSlide1, alt: "LAWLINK app - case updates" },
+  { image: carouselSlide2, alt: "LAWLINK app - messaging" },
+  { image: carouselSlide3, alt: "LAWLINK app - documents" },
 ];
 
 const CaseHubCarousel = () => {
