@@ -5,7 +5,6 @@ import Navigation from "@/components/Navigation";
 import phoneAppMockup from "@/assets/phone-app-mockup.svg";
 import caseNotification from "@/assets/case-notification.svg";
 import phoneFrame from "@/assets/phone-frame.svg";
-import caseHubNetwork from "@/assets/case-hub-network.png";
 import { useEffect, useRef, useState } from "react";
 
 const Clients = () => {
@@ -221,30 +220,8 @@ const Clients = () => {
         </div>
       </section>
 
-      {/* Case Hub Section */}
-      <section className="py-24 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-white via-blue-50 to-indigo-100">
-        <div className="container mx-auto max-w-5xl text-center">
-          <Briefcase className="w-16 h-16 text-primary mx-auto mb-6" />
-          <h2 className="text-4xl sm:text-5xl font-bold mb-8 text-gray-900">
-            Access Everything Instantly
-          </h2>
-          
-          <div className="relative w-full max-w-2xl mx-auto mb-12">
-            <img 
-              src={caseHubNetwork} 
-              alt="LAWLINK interconnected case management"
-              className="w-full h-auto rounded-2xl"
-            />
-          </div>
-          
-          <p className="text-xl sm:text-2xl text-gray-700 max-w-3xl mx-auto leading-relaxed">
-            No more endless phone calls to your law firm or wondering what's happening with your case. Everything you need — documents, updates, messages — lives in one place, ready whenever you are.
-          </p>
-        </div>
-      </section>
-
       {/* Trust Section */}
-      <section className="py-24 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-indigo-100 to-white">
+      <section className="py-24 px-4 sm:px-6 lg:px-8 bg-white">
         <div className="container mx-auto max-w-5xl text-center">
           <h2 className="text-4xl sm:text-5xl font-bold mb-12 text-gray-900">
             Your Information, Secured.
