@@ -7,30 +7,24 @@ import caseNotification from "@/assets/case-notification.svg";
 import phoneFrame from "@/assets/phone-frame.svg";
 import caseHubIcon from "@/assets/case-hub-icon.svg";
 import { useEffect, useRef, useState } from "react";
-
 const Clients = () => {
   const [notificationVisible, setNotificationVisible] = useState(false);
   const notificationSectionRef = useRef<HTMLDivElement>(null);
-
   useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setNotificationVisible(true);
-        }
-      },
-      { threshold: 0.5, rootMargin: '-20% 0px -20% 0px' }
-    );
-
+    const observer = new IntersectionObserver(([entry]) => {
+      if (entry.isIntersecting) {
+        setNotificationVisible(true);
+      }
+    }, {
+      threshold: 0.5,
+      rootMargin: '-20% 0px -20% 0px'
+    });
     if (notificationSectionRef.current) {
       observer.observe(notificationSectionRef.current);
     }
-
     return () => observer.disconnect();
   }, []);
-
-  return (
-    <div className="min-h-screen bg-white">
+  return <div className="min-h-screen bg-white">
       <Navigation />
       
       {/* Hero Section */}
@@ -50,11 +44,7 @@ const Clients = () => {
             </div>
             <div className="relative animate-scale-in flex items-center justify-center h-full">
               <div className="absolute inset-0 bg-primary/10 blur-3xl rounded-full"></div>
-              <img 
-                src={phoneAppMockup} 
-                alt="LAWLINK mobile app interface"
-                className="relative mx-auto h-[425px] lg:h-[510px] w-auto object-contain drop-shadow-2xl"
-              />
+              <img src={phoneAppMockup} alt="LAWLINK mobile app interface" className="relative mx-auto h-[425px] lg:h-[510px] w-auto object-contain drop-shadow-2xl" />
             </div>
           </div>
         </div>
@@ -116,10 +106,7 @@ const Clients = () => {
       </section>
 
       {/* Catch Up Section */}
-      <section 
-        ref={notificationSectionRef}
-        className="py-32 px-4 sm:px-6 lg:px-8 bg-white min-h-screen flex flex-col justify-center"
-      >
+      <section ref={notificationSectionRef} className="py-32 px-4 sm:px-6 lg:px-8 bg-white min-h-screen flex flex-col justify-center">
         <div className="container mx-auto max-w-5xl">
           <div className="text-center mb-16">
             <Bell className="w-16 h-16 text-primary mx-auto mb-6" />
@@ -132,36 +119,16 @@ const Clients = () => {
             {/* Phone Frame with Notification */}
             <div className="relative w-full max-w-md mx-auto">
               {/* Phone Frame */}
-              <img 
-                src={phoneFrame} 
-                alt="Phone frame"
-                className="w-full h-auto"
-              />
+              <img src={phoneFrame} alt="Phone frame" className="w-full h-auto" />
               
               {/* Notification - Positioned at top of phone, animates down */}
-              <div 
-                className={`absolute left-1/2 -translate-x-1/2 w-[85%] transition-all duration-700 ease-out ${
-                notificationVisible 
-                    ? 'opacity-100 top-[6%]' 
-                    : 'opacity-0 -top-[6%]'
-                }`}
-              >
-                <img 
-                  src={caseNotification} 
-                  alt="Case update notification"
-                  className="w-full drop-shadow-2xl"
-                />
+              <div className={`absolute left-1/2 -translate-x-1/2 w-[85%] transition-all duration-700 ease-out ${notificationVisible ? 'opacity-100 top-[6%]' : 'opacity-0 -top-[6%]'}`}>
+                <img src={caseNotification} alt="Case update notification" className="w-full drop-shadow-2xl" />
               </div>
             </div>
             
             {/* Text Content */}
-            <div 
-              className={`mt-16 max-w-3xl text-center transition-all duration-700 delay-300 ease-out ${
-                notificationVisible 
-                  ? 'opacity-100 translate-y-0' 
-                  : 'opacity-0 translate-y-10'
-              }`}
-            >
+            <div className={`mt-16 max-w-3xl text-center transition-all duration-700 delay-300 ease-out ${notificationVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
               <p className="text-xl sm:text-2xl text-gray-700 leading-relaxed">
                 Get a micro-view of your case and feel the progress as it happens — every filing, every motion, every development delivered in clear, understandable language so you always know exactly what's happening.
               </p>
@@ -225,9 +192,7 @@ const Clients = () => {
       <section className="py-24 px-4 sm:px-6 lg:px-8 bg-white">
         <div className="container mx-auto max-w-5xl text-center">
           <div className="flex items-center justify-center gap-4 mb-8">
-            <div className="w-16 h-16 bg-primary/20 rounded-2xl flex items-center justify-center hover:bg-primary/30 transition-all duration-300 hover:scale-110 cursor-pointer group">
-              <FileSearch className="w-10 h-10 text-primary group-hover:text-primary/80 transition-colors" />
-            </div>
+            
             <h2 className="text-4xl sm:text-5xl font-bold text-gray-900">
               Everything you need in one app
             </h2>
@@ -339,8 +304,6 @@ const Clients = () => {
           <p className="text-gray-500">&copy; 2025 LAWLINK. All rights reserved.</p>
         </div>
       </footer>
-    </div>
-  );
+    </div>;
 };
-
 export default Clients;
