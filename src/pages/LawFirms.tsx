@@ -18,13 +18,13 @@ const LawFirms = () => {
               <span className="opacity-0 animate-fade-in" style={{ animationDelay: '600ms', animationFillMode: 'forwards' }}>Keep Clients Satisfied.</span>
             </div>
           </h1>
-          <p className="text-4xl sm:text-5xl text-white font-light mb-6 animate-fade-in">
+          <p className="text-4xl sm:text-5xl text-white font-light mb-6 opacity-0 animate-fade-in" style={{ animationDelay: '1200ms', animationFillMode: 'forwards', animationDuration: '800ms' }}>
             All On One Platform.
           </p>
-          <p className="text-xl sm:text-2xl text-zinc-400 font-light mb-12 animate-fade-in">
+          <p className="text-xl sm:text-2xl text-zinc-400 font-light mb-12 opacity-0 animate-fade-in" style={{ animationDelay: '2000ms', animationFillMode: 'forwards' }}>
             From drafting to client updates, every part of your practice connected by AI.
           </p>
-          <div className="animate-slide-up">
+          <div className="opacity-0 animate-fade-in" style={{ animationDelay: '2000ms', animationFillMode: 'forwards' }}>
             <Button size="lg" className="text-lg px-14 py-8 bg-white text-black hover:bg-zinc-200 transition-all duration-300 hover:scale-105 font-sans">
               Book a Demo
             </Button>
