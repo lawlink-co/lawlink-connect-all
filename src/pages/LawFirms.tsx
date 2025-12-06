@@ -11,11 +11,11 @@ const LawFirms = () => {
       {/* Hero Section */}
       <section className="pt-32 pb-24 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-black via-zinc-950 to-black">
         <div className="container mx-auto max-w-5xl text-center">
-          <h1 className="text-5xl sm:text-6xl lg:text-7xl font-light leading-tight tracking-wide mb-8 animate-fade-in-slow">
+          <h1 className="text-5xl sm:text-6xl lg:text-7xl font-light leading-tight tracking-wide mb-8">
             <div className="flex flex-col">
-              <span>Push Cases,</span>
-              <span>Draft Briefs,</span>
-              <span>Keep Clients Satisfied.</span>
+              <span className="opacity-0 animate-fade-in" style={{ animationDelay: '0ms', animationFillMode: 'forwards' }}>Push Cases,</span>
+              <span className="opacity-0 animate-fade-in" style={{ animationDelay: '300ms', animationFillMode: 'forwards' }}>Draft Briefs,</span>
+              <span className="opacity-0 animate-fade-in" style={{ animationDelay: '600ms', animationFillMode: 'forwards' }}>Keep Clients Satisfied.</span>
             </div>
           </h1>
           <p className="text-4xl sm:text-5xl text-white font-light mb-6 animate-fade-in">
