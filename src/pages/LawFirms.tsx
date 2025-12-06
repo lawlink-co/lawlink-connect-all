@@ -14,17 +14,17 @@ const LawFirms = () => {
           <h1 className="text-5xl sm:text-6xl lg:text-7xl font-light leading-tight tracking-wide mb-8">
             <div className="flex flex-col">
               <span className="opacity-0 animate-fade-in" style={{ animationDelay: '0ms', animationFillMode: 'forwards' }}>Push Cases,</span>
-              <span className="opacity-0 animate-fade-in" style={{ animationDelay: '300ms', animationFillMode: 'forwards' }}>Draft Briefs,</span>
-              <span className="opacity-0 animate-fade-in" style={{ animationDelay: '600ms', animationFillMode: 'forwards' }}>Keep Clients Satisfied.</span>
+              <span className="opacity-0 animate-fade-in" style={{ animationDelay: '200ms', animationFillMode: 'forwards' }}>Draft Briefs,</span>
+              <span className="opacity-0 animate-fade-in" style={{ animationDelay: '400ms', animationFillMode: 'forwards' }}>Keep Clients Satisfied.</span>
             </div>
           </h1>
-          <p className="text-4xl sm:text-5xl text-white font-light mb-6 opacity-0 animate-fade-in" style={{ animationDelay: '1200ms', animationFillMode: 'forwards', animationDuration: '800ms' }}>
+          <p className="text-4xl sm:text-5xl text-white font-light mb-6 opacity-0 animate-fade-in" style={{ animationDelay: '800ms', animationFillMode: 'forwards', animationDuration: '600ms' }}>
             All On One Platform.
           </p>
-          <p className="text-xl sm:text-2xl text-zinc-400 font-light mb-12 opacity-0 animate-fade-in" style={{ animationDelay: '2000ms', animationFillMode: 'forwards' }}>
+          <p className="text-xl sm:text-2xl text-zinc-400 font-light mb-12 opacity-0 animate-fade-in" style={{ animationDelay: '1400ms', animationFillMode: 'forwards' }}>
             From drafting to client updates, every part of your practice connected by AI.
           </p>
-          <div className="opacity-0 animate-fade-in" style={{ animationDelay: '2000ms', animationFillMode: 'forwards' }}>
+          <div className="opacity-0 animate-fade-in" style={{ animationDelay: '1400ms', animationFillMode: 'forwards' }}>
             <Button size="lg" className="text-lg px-14 py-8 bg-white text-black hover:bg-zinc-200 transition-all duration-300 hover:scale-105 font-sans">
               Book a Demo
             </Button>
