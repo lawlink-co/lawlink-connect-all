@@ -15,55 +15,55 @@ const ScrollRevealImages = () => {
 
   return (
     <div className="relative w-full max-w-4xl mx-auto py-12 overflow-visible">
-      {/* Top left - Summary Judgment card */}
+      {/* Left side upper - Summary Judgment card */}
       <div 
-        className={`absolute -top-16 -left-32 z-10 transition-all duration-700 ease-out
-          ${isVisible ? '-rotate-12 opacity-100 translate-x-0 translate-y-0' : '-rotate-6 opacity-0 -translate-x-8 -translate-y-8'}`}
+        className={`absolute top-[15%] -left-40 z-10 transition-all duration-700 ease-out
+          ${isVisible ? '-rotate-12 opacity-100 translate-x-0' : '-rotate-6 opacity-0 -translate-x-12'}`}
         style={{ transitionDelay: '0.1s' }}
       >
         <img
           src={summaryJudgmentCard}
           alt="Defendants Move for Summary Judgment card"
-          className="w-80 rounded-xl shadow-lg"
+          className="w-72 rounded-xl shadow-lg"
         />
       </div>
 
-      {/* Top right - Demolition card */}
+      {/* Right side upper - Demolition card */}
       <div 
-        className={`absolute -top-16 -right-32 z-10 transition-all duration-700 ease-out
-          ${isVisible ? 'rotate-12 opacity-100 translate-x-0 translate-y-0' : 'rotate-6 opacity-0 translate-x-8 -translate-y-8'}`}
+        className={`absolute top-[15%] -right-40 z-10 transition-all duration-700 ease-out
+          ${isVisible ? 'rotate-12 opacity-100 translate-x-0' : 'rotate-6 opacity-0 translate-x-12'}`}
         style={{ transitionDelay: '0.3s' }}
       >
         <img
           src={demolitionCard}
           alt="Demolition work exhibit card"
-          className="w-80 rounded-xl shadow-lg"
+          className="w-72 rounded-xl shadow-lg"
         />
       </div>
 
-      {/* Bottom left - Case Update card */}
+      {/* Left side lower - Case Update card */}
       <div 
-        className={`absolute -bottom-16 -left-28 z-10 transition-all duration-700 ease-out
-          ${isVisible ? '-rotate-6 opacity-100 translate-x-0 translate-y-0' : '-rotate-3 opacity-0 -translate-x-8 translate-y-8'}`}
+        className={`absolute top-[55%] -left-36 z-10 transition-all duration-700 ease-out
+          ${isVisible ? '-rotate-6 opacity-100 translate-x-0' : '-rotate-3 opacity-0 -translate-x-12'}`}
         style={{ transitionDelay: '0.5s' }}
       >
         <img
           src={caseUpdateCard}
           alt="Case Update notification card"
-          className="w-72 rounded-xl shadow-lg"
+          className="w-64 rounded-xl shadow-lg"
         />
       </div>
 
-      {/* Bottom right - Transcript card */}
+      {/* Right side lower - Transcript card */}
       <div 
-        className={`absolute -bottom-16 -right-28 z-10 transition-all duration-700 ease-out
-          ${isVisible ? 'rotate-6 opacity-100 translate-x-0 translate-y-0' : 'rotate-3 opacity-0 translate-x-8 translate-y-8'}`}
+        className={`absolute top-[55%] -right-36 z-10 transition-all duration-700 ease-out
+          ${isVisible ? 'rotate-6 opacity-100 translate-x-0' : 'rotate-3 opacity-0 translate-x-12'}`}
         style={{ transitionDelay: '0.7s' }}
       >
         <img
           src={transcriptCard}
           alt="Deposition transcript card"
-          className="w-72 rounded-xl shadow-lg"
+          className="w-64 rounded-xl shadow-lg"
         />
       </div>
       
