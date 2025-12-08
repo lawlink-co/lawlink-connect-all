@@ -3,7 +3,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { CheckCircle2, Shield, Lock, Database, Briefcase, FileText, FolderSearch, MessageCircle, Settings } from "lucide-react";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import Navigation from "@/components/Navigation";
-import aiKnowsCases from "@/assets/what-lawyers-used-to-do.svg";
+import ScrollRevealImages from "@/components/ScrollRevealImages";
 const LawFirms = () => {
   return <div className="min-h-screen bg-black text-white font-serif">
       <Navigation />
@@ -35,8 +35,8 @@ const LawFirms = () => {
       {/* CRM Demo Section */}
       <section className="py-24 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-black to-zinc-950">
         <div className="container mx-auto max-w-7xl">
-          <div className="mb-16 animate-scale-in">
-            <img src={aiKnowsCases} alt="LAWLINK CRM Dashboard - Case management interface showing case details, timeline, and documents" className="w-full rounded-lg shadow-2xl border border-zinc-800" />
+          <div className="mb-16">
+            <ScrollRevealImages />
           </div>
           <div className="text-center space-y-6 max-w-4xl mx-auto animate-fade-in">
             <h2 className="text-3xl sm:text-4xl font-semibold">
