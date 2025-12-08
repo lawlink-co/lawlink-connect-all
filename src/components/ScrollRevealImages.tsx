@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import aiAgentDrafting from "@/assets/ai-agent-drafting-v2.png";
+import aiAgentDrafting from "@/assets/ai-agent-drafting-new.png";
 import summaryJudgmentCard from "@/assets/summary-judgment-card.png";
 import caseUpdateCard from "@/assets/case-update-card.png";
 import demolitionCard from "@/assets/demolition-card.png";
