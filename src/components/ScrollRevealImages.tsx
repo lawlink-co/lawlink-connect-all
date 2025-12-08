@@ -80,10 +80,6 @@ const ScrollRevealImages = () => {
         {cards.map((card, index) => <img key={index} src={card.src} alt={card.alt} className={`absolute ${card.size} rounded-xl shadow-2xl z-10`} style={getCardStyle(index)} />)}
       </div>
       
-      {/* Main image - 6X size */}
-      <div className="relative z-20">
-        <img alt="LAWLINK AI Agent - Case management interface with AI drafting capabilities" className="w-full max-w-[18432px] mx-auto rounded-xl shadow-2xl" src="/lovable-uploads/df908d6d-7ca9-464b-a2dc-49064f550b11.png" />
-      </div>
     </div>;
 };
 export default ScrollRevealImages;
