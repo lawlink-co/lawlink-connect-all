@@ -4,8 +4,8 @@ import summaryJudgmentCard from "@/assets/summary-judgment-card.png";
 const ScrollRevealImages = () => {
   return (
     <div className="relative w-full max-w-4xl mx-auto py-12">
-      {/* Background card - top right */}
-      <div className="absolute -top-8 -right-32 z-10">
+      {/* Background card - top left */}
+      <div className="absolute -top-8 -left-32 z-10">
         <img
           src={summaryJudgmentCard}
           alt="Defendants Move for Summary Judgment card"
