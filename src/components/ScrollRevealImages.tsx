@@ -14,56 +14,56 @@ const ScrollRevealImages = () => {
   }, []);
 
   return (
-    <div className="relative w-full max-w-4xl mx-auto py-12">
+    <div className="relative w-full max-w-4xl mx-auto py-12 overflow-visible">
       {/* Top left - Summary Judgment card */}
       <div 
-        className={`absolute -top-4 left-4 z-10 transition-all duration-700 ease-out
+        className={`absolute -top-16 -left-32 z-10 transition-all duration-700 ease-out
           ${isVisible ? '-rotate-12 opacity-100 translate-x-0 translate-y-0' : '-rotate-6 opacity-0 -translate-x-8 -translate-y-8'}`}
         style={{ transitionDelay: '0.1s' }}
       >
         <img
           src={summaryJudgmentCard}
           alt="Defendants Move for Summary Judgment card"
-          className="w-64 rounded-xl shadow-lg"
+          className="w-80 rounded-xl shadow-lg"
         />
       </div>
 
       {/* Top right - Demolition card */}
       <div 
-        className={`absolute -top-4 right-4 z-10 transition-all duration-700 ease-out
+        className={`absolute -top-16 -right-32 z-10 transition-all duration-700 ease-out
           ${isVisible ? 'rotate-12 opacity-100 translate-x-0 translate-y-0' : 'rotate-6 opacity-0 translate-x-8 -translate-y-8'}`}
         style={{ transitionDelay: '0.3s' }}
       >
         <img
           src={demolitionCard}
           alt="Demolition work exhibit card"
-          className="w-64 rounded-xl shadow-lg"
+          className="w-80 rounded-xl shadow-lg"
         />
       </div>
 
       {/* Bottom left - Case Update card */}
       <div 
-        className={`absolute -bottom-4 left-8 z-10 transition-all duration-700 ease-out
+        className={`absolute -bottom-16 -left-28 z-10 transition-all duration-700 ease-out
           ${isVisible ? '-rotate-6 opacity-100 translate-x-0 translate-y-0' : '-rotate-3 opacity-0 -translate-x-8 translate-y-8'}`}
         style={{ transitionDelay: '0.5s' }}
       >
         <img
           src={caseUpdateCard}
           alt="Case Update notification card"
-          className="w-56 rounded-xl shadow-lg"
+          className="w-72 rounded-xl shadow-lg"
         />
       </div>
 
       {/* Bottom right - Transcript card */}
       <div 
-        className={`absolute -bottom-4 right-8 z-10 transition-all duration-700 ease-out
+        className={`absolute -bottom-16 -right-28 z-10 transition-all duration-700 ease-out
           ${isVisible ? 'rotate-6 opacity-100 translate-x-0 translate-y-0' : 'rotate-3 opacity-0 translate-x-8 translate-y-8'}`}
         style={{ transitionDelay: '0.7s' }}
       >
         <img
           src={transcriptCard}
           alt="Deposition transcript card"
-          className="w-56 rounded-xl shadow-lg"
+          className="w-72 rounded-xl shadow-lg"
         />
       </div>
       
