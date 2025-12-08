@@ -20,7 +20,7 @@ const ScrollRevealImages = () => {
         <img
           src={aiAgentDrafting}
           alt="LAWLINK AI Agent - Case management interface with AI drafting capabilities"
-          className="w-full mx-auto rounded-xl shadow-2xl"
+          className="w-1/2 mx-auto rounded-xl shadow-2xl"
         />
       </div>
 
