@@ -30,16 +30,16 @@ const ScrollRevealImages = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // Card configurations - 5X size, 50% reveal from behind main image
+  // Card configurations - 10X size, 50% reveal from behind main image
   const cards = [
     {
       src: cardSummaryJudgment,
       alt: "Summary Judgment card",
-      // Top-left position - reduced distance for 50% reveal
+      // Top-left position
       finalX: -160,
       finalY: -40,
       finalRotate: -15,
-      size: "w-[320px] md:w-[400px]",
+      size: "w-[640px] md:w-[800px]",
     },
     {
       src: cardDemolition,
@@ -48,7 +48,7 @@ const ScrollRevealImages = () => {
       finalX: 160,
       finalY: -30,
       finalRotate: 12,
-      size: "w-[360px] md:w-[480px]",
+      size: "w-[720px] md:w-[960px]",
     },
     {
       src: cardCaseUpdate,
@@ -57,7 +57,7 @@ const ScrollRevealImages = () => {
       finalX: -140,
       finalY: 60,
       finalRotate: -8,
-      size: "w-[280px] md:w-[360px]",
+      size: "w-[560px] md:w-[720px]",
     },
     {
       src: cardTranscript,
@@ -66,7 +66,7 @@ const ScrollRevealImages = () => {
       finalX: 150,
       finalY: 70,
       finalRotate: 15,
-      size: "w-[260px] md:w-[320px]",
+      size: "w-[520px] md:w-[640px]",
     },
   ];
 
