@@ -14,65 +14,65 @@ const ScrollRevealImages = () => {
   }, []);
 
   return (
-    <div className="relative w-full max-w-4xl mx-auto py-12 overflow-visible">
+    <div className="relative w-full max-w-4xl mx-auto py-24 overflow-visible">
+      {/* Main image - rendered first so cards can position relative to it */}
+      <div className="relative z-20">
+        <img
+          src={aiAgentDrafting}
+          alt="LAWLINK AI Agent - Case management interface with AI drafting capabilities"
+          className="w-full mx-auto rounded-xl shadow-2xl"
+        />
+      </div>
+
       {/* Left side upper - Summary Judgment card */}
       <div 
-        className={`absolute top-[15%] -left-40 z-10 transition-all duration-700 ease-out
+        className={`absolute top-[10%] left-[-5%] z-10 transition-all duration-700 ease-out
           ${isVisible ? '-rotate-12 opacity-100 translate-x-0' : '-rotate-6 opacity-0 -translate-x-12'}`}
         style={{ transitionDelay: '0.1s' }}
       >
         <img
           src={summaryJudgmentCard}
           alt="Defendants Move for Summary Judgment card"
-          className="w-72 rounded-xl shadow-lg"
+          className="w-80 rounded-xl shadow-lg"
         />
       </div>
 
       {/* Right side upper - Demolition card */}
       <div 
-        className={`absolute top-[15%] -right-40 z-10 transition-all duration-700 ease-out
+        className={`absolute top-[10%] right-[-5%] z-10 transition-all duration-700 ease-out
           ${isVisible ? 'rotate-12 opacity-100 translate-x-0' : 'rotate-6 opacity-0 translate-x-12'}`}
         style={{ transitionDelay: '0.3s' }}
       >
         <img
           src={demolitionCard}
           alt="Demolition work exhibit card"
-          className="w-72 rounded-xl shadow-lg"
+          className="w-80 rounded-xl shadow-lg"
         />
       </div>
 
       {/* Left side lower - Case Update card */}
       <div 
-        className={`absolute top-[55%] -left-36 z-10 transition-all duration-700 ease-out
+        className={`absolute bottom-[10%] left-[-3%] z-10 transition-all duration-700 ease-out
           ${isVisible ? '-rotate-6 opacity-100 translate-x-0' : '-rotate-3 opacity-0 -translate-x-12'}`}
         style={{ transitionDelay: '0.5s' }}
       >
         <img
           src={caseUpdateCard}
           alt="Case Update notification card"
-          className="w-64 rounded-xl shadow-lg"
+          className="w-72 rounded-xl shadow-lg"
         />
       </div>
 
       {/* Right side lower - Transcript card */}
       <div 
-        className={`absolute top-[55%] -right-36 z-10 transition-all duration-700 ease-out
+        className={`absolute bottom-[10%] right-[-3%] z-10 transition-all duration-700 ease-out
           ${isVisible ? 'rotate-6 opacity-100 translate-x-0' : 'rotate-3 opacity-0 translate-x-12'}`}
         style={{ transitionDelay: '0.7s' }}
       >
         <img
           src={transcriptCard}
           alt="Deposition transcript card"
-          className="w-64 rounded-xl shadow-lg"
-        />
-      </div>
-      
-      {/* Main image */}
-      <div className="relative z-20">
-        <img
-          src={aiAgentDrafting}
-          alt="LAWLINK AI Agent - Case management interface with AI drafting capabilities"
-          className="w-full max-w-[6144px] mx-auto rounded-xl shadow-2xl"
+          className="w-72 rounded-xl shadow-lg"
         />
       </div>
     </div>
