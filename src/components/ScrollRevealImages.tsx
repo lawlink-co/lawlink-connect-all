@@ -16,11 +16,11 @@ const ScrollRevealImages = () => {
   return (
     <div className="relative w-full max-w-4xl mx-auto py-24 overflow-visible">
       {/* Main image - rendered first so cards can position relative to it */}
-      <div className="relative z-20">
+      <div className="relative z-20 flex justify-center">
         <img
           src={aiAgentDrafting}
           alt="LAWLINK AI Agent - Case management interface with AI drafting capabilities"
-          className="w-full mx-auto rounded-xl shadow-2xl"
+          className="w-[80%] mx-auto rounded-xl shadow-2xl"
         />
       </div>
 
