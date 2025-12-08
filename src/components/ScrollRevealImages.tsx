@@ -33,7 +33,7 @@ const ScrollRevealImages = () => {
         <img
           src={summaryJudgmentCard}
           alt="Defendants Move for Summary Judgment card"
-          className="w-64 rounded-xl shadow-lg"
+          className="w-80 rounded-xl shadow-lg"
         />
       </div>
 
@@ -46,7 +46,7 @@ const ScrollRevealImages = () => {
         <img
           src={demolitionCard}
           alt="Demolition work exhibit card"
-          className="w-64 rounded-xl shadow-lg"
+          className="w-80 rounded-xl shadow-lg"
         />
       </div>
 
@@ -59,7 +59,7 @@ const ScrollRevealImages = () => {
         <img
           src={caseUpdateCard}
           alt="Case Update notification card"
-          className="w-56 rounded-xl shadow-lg"
+          className="w-72 rounded-xl shadow-lg"
         />
       </div>
 
@@ -72,7 +72,7 @@ const ScrollRevealImages = () => {
         <img
           src={transcriptCard}
           alt="Deposition transcript card"
-          className="w-56 rounded-xl shadow-lg"
+          className="w-72 rounded-xl shadow-lg"
         />
       </div>
     </div>
