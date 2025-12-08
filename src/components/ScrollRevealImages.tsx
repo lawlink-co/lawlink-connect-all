@@ -8,38 +8,38 @@ const ScrollRevealImages = () => {
   return (
     <div className="relative w-full max-w-4xl mx-auto py-12">
       {/* Top left - Summary Judgment card */}
-      <div className="absolute top-8 -left-20 z-10 -rotate-12">
+      <div className="absolute top-1/4 -left-32 z-10 -rotate-12">
         <img
           src={summaryJudgmentCard}
           alt="Defendants Move for Summary Judgment card"
-          className="w-72 rounded-xl shadow-lg"
+          className="w-64 rounded-xl shadow-lg"
         />
       </div>
 
       {/* Top right - Demolition card */}
-      <div className="absolute top-8 -right-20 z-10 rotate-12">
+      <div className="absolute top-1/4 -right-32 z-10 rotate-12">
         <img
           src={demolitionCard}
           alt="Demolition work exhibit card"
-          className="w-72 rounded-xl shadow-lg"
+          className="w-64 rounded-xl shadow-lg"
         />
       </div>
 
       {/* Bottom left - Case Update card */}
-      <div className="absolute bottom-8 -left-20 z-10 -rotate-6">
+      <div className="absolute bottom-1/4 -left-24 z-10 -rotate-3">
         <img
           src={caseUpdateCard}
           alt="Case Update notification card"
-          className="w-72 rounded-xl shadow-lg"
+          className="w-56 rounded-xl shadow-lg"
         />
       </div>
 
       {/* Bottom right - Transcript card */}
-      <div className="absolute bottom-8 -right-20 z-10 rotate-6">
+      <div className="absolute bottom-1/4 -right-24 z-10 rotate-3">
         <img
           src={transcriptCard}
           alt="Deposition transcript card"
-          className="w-72 rounded-xl shadow-lg"
+          className="w-56 rounded-xl shadow-lg"
         />
       </div>
       
