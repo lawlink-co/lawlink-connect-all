@@ -26,7 +26,7 @@ const ScrollRevealImages = () => {
 
       {/* Left side upper - Summary Judgment card */}
       <div 
-        className={`absolute top-[10%] left-[-5%] z-10 transition-all duration-700 ease-out
+        className={`absolute top-[5%] left-[5%] z-10 transition-all duration-700 ease-out
           ${isVisible ? '-rotate-12 opacity-100 translate-x-0' : '-rotate-6 opacity-0 -translate-x-12'}`}
         style={{ transitionDelay: '0.1s' }}
       >
@@ -39,7 +39,7 @@ const ScrollRevealImages = () => {
 
       {/* Right side upper - Demolition card */}
       <div 
-        className={`absolute top-[10%] right-[-5%] z-10 transition-all duration-700 ease-out
+        className={`absolute top-[5%] right-[5%] z-10 transition-all duration-700 ease-out
           ${isVisible ? 'rotate-12 opacity-100 translate-x-0' : 'rotate-6 opacity-0 translate-x-12'}`}
         style={{ transitionDelay: '0.3s' }}
       >
@@ -52,7 +52,7 @@ const ScrollRevealImages = () => {
 
       {/* Left side lower - Case Update card */}
       <div 
-        className={`absolute bottom-[10%] left-[-3%] z-10 transition-all duration-700 ease-out
+        className={`absolute bottom-[5%] left-[8%] z-10 transition-all duration-700 ease-out
           ${isVisible ? '-rotate-6 opacity-100 translate-x-0' : '-rotate-3 opacity-0 -translate-x-12'}`}
         style={{ transitionDelay: '0.5s' }}
       >
@@ -65,7 +65,7 @@ const ScrollRevealImages = () => {
 
       {/* Right side lower - Transcript card */}
       <div 
-        className={`absolute bottom-[10%] right-[-3%] z-10 transition-all duration-700 ease-out
+        className={`absolute bottom-[5%] right-[8%] z-10 transition-all duration-700 ease-out
           ${isVisible ? 'rotate-6 opacity-100 translate-x-0' : 'rotate-3 opacity-0 translate-x-12'}`}
         style={{ transitionDelay: '0.7s' }}
       >
