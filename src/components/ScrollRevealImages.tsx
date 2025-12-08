@@ -101,12 +101,12 @@ const ScrollRevealImages = () => {
         ))}
       </div>
       
-      {/* Main image */}
+      {/* Main image - 2X size */}
       <div className="relative z-20">
         <img
           src={aiAgentMain}
           alt="LAWLINK AI Agent - Case management interface with AI drafting capabilities"
-          className="w-full max-w-3xl mx-auto rounded-xl shadow-2xl"
+          className="w-full max-w-6xl mx-auto rounded-xl shadow-2xl"
         />
       </div>
     </div>
