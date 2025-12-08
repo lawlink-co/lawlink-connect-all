@@ -16,11 +16,6 @@ const ScrollRevealImages = () => {
       const rect = containerRef.current.getBoundingClientRect();
       const windowHeight = window.innerHeight;
       
-      // Calculate progress based on element position
-      // Start animation when element enters viewport, complete when it's centered
-      const elementCenter = rect.top + rect.height / 2;
-      const viewportCenter = windowHeight / 2;
-      
       // Progress from 0 (element just entering) to 1 (element centered/past)
       const distanceFromTop = windowHeight - rect.top;
       const totalDistance = windowHeight + rect.height;
@@ -30,34 +25,64 @@ const ScrollRevealImages = () => {
     };
 
     window.addEventListener("scroll", handleScroll, { passive: true });
-    handleScroll(); // Initial check
+    handleScroll();
     
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // Calculate transforms for secondary elements based on scroll
-  const getSecondaryStyle = (index: number) => {
+  // Card configurations matching the reference image
+  const cards = [
+    {
+      src: cardSummaryJudgment,
+      alt: "Summary Judgment card",
+      // Top-left position
+      finalX: -320,
+      finalY: -80,
+      finalRotate: -15,
+      size: "w-64 md:w-80",
+    },
+    {
+      src: cardDemolition,
+      alt: "Demolition work card", 
+      // Top-right position
+      finalX: 320,
+      finalY: -60,
+      finalRotate: 12,
+      size: "w-72 md:w-96",
+    },
+    {
+      src: cardCaseUpdate,
+      alt: "Case Update card",
+      // Bottom-left position
+      finalX: -280,
+      finalY: 120,
+      finalRotate: -8,
+      size: "w-56 md:w-72",
+    },
+    {
+      src: cardTranscript,
+      alt: "Transcript card",
+      // Bottom-right position
+      finalX: 300,
+      finalY: 140,
+      finalRotate: 15,
+      size: "w-52 md:w-64",
+    },
+  ];
+
+  const getCardStyle = (index: number) => {
+    const card = cards[index];
     // Stagger the reveal for each card
-    const staggeredProgress = Math.max(0, Math.min(1, (scrollProgress - 0.1 * index) * 2));
-    
-    const configs = [
-      { x: -180, y: -120, rotate: -12 }, // top-left card
-      { x: 220, y: -80, rotate: 8 },     // top-right card
-      { x: -160, y: 140, rotate: -8 },   // bottom-left card  
-      { x: 200, y: 160, rotate: 12 },    // bottom-right card
-    ];
-    
-    const config = configs[index];
+    const staggeredProgress = Math.max(0, Math.min(1, (scrollProgress - 0.05 * index) * 1.8));
     
     return {
       transform: `
-        translateX(${config.x * staggeredProgress}px) 
-        translateY(${config.y * staggeredProgress}px) 
-        rotate(${config.rotate * staggeredProgress}deg)
-        scale(${0.8 + 0.2 * staggeredProgress})
+        translateX(${card.finalX * staggeredProgress}px) 
+        translateY(${card.finalY * staggeredProgress}px) 
+        rotate(${card.finalRotate * staggeredProgress}deg)
       `,
       opacity: staggeredProgress,
-      transition: "transform 0.1s ease-out, opacity 0.1s ease-out",
+      transition: "transform 0.15s ease-out, opacity 0.15s ease-out",
     };
   };
 
@@ -65,37 +90,15 @@ const ScrollRevealImages = () => {
     <div ref={containerRef} className="relative w-full max-w-4xl mx-auto py-12">
       {/* Secondary images that pop out */}
       <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-        {/* Top-left card */}
-        <img
-          src={cardSummaryJudgment}
-          alt="Summary Judgment card"
-          className="absolute w-[480px] md:w-[640px] rounded-lg shadow-2xl z-10"
-          style={getSecondaryStyle(0)}
-        />
-        
-        {/* Top-right card */}
-        <img
-          src={cardTranscript}
-          alt="Transcript card"
-          className="absolute w-[400px] md:w-[560px] rounded-lg shadow-2xl z-10"
-          style={getSecondaryStyle(1)}
-        />
-        
-        {/* Bottom-left card */}
-        <img
-          src={cardCaseUpdate}
-          alt="Case Update card"
-          className="absolute w-[440px] md:w-[600px] rounded-lg shadow-2xl z-10"
-          style={getSecondaryStyle(2)}
-        />
-        
-        {/* Bottom-right card */}
-        <img
-          src={cardDemolition}
-          alt="Demolition work card"
-          className="absolute w-[480px] md:w-[640px] rounded-lg shadow-2xl z-10"
-          style={getSecondaryStyle(3)}
-        />
+        {cards.map((card, index) => (
+          <img
+            key={index}
+            src={card.src}
+            alt={card.alt}
+            className={`absolute ${card.size} rounded-xl shadow-2xl z-10`}
+            style={getCardStyle(index)}
+          />
+        ))}
       </div>
       
       {/* Main image */}
@@ -103,7 +106,7 @@ const ScrollRevealImages = () => {
         <img
           src={aiAgentMain}
           alt="LAWLINK AI Agent - Case management interface with AI drafting capabilities"
-          className="w-full rounded-xl shadow-2xl border border-zinc-800"
+          className="w-full max-w-3xl mx-auto rounded-xl shadow-2xl"
         />
       </div>
     </div>
