@@ -30,43 +30,43 @@ const ScrollRevealImages = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // Card configurations matching the reference image
+  // Card configurations - 5X size, 50% reveal from behind main image
   const cards = [
     {
       src: cardSummaryJudgment,
       alt: "Summary Judgment card",
-      // Top-left position
-      finalX: -320,
-      finalY: -80,
+      // Top-left position - reduced distance for 50% reveal
+      finalX: -160,
+      finalY: -40,
       finalRotate: -15,
-      size: "w-64 md:w-80",
+      size: "w-[320px] md:w-[400px]",
     },
     {
       src: cardDemolition,
       alt: "Demolition work card", 
       // Top-right position
-      finalX: 320,
-      finalY: -60,
+      finalX: 160,
+      finalY: -30,
       finalRotate: 12,
-      size: "w-72 md:w-96",
+      size: "w-[360px] md:w-[480px]",
     },
     {
       src: cardCaseUpdate,
       alt: "Case Update card",
       // Bottom-left position
-      finalX: -280,
-      finalY: 120,
+      finalX: -140,
+      finalY: 60,
       finalRotate: -8,
-      size: "w-56 md:w-72",
+      size: "w-[280px] md:w-[360px]",
     },
     {
       src: cardTranscript,
       alt: "Transcript card",
       // Bottom-right position
-      finalX: 300,
-      finalY: 140,
+      finalX: 150,
+      finalY: 70,
       finalRotate: 15,
-      size: "w-52 md:w-64",
+      size: "w-[260px] md:w-[320px]",
     },
   ];
 
