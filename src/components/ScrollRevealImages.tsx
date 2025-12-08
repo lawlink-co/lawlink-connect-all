@@ -69,7 +69,7 @@ const ScrollRevealImages = () => {
         <img
           src={cardSummaryJudgment}
           alt="Summary Judgment card"
-          className="absolute w-48 md:w-64 rounded-lg shadow-2xl z-10"
+          className="absolute w-[480px] md:w-[640px] rounded-lg shadow-2xl z-10"
           style={getSecondaryStyle(0)}
         />
         
@@ -77,7 +77,7 @@ const ScrollRevealImages = () => {
         <img
           src={cardTranscript}
           alt="Transcript card"
-          className="absolute w-40 md:w-56 rounded-lg shadow-2xl z-10"
+          className="absolute w-[400px] md:w-[560px] rounded-lg shadow-2xl z-10"
           style={getSecondaryStyle(1)}
         />
         
@@ -85,7 +85,7 @@ const ScrollRevealImages = () => {
         <img
           src={cardCaseUpdate}
           alt="Case Update card"
-          className="absolute w-44 md:w-60 rounded-lg shadow-2xl z-10"
+          className="absolute w-[440px] md:w-[600px] rounded-lg shadow-2xl z-10"
           style={getSecondaryStyle(2)}
         />
         
@@ -93,7 +93,7 @@ const ScrollRevealImages = () => {
         <img
           src={cardDemolition}
           alt="Demolition work card"
-          className="absolute w-48 md:w-64 rounded-lg shadow-2xl z-10"
+          className="absolute w-[480px] md:w-[640px] rounded-lg shadow-2xl z-10"
           style={getSecondaryStyle(3)}
         />
       </div>
