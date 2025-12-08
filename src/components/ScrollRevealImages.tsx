@@ -1,4 +1,4 @@
-import aiAgentDrafting from "@/assets/ai-agent-drafting.png";
+import aiAgentDrafting from "@/assets/ai-agent-drafting-v2.png";
 
 const ScrollRevealImages = () => {
   return (
