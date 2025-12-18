@@ -7,7 +7,7 @@ const Home = () => {
       <Navigation />
       
       {/* Hero Section */}
-      <section className="relative pt-32 pb-24 px-4 sm:px-6 lg:px-8 overflow-hidden bg-black">
+      <section className="relative min-h-screen flex items-center justify-center px-4 sm:px-6 lg:px-8 overflow-hidden bg-black">
         <div className="container mx-auto text-center max-w-6xl relative z-10">
           <h1 className="text-6xl sm:text-7xl lg:text-8xl font-bold mb-8 tracking-tight animate-fade-in-slow">
             Lawsuits, Reimagined.
@@ -31,7 +31,7 @@ const Home = () => {
       </section>
 
       {/* Problem Section - Scrolling Typography */}
-      <section className="min-h-screen flex items-center px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-black via-zinc-950 to-black">
+      <section className="min-h-screen flex items-center pt-32 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-black via-zinc-950 to-black">
         <div className="container mx-auto max-w-5xl text-center space-y-12">
           <div className="space-y-8 animate-fade-in">
             <p className="text-3xl sm:text-4xl lg:text-5xl text-zinc-200 font-light leading-tight">
