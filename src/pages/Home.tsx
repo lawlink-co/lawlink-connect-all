@@ -7,15 +7,15 @@ const Home = () => {
       <Navigation />
       
       {/* Hero Section */}
-      <section className="relative pt-32 pb-32 px-4 sm:px-6 lg:px-8 overflow-hidden bg-black">
+      <section className="relative pt-32 pb-24 px-4 sm:px-6 lg:px-8 overflow-hidden bg-black">
         <div className="container mx-auto text-center max-w-6xl relative z-10">
           <h1 className="text-6xl sm:text-7xl lg:text-8xl font-bold mb-8 tracking-tight animate-fade-in-slow">
             Lawsuits, Reimagined.
           </h1>
-          <p className="text-2xl sm:text-3xl text-zinc-300 mb-16 max-w-4xl mx-auto leading-relaxed animate-fade-in">
+          <p className="text-2xl sm:text-3xl text-zinc-300 mb-16 max-w-4xl mx-auto leading-relaxed opacity-0 animate-fade-in" style={{ animationDelay: '0.5s', animationFillMode: 'forwards' }}>
             An AI-powered platform that connects lawyers and clients through automation and clarity.
           </p>
-          <div className="flex flex-col sm:flex-row gap-6 justify-center animate-slide-up">
+          <div className="flex flex-col sm:flex-row gap-6 justify-center opacity-0 animate-slide-up" style={{ animationDelay: '0.8s', animationFillMode: 'forwards' }}>
             <Link to="/law-firms">
               <Button size="lg" className="w-full sm:min-w-[180px] text-lg bg-white text-black border-2 border-transparent hover:bg-zinc-200 transition-all duration-300 hover:scale-105 px-[34px]">
                 For Law Firms
@@ -26,16 +26,6 @@ const Home = () => {
                 For Clients
               </Button>
             </Link>
-          </div>
-        </div>
-      </section>
-
-      {/* Visual Section */}
-      <section className="py-16 px-4 sm:px-6 lg:px-8 bg-black">
-        <div className="container mx-auto max-w-5xl">
-          <div className="relative animate-scale-in">
-            <div className="absolute inset-0 bg-blue-500/10 blur-3xl rounded-full"></div>
-            <video src="/videos/hero-video.mp4" autoPlay muted loop playsInline className="relative rounded-lg shadow-2xl w-full" />
           </div>
         </div>
       </section>
