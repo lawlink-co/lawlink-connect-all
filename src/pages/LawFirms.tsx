@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import { CheckCircle2, Shield, Lock, Database, Briefcase, FileText, FolderSearch, MessageCircle, Settings } from "lucide-react";
+import { CheckCircle2, Shield, Lock, Database, Briefcase, FileText, MessageCircle, Settings } from "lucide-react";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import Navigation from "@/components/Navigation";
 import ScrollRevealImages from "@/components/ScrollRevealImages";
@@ -62,7 +62,7 @@ const LawFirms = () => {
           </div>
 
           <Tabs defaultValue="case-management" className="w-full">
-            <TabsList className="grid w-full grid-cols-2 lg:grid-cols-5 bg-zinc-950 border border-zinc-800 mb-12 items-center h-auto min-h-14">
+            <TabsList className="grid w-full grid-cols-2 lg:grid-cols-4 bg-zinc-950 border border-zinc-800 mb-12 items-center h-auto min-h-14">
               <TabsTrigger value="case-management" className="text-base sm:text-lg py-4 h-full flex items-center justify-center data-[state=active]:bg-black data-[state=active]:text-white data-[state=active]:border-b-2 data-[state=active]:border-primary">
                 <Briefcase className="w-5 h-5 mr-2 hidden sm:inline" />
                 Case Management
@@ -70,10 +70,6 @@ const LawFirms = () => {
               <TabsTrigger value="drafting" className="text-base sm:text-lg py-4 h-full flex items-center justify-center data-[state=active]:bg-black data-[state=active]:text-white data-[state=active]:border-b-2 data-[state=active]:border-primary">
                 <FileText className="w-5 h-5 mr-2 hidden sm:inline" />
                 Drafting
-              </TabsTrigger>
-              <TabsTrigger value="discovery" className="text-base sm:text-lg py-4 h-full flex items-center justify-center data-[state=active]:bg-black data-[state=active]:text-white data-[state=active]:border-b-2 data-[state=active]:border-primary">
-                <FolderSearch className="w-5 h-5 mr-2 hidden sm:inline" />
-                Discovery
               </TabsTrigger>
               <TabsTrigger value="client-communication" className="text-base sm:text-lg py-4 h-full flex items-center justify-center data-[state=active]:bg-black data-[state=active]:text-white data-[state=active]:border-b-2 data-[state=active]:border-primary">
                 <MessageCircle className="w-5 h-5 mr-2 hidden sm:inline" />
@@ -129,27 +125,6 @@ const LawFirms = () => {
               </div>
             </TabsContent>
 
-            <TabsContent value="discovery" className="animate-fade-in">
-              <div className="bg-zinc-950 border border-zinc-800 rounded-lg p-8 sm:p-12">
-                <p className="text-xl text-zinc-300 font-sans leading-relaxed mb-8">
-                  Turn piles of evidence into structured knowledge.
-                </p>
-                <ul className="space-y-4 font-sans">
-                  <li className="flex items-start space-x-3">
-                    <CheckCircle2 className="w-6 h-6 text-primary flex-shrink-0 mt-1" />
-                    <span className="text-zinc-300 text-lg">Upload and tag transcripts, exhibits, and discovery responses</span>
-                  </li>
-                  <li className="flex items-start space-x-3">
-                    <CheckCircle2 className="w-6 h-6 text-primary flex-shrink-0 mt-1" />
-                    <span className="text-zinc-300 text-lg">AI-powered summarization and key-fact extraction</span>
-                  </li>
-                  <li className="flex items-start space-x-3">
-                    <CheckCircle2 className="w-6 h-6 text-primary flex-shrink-0 mt-1" />
-                    <span className="text-zinc-300 text-lg">Search across every document semantically</span>
-                  </li>
-                </ul>
-              </div>
-            </TabsContent>
 
             <TabsContent value="client-communication" className="animate-fade-in">
               <div className="bg-zinc-950 border border-zinc-800 rounded-lg p-8 sm:p-12">
