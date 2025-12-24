@@ -14,6 +14,9 @@ export default {
     },
     extend: {
       fontFamily: {
+        display: ['Playfair Display', 'Georgia', 'serif'],
+        body: ['Libre Baskerville', 'Times New Roman', 'Times', 'serif'],
+        accent: ['Cormorant Garamond', 'Times New Roman', 'Times', 'serif'],
         serif: ['Georgia', 'Times New Roman', 'serif'],
       },
       colors: {
