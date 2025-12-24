@@ -259,7 +259,7 @@ const Clients = () => {
     }
     return () => observer.disconnect();
   }, []);
-  return <div className="min-h-screen bg-white">
+  return <div className="min-h-screen bg-white font-sans">
       <Navigation />
       
       {/* Hero Section */}
