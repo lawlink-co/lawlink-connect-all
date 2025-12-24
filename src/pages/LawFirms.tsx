@@ -81,7 +81,7 @@ const LawFirms = () => {
               </TabsTrigger>
             </TabsList>
 
-            <TabsContent value="case-management" className="animate-fade-in">
+            <TabsContent value="case-management">
               <div className="bg-zinc-950 border border-zinc-800 rounded-lg p-8 sm:p-12">
                 <p className="text-xl text-zinc-300 font-sans leading-relaxed mb-8">
                   Organize, assign, and move cases through every stage with total visibility.
@@ -103,7 +103,7 @@ const LawFirms = () => {
               </div>
             </TabsContent>
 
-            <TabsContent value="drafting" className="animate-fade-in">
+            <TabsContent value="drafting">
               <div className="bg-zinc-950 border border-zinc-800 rounded-lg p-8 sm:p-12">
                 <p className="text-xl text-zinc-300 font-sans leading-relaxed mb-8">
                   LAWLINK's AI drafting engine learns from your prior work to produce new filings in your firm's own language.
@@ -126,7 +126,7 @@ const LawFirms = () => {
             </TabsContent>
 
 
-            <TabsContent value="client-communication" className="animate-fade-in">
+            <TabsContent value="client-communication">
               <div className="bg-zinc-950 border border-zinc-800 rounded-lg p-8 sm:p-12">
                 <p className="text-xl text-zinc-300 font-sans leading-relaxed mb-8">
                   Keep clients informed without lifting a finger.
@@ -148,7 +148,7 @@ const LawFirms = () => {
               </div>
             </TabsContent>
 
-            <TabsContent value="customization" className="animate-fade-in">
+            <TabsContent value="customization">
               <div className="bg-zinc-950 border border-zinc-800 rounded-lg p-8 sm:p-12">
                 {/* Video Placeholder */}
                 <div className="mb-10 bg-zinc-900 border border-zinc-700 rounded-lg aspect-video flex items-center justify-center">
