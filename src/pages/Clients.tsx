@@ -2,7 +2,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { MessageSquare, Bell, FileSearch, Shield, Smartphone, Clock, Check, Calendar, Briefcase, ChevronLeft, ChevronRight } from "lucide-react";
 import Navigation from "@/components/Navigation";
-import phoneAppMockup from "@/assets/phone-app-mockup.svg";
+import clientHeaderPhone from "@/assets/client-header-phone.png";
 import caseNotification from "@/assets/case-notification.svg";
 import phoneFrame from "@/assets/phone-frame.svg";
 import carouselSlide1 from "@/assets/carousel-slide-1.svg";
@@ -279,7 +279,7 @@ const Clients = () => {
             </div>
             <div className="relative animate-scale-in flex items-center justify-center h-full">
               <div className="absolute inset-0 bg-primary/10 blur-3xl rounded-full"></div>
-              <img src={phoneAppMockup} alt="Amicus mobile app interface" className="relative mx-auto h-[425px] lg:h-[510px] w-auto object-contain drop-shadow-2xl" />
+              <img src={clientHeaderPhone} alt="Amicus mobile app interface" className="relative mx-auto h-[425px] lg:h-[510px] w-auto object-contain drop-shadow-2xl" />
             </div>
           </div>
         </div>
