@@ -19,7 +19,7 @@ const ScrollRevealImages = () => {
       <div className="relative z-20 flex justify-center">
         <img
           src={aiAgentDrafting}
-          alt="LAWLINK AI Agent - Case management interface with AI drafting capabilities"
+          alt="Amicus AI Agent - Case management interface with AI drafting capabilities"
           className="w-[80%] mx-auto rounded-xl shadow-2xl"
         />
       </div>

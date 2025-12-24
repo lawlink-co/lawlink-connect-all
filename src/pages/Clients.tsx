@@ -14,9 +14,9 @@ import casePhoneCenter from "@/assets/case-phone-center.svg";
 import { useEffect, useRef, useState, useCallback } from "react";
 
 const caseHubSlides = [
-  { image: carouselSlide1, alt: "LAWLINK app - case updates" },
-  { image: carouselSlide2, alt: "LAWLINK app - messaging" },
-  { image: carouselSlide3, alt: "LAWLINK app - documents" },
+  { image: carouselSlide1, alt: "Amicus app - case updates" },
+  { image: carouselSlide2, alt: "Amicus app - messaging" },
+  { image: carouselSlide3, alt: "Amicus app - documents" },
 ];
 
 const CaseHubCarousel = () => {
@@ -212,7 +212,7 @@ const AllCasesSection = () => {
           <div className="relative z-20">
             <img 
               src={casePhoneCenter} 
-              alt="LAWLINK app showing multiple cases" 
+              alt="Amicus app showing multiple cases" 
               className="w-[120px] sm:w-[180px] h-auto drop-shadow-2xl"
             />
           </div>
@@ -236,7 +236,7 @@ const AllCasesSection = () => {
         <p className={`text-xl sm:text-2xl text-gray-700 max-w-3xl mx-auto leading-relaxed mt-8 transition-all duration-700 delay-500 ${
           isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
         }`}>
-          Ditch the scattered paperwork and endless folders. LAWLINK brings all your cases together — with appointments, deadlines, and updates for each — always at your fingertips.
+          Ditch the scattered paperwork and endless folders. Amicus brings all your cases together — with appointments, deadlines, and updates for each — always at your fingertips.
         </p>
       </div>
     </section>
@@ -271,15 +271,15 @@ const Clients = () => {
                 Know What's Happening<br />in Your Case.
               </h1>
               <p className="text-2xl sm:text-3xl text-gray-700 leading-relaxed">
-                LAWLINK clients get real updates, real context, and real clarity.
+                Amicus clients get real updates, real context, and real clarity.
               </p>
               <Button size="lg" className="text-lg px-10 py-7 bg-primary text-white hover:bg-primary/90 transition-all duration-300 hover:scale-105 shadow-lg">
-                Find a LAWLINK Lawyer
+                Find an Amicus Lawyer
               </Button>
             </div>
             <div className="relative animate-scale-in flex items-center justify-center h-full">
               <div className="absolute inset-0 bg-primary/10 blur-3xl rounded-full"></div>
-              <img src={phoneAppMockup} alt="LAWLINK mobile app interface" className="relative mx-auto h-[425px] lg:h-[510px] w-auto object-contain drop-shadow-2xl" />
+              <img src={phoneAppMockup} alt="Amicus mobile app interface" className="relative mx-auto h-[425px] lg:h-[510px] w-auto object-contain drop-shadow-2xl" />
             </div>
           </div>
         </div>
@@ -293,7 +293,7 @@ const Clients = () => {
             Your Case, in One View
           </h2>
           <p className="text-xl sm:text-2xl text-gray-700 max-w-4xl mx-auto leading-relaxed mb-16">
-            LAWLINK turns lawsuits into something tangible. See every update, motion, and court filing — right in your pocket.
+            Amicus turns lawsuits into something tangible. See every update, motion, and court filing — right in your pocket.
           </p>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-12">
@@ -322,7 +322,7 @@ const Clients = () => {
                 <FileSearch className="w-12 h-12 text-primary mb-6 mx-auto" />
                 <h3 className="text-2xl font-bold mb-4 text-gray-900">Case Hub</h3>
                 <p className="text-gray-700 text-lg leading-relaxed">
-                  Every document, update, and message lives in one place. LAWLINK becomes the central hub for your entire case — clear, connected, and always in motion.
+                  Every document, update, and message lives in one place. Amicus becomes the central hub for your entire case — clear, connected, and always in motion.
                 </p>
               </CardContent>
             </Card>
@@ -382,7 +382,7 @@ const Clients = () => {
                 Chat with Your Case — Literally
               </h2>
               <p className="text-xl sm:text-2xl text-gray-700 max-w-3xl mx-auto leading-relaxed">
-                LAWLINK's AI knows every document and event, so you never have to ask twice.
+                Amicus's AI knows every document and event, so you never have to ask twice.
               </p>
             </div>
             
@@ -404,18 +404,18 @@ const Clients = () => {
               </div>
               
               <div className="flex items-start space-x-4 bg-white/50 p-6 rounded-xl">
-                <MessageSquare className="w-8 h-8 text-primary flex-shrink-0 mt-1" />
+                <Calendar className="w-8 h-8 text-primary flex-shrink-0 mt-1" />
                 <div>
-                  <h4 className="font-bold text-lg text-gray-900 mb-2">Plain English</h4>
-                  <p className="text-gray-700">No legal jargon. Clear explanations you can understand.</p>
+                  <h4 className="font-bold text-lg text-gray-900 mb-2">Context-Aware</h4>
+                  <p className="text-gray-700">Understands your entire case history for accurate answers.</p>
                 </div>
               </div>
               
               <div className="flex items-start space-x-4 bg-white/50 p-6 rounded-xl">
-                <FileSearch className="w-8 h-8 text-primary flex-shrink-0 mt-1" />
+                <Check className="w-8 h-8 text-primary flex-shrink-0 mt-1" />
                 <div>
-                  <h4 className="font-bold text-lg text-gray-900 mb-2">Complete Context</h4>
-                  <p className="text-gray-700">The AI knows every detail of your specific case.</p>
+                  <h4 className="font-bold text-lg text-gray-900 mb-2">Plain Language</h4>
+                  <p className="text-gray-700">Complex legal terms explained in simple, clear language.</p>
                 </div>
               </div>
             </div>
@@ -423,7 +423,7 @@ const Clients = () => {
         </div>
       </section>
 
-      {/* Case Hub Section - Carousel */}
+      {/* Case Hub Carousel */}
       <CaseHubCarousel />
 
       {/* All Cases Section */}
@@ -437,7 +437,7 @@ const Clients = () => {
             Your Information, Secured.
           </h2>
           <p className="text-xl sm:text-2xl text-gray-300 mb-16 max-w-3xl mx-auto leading-relaxed">
-            Attorney-client privilege is sacred. LAWLINK is built from the ground up to protect your most sensitive information with enterprise-grade security.
+            Attorney-client privilege is sacred. Amicus is built from the ground up to protect your most sensitive information with enterprise-grade security.
           </p>
           
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto mb-16">
@@ -454,7 +454,7 @@ const Clients = () => {
                 <Check className="w-8 h-8 text-primary" />
               </div>
               <h3 className="text-xl font-bold mb-3 text-white">Attorney-Client Privilege</h3>
-              <p className="text-gray-400">LAWLINK respects and preserves the confidentiality of all attorney-client communications. No exceptions.</p>
+              <p className="text-gray-400">Amicus respects and preserves the confidentiality of all attorney-client communications. No exceptions.</p>
             </div>
             
             <div className="text-center bg-white/5 backdrop-blur-sm rounded-2xl p-8 border border-white/10">
@@ -494,7 +494,7 @@ const Clients = () => {
           </h2>
           <div className="flex flex-col sm:flex-row gap-6 justify-center">
             <Button size="lg" className="text-lg px-10 py-7 bg-primary text-white hover:bg-primary/90 transition-all duration-300 hover:scale-105 shadow-lg">
-              Find a LAWLINK Lawyer
+              Find an Amicus Lawyer
             </Button>
           </div>
         </div>
@@ -506,7 +506,7 @@ const Clients = () => {
           <p className="text-sm text-gray-600">
             Your information stays private. Only you and your lawyer have access.
           </p>
-          <p className="text-gray-500">&copy; 2025 LAWLINK. All rights reserved.</p>
+          <p className="text-gray-500">&copy; 2025 Amicus. All rights reserved.</p>
         </div>
       </footer>
     </div>;
