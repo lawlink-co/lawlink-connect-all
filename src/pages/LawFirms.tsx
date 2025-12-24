@@ -43,7 +43,7 @@ const LawFirms = () => {
               AI Drafting Powered by Your Firm's Own Record
             </h2>
             <p className="text-xl text-zinc-300 font-sans leading-relaxed">
-              LAWLINK learns from prior pleadings and deposition transcripts — adapting your firm's language, not replacing it.
+              Amicus learns from prior pleadings and deposition transcripts — adapting your firm's language, not replacing it.
             </p>
           </div>
         </div>
@@ -57,7 +57,7 @@ const LawFirms = () => {
               The All-in-One System for Modern Litigation
             </h2>
             <p className="text-xl text-zinc-300 font-sans leading-relaxed max-w-4xl mx-auto">
-              LAWLINK connects every part of a case — drafting, discovery, management, and client communication — under one intelligent infrastructure.
+              Amicus connects every part of a case — drafting, discovery, management, and client communication — under one intelligent infrastructure.
             </p>
           </div>
 
@@ -106,7 +106,7 @@ const LawFirms = () => {
             <TabsContent value="drafting">
               <div className="bg-zinc-950 border border-zinc-800 rounded-lg p-8 sm:p-12">
                 <p className="text-xl text-zinc-300 font-sans leading-relaxed mb-8">
-                  LAWLINK's AI drafting engine learns from your prior work to produce new filings in your firm's own language.
+                  Amicus's AI drafting engine learns from your prior work to produce new filings in your firm's own language.
                 </p>
                 <ul className="space-y-4 font-sans">
                   <li className="flex items-start space-x-3">
@@ -134,7 +134,7 @@ const LawFirms = () => {
                 <ul className="space-y-4 font-sans">
                   <li className="flex items-start space-x-3">
                     <CheckCircle2 className="w-6 h-6 text-primary flex-shrink-0 mt-1" />
-                    <span className="text-zinc-300 text-lg">Automatic updates sent through the LAWLINK client app</span>
+                    <span className="text-zinc-300 text-lg">Automatic updates sent through the Amicus client app</span>
                   </li>
                   <li className="flex items-start space-x-3">
                     <CheckCircle2 className="w-6 h-6 text-primary flex-shrink-0 mt-1" />
@@ -167,7 +167,7 @@ const LawFirms = () => {
                 </h3>
                 
                 <p className="text-xl text-zinc-300 font-sans leading-relaxed mb-8">
-                  LAWLINK lets every firm create a completely personalized CRM experience. Within your dashboard, you can add or remove pages, contacts, and data fields to match your exact litigation workflow.
+                  Amicus lets every firm create a completely personalized CRM experience. Within your dashboard, you can add or remove pages, contacts, and data fields to match your exact litigation workflow.
                 </p>
 
                 <div className="bg-zinc-900 border border-zinc-700 rounded-lg p-6 mb-8">
@@ -196,7 +196,7 @@ const LawFirms = () => {
                 </div>
 
                 <p className="text-xl text-zinc-300 font-sans leading-relaxed italic border-l-4 border-primary pl-6">
-                  This flexibility allows firms to design their own CRM architecture, ensuring that every page, field, and contact list fits their unique needs. LAWLINK is not a one-size-fits-all platform — it's a modular system where firms can craft their own structure for case management, data, and client relationships.
+                  This flexibility allows firms to design their own CRM architecture, ensuring that every page, field, and contact list fits their unique needs. Amicus is not a one-size-fits-all platform — it's a modular system where firms can craft their own structure for case management, data, and client relationships.
                 </p>
               </div>
             </TabsContent>
@@ -258,7 +258,7 @@ const LawFirms = () => {
       <section className="py-24 px-4 sm:px-6 lg:px-8 bg-black border-t border-zinc-800">
         <div className="container mx-auto max-w-4xl text-center">
           <p className="text-3xl sm:text-4xl font-light mb-12 leading-relaxed">
-            LAWLINK firms move faster, work smarter, and deliver a client experience that feels effortless.
+            Amicus firms move faster, work smarter, and deliver a client experience that feels effortless.
           </p>
           <div className="flex flex-col sm:flex-row gap-6 justify-center pt-6">
             <Button size="lg" className="text-xl px-14 py-8 bg-white text-black hover:bg-zinc-200 transition-all duration-300 hover:scale-105 font-sans">
@@ -277,7 +277,7 @@ const LawFirms = () => {
       {/* Footer */}
       <footer className="border-t border-zinc-800 py-12 px-4 sm:px-6 lg:px-8 bg-black">
         <div className="container mx-auto text-center text-zinc-600">
-          <p>&copy; 2025 LAWLINK. All rights reserved.</p>
+          <p>&copy; 2025 Amicus. All rights reserved.</p>
         </div>
       </footer>
     </div>;

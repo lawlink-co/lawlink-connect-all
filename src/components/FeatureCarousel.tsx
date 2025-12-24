@@ -14,7 +14,7 @@ interface CarouselSlide {
 const slides: CarouselSlide[] = [
   {
     title: "Intelligence That Understands Your Practice",
-    description: "LAWLINK's AI reads every transcript, filing, and exhibit — transforming raw documents into organized, contextual knowledge. It doesn't just automate drafting — it understands the why behind your cases.",
+    description: "Amicus's AI reads every transcript, filing, and exhibit — transforming raw documents into organized, contextual knowledge. It doesn't just automate drafting — it understands the why behind your cases.",
     image: "/src/assets/screenshot-drafting.png",
     imageAlt: "AI-powered summons and complaint drafting interface"
   },
@@ -26,7 +26,7 @@ const slides: CarouselSlide[] = [
   },
   {
     title: "Connection That Redefines the Client Experience",
-    description: "Clients don't log into portals — they join the process. LAWLINK bridges the space between lawyer and client, translating every update into clarity, trust, and forward motion.",
+    description: "Clients don't log into portals — they join the process. Amicus bridges the space between lawyer and client, translating every update into clarity, trust, and forward motion.",
     image: "/src/assets/screenshot-mobile.png",
     imageAlt: "Mobile app client interface"
   }

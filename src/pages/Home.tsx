@@ -55,7 +55,7 @@ const Home = () => {
         <div className="container mx-auto max-w-6xl">
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-8 text-center">How It Works</h2>
           <p className="text-xl text-zinc-400 text-center mb-20 max-w-3xl mx-auto">
-            LAWLINK bridges clients and their lawyers — making every case tangible, fast-moving, and transparent.
+            Amicus bridges clients and their lawyers — making every case tangible, fast-moving, and transparent.
           </p>
 
           {/* Visual Connection */}
@@ -190,7 +190,7 @@ const Home = () => {
             Where litigation meets intelligence.
           </p>
           <p className="text-2xl sm:text-3xl text-zinc-300 leading-relaxed">
-            LAWLINK is shaping the future of litigation — where cases flow from intake to resolution with intelligence and ease.
+            Amicus is shaping the future of litigation — where cases flow from intake to resolution with intelligence and ease.
           </p>
           <div className="pt-8">
             <p className="text-3xl font-semibold text-white">Real context. Real results.</p>
@@ -224,9 +224,9 @@ const Home = () => {
       <footer className="border-t border-zinc-800 py-12 px-4 sm:px-6 lg:px-8 bg-black">
         <div className="container mx-auto text-center space-y-4">
           <p className="text-sm text-zinc-500">
-            LAWLINK is built for confidentiality and reliability from the ground up.
+            Amicus is built for confidentiality and reliability from the ground up.
           </p>
-          <p className="text-zinc-500">&copy; 2025 LAWLINK. All rights reserved.</p>
+          <p className="text-zinc-500">&copy; 2025 Amicus. All rights reserved.</p>
         </div>
       </footer>
     </div>;
