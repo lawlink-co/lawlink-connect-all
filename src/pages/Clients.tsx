@@ -3,7 +3,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { MessageSquare, Bell, FileSearch, Shield, Smartphone, Clock, Check, Calendar, Briefcase, ChevronLeft, ChevronRight } from "lucide-react";
 import Navigation from "@/components/Navigation";
 import clientHeaderPhone from "@/assets/client-header-phone.png";
-import caseNotification from "@/assets/case-notification-new.png";
+import caseNotification from "@/assets/case-notification-v2.png";
 import phoneFrame from "@/assets/phone-frame.svg";
 import carouselSlide1 from "@/assets/carousel-slide-1.svg";
 import carouselSlide2 from "@/assets/carousel-slide-2.svg";
