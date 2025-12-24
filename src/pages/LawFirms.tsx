@@ -150,16 +150,18 @@ const LawFirms = () => {
 
             <TabsContent value="customization">
               <div className="bg-zinc-950 border border-zinc-800 rounded-lg p-8 sm:p-12">
-                {/* Video Placeholder */}
-                <div className="mb-10 bg-zinc-900 border border-zinc-700 rounded-lg aspect-video flex items-center justify-center">
-                  <div className="text-center text-zinc-500">
-                    <div className="w-20 h-20 mx-auto mb-4 rounded-full bg-zinc-800 flex items-center justify-center">
-                      <svg className="w-10 h-10 text-zinc-600" fill="currentColor" viewBox="0 0 24 24">
-                        <path d="M8 5v14l11-7z" />
-                      </svg>
-                    </div>
-                    <p className="text-lg font-sans">Demo Video Coming Soon</p>
-                  </div>
+                {/* Demo Video */}
+                <div className="mb-10 rounded-lg overflow-hidden">
+                  <video 
+                    className="w-full aspect-video rounded-lg"
+                    autoPlay 
+                    loop 
+                    muted 
+                    playsInline
+                  >
+                    <source src="/videos/customization-demo.mp4" type="video/mp4" />
+                    Your browser does not support the video tag.
+                  </video>
                 </div>
 
                 <h3 className="text-2xl sm:text-3xl font-semibold mb-6 text-white">
