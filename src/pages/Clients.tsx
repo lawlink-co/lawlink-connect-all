@@ -357,7 +357,7 @@ const Clients = () => {
               <img src={phoneFrame} alt="Phone frame" className="w-full h-auto" />
               
               {/* Notification - Positioned at top of phone, animates down */}
-              <div className={`absolute left-1/2 -translate-x-1/2 w-[75%] transition-all duration-700 ease-out ${notificationVisible ? 'opacity-100 top-[8%]' : 'opacity-0 -top-[6%]'}`}>
+              <div className={`absolute left-1/2 -translate-x-1/2 w-[97%] transition-all duration-700 ease-out ${notificationVisible ? 'opacity-100 top-[8%]' : 'opacity-0 -top-[6%]'}`}>
                 <img src={caseNotification} alt="Case update notification" className="w-full drop-shadow-2xl" />
               </div>
             </div>
