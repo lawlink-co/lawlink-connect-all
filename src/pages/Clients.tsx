@@ -10,7 +10,7 @@ import carouselSlide2 from "@/assets/carousel-slide-2.png";
 import carouselSlide3 from "@/assets/carousel-slide-3.png";
 import caseIconLeft from "@/assets/case-icon-left.svg";
 import caseIconRight from "@/assets/case-icon-right.svg";
-import casePhoneCenter from "@/assets/case-phone-center.svg";
+import casePhoneCenter from "@/assets/case-phone-center.png";
 import { useEffect, useRef, useState, useCallback } from "react";
 
 const caseHubSlides = [
