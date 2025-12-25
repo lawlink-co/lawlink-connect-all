@@ -6,7 +6,6 @@ import { useEffect, useRef, useState } from "react";
 
 const Home = () => {
   const [showUntilNow, setShowUntilNow] = useState(false);
-  const [isLocked, setIsLocked] = useState(false);
   const problemSectionRef = useRef<HTMLDivElement>(null);
   const hasTriggeredRef = useRef(false);
 
@@ -16,41 +15,26 @@ const Home = () => {
       
       const section = problemSectionRef.current;
       const rect = section.getBoundingClientRect();
+      const sectionHeight = section.offsetHeight;
       
-      // Check if section is in view and we've started scrolling into it
-      if (rect.top <= window.innerHeight * 0.5 && rect.top > -rect.height) {
-        setIsLocked(true);
-      }
-    };
-
-    const handleWheel = (e: WheelEvent) => {
-      if (!problemSectionRef.current) return;
+      // Calculate how far we've scrolled into the section
+      // The section is 200vh tall, so we have 100vh of scroll room
+      const scrollProgress = Math.max(0, -rect.top) / (sectionHeight - window.innerHeight);
       
-      const section = problemSectionRef.current;
-      const rect = section.getBoundingClientRect();
-      
-      // If section is in view and locked, and user scrolls down
-      if (isLocked && !hasTriggeredRef.current && e.deltaY > 0) {
-        e.preventDefault();
+      // Trigger "until now" when we've scrolled about 30% into the section
+      if (scrollProgress > 0.3 && !hasTriggeredRef.current) {
         hasTriggeredRef.current = true;
         setShowUntilNow(true);
-        
-        // Unlock after animation completes
-        setTimeout(() => {
-          setIsLocked(false);
-        }, 800);
       }
     };
 
     window.addEventListener('scroll', handleScroll, { passive: true });
-    window.addEventListener('wheel', handleWheel, { passive: false });
     handleScroll();
     
     return () => {
       window.removeEventListener('scroll', handleScroll);
-      window.removeEventListener('wheel', handleWheel);
     };
-  }, [isLocked]);
+  }, []);
 
   return <div className="min-h-screen bg-black text-white">
       <Navigation />
@@ -82,9 +66,9 @@ const Home = () => {
       {/* Problem Section - Scroll-Locked Typography */}
       <section 
         ref={problemSectionRef}
-        className="relative min-h-screen bg-gradient-to-b from-black via-zinc-950 to-black"
+        className="relative h-[200vh] bg-gradient-to-b from-black via-zinc-950 to-black"
       >
-        <div className="h-screen flex items-center px-4 sm:px-6 lg:px-8">
+        <div className="sticky top-0 h-screen flex items-center px-4 sm:px-6 lg:px-8">
           <div className="container mx-auto max-w-5xl text-center space-y-8">
             <p className="text-3xl sm:text-4xl lg:text-5xl text-zinc-200 font-light leading-tight">
               Litigants don't trust lawyers.
