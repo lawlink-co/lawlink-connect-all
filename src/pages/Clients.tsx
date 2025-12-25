@@ -78,12 +78,15 @@ const CaseHubCarousel = () => {
 
 const AllCasesSection = () => {
   const [isVisible, setIsVisible] = useState(false);
+  const [phoneAnimationComplete, setPhoneAnimationComplete] = useState(false);
   const sectionRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const observer = new IntersectionObserver(([entry]) => {
       if (entry.isIntersecting) {
         setIsVisible(true);
+        // Trigger card animations after phone animation completes (800ms)
+        setTimeout(() => setPhoneAnimationComplete(true), 800);
       }
     }, {
       threshold: 0.3,
@@ -107,8 +110,8 @@ const AllCasesSection = () => {
         <div className="relative flex items-center justify-center h-[300px] sm:h-[400px]">
           {/* Left Icon */}
           <div 
-            className={`absolute z-10 transition-all duration-1000 ease-out ${
-              isVisible 
+            className={`absolute z-10 transition-all duration-700 ease-out ${
+              phoneAnimationComplete 
                 ? 'left-[5%] sm:left-[15%] opacity-100' 
                 : 'left-1/2 -translate-x-1/2 opacity-0'
             }`}
@@ -120,8 +123,14 @@ const AllCasesSection = () => {
             />
           </div>
 
-          {/* Center Phone */}
-          <div className="relative z-20">
+          {/* Center Phone - Fade in while expanding */}
+          <div 
+            className={`relative z-20 transition-all duration-700 ease-out ${
+              isVisible 
+                ? 'opacity-100 scale-100' 
+                : 'opacity-0 scale-50'
+            }`}
+          >
             <img 
               src={casePhoneCenter} 
               alt="Amicus app showing multiple cases" 
@@ -131,8 +140,8 @@ const AllCasesSection = () => {
 
           {/* Right Icon */}
           <div 
-            className={`absolute z-10 transition-all duration-1000 ease-out ${
-              isVisible 
+            className={`absolute z-10 transition-all duration-700 ease-out ${
+              phoneAnimationComplete 
                 ? 'right-[5%] sm:right-[15%] opacity-100' 
                 : 'right-1/2 translate-x-1/2 opacity-0'
             }`}
@@ -145,8 +154,8 @@ const AllCasesSection = () => {
           </div>
         </div>
         
-        <p className={`text-xl sm:text-2xl text-gray-700 max-w-3xl mx-auto leading-relaxed mt-8 transition-all duration-700 delay-500 ${
-          isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+        <p className={`text-xl sm:text-2xl text-gray-700 max-w-3xl mx-auto leading-relaxed mt-8 transition-all duration-700 ${
+          phoneAnimationComplete ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
         }`}>
           Ditch the scattered paperwork and endless folders. Amicus brings all your cases together — with appointments, deadlines, and updates for each — always at your fingertips.
         </p>
