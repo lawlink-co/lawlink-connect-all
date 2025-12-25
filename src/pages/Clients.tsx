@@ -1,85 +1,34 @@
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import { MessageSquare, Bell, FileSearch, Shield, Smartphone, Clock, Check, Calendar, Briefcase, ChevronLeft, ChevronRight } from "lucide-react";
+import { MessageSquare, Bell, FileSearch, Shield, Smartphone, Clock, Check, Calendar, Briefcase } from "lucide-react";
 import Navigation from "@/components/Navigation";
 import clientHeaderPhone from "@/assets/client-header-phone.png";
 import caseNotification from "@/assets/case-notification-v2.png";
 import phoneFrame from "@/assets/phone-frame.svg";
-import carouselSlide1 from "@/assets/carousel-slide-1.png";
-import carouselSlide2 from "@/assets/carousel-slide-2.png";
-import carouselSlide3 from "@/assets/carousel-slide-3.png";
+import clientApp1 from "@/assets/client-app-1.png";
+import clientApp2 from "@/assets/client-app-2.png";
+import clientApp3 from "@/assets/client-app-3.png";
 import caseIconLeft from "@/assets/case-icon-left.svg";
 import caseIconRight from "@/assets/case-icon-right.svg";
 import casePhoneCenter from "@/assets/case-phone-center.png";
-import { useEffect, useRef, useState, useCallback } from "react";
+import { useEffect, useRef, useState } from "react";
 
 const caseHubSlides = [
-  { image: carouselSlide1, alt: "Amicus app - case updates" },
-  { image: carouselSlide2, alt: "Amicus app - messaging" },
-  { image: carouselSlide3, alt: "Amicus app - documents" },
+  { image: clientApp1, alt: "Amicus app - medical treatment" },
+  { image: clientApp2, alt: "Amicus app - case update" },
+  { image: clientApp3, alt: "Amicus app - attorney chat" },
 ];
 
 const CaseHubCarousel = () => {
   const [activeIndex, setActiveIndex] = useState(0);
 
-  const scrollNext = useCallback(() => {
-    setActiveIndex((prev) => (prev + 1) % caseHubSlides.length);
-  }, []);
-
-  const scrollPrev = useCallback(() => {
-    setActiveIndex((prev) => (prev - 1 + caseHubSlides.length) % caseHubSlides.length);
-  }, []);
-
-  const scrollTo = useCallback((index: number) => {
-    setActiveIndex(index);
-  }, []);
-
-  // Auto-scroll every 4 seconds
+  // Auto-transition every 4 seconds
   useEffect(() => {
     const interval = setInterval(() => {
-      scrollNext();
+      setActiveIndex((prev) => (prev + 1) % caseHubSlides.length);
     }, 4000);
     return () => clearInterval(interval);
-  }, [scrollNext]);
-
-  // Calculate position for each slide
-  const getSlideStyle = (index: number) => {
-    const diff = index - activeIndex;
-    // Handle wrap-around
-    let normalizedDiff = diff;
-    if (diff > 1) normalizedDiff = diff - caseHubSlides.length;
-    if (diff < -1) normalizedDiff = diff + caseHubSlides.length;
-
-    if (normalizedDiff === 0) {
-      // Center (active)
-      return {
-        transform: 'translateX(-50%) scale(1)',
-        zIndex: 20,
-        opacity: 1,
-      };
-    } else if (normalizedDiff === -1) {
-      // Left
-      return {
-        transform: 'translateX(-170%) scale(0.8)',
-        zIndex: 10,
-        opacity: 0.6,
-      };
-    } else if (normalizedDiff === 1) {
-      // Right
-      return {
-        transform: 'translateX(70%) scale(0.8)',
-        zIndex: 10,
-        opacity: 0.6,
-      };
-    } else {
-      // Hidden
-      return {
-        transform: 'translateX(-50%) scale(0.6)',
-        zIndex: 0,
-        opacity: 0,
-      };
-    }
-  };
+  }, []);
 
   return (
     <section className="py-24 px-4 sm:px-6 lg:px-8 bg-white overflow-hidden">
@@ -89,55 +38,18 @@ const CaseHubCarousel = () => {
           Everything you need in one app
         </h2>
         
-        {/* Carousel Container */}
-        <div className="relative flex items-center justify-center h-[280px] sm:h-[340px]">
-          {caseHubSlides.map((slide, index) => {
-            const style = getSlideStyle(index);
-            const isActive = index === activeIndex;
-            
-            return (
-              <div
-                key={index}
-                onClick={() => {
-                  const diff = index - activeIndex;
-                  let normalizedDiff = diff;
-                  if (diff > 1) normalizedDiff = diff - caseHubSlides.length;
-                  if (diff < -1) normalizedDiff = diff + caseHubSlides.length;
-                  
-                  if (normalizedDiff === -1) scrollPrev();
-                  else if (normalizedDiff === 1) scrollNext();
-                }}
-                className="absolute left-1/2 cursor-pointer transition-all duration-700 ease-in-out"
-                style={style}
-              >
-                <img
-                  src={slide.image}
-                  alt={slide.alt}
-                  className={`h-auto rounded-xl shadow-lg transition-shadow duration-700 ${
-                    isActive 
-                      ? 'w-[175px] sm:w-[250px] lg:w-[300px] shadow-2xl' 
-                      : 'w-[150px] sm:w-[200px] hover:opacity-80'
-                  }`}
-                />
-              </div>
-            );
-          })}
-
-          {/* Navigation Arrows */}
-          <button
-            onClick={scrollPrev}
-            className="absolute left-2 sm:left-16 top-1/2 -translate-y-1/2 z-30 w-10 h-10 bg-white/90 border-2 border-gray-200 rounded-full flex items-center justify-center hover:border-primary hover:bg-white transition-all shadow-lg"
-            aria-label="Previous slide"
-          >
-            <ChevronLeft className="w-5 h-5 text-gray-600" />
-          </button>
-          <button
-            onClick={scrollNext}
-            className="absolute right-2 sm:right-16 top-1/2 -translate-y-1/2 z-30 w-10 h-10 bg-white/90 border-2 border-gray-200 rounded-full flex items-center justify-center hover:border-primary hover:bg-white transition-all shadow-lg"
-            aria-label="Next slide"
-          >
-            <ChevronRight className="w-5 h-5 text-gray-600" />
-          </button>
+        {/* Fade Image Container */}
+        <div className="relative flex items-center justify-center h-[400px] sm:h-[500px]">
+          {caseHubSlides.map((slide, index) => (
+            <img
+              key={index}
+              src={slide.image}
+              alt={slide.alt}
+              className={`absolute left-1/2 -translate-x-1/2 h-[380px] sm:h-[480px] w-auto rounded-xl shadow-2xl transition-opacity duration-1000 ease-in-out ${
+                index === activeIndex ? 'opacity-100' : 'opacity-0'
+              }`}
+            />
+          ))}
         </div>
 
         {/* Navigation Dots */}
@@ -145,7 +57,7 @@ const CaseHubCarousel = () => {
           {caseHubSlides.map((_, index) => (
             <button
               key={index}
-              onClick={() => scrollTo(index)}
+              onClick={() => setActiveIndex(index)}
               className={`h-2 rounded-full transition-all duration-300 ${
                 index === activeIndex
                   ? "w-8 bg-primary"
