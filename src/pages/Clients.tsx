@@ -39,13 +39,13 @@ const CaseHubCarousel = () => {
         </h2>
         
         {/* Fade Image Container */}
-        <div className="relative flex items-center justify-center h-[400px] sm:h-[500px]">
+        <div className="relative flex items-center justify-center h-[280px] sm:h-[350px]">
           {caseHubSlides.map((slide, index) => (
             <img
               key={index}
               src={slide.image}
               alt={slide.alt}
-              className={`absolute left-1/2 -translate-x-1/2 h-[380px] sm:h-[480px] w-auto transition-opacity duration-1000 ease-in-out ${
+              className={`absolute left-1/2 -translate-x-1/2 h-[266px] sm:h-[336px] w-auto transition-opacity duration-1000 ease-in-out ${
                 index === activeIndex ? 'opacity-100' : 'opacity-0'
               }`}
             />
