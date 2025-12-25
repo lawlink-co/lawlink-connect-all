@@ -4,7 +4,36 @@ import { CheckCircle2, Shield, Lock, Database, Briefcase, FileText, MessageCircl
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import Navigation from "@/components/Navigation";
 import ScrollRevealImages from "@/components/ScrollRevealImages";
+import { useEffect, useRef, useState } from "react";
+
 const LawFirms = () => {
+  const [visibleCards, setVisibleCards] = useState<number[]>([]);
+  const securitySectionRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            // Stagger the card animations
+            [0, 1, 2].forEach((index) => {
+              setTimeout(() => {
+                setVisibleCards((prev) => [...prev, index]);
+              }, index * 200);
+            });
+            observer.disconnect();
+          }
+        });
+      },
+      { threshold: 0.3 }
+    );
+
+    if (securitySectionRef.current) {
+      observer.observe(securitySectionRef.current);
+    }
+
+    return () => observer.disconnect();
+  }, []);
   return <div className="min-h-screen bg-black text-white font-serif">
       <Navigation />
       
@@ -222,8 +251,12 @@ const LawFirms = () => {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <Card className="bg-zinc-950 border-zinc-800 hover:border-primary transition-all duration-500">
+          <div ref={securitySectionRef} className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <Card className={`bg-zinc-950 border-zinc-800 hover:border-primary transition-all duration-500 ${
+              visibleCards.includes(0) 
+                ? 'opacity-100 translate-y-0' 
+                : 'opacity-0 translate-y-8'
+            }`}>
               <CardContent className="pt-8 text-center">
                 <Lock className="w-14 h-14 text-primary mx-auto mb-6" />
                 <h3 className="text-xl font-semibold mb-4 text-white">End-to-End Encryption</h3>
@@ -233,7 +266,11 @@ const LawFirms = () => {
               </CardContent>
             </Card>
 
-            <Card className="bg-zinc-950 border-zinc-800 hover:border-primary transition-all duration-500">
+            <Card className={`bg-zinc-950 border-zinc-800 hover:border-primary transition-all duration-500 ${
+              visibleCards.includes(1) 
+                ? 'opacity-100 translate-y-0' 
+                : 'opacity-0 translate-y-8'
+            }`}>
               <CardContent className="pt-8 text-center">
                 <Shield className="w-14 h-14 text-primary mx-auto mb-6" />
                 <h3 className="text-xl font-semibold mb-4 text-white">Attorney-Client Privilege</h3>
@@ -243,7 +280,11 @@ const LawFirms = () => {
               </CardContent>
             </Card>
 
-            <Card className="bg-zinc-950 border-zinc-800 hover:border-primary transition-all duration-500">
+            <Card className={`bg-zinc-950 border-zinc-800 hover:border-primary transition-all duration-500 ${
+              visibleCards.includes(2) 
+                ? 'opacity-100 translate-y-0' 
+                : 'opacity-0 translate-y-8'
+            }`}>
               <CardContent className="pt-8 text-center">
                 <Database className="w-14 h-14 text-primary mx-auto mb-6" />
                 <h3 className="text-xl font-semibold mb-4 text-white">SOC 2 Compliant</h3>
