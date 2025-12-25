@@ -2,7 +2,43 @@ import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import Navigation from "@/components/Navigation";
 import FeatureCarousel from "@/components/FeatureCarousel";
+import { useEffect, useRef, useState } from "react";
+
 const Home = () => {
+  const [untilNowOpacity, setUntilNowOpacity] = useState(0);
+  const problemSectionRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (!problemSectionRef.current) return;
+      
+      const section = problemSectionRef.current;
+      const rect = section.getBoundingClientRect();
+      const sectionHeight = section.offsetHeight;
+      const viewportHeight = window.innerHeight;
+      
+      // Calculate how far we've scrolled through the section
+      // The section is 200vh tall, so we use the scroll progress to determine opacity
+      const scrolledIntoSection = -rect.top;
+      const scrollableDistance = sectionHeight - viewportHeight;
+      
+      if (scrolledIntoSection <= 0) {
+        setUntilNowOpacity(0);
+      } else if (scrolledIntoSection >= scrollableDistance) {
+        setUntilNowOpacity(1);
+      } else {
+        // Map scroll progress to opacity (0 to 1)
+        const progress = scrolledIntoSection / scrollableDistance;
+        setUntilNowOpacity(Math.min(1, Math.max(0, progress)));
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    handleScroll(); // Initial check
+    
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
   return <div className="min-h-screen bg-black text-white">
       <Navigation />
       
@@ -30,10 +66,13 @@ const Home = () => {
         </div>
       </section>
 
-      {/* Problem Section - Scrolling Typography */}
-      <section className="min-h-screen flex items-center pt-32 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-black via-zinc-950 to-black">
-        <div className="container mx-auto max-w-5xl text-center space-y-12">
-          <div className="space-y-8 animate-fade-in">
+      {/* Problem Section - Scroll-Locked Typography */}
+      <section 
+        ref={problemSectionRef}
+        className="relative h-[200vh] bg-gradient-to-b from-black via-zinc-950 to-black"
+      >
+        <div className="sticky top-0 h-screen flex items-center px-4 sm:px-6 lg:px-8">
+          <div className="container mx-auto max-w-5xl text-center space-y-8">
             <p className="text-3xl sm:text-4xl lg:text-5xl text-zinc-200 font-light leading-tight">
               Litigants don't trust lawyers.
             </p>
@@ -41,7 +80,13 @@ const Home = () => {
               Lawyers drown in admin.
             </p>
             <p className="text-3xl sm:text-4xl lg:text-5xl text-zinc-200 font-light leading-tight">
-              The way legal work gets done hasn't evolved — until now.
+              The way legal work gets done hasn't evolved
+            </p>
+            <p 
+              className="text-3xl sm:text-4xl lg:text-5xl text-zinc-200 font-light leading-tight transition-opacity duration-300"
+              style={{ opacity: untilNowOpacity }}
+            >
+              until now.
             </p>
           </div>
         </div>
