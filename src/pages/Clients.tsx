@@ -45,7 +45,7 @@ const CaseHubCarousel = () => {
               key={index}
               src={slide.image}
               alt={slide.alt}
-              className={`absolute left-1/2 -translate-x-1/2 h-[380px] sm:h-[480px] w-auto rounded-xl shadow-2xl transition-opacity duration-1000 ease-in-out ${
+              className={`absolute left-1/2 -translate-x-1/2 h-[380px] sm:h-[480px] w-auto transition-opacity duration-1000 ease-in-out ${
                 index === activeIndex ? 'opacity-100' : 'opacity-0'
               }`}
             />
