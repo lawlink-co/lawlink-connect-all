@@ -107,12 +107,12 @@ const AllCasesSection = () => {
         </h2>
         
         {/* Icons Animation Container */}
-        <div className="relative flex items-center justify-center h-[350px] sm:h-[450px]">
+        <div className="relative flex items-center justify-center h-[300px] sm:h-[400px]">
           {/* Left Icon */}
           <div 
             className={`absolute z-10 transition-all duration-700 ease-out ${
               phoneAnimationComplete 
-                ? 'left-[15%] sm:left-[25%] opacity-100' 
+                ? 'left-[5%] sm:left-[15%] opacity-100' 
                 : 'left-1/2 -translate-x-1/2 opacity-0'
             }`}
           >
@@ -134,7 +134,7 @@ const AllCasesSection = () => {
             <img 
               src={casePhoneCenter} 
               alt="Amicus app showing multiple cases" 
-              className="w-[180px] sm:w-[260px] h-auto drop-shadow-2xl"
+              className="w-[120px] sm:w-[180px] h-auto drop-shadow-2xl"
             />
           </div>
 
@@ -142,7 +142,7 @@ const AllCasesSection = () => {
           <div 
             className={`absolute z-10 transition-all duration-700 ease-out ${
               phoneAnimationComplete 
-                ? 'right-[15%] sm:right-[25%] opacity-100' 
+                ? 'right-[5%] sm:right-[15%] opacity-100' 
                 : 'right-1/2 translate-x-1/2 opacity-0'
             }`}
           >
