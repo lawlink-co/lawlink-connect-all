@@ -9,6 +9,7 @@ const Home = () => {
   const [isLocked, setIsLocked] = useState(false);
   const problemSectionRef = useRef<HTMLDivElement>(null);
   const hasTriggeredRef = useRef(false);
+  const scrollCountRef = useRef(0);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -32,13 +33,18 @@ const Home = () => {
       // If section is in view and locked, and user scrolls down
       if (isLocked && !hasTriggeredRef.current && e.deltaY > 0) {
         e.preventDefault();
-        hasTriggeredRef.current = true;
-        setShowUntilNow(true);
         
-        // Unlock after animation completes
-        setTimeout(() => {
-          setIsLocked(false);
-        }, 800);
+        // Require multiple scroll attempts before triggering
+        scrollCountRef.current += 1;
+        if (scrollCountRef.current >= 3) {
+          hasTriggeredRef.current = true;
+          setShowUntilNow(true);
+          
+          // Unlock after animation completes
+          setTimeout(() => {
+            setIsLocked(false);
+          }, 800);
+        }
       }
     };
 
