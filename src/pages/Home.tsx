@@ -3,18 +3,20 @@ import { Button } from "@/components/ui/button";
 import Navigation from "@/components/Navigation";
 import FeatureCarousel from "@/components/FeatureCarousel";
 import { useEffect, useRef, useState } from "react";
+import amicusGoldenA from "@/assets/amicus-golden-a.png";
 
-// Full typewriter text with line breaks
+// Full typewriter text with line breaks (added dash after evolved)
 const TYPEWRITER_TEXT = `Litigants don't trust lawyers.
 
 Lawyers drown in admin.
 
-The way legal work gets done hasn't evolved
+The way legal work gets done hasn't evolved—
 
 until now.`;
 
 const Home = () => {
   const [visibleChars, setVisibleChars] = useState(0);
+  const [logoPhase, setLogoPhase] = useState(0); // 0 = hidden, 0-1 = transitioning (text fade out, logo fade in/scale)
   const problemSectionRef = useRef<HTMLDivElement>(null);
   
   // How It Works animation states
@@ -35,22 +37,34 @@ const Home = () => {
       const sectionHeight = section.offsetHeight;
       
       // Calculate scroll progress (0 to 1)
+      // Section is now 300vh, so we have 200vh of scroll room
       const scrollProgress = Math.max(0, Math.min(1, -rect.top / (sectionHeight - window.innerHeight)));
       
-      // Map scroll progress to character index
-      // First 70% of scroll covers text before "until now."
-      // Last 30% of scroll covers "until now." (slower reveal)
-      let charIndex: number;
-      if (scrollProgress <= 0.7) {
-        // Map 0-70% scroll to 0 to untilNowStart characters
-        charIndex = Math.floor((scrollProgress / 0.7) * untilNowStart);
-      } else {
-        // Map 70-100% scroll to untilNowStart to totalChars (slower for "until now.")
-        const slowProgress = (scrollProgress - 0.7) / 0.3;
-        charIndex = untilNowStart + Math.floor(slowProgress * (totalChars - untilNowStart));
-      }
+      // Phase 1: Typewriter (0% - 50% scroll)
+      // Phase 2: Logo transition (50% - 100% scroll)
       
-      setVisibleChars(Math.min(charIndex, totalChars));
+      if (scrollProgress <= 0.5) {
+        // Typewriter phase - map 0-50% to full text
+        const typewriterProgress = scrollProgress / 0.5;
+        
+        let charIndex: number;
+        if (typewriterProgress <= 0.7) {
+          // Map 0-70% of typewriter phase to text before "until now."
+          charIndex = Math.floor((typewriterProgress / 0.7) * untilNowStart);
+        } else {
+          // Map 70-100% of typewriter phase to "until now." (slower reveal)
+          const slowProgress = (typewriterProgress - 0.7) / 0.3;
+          charIndex = untilNowStart + Math.floor(slowProgress * (totalChars - untilNowStart));
+        }
+        
+        setVisibleChars(Math.min(charIndex, totalChars));
+        setLogoPhase(0);
+      } else {
+        // Logo transition phase - map 50%-100% to 0-1
+        setVisibleChars(totalChars);
+        const logoProgress = (scrollProgress - 0.5) / 0.5;
+        setLogoPhase(logoProgress);
+      }
     };
 
     window.addEventListener('scroll', handleScroll, { passive: true });
@@ -118,17 +132,38 @@ const Home = () => {
         </div>
       </section>
 
-      {/* Problem Section - Scroll-Locked Typography with Typewriter */}
+      {/* Problem Section - Scroll-Locked Typography with Typewriter + Logo Reveal */}
       <section 
         ref={problemSectionRef}
-        className="relative h-[200vh] bg-gradient-to-b from-black via-zinc-950 to-black"
+        className="relative h-[300vh] bg-gradient-to-b from-black via-zinc-950 to-black"
       >
-        <div className="sticky top-0 h-screen flex items-center px-4 sm:px-6 lg:px-8">
-          <div className="container mx-auto max-w-5xl text-center">
+        <div className="sticky top-0 h-screen flex items-center justify-center px-4 sm:px-6 lg:px-8">
+          {/* Typewriter Text - fades out during logo phase */}
+          <div 
+            className="container mx-auto max-w-5xl text-center absolute transition-opacity duration-300"
+            style={{ opacity: 1 - logoPhase }}
+          >
             <p className="text-3xl sm:text-4xl lg:text-5xl text-zinc-200 font-light leading-relaxed whitespace-pre-wrap">
               {TYPEWRITER_TEXT.slice(0, visibleChars)}
-              <span className="inline-block w-[3px] h-[1em] bg-zinc-200 ml-1 align-middle animate-caret-blink" />
+              {logoPhase === 0 && (
+                <span className="inline-block w-[3px] h-[1em] bg-zinc-200 ml-1 align-middle animate-caret-blink" />
+              )}
             </p>
+          </div>
+          
+          {/* Logo - fades in and scales up during logo phase */}
+          <div 
+            className="absolute flex items-center justify-center transition-all duration-300"
+            style={{ 
+              opacity: logoPhase,
+              transform: `scale(${0.5 + logoPhase * 0.5})` // Scale from 0.5 to 1
+            }}
+          >
+            <img 
+              src={amicusGoldenA} 
+              alt="Amicus" 
+              className="w-48 sm:w-64 lg:w-80 h-auto"
+            />
           </div>
         </div>
       </section>
