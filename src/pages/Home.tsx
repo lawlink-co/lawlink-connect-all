@@ -42,7 +42,7 @@ const Home = () => {
       {/* Hero Section */}
       <section className="relative min-h-screen flex items-center justify-center px-4 sm:px-6 lg:px-8 overflow-hidden bg-black">
         <div className="container mx-auto text-center max-w-6xl relative z-10">
-          <h1 className="text-6xl sm:text-7xl lg:text-8xl font-bold mb-8 tracking-tight animate-fade-in-slow">
+          <h1 className="text-6xl sm:text-7xl lg:text-8xl font-semibold mb-8 tracking-tight animate-fade-in-slow">
             Lawsuits, Reimagined.
           </h1>
           <p className="text-2xl sm:text-3xl text-zinc-300 mb-16 max-w-4xl mx-auto leading-relaxed opacity-0 animate-fade-in" style={{ animationDelay: '0.5s', animationFillMode: 'forwards' }}>
@@ -98,7 +98,7 @@ const Home = () => {
       {/* How It Works Section - Connection Between Client & Lawyer */}
       <section className="py-32 px-4 sm:px-6 lg:px-8 bg-black border-t border-zinc-800">
         <div className="container mx-auto max-w-6xl">
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-8 text-center">How It Works</h2>
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-semibold mb-8 text-center">How It Works</h2>
           <p className="text-xl text-zinc-400 text-center mb-20 max-w-3xl mx-auto">
             Amicus bridges clients and their lawyers — making every case tangible, fast-moving, and transparent.
           </p>
@@ -115,7 +115,7 @@ const Home = () => {
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
                     </svg>
                   </div>
-                  <h3 className="text-2xl font-bold mb-4 text-center">For Clients</h3>
+                  <h3 className="text-2xl font-semibold mb-4 text-center">For Clients</h3>
                   <p className="text-zinc-400 text-center mb-6 leading-relaxed">
                     Your case becomes <span className="text-white font-semibold">real</span> through an interactive app.
                   </p>
@@ -164,7 +164,7 @@ const Home = () => {
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
                     </svg>
                   </div>
-                  <h3 className="text-2xl font-bold mb-4 text-center">For Lawyers</h3>
+                  <h3 className="text-2xl font-semibold mb-4 text-center">For Lawyers</h3>
                   <p className="text-zinc-400 text-center mb-6 leading-relaxed">
                     A <span className="text-white font-semibold">magnificent infrastructure</span> to handle litigation faster.
                   </p>
@@ -191,7 +191,7 @@ const Home = () => {
           <div className="relative">
             <div className="absolute inset-0 bg-gradient-to-r from-blue-500/10 via-primary/10 to-blue-500/10 blur-3xl"></div>
             <div className="relative bg-zinc-950/80 border border-zinc-800 rounded-lg p-12 text-center backdrop-blur">
-              <h3 className="text-2xl sm:text-3xl font-bold mb-6">
+              <h3 className="text-2xl sm:text-3xl font-semibold mb-6">
                 For Both: Progress That Moves
               </h3>
               <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl mx-auto">
@@ -231,7 +231,7 @@ const Home = () => {
       {/* Vision Section */}
       <section className="py-32 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-black to-zinc-950 border-t border-zinc-800">
         <div className="container mx-auto max-w-5xl text-center space-y-12 animate-scale-in">
-          <p className="text-4xl sm:text-5xl lg:text-6xl font-bold leading-tight">
+          <p className="text-4xl sm:text-5xl lg:text-6xl font-semibold leading-tight">
             Where litigation meets intelligence.
           </p>
           <p className="text-2xl sm:text-3xl text-zinc-300 leading-relaxed">
@@ -246,7 +246,7 @@ const Home = () => {
       {/* CTA Footer */}
       <section className="py-24 px-4 sm:px-6 lg:px-8 bg-black border-t border-zinc-800">
         <div className="container mx-auto max-w-4xl text-center">
-          <h2 className="text-3xl sm:text-4xl font-bold mb-12">
+          <h2 className="text-3xl sm:text-4xl font-semibold mb-12">
             Choose Your Experience
           </h2>
           <div className="flex flex-col sm:flex-row gap-6 justify-center">
