@@ -68,7 +68,7 @@ const LawFirms = () => {
             <ScrollRevealImages />
           </div>
           <div className="text-center space-y-6 max-w-4xl mx-auto animate-fade-in">
-            <h2 className="text-3xl sm:text-4xl font-semibold">
+            <h2 className="text-3xl sm:text-4xl font-normal">
               AI Drafting Powered by Your Firm's Own Record
             </h2>
             <p className="text-xl text-zinc-300 font-sans leading-relaxed">
@@ -82,7 +82,7 @@ const LawFirms = () => {
       <section className="py-24 px-4 sm:px-6 lg:px-8 bg-black border-t border-zinc-800">
         <div className="container mx-auto max-w-6xl">
           <div className="text-center mb-12 space-y-6 animate-fade-in">
-            <h2 className="text-3xl sm:text-4xl font-semibold">
+            <h2 className="text-3xl sm:text-4xl font-normal">
               The All-in-One System for Modern Litigation
             </h2>
             <p className="text-xl text-zinc-300 font-sans leading-relaxed max-w-4xl mx-auto">
@@ -221,7 +221,7 @@ const LawFirms = () => {
                   </video>
                 </div>
 
-                <h3 className="text-2xl sm:text-3xl font-semibold mb-6 text-white">
+                <h3 className="text-2xl sm:text-3xl font-normal mb-6 text-white">
                   Build the Perfect Legal CRM — Your Way.
                 </h3>
                 
@@ -231,7 +231,7 @@ const LawFirms = () => {
 
                 <div className="bg-zinc-900 border border-zinc-700 rounded-lg p-6 mb-8">
                   <p className="text-lg text-zinc-300 font-sans leading-relaxed mb-6">
-                    Each section of your CRM can be structured with <span className="text-white font-semibold">items</span> (subpages or tabs) that contain <span className="text-white font-semibold">fields</span> (data text fields) and <span className="text-white font-semibold">contacts</span> (people or corporations). You can easily:
+                    Each section of your CRM can be structured with <span className="text-white font-normal">items</span> (subpages or tabs) that contain <span className="text-white font-normal">fields</span> (data text fields) and <span className="text-white font-normal">contacts</span> (people or corporations). You can easily:
                   </p>
                   
                   <ul className="space-y-3 font-sans">
@@ -287,7 +287,7 @@ const LawFirms = () => {
             }`}>
               <CardContent className="pt-8 text-center">
                 <Lock className="w-14 h-14 text-primary mx-auto mb-6" />
-                <h3 className="text-xl font-semibold mb-4 text-white">End-to-End Encryption</h3>
+                <h3 className="text-xl font-normal mb-4 text-white">End-to-End Encryption</h3>
                 <p className="text-zinc-400 font-sans">
                   All data encrypted in transit and at rest with AES-256 encryption.
                 </p>
@@ -301,7 +301,7 @@ const LawFirms = () => {
             }`}>
               <CardContent className="pt-8 text-center">
                 <Shield className="w-14 h-14 text-primary mx-auto mb-6" />
-                <h3 className="text-xl font-semibold mb-4 text-white">Attorney-Client Privilege</h3>
+                <h3 className="text-xl font-normal mb-4 text-white">Attorney-Client Privilege</h3>
                 <p className="text-zinc-400 font-sans">
                   Full compliance with confidentiality requirements and privilege protection.
                 </p>
@@ -315,7 +315,7 @@ const LawFirms = () => {
             }`}>
               <CardContent className="pt-8 text-center">
                 <Database className="w-14 h-14 text-primary mx-auto mb-6" />
-                <h3 className="text-xl font-semibold mb-4 text-white">SOC 2 Compliant</h3>
+                <h3 className="text-xl font-normal mb-4 text-white">SOC 2 Compliant</h3>
                 <p className="text-zinc-400 font-sans">
                   Regular security audits and compliance with industry standards.
                 </p>
