@@ -329,7 +329,7 @@ const LawFirms = () => {
       <section className="py-24 px-4 sm:px-6 lg:px-8 bg-black border-t border-zinc-800">
         <div className="container mx-auto max-w-4xl text-center">
           <p className="text-3xl sm:text-4xl font-light mb-12 leading-relaxed">
-            Amicus firms move faster, work smarter, and deliver a client experience that feels effortless.
+            Amicus firms move <em className="italic">faster</em>, work <em className="italic">smarter</em>, and deliver a client experience that feels <em className="italic">effortless</em>.
           </p>
           <div className="flex flex-col sm:flex-row gap-6 justify-center pt-6">
             <Button size="lg" className="text-xl px-14 py-8 bg-white text-black hover:bg-zinc-200 transition-all duration-300 hover:scale-105 font-sans">
