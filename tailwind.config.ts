@@ -18,6 +18,7 @@ export default {
         body: ['Libre Baskerville', 'Times New Roman', 'Times', 'serif'],
         accent: ['Cormorant Garamond', 'Times New Roman', 'Times', 'serif'],
         serif: ['Georgia', 'Times New Roman', 'serif'],
+        lora: ['Lora', 'Georgia', 'serif'],
       },
       colors: {
         border: "hsl(var(--border))",
