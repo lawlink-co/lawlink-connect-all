@@ -77,7 +77,7 @@ const Home = () => {
       {/* Hero Section */}
       <section className="relative min-h-screen flex items-center justify-center px-4 sm:px-6 lg:px-8 overflow-hidden bg-black">
         <div className="container mx-auto text-center max-w-6xl relative z-10">
-          <h1 className="text-6xl sm:text-7xl lg:text-8xl font-semibold mb-8 tracking-tight animate-fade-in-slow">
+          <h1 className="text-6xl sm:text-7xl lg:text-8xl font-normal mb-8 tracking-tight animate-fade-in-slow">
             Lawsuits, Reimagined.
           </h1>
           <p className="text-2xl sm:text-3xl text-zinc-300 mb-16 max-w-4xl mx-auto leading-relaxed opacity-0 animate-fade-in" style={{ animationDelay: '0.5s', animationFillMode: 'forwards' }}>
@@ -133,7 +133,7 @@ const Home = () => {
       {/* How It Works Section - Connection Between Client & Lawyer */}
       <section ref={howItWorksSectionRef} className="py-32 px-4 sm:px-6 lg:px-8 bg-black border-t border-zinc-800">
         <div className="container mx-auto max-w-6xl">
-          <h2 className={`text-3xl sm:text-4xl lg:text-5xl font-semibold mb-8 text-center transition-all duration-500 ${howItWorksPhase >= 3 ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>How It Works</h2>
+          <h2 className={`text-3xl sm:text-4xl lg:text-5xl font-normal mb-8 text-center transition-all duration-500 ${howItWorksPhase >= 3 ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>How It Works</h2>
           <p className={`text-xl text-zinc-400 text-center mb-20 max-w-3xl mx-auto transition-all duration-500 delay-100 ${howItWorksPhase >= 3 ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
             Amicus bridges clients and their lawyers — making every case tangible, fast-moving, and transparent.
           </p>
@@ -151,9 +151,9 @@ const Home = () => {
                     </svg>
                   </div>
                   <div className={`transition-all duration-500 delay-200 ${howItWorksPhase >= 3 ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
-                    <h3 className="text-2xl font-semibold mb-4 text-center">For Clients</h3>
+                    <h3 className="text-2xl font-normal mb-4 text-center">For Clients</h3>
                     <p className="text-zinc-400 text-center mb-6 leading-relaxed">
-                      Your case becomes <span className="text-white font-semibold">real</span> through an interactive app.
+                      Your case becomes <span className="text-white font-normal">real</span> through an interactive app.
                     </p>
                     <ul className="space-y-3 text-sm text-zinc-400">
                       <li className="flex items-start">
@@ -198,7 +198,7 @@ const Home = () => {
                   </div>
                 </div>
                 {/* Status text - changes from "Not Connected" to "Connected" */}
-                <p className={`text-xs mt-6 text-center font-semibold tracking-wider uppercase transition-all duration-500 ${howItWorksPhase >= 1 ? 'opacity-100' : 'opacity-0'} ${howItWorksPhase >= 2 ? 'text-primary' : 'text-zinc-500'}`}>
+                <p className={`text-xs mt-6 text-center font-normal tracking-wider uppercase transition-all duration-500 ${howItWorksPhase >= 1 ? 'opacity-100' : 'opacity-0'} ${howItWorksPhase >= 2 ? 'text-primary' : 'text-zinc-500'}`}>
                   {howItWorksPhase >= 2 ? 'Connected' : 'Not Connected'}
                 </p>
               </div>
@@ -213,9 +213,9 @@ const Home = () => {
                     </svg>
                   </div>
                   <div className={`transition-all duration-500 delay-300 ${howItWorksPhase >= 3 ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
-                    <h3 className="text-2xl font-semibold mb-4 text-center">For Lawyers</h3>
+                    <h3 className="text-2xl font-normal mb-4 text-center">For Lawyers</h3>
                     <p className="text-zinc-400 text-center mb-6 leading-relaxed">
-                      A <span className="text-white font-semibold">magnificent infrastructure</span> to handle litigation faster.
+                      A <span className="text-white font-normal">magnificent infrastructure</span> to handle litigation faster.
                     </p>
                     <ul className="space-y-3 text-sm text-zinc-400">
                       <li className="flex items-start">
@@ -241,7 +241,7 @@ const Home = () => {
           <div className={`relative transition-all duration-700 ${howItWorksPhase >= 4 ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
             <div className="absolute inset-0 bg-gradient-to-r from-blue-500/10 via-primary/10 to-blue-500/10 blur-3xl"></div>
             <div className="relative bg-zinc-950/80 border border-zinc-800 rounded-lg p-12 text-center backdrop-blur">
-              <h3 className="text-2xl sm:text-3xl font-semibold mb-6">
+              <h3 className="text-2xl sm:text-3xl font-normal mb-6">
                 For Both: Progress That Moves
               </h3>
               <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl mx-auto">
@@ -251,7 +251,7 @@ const Home = () => {
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
                     </svg>
                   </div>
-                  <p className="text-white font-semibold mb-2">Faster Forward</p>
+                  <p className="text-white font-normal mb-2">Faster Forward</p>
                   <p className="text-sm text-zinc-400">Every case moves at the speed of technology</p>
                 </div>
                 <div className={`flex flex-col items-center transition-all duration-500 delay-[200ms] ${howItWorksPhase >= 4 ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
@@ -260,7 +260,7 @@ const Home = () => {
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" />
                     </svg>
                   </div>
-                  <p className="text-white font-semibold mb-2">Instant Updates</p>
+                  <p className="text-white font-normal mb-2">Instant Updates</p>
                   <p className="text-sm text-zinc-400">Shared in real-time, never missed</p>
                 </div>
                 <div className={`flex flex-col items-center transition-all duration-500 delay-[300ms] ${howItWorksPhase >= 4 ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
@@ -269,7 +269,7 @@ const Home = () => {
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
                     </svg>
                   </div>
-                  <p className="text-white font-semibold mb-2">Total Transparency</p>
+                  <p className="text-white font-normal mb-2">Total Transparency</p>
                   <p className="text-sm text-zinc-400">No one feels left in the dark</p>
                 </div>
               </div>
@@ -281,14 +281,14 @@ const Home = () => {
       {/* Vision Section */}
       <section className="py-32 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-black to-zinc-950 border-t border-zinc-800">
         <div className="container mx-auto max-w-5xl text-center space-y-12 animate-scale-in">
-          <p className="text-4xl sm:text-5xl lg:text-6xl font-semibold leading-tight">
+          <p className="text-4xl sm:text-5xl lg:text-6xl font-normal leading-tight">
             Where litigation meets intelligence.
           </p>
           <p className="text-2xl sm:text-3xl text-zinc-300 leading-relaxed">
             Amicus is shaping the future of litigation — where cases flow from intake to resolution with intelligence and ease.
           </p>
           <div className="pt-8">
-            <p className="text-3xl font-semibold text-white">Real context. Real results.</p>
+            <p className="text-3xl font-normal text-white">Real context. Real results.</p>
           </div>
         </div>
       </section>
@@ -296,7 +296,7 @@ const Home = () => {
       {/* CTA Footer */}
       <section className="py-24 px-4 sm:px-6 lg:px-8 bg-black border-t border-zinc-800">
         <div className="container mx-auto max-w-4xl text-center">
-          <h2 className="text-3xl sm:text-4xl font-semibold mb-12">
+          <h2 className="text-3xl sm:text-4xl font-normal mb-12">
             Choose Your Experience
           </h2>
           <div className="flex flex-col sm:flex-row gap-6 justify-center">
