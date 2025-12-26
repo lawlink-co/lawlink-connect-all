@@ -151,12 +151,12 @@ const Home = () => {
             </p>
           </div>
           
-          {/* Logo - starts fading in at 50% of logo phase, scales to 1.3, fades out fast at end */}
+          {/* Logo - starts fading in at 50% of logo phase, scales to 1.3, fades out only at very end */}
           {(() => {
             // Logo only starts appearing at 50% of logoPhase
             const logoOpacity = Math.max(0, (logoPhase - 0.5) / 0.5);
-            // Fade out rapidly in last 15% of scroll (logoPhase 0.85-1.0)
-            const fadeOutProgress = logoPhase > 0.85 ? (logoPhase - 0.85) / 0.15 : 0;
+            // Only fade out in the last 5% of scroll (logoPhase 0.95-1.0) - stays at full opacity longer
+            const fadeOutProgress = logoPhase > 0.95 ? (logoPhase - 0.95) / 0.05 : 0;
             const finalOpacity = logoOpacity * (1 - fadeOutProgress);
             // Scale from 0.5 to 1.3 (30% larger)
             const scale = 0.5 + logoOpacity * 0.8;
