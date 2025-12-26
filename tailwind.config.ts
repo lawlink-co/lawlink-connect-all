@@ -127,14 +127,6 @@ export default {
             transform: "scale(1)"
           }
         },
-        "glow-sweep": {
-          "0%": {
-            "offset-distance": "0%",
-          },
-          "100%": {
-            "offset-distance": "100%",
-          }
-        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
@@ -143,7 +135,6 @@ export default {
         "fade-in-slow": "fade-in-slow 1s ease-out",
         "slide-up": "slide-up 0.8s ease-out",
         "scale-in": "scale-in 0.5s ease-out",
-        "glow-sweep": "glow-sweep 1.5s ease-in-out infinite",
       },
     },
   },

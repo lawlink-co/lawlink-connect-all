@@ -246,46 +246,9 @@ const Home = () => {
               </h3>
               <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl mx-auto">
                 <div className={`flex flex-col items-center transition-all duration-500 delay-[100ms] ${howItWorksPhase >= 4 ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
-                  <div className="w-16 h-16 bg-gradient-to-br from-blue-500/20 to-primary/20 rounded-full flex items-center justify-center mb-4 relative overflow-hidden">
-                    <svg className="w-8 h-8 relative z-10" viewBox="0 0 24 24" fill="none">
-                      <defs>
-                        <linearGradient id="lightningGlow" x1="0%" y1="0%" x2="0%" y2="100%">
-                          <stop offset="0%" stopColor="#60a5fa" stopOpacity="0.2">
-                            <animate attributeName="stopOpacity" values="0.2;1;0.2" dur="1.5s" repeatCount="indefinite" />
-                            <animate attributeName="stopColor" values="#60a5fa;#ffffff;#60a5fa" dur="1.5s" repeatCount="indefinite" />
-                          </stop>
-                          <stop offset="50%" stopColor="#ffffff" stopOpacity="1">
-                            <animate attributeName="offset" values="0%;50%;100%" dur="1.5s" repeatCount="indefinite" />
-                          </stop>
-                          <stop offset="100%" stopColor="#60a5fa" stopOpacity="0.2">
-                            <animate attributeName="stopOpacity" values="0.2;1;0.2" dur="1.5s" repeatCount="indefinite" begin="0.75s" />
-                          </stop>
-                        </linearGradient>
-                        <filter id="glowFilter" x="-50%" y="-50%" width="200%" height="200%">
-                          <feGaussianBlur stdDeviation="1" result="blur" />
-                          <feMerge>
-                            <feMergeNode in="blur" />
-                            <feMergeNode in="SourceGraphic" />
-                          </feMerge>
-                        </filter>
-                      </defs>
-                      <path 
-                        d="M13 10V3L4 14h7v7l9-11h-7z" 
-                        stroke="url(#lightningGlow)" 
-                        strokeWidth={2} 
-                        strokeLinecap="round" 
-                        strokeLinejoin="round"
-                        filter="url(#glowFilter)"
-                        className={howItWorksPhase >= 4 ? 'opacity-100' : 'opacity-0'}
-                      />
-                      <path 
-                        d="M13 10V3L4 14h7v7l9-11h-7z" 
-                        stroke="#60a5fa" 
-                        strokeWidth={2} 
-                        strokeLinecap="round" 
-                        strokeLinejoin="round"
-                        strokeOpacity="0.3"
-                      />
+                  <div className="w-16 h-16 bg-gradient-to-br from-blue-500/20 to-primary/20 rounded-full flex items-center justify-center mb-4">
+                    <svg className="w-8 h-8 text-blue-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
                     </svg>
                   </div>
                   <p className="text-white font-semibold mb-2">Faster Forward</p>
