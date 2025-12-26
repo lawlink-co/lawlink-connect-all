@@ -405,7 +405,7 @@ const Home = () => {
       {/* Vision Section */}
       <section className="py-32 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-black to-zinc-950 border-t border-zinc-800">
         <div className="container mx-auto max-w-5xl text-center space-y-12 animate-scale-in">
-          <p className="text-4xl sm:text-5xl lg:text-6xl font-normal leading-tight">
+          <p className="text-4xl sm:text-5xl lg:text-6xl font-normal leading-snug sm:leading-normal">
             Where litigation meets intelligence.
           </p>
           <p className="text-2xl sm:text-3xl text-zinc-300 leading-relaxed">
