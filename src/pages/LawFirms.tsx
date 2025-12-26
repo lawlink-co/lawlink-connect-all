@@ -134,6 +134,20 @@ const LawFirms = () => {
 
             <TabsContent value="drafting">
               <div className="bg-zinc-950 border border-zinc-800 rounded-lg p-8 sm:p-12">
+                {/* Demo Video */}
+                <div className="mb-10 rounded-lg overflow-hidden">
+                  <video 
+                    className="w-full aspect-video rounded-lg"
+                    autoPlay 
+                    loop 
+                    muted 
+                    playsInline
+                  >
+                    <source src="/videos/drafting-demo.mp4?v=1" type="video/mp4" />
+                    Your browser does not support the video tag.
+                  </video>
+                </div>
+
                 <p className="text-xl text-zinc-300 font-sans leading-relaxed mb-8">
                   Amicus's AI drafting engine learns from your prior work to produce new filings in your firm's own language.
                 </p>
