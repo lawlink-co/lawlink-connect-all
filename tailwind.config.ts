@@ -19,6 +19,7 @@ export default {
         accent: ['Cormorant Garamond', 'Times New Roman', 'Times', 'serif'],
         serif: ['Georgia', 'Times New Roman', 'serif'],
         lora: ['Lora', 'Georgia', 'serif'],
+        caslon: ['Libre Caslon Text', 'Georgia', 'serif'],
       },
       colors: {
         border: "hsl(var(--border))",
