@@ -58,6 +58,8 @@ const Home = () => {
         setTimeout(() => setHowItWorksPhase(2), 800);
         // Phase 3: Rest of content loads after 1400ms
         setTimeout(() => setHowItWorksPhase(3), 1400);
+        // Phase 4: "For Both" section appears after 2000ms
+        setTimeout(() => setHowItWorksPhase(4), 2000);
       }
     };
 
@@ -235,15 +237,15 @@ const Home = () => {
             </div>
           </div>
 
-          {/* Shared Outcome - appears in phase 3 */}
-          <div className={`relative transition-all duration-700 delay-300 ${howItWorksPhase >= 3 ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
+          {/* Shared Outcome - appears in phase 4 */}
+          <div className={`relative transition-all duration-700 ${howItWorksPhase >= 4 ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
             <div className="absolute inset-0 bg-gradient-to-r from-blue-500/10 via-primary/10 to-blue-500/10 blur-3xl"></div>
             <div className="relative bg-zinc-950/80 border border-zinc-800 rounded-lg p-12 text-center backdrop-blur">
               <h3 className="text-2xl sm:text-3xl font-semibold mb-6">
                 For Both: Progress That Moves
               </h3>
               <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl mx-auto">
-                <div className={`flex flex-col items-center transition-all duration-500 delay-[400ms] ${howItWorksPhase >= 3 ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
+                <div className={`flex flex-col items-center transition-all duration-500 delay-[100ms] ${howItWorksPhase >= 4 ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
                   <div className="w-16 h-16 bg-gradient-to-br from-blue-500/20 to-primary/20 rounded-full flex items-center justify-center mb-4">
                     <svg className="w-8 h-8 text-blue-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
@@ -252,7 +254,7 @@ const Home = () => {
                   <p className="text-white font-semibold mb-2">Faster Forward</p>
                   <p className="text-sm text-zinc-400">Every case moves at the speed of technology</p>
                 </div>
-                <div className={`flex flex-col items-center transition-all duration-500 delay-[500ms] ${howItWorksPhase >= 3 ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
+                <div className={`flex flex-col items-center transition-all duration-500 delay-[200ms] ${howItWorksPhase >= 4 ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
                   <div className="w-16 h-16 bg-gradient-to-br from-blue-500/20 to-primary/20 rounded-full flex items-center justify-center mb-4">
                     <svg className="w-8 h-8 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" />
@@ -261,7 +263,7 @@ const Home = () => {
                   <p className="text-white font-semibold mb-2">Instant Updates</p>
                   <p className="text-sm text-zinc-400">Shared in real-time, never missed</p>
                 </div>
-                <div className={`flex flex-col items-center transition-all duration-500 delay-[600ms] ${howItWorksPhase >= 3 ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
+                <div className={`flex flex-col items-center transition-all duration-500 delay-[300ms] ${howItWorksPhase >= 4 ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
                   <div className="w-16 h-16 bg-gradient-to-br from-blue-500/20 to-primary/20 rounded-full flex items-center justify-center mb-4">
                     <svg className="w-8 h-8 text-blue-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
