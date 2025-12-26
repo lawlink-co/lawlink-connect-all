@@ -138,10 +138,10 @@ const Home = () => {
         className="relative h-[300vh] bg-gradient-to-b from-black via-zinc-950 to-black"
       >
         <div className="sticky top-0 h-screen flex items-center justify-center px-4 sm:px-6 lg:px-8">
-          {/* Typewriter Text - fades out during logo phase */}
+          {/* Typewriter Text - fades out longer over first 60% of logo phase */}
           <div 
-            className="container mx-auto max-w-5xl text-center absolute transition-opacity duration-300"
-            style={{ opacity: 1 - logoPhase }}
+            className="container mx-auto max-w-5xl text-center absolute transition-opacity duration-500"
+            style={{ opacity: logoPhase < 0.6 ? 1 - (logoPhase / 0.6) : 0 }}
           >
             <p className="text-3xl sm:text-4xl lg:text-5xl text-zinc-200 font-light leading-relaxed whitespace-pre-wrap">
               {TYPEWRITER_TEXT.slice(0, visibleChars)}
@@ -151,20 +151,32 @@ const Home = () => {
             </p>
           </div>
           
-          {/* Logo - fades in and scales up during logo phase */}
-          <div 
-            className="absolute flex items-center justify-center transition-all duration-300"
-            style={{ 
-              opacity: logoPhase,
-              transform: `scale(${0.5 + logoPhase * 0.5})` // Scale from 0.5 to 1
-            }}
-          >
-            <img 
-              src={amicusGoldenA} 
-              alt="Amicus" 
-              className="w-48 sm:w-64 lg:w-80 h-auto"
-            />
-          </div>
+          {/* Logo - starts fading in at 50% of logo phase, scales to 1.3, fades out fast at end */}
+          {(() => {
+            // Logo only starts appearing at 50% of logoPhase
+            const logoOpacity = Math.max(0, (logoPhase - 0.5) / 0.5);
+            // Fade out rapidly in last 15% of scroll (logoPhase 0.85-1.0)
+            const fadeOutProgress = logoPhase > 0.85 ? (logoPhase - 0.85) / 0.15 : 0;
+            const finalOpacity = logoOpacity * (1 - fadeOutProgress);
+            // Scale from 0.5 to 1.3 (30% larger)
+            const scale = 0.5 + logoOpacity * 0.8;
+            
+            return (
+              <div 
+                className="absolute flex items-center justify-center transition-all duration-300"
+                style={{ 
+                  opacity: finalOpacity,
+                  transform: `scale(${scale})`
+                }}
+              >
+                <img 
+                  src={amicusGoldenA} 
+                  alt="Amicus" 
+                  className="w-48 sm:w-64 lg:w-80 h-auto"
+                />
+              </div>
+            );
+          })()}
         </div>
       </section>
 
