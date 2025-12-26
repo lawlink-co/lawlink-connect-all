@@ -43,18 +43,7 @@ const Home = () => {
       const scrollProgress = Math.max(0, Math.min(1, -rect.top / (sectionHeight - window.innerHeight)));
       
       // Phase 1: Typewriter (0% - 50% scroll)
-      // Phase 2: Text fade-out (50% - 52% scroll) 
-      // Phase 3: Logo fade-in (52% - 54% scroll)
-      // Phase 4: Logo hold at full opacity (54%+ scroll, until section top reaches viewport top)
-      // Phase 5: Logo fade-out (when section.top <= 0, checked in all phases)
-      
-      // Check if section top has reached viewport top (triggers fade-out)
-      let fadeOutProgress = 0;
-      if (rect.top <= 0) {
-        // Calculate fade-out progress based on how far past the top we've scrolled
-        // Fade out over ~200px of scroll past the top
-        fadeOutProgress = Math.min(1, Math.abs(rect.top) / 200);
-      }
+      // Phase 2: Logo transition (50% - 100% scroll)
       
       if (scrollProgress <= 0.5) {
         // Typewriter phase - map 0-50% to full text
@@ -72,25 +61,25 @@ const Home = () => {
         
         setVisibleChars(Math.min(charIndex, totalChars));
         setLogoPhase(0);
-        setLogoFadeOut(fadeOutProgress);
-      } else if (scrollProgress <= 0.52) {
-        // Text fade-out phase (50% - 52% scroll)
-        setVisibleChars(totalChars);
-        const textFadeProgress = (scrollProgress - 0.5) / 0.02; // 0 to 1 over 2% scroll
-        setLogoPhase(textFadeProgress * 0.6); // Maps to 0-0.6 for text fade-out
-        setLogoFadeOut(fadeOutProgress);
-      } else if (scrollProgress <= 0.54) {
-        // Logo fade-in phase (52% - 54% scroll) - text is fully faded by now
-        setVisibleChars(totalChars);
-        const logoFadeInProgress = (scrollProgress - 0.52) / 0.02; // 0 to 1 over 2% scroll
-        // Map to 0.6-1.0 for logo fade-in (starts after text fade completes at 0.6)
-        setLogoPhase(0.6 + logoFadeInProgress * 0.4);
-        setLogoFadeOut(fadeOutProgress);
+        setLogoFadeOut(0);
       } else {
-        // Logo hold phase (54%+ scroll) - logo at full opacity
+        // Logo transition phase - map 50%-100% to 0-1
         setVisibleChars(totalChars);
-        setLogoPhase(1.0); // Logo at full opacity
-        setLogoFadeOut(fadeOutProgress);
+        const logoProgress = (scrollProgress - 0.5) / 0.5;
+        setLogoPhase(logoProgress);
+      }
+      
+      // Check if FeatureCarousel section is entering the viewport
+      if (featureCarouselRef.current) {
+        const carouselRect = featureCarouselRef.current.getBoundingClientRect();
+        // Only start fading when the carousel section enters the screen
+        if (carouselRect.top < window.innerHeight) {
+          // Calculate fade progress based on how far into the viewport the carousel is
+          const fadeProgress = Math.min(1, (window.innerHeight - carouselRect.top) / (window.innerHeight * 0.3));
+          setLogoFadeOut(fadeProgress);
+        } else {
+          setLogoFadeOut(0); // Carousel not visible yet, logo stays at full opacity
+        }
       }
     };
 
@@ -139,7 +128,7 @@ const Home = () => {
       <section className="relative min-h-screen flex items-center justify-center px-4 sm:px-6 lg:px-8 overflow-hidden bg-black">
         <div className="container mx-auto text-center max-w-6xl relative z-10">
           <h1 className="text-6xl sm:text-7xl lg:text-8xl font-normal mb-8 tracking-tight animate-fade-in-slow">
-            Lawsuits Reimagined,
+            Lawsuits, Reimagined.
           </h1>
           <p className="text-2xl sm:text-3xl text-zinc-300 mb-16 max-w-4xl mx-auto leading-relaxed opacity-0 animate-fade-in" style={{ animationDelay: '0.5s', animationFillMode: 'forwards' }}>
             An AI-powered platform that connects lawyers and clients through automation and clarity.
@@ -165,7 +154,7 @@ const Home = () => {
         className="relative h-[300vh] bg-gradient-to-b from-black via-zinc-950 to-black"
       >
         <div className="sticky top-0 h-screen flex items-center justify-center px-4 sm:px-6 lg:px-8">
-          {/* Typewriter Text - fades out during first phase (logoPhase 0-0.6) */}
+          {/* Typewriter Text - fades out longer over first 60% of logo phase */}
           <div 
             className="container mx-auto max-w-5xl text-center absolute transition-opacity duration-500"
             style={{ opacity: logoPhase < 0.6 ? 1 - (logoPhase / 0.6) : 0 }}
@@ -178,14 +167,14 @@ const Home = () => {
             </p>
           </div>
           
-          {/* Logo - fades in after text fade-out, stays at full opacity, fades out when section top reaches viewport top */}
+          {/* Logo - starts fading in at 50% of logo phase, scales to 1.3, fades out when section reaches top third */}
           {(() => {
-            // Logo fade-in: logoPhase goes from 0.6 to 1.0 (text fade-out completes at 0.6)
-            const logoFadeInOpacity = logoPhase <= 0.6 ? 0 : (logoPhase - 0.6) / 0.4;
-            // Final opacity: combine fade-in with fade-out
-            const finalOpacity = Math.max(0, Math.min(1, logoFadeInOpacity * (1 - logoFadeOut)));
-            // Scale from 0.5 to 1.3 (30% larger) based on fade-in progress
-            const scale = 0.5 + logoFadeInOpacity * 0.8;
+            // Logo only starts appearing at 50% of logoPhase
+            const logoOpacity = Math.max(0, (logoPhase - 0.5) / 0.5);
+            // Fade out is controlled by logoFadeOut state (when section scrolls past viewport)
+            const finalOpacity = logoOpacity * (1 - logoFadeOut);
+            // Scale from 0.5 to 1.3 (30% larger)
+            const scale = 0.5 + logoOpacity * 0.8;
             
             return (
               <div 
