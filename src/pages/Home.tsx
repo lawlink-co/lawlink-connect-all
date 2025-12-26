@@ -4,33 +4,53 @@ import Navigation from "@/components/Navigation";
 import FeatureCarousel from "@/components/FeatureCarousel";
 import { useEffect, useRef, useState } from "react";
 
+// Full typewriter text with line breaks
+const TYPEWRITER_TEXT = `Litigants don't trust lawyers.
+
+Lawyers drown in admin.
+
+The way legal work gets done hasn't evolved
+
+until now.`;
+
 const Home = () => {
-  const [showUntilNow, setShowUntilNow] = useState(false);
+  const [visibleChars, setVisibleChars] = useState(0);
   const problemSectionRef = useRef<HTMLDivElement>(null);
-  const hasTriggeredRef = useRef(false);
   
   // How It Works animation states
   const [howItWorksPhase, setHowItWorksPhase] = useState(0);
   const howItWorksSectionRef = useRef<HTMLDivElement>(null);
   const howItWorksTriggeredRef = useRef(false);
 
+  // Calculate where "until now." starts in the text
+  const untilNowStart = TYPEWRITER_TEXT.indexOf('until now.');
+  const totalChars = TYPEWRITER_TEXT.length;
+
   useEffect(() => {
     const handleScroll = () => {
-      if (!problemSectionRef.current || hasTriggeredRef.current) return;
+      if (!problemSectionRef.current) return;
       
       const section = problemSectionRef.current;
       const rect = section.getBoundingClientRect();
       const sectionHeight = section.offsetHeight;
       
-      // Calculate how far we've scrolled into the section
-      // The section is 200vh tall, so we have 100vh of scroll room
-      const scrollProgress = Math.max(0, -rect.top) / (sectionHeight - window.innerHeight);
+      // Calculate scroll progress (0 to 1)
+      const scrollProgress = Math.max(0, Math.min(1, -rect.top / (sectionHeight - window.innerHeight)));
       
-      // Trigger "until now" when we've scrolled about 30% into the section
-      if (scrollProgress > 0.3 && !hasTriggeredRef.current) {
-        hasTriggeredRef.current = true;
-        setShowUntilNow(true);
+      // Map scroll progress to character index
+      // First 70% of scroll covers text before "until now."
+      // Last 30% of scroll covers "until now." (slower reveal)
+      let charIndex: number;
+      if (scrollProgress <= 0.7) {
+        // Map 0-70% scroll to 0 to untilNowStart characters
+        charIndex = Math.floor((scrollProgress / 0.7) * untilNowStart);
+      } else {
+        // Map 70-100% scroll to untilNowStart to totalChars (slower for "until now.")
+        const slowProgress = (scrollProgress - 0.7) / 0.3;
+        charIndex = untilNowStart + Math.floor(slowProgress * (totalChars - untilNowStart));
       }
+      
+      setVisibleChars(Math.min(charIndex, totalChars));
     };
 
     window.addEventListener('scroll', handleScroll, { passive: true });
@@ -39,7 +59,7 @@ const Home = () => {
     return () => {
       window.removeEventListener('scroll', handleScroll);
     };
-  }, []);
+  }, [untilNowStart, totalChars]);
 
   // How It Works section animation
   useEffect(() => {
@@ -98,30 +118,16 @@ const Home = () => {
         </div>
       </section>
 
-      {/* Problem Section - Scroll-Locked Typography */}
+      {/* Problem Section - Scroll-Locked Typography with Typewriter */}
       <section 
         ref={problemSectionRef}
         className="relative h-[200vh] bg-gradient-to-b from-black via-zinc-950 to-black"
       >
         <div className="sticky top-0 h-screen flex items-center px-4 sm:px-6 lg:px-8">
-          <div className="container mx-auto max-w-5xl text-center space-y-8">
-            <p className="text-3xl sm:text-4xl lg:text-5xl text-zinc-200 font-light leading-tight">
-              Litigants don't trust lawyers.
-            </p>
-            <p className="text-3xl sm:text-4xl lg:text-5xl text-zinc-200 font-light leading-tight">
-              Lawyers drown in admin.
-            </p>
-            <p className="text-3xl sm:text-4xl lg:text-5xl text-zinc-200 font-light leading-tight">
-              The way legal work gets done hasn't evolved
-            </p>
-            <p 
-              className={`text-3xl sm:text-4xl lg:text-5xl text-zinc-200 font-light leading-tight transition-all duration-700 ease-out ${
-                showUntilNow 
-                  ? 'opacity-100 translate-y-0' 
-                  : 'opacity-0 translate-y-4'
-              }`}
-            >
-              until now.
+          <div className="container mx-auto max-w-5xl text-center">
+            <p className="text-3xl sm:text-4xl lg:text-5xl text-zinc-200 font-light leading-relaxed whitespace-pre-wrap">
+              {TYPEWRITER_TEXT.slice(0, visibleChars)}
+              <span className="inline-block w-[3px] h-[1em] bg-zinc-200 ml-1 align-middle animate-caret-blink" />
             </p>
           </div>
         </div>

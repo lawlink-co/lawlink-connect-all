@@ -128,6 +128,10 @@ export default {
             transform: "scale(1)"
           }
         },
+        "caret-blink": {
+          "0%, 50%": { opacity: "1" },
+          "51%, 100%": { opacity: "0" }
+        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
@@ -136,6 +140,7 @@ export default {
         "fade-in-slow": "fade-in-slow 1s ease-out",
         "slide-up": "slide-up 0.8s ease-out",
         "scale-in": "scale-in 0.5s ease-out",
+        "caret-blink": "caret-blink 1s step-end infinite",
       },
     },
   },
