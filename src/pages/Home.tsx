@@ -71,7 +71,7 @@ const Home = () => {
     };
   }, []);
 
-  return <div className="min-h-screen bg-black text-white">
+  return <div className="min-h-screen bg-black text-white font-caslon">
       <Navigation />
       
       {/* Hero Section */}

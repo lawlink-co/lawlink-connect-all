@@ -34,7 +34,7 @@ const LawFirms = () => {
 
     return () => observer.disconnect();
   }, []);
-  return <div className="min-h-screen bg-black text-white font-serif">
+  return <div className="min-h-screen bg-black text-white font-caslon">
       <Navigation />
       
       {/* Hero Section */}
