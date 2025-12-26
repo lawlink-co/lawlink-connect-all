@@ -8,6 +8,11 @@ const Home = () => {
   const [showUntilNow, setShowUntilNow] = useState(false);
   const problemSectionRef = useRef<HTMLDivElement>(null);
   const hasTriggeredRef = useRef(false);
+  
+  // How It Works animation states
+  const [howItWorksPhase, setHowItWorksPhase] = useState(0);
+  const howItWorksSectionRef = useRef<HTMLDivElement>(null);
+  const howItWorksTriggeredRef = useRef(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -33,6 +38,34 @@ const Home = () => {
     
     return () => {
       window.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
+
+  // How It Works section animation
+  useEffect(() => {
+    const handleHowItWorksScroll = () => {
+      if (!howItWorksSectionRef.current || howItWorksTriggeredRef.current) return;
+      
+      const section = howItWorksSectionRef.current;
+      const rect = section.getBoundingClientRect();
+      
+      // Trigger when section is 40% visible
+      if (rect.top < window.innerHeight * 0.6) {
+        howItWorksTriggeredRef.current = true;
+        // Phase 1: Icons appear with "Not Connected"
+        setHowItWorksPhase(1);
+        // Phase 2: Line connects after 800ms
+        setTimeout(() => setHowItWorksPhase(2), 800);
+        // Phase 3: Rest of content loads after 1400ms
+        setTimeout(() => setHowItWorksPhase(3), 1400);
+      }
+    };
+
+    window.addEventListener('scroll', handleHowItWorksScroll, { passive: true });
+    handleHowItWorksScroll();
+    
+    return () => {
+      window.removeEventListener('scroll', handleHowItWorksScroll);
     };
   }, []);
 
@@ -96,106 +129,121 @@ const Home = () => {
       <FeatureCarousel />
 
       {/* How It Works Section - Connection Between Client & Lawyer */}
-      <section className="py-32 px-4 sm:px-6 lg:px-8 bg-black border-t border-zinc-800">
+      <section ref={howItWorksSectionRef} className="py-32 px-4 sm:px-6 lg:px-8 bg-black border-t border-zinc-800">
         <div className="container mx-auto max-w-6xl">
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-semibold mb-8 text-center">How It Works</h2>
-          <p className="text-xl text-zinc-400 text-center mb-20 max-w-3xl mx-auto">
+          <h2 className={`text-3xl sm:text-4xl lg:text-5xl font-semibold mb-8 text-center transition-all duration-500 ${howItWorksPhase >= 3 ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>How It Works</h2>
+          <p className={`text-xl text-zinc-400 text-center mb-20 max-w-3xl mx-auto transition-all duration-500 delay-100 ${howItWorksPhase >= 3 ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
             Amicus bridges clients and their lawyers — making every case tangible, fast-moving, and transparent.
           </p>
 
           {/* Visual Connection */}
           <div className="relative mb-24">
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-center">
-              {/* For Clients */}
+              {/* For Clients - Icon shows first */}
               <div className="relative group">
-                <div className="absolute -inset-1 bg-gradient-to-r from-blue-500 to-primary rounded-lg blur opacity-25 group-hover:opacity-40 transition duration-500"></div>
-                <div className="relative bg-zinc-950 border border-zinc-800 rounded-lg p-10 hover:border-blue-500/50 transition-all duration-300">
+                <div className={`absolute -inset-1 bg-gradient-to-r from-blue-500 to-primary rounded-lg blur transition-opacity duration-500 ${howItWorksPhase >= 1 ? 'opacity-25 group-hover:opacity-40' : 'opacity-0'}`}></div>
+                <div className={`relative bg-zinc-950 border border-zinc-800 rounded-lg p-10 transition-all duration-500 ${howItWorksPhase >= 1 ? 'opacity-100 scale-100' : 'opacity-0 scale-95'} hover:border-blue-500/50`}>
                   <div className="w-20 h-20 bg-blue-500/20 rounded-full flex items-center justify-center mx-auto mb-6">
                     <svg className="w-10 h-10 text-blue-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
                     </svg>
                   </div>
-                  <h3 className="text-2xl font-semibold mb-4 text-center">For Clients</h3>
-                  <p className="text-zinc-400 text-center mb-6 leading-relaxed">
-                    Your case becomes <span className="text-white font-semibold">real</span> through an interactive app.
-                  </p>
-                  <ul className="space-y-3 text-sm text-zinc-400">
-                    <li className="flex items-start">
-                      <span className="text-blue-400 mr-2">→</span>
-                      <span>See progress in real-time</span>
-                    </li>
-                    <li className="flex items-start">
-                      <span className="text-blue-400 mr-2">→</span>
-                      <span>Receive instant updates</span>
-                    </li>
-                    <li className="flex items-start">
-                      <span className="text-blue-400 mr-2">→</span>
-                      <span>Understand what's happening</span>
-                    </li>
-                  </ul>
+                  <div className={`transition-all duration-500 delay-200 ${howItWorksPhase >= 3 ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
+                    <h3 className="text-2xl font-semibold mb-4 text-center">For Clients</h3>
+                    <p className="text-zinc-400 text-center mb-6 leading-relaxed">
+                      Your case becomes <span className="text-white font-semibold">real</span> through an interactive app.
+                    </p>
+                    <ul className="space-y-3 text-sm text-zinc-400">
+                      <li className="flex items-start">
+                        <span className="text-blue-400 mr-2">→</span>
+                        <span>See progress in real-time</span>
+                      </li>
+                      <li className="flex items-start">
+                        <span className="text-blue-400 mr-2">→</span>
+                        <span>Receive instant updates</span>
+                      </li>
+                      <li className="flex items-start">
+                        <span className="text-blue-400 mr-2">→</span>
+                        <span>Understand what's happening</span>
+                      </li>
+                    </ul>
+                  </div>
                 </div>
               </div>
 
-              {/* Connection Visual */}
+              {/* Connection Visual - Shows "Not Connected" first, then animates to "Connected" */}
               <div className="hidden lg:flex flex-col items-center justify-center">
                 <div className="relative">
-                  <div className="absolute inset-0 bg-gradient-to-r from-blue-500 via-primary to-blue-500 blur-xl opacity-50 animate-pulse"></div>
+                  {/* Glow appears when connected */}
+                  <div className={`absolute inset-0 bg-gradient-to-r from-blue-500 via-primary to-blue-500 blur-xl transition-opacity duration-700 ${howItWorksPhase >= 2 ? 'opacity-50 animate-pulse' : 'opacity-0'}`}></div>
                   <div className="relative flex flex-col items-center gap-4">
-                    <div className="w-3 h-3 bg-blue-400 rounded-full animate-pulse"></div>
-                    <div className="w-1 h-16 bg-gradient-to-b from-blue-400 to-primary"></div>
-                    <div className="w-6 h-6 bg-primary rounded-full flex items-center justify-center">
+                    {/* Top dot - always shows in phase 1 */}
+                    <div className={`w-3 h-3 bg-blue-400 rounded-full transition-all duration-500 ${howItWorksPhase >= 1 ? 'opacity-100 scale-100' : 'opacity-0 scale-0'} ${howItWorksPhase >= 2 ? 'animate-pulse' : ''}`}></div>
+                    
+                    {/* Top line - grows in phase 2 */}
+                    <div className={`w-1 bg-gradient-to-b from-blue-400 to-primary transition-all duration-500 origin-top ${howItWorksPhase >= 2 ? 'h-16 opacity-100' : 'h-0 opacity-0'}`}></div>
+                    
+                    {/* Center node - appears in phase 2 */}
+                    <div className={`w-6 h-6 bg-primary rounded-full flex items-center justify-center transition-all duration-300 ${howItWorksPhase >= 2 ? 'opacity-100 scale-100' : 'opacity-0 scale-0'}`}>
                       <div className="w-3 h-3 bg-white rounded-full"></div>
                     </div>
-                    <div className="w-1 h-16 bg-gradient-to-b from-primary to-blue-400"></div>
-                    <div className="w-3 h-3 bg-blue-400 rounded-full animate-pulse"></div>
+                    
+                    {/* Bottom line - grows in phase 2 */}
+                    <div className={`w-1 bg-gradient-to-b from-primary to-blue-400 transition-all duration-500 delay-200 origin-top ${howItWorksPhase >= 2 ? 'h-16 opacity-100' : 'h-0 opacity-0'}`}></div>
+                    
+                    {/* Bottom dot - always shows in phase 1 */}
+                    <div className={`w-3 h-3 bg-blue-400 rounded-full transition-all duration-500 ${howItWorksPhase >= 1 ? 'opacity-100 scale-100' : 'opacity-0 scale-0'} ${howItWorksPhase >= 2 ? 'animate-pulse' : ''}`}></div>
                   </div>
                 </div>
-                <p className="text-xs text-zinc-500 mt-6 text-center font-semibold tracking-wider uppercase">
-                  Connected
+                {/* Status text - changes from "Not Connected" to "Connected" */}
+                <p className={`text-xs mt-6 text-center font-semibold tracking-wider uppercase transition-all duration-500 ${howItWorksPhase >= 1 ? 'opacity-100' : 'opacity-0'} ${howItWorksPhase >= 2 ? 'text-primary' : 'text-zinc-500'}`}>
+                  {howItWorksPhase >= 2 ? 'Connected' : 'Not Connected'}
                 </p>
               </div>
 
-              {/* For Lawyers */}
+              {/* For Lawyers - Icon shows first */}
               <div className="relative group">
-                <div className="absolute -inset-1 bg-gradient-to-r from-primary to-blue-500 rounded-lg blur opacity-25 group-hover:opacity-40 transition duration-500"></div>
-                <div className="relative bg-zinc-950 border border-zinc-800 rounded-lg p-10 hover:border-primary/50 transition-all duration-300">
+                <div className={`absolute -inset-1 bg-gradient-to-r from-primary to-blue-500 rounded-lg blur transition-opacity duration-500 ${howItWorksPhase >= 1 ? 'opacity-25 group-hover:opacity-40' : 'opacity-0'}`}></div>
+                <div className={`relative bg-zinc-950 border border-zinc-800 rounded-lg p-10 transition-all duration-500 delay-100 ${howItWorksPhase >= 1 ? 'opacity-100 scale-100' : 'opacity-0 scale-95'} hover:border-primary/50`}>
                   <div className="w-20 h-20 bg-primary/20 rounded-full flex items-center justify-center mx-auto mb-6">
                     <svg className="w-10 h-10 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
                     </svg>
                   </div>
-                  <h3 className="text-2xl font-semibold mb-4 text-center">For Lawyers</h3>
-                  <p className="text-zinc-400 text-center mb-6 leading-relaxed">
-                    A <span className="text-white font-semibold">magnificent infrastructure</span> to handle litigation faster.
-                  </p>
-                  <ul className="space-y-3 text-sm text-zinc-400">
-                    <li className="flex items-start">
-                      <span className="text-primary mr-2">→</span>
-                      <span>AI-powered drafting</span>
-                    </li>
-                    <li className="flex items-start">
-                      <span className="text-primary mr-2">→</span>
-                      <span>Intelligent automation</span>
-                    </li>
-                    <li className="flex items-start">
-                      <span className="text-primary mr-2">→</span>
-                      <span>Turn chaos into clarity</span>
-                    </li>
-                  </ul>
+                  <div className={`transition-all duration-500 delay-300 ${howItWorksPhase >= 3 ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
+                    <h3 className="text-2xl font-semibold mb-4 text-center">For Lawyers</h3>
+                    <p className="text-zinc-400 text-center mb-6 leading-relaxed">
+                      A <span className="text-white font-semibold">magnificent infrastructure</span> to handle litigation faster.
+                    </p>
+                    <ul className="space-y-3 text-sm text-zinc-400">
+                      <li className="flex items-start">
+                        <span className="text-primary mr-2">→</span>
+                        <span>AI-powered drafting</span>
+                      </li>
+                      <li className="flex items-start">
+                        <span className="text-primary mr-2">→</span>
+                        <span>Intelligent automation</span>
+                      </li>
+                      <li className="flex items-start">
+                        <span className="text-primary mr-2">→</span>
+                        <span>Turn chaos into clarity</span>
+                      </li>
+                    </ul>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
 
-          {/* Shared Outcome */}
-          <div className="relative">
+          {/* Shared Outcome - appears in phase 3 */}
+          <div className={`relative transition-all duration-700 delay-300 ${howItWorksPhase >= 3 ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
             <div className="absolute inset-0 bg-gradient-to-r from-blue-500/10 via-primary/10 to-blue-500/10 blur-3xl"></div>
             <div className="relative bg-zinc-950/80 border border-zinc-800 rounded-lg p-12 text-center backdrop-blur">
               <h3 className="text-2xl sm:text-3xl font-semibold mb-6">
                 For Both: Progress That Moves
               </h3>
               <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl mx-auto">
-                <div className="flex flex-col items-center">
+                <div className={`flex flex-col items-center transition-all duration-500 delay-[400ms] ${howItWorksPhase >= 3 ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
                   <div className="w-16 h-16 bg-gradient-to-br from-blue-500/20 to-primary/20 rounded-full flex items-center justify-center mb-4">
                     <svg className="w-8 h-8 text-blue-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
@@ -204,7 +252,7 @@ const Home = () => {
                   <p className="text-white font-semibold mb-2">Faster Forward</p>
                   <p className="text-sm text-zinc-400">Every case moves at the speed of technology</p>
                 </div>
-                <div className="flex flex-col items-center">
+                <div className={`flex flex-col items-center transition-all duration-500 delay-[500ms] ${howItWorksPhase >= 3 ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
                   <div className="w-16 h-16 bg-gradient-to-br from-blue-500/20 to-primary/20 rounded-full flex items-center justify-center mb-4">
                     <svg className="w-8 h-8 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" />
@@ -213,7 +261,7 @@ const Home = () => {
                   <p className="text-white font-semibold mb-2">Instant Updates</p>
                   <p className="text-sm text-zinc-400">Shared in real-time, never missed</p>
                 </div>
-                <div className="flex flex-col items-center">
+                <div className={`flex flex-col items-center transition-all duration-500 delay-[600ms] ${howItWorksPhase >= 3 ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
                   <div className="w-16 h-16 bg-gradient-to-br from-blue-500/20 to-primary/20 rounded-full flex items-center justify-center mb-4">
                     <svg className="w-8 h-8 text-blue-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
