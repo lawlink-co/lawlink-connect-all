@@ -17,6 +17,7 @@ until now.`;
 const Home = () => {
   const [visibleChars, setVisibleChars] = useState(0);
   const [logoPhase, setLogoPhase] = useState(0); // 0 = hidden, 0-1 = transitioning (text fade out, logo fade in/scale)
+  const [logoFadeOut, setLogoFadeOut] = useState(0); // 0 = fully visible, 1 = fully faded out
   const problemSectionRef = useRef<HTMLDivElement>(null);
   
   // How It Works animation states
@@ -59,11 +60,27 @@ const Home = () => {
         
         setVisibleChars(Math.min(charIndex, totalChars));
         setLogoPhase(0);
+        setLogoFadeOut(0);
       } else {
         // Logo transition phase - map 50%-100% to 0-1
         setVisibleChars(totalChars);
         const logoProgress = (scrollProgress - 0.5) / 0.5;
         setLogoPhase(logoProgress);
+        // No fade out during sticky phase - logo stays at full opacity
+        setLogoFadeOut(0);
+      }
+      
+      // Check if section has scrolled past and is at top third of screen
+      // This happens after the sticky section ends (when rect.top becomes very negative)
+      const stickyEndPoint = -(sectionHeight - window.innerHeight);
+      if (rect.top < stickyEndPoint) {
+        // Section is now scrolling normally past the viewport
+        // Calculate how far past the top third of the screen the section is
+        const topThird = window.innerHeight / 3;
+        const distancePastTopThird = Math.abs(rect.top) - Math.abs(stickyEndPoint);
+        const fadeOutDistance = topThird; // Fade out over the distance to top third
+        const fadeProgress = Math.min(1, distancePastTopThird / fadeOutDistance);
+        setLogoFadeOut(fadeProgress);
       }
     };
 
@@ -151,13 +168,12 @@ const Home = () => {
             </p>
           </div>
           
-          {/* Logo - starts fading in at 50% of logo phase, scales to 1.3, fades out only at very end */}
+          {/* Logo - starts fading in at 50% of logo phase, scales to 1.3, fades out when section reaches top third */}
           {(() => {
             // Logo only starts appearing at 50% of logoPhase
             const logoOpacity = Math.max(0, (logoPhase - 0.5) / 0.5);
-            // Only fade out in the last 5% of scroll (logoPhase 0.95-1.0) - stays at full opacity longer
-            const fadeOutProgress = logoPhase > 0.95 ? (logoPhase - 0.95) / 0.05 : 0;
-            const finalOpacity = logoOpacity * (1 - fadeOutProgress);
+            // Fade out is controlled by logoFadeOut state (when section scrolls past viewport)
+            const finalOpacity = logoOpacity * (1 - logoFadeOut);
             // Scale from 0.5 to 1.3 (30% larger)
             const scale = 0.5 + logoOpacity * 0.8;
             
