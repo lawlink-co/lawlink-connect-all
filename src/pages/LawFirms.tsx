@@ -202,7 +202,7 @@ const LawFirms = () => {
                     muted 
                     playsInline
                   >
-                    <source src="/videos/customization-demo.mp4?v=4" type="video/mp4" />
+                    <source src="/videos/customization-demo.mp4?v=5" type="video/mp4" />
                     Your browser does not support the video tag.
                   </video>
                 </div>
