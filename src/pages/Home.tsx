@@ -6,6 +6,7 @@ import { useEffect, useRef, useState } from "react";
 import amicusGoldenA from "@/assets/amicus-golden-a.png";
 import amicusLogo from "@/assets/amicus-golden-a.png";
 import amicusALogo from "@/assets/amicus-a-logo.png";
+import amicusGoldenASmall from "@/assets/amicus-golden-a-small.png";
 
 // Full typewriter text with line breaks (added dash after evolved)
 const TYPEWRITER_TEXT = `Litigants don't trust lawyers.
@@ -259,10 +260,11 @@ const Home = () => {
               </div>
 
               {/* Center Logo */}
-              <div className={`flex-shrink-0 transition-all duration-500 delay-100 ${howItWorksPhase >= 2 ? 'opacity-100 scale-100' : 'opacity-0 scale-90'}`}>
+              <div className={`flex-shrink-0 flex flex-col items-center transition-all duration-500 delay-100 ${howItWorksPhase >= 2 ? 'opacity-100 scale-100' : 'opacity-0 scale-90'}`}>
                 <div className="w-24 h-24 rounded-2xl overflow-hidden shadow-2xl shadow-black/50">
                   <img src={amicusALogo} alt="Amicus" className="w-full h-full object-cover" />
                 </div>
+                <img src={amicusGoldenASmall} alt="Amicus" className="w-10 h-auto mt-2" />
               </div>
 
               {/* Right Connector */}
@@ -326,10 +328,11 @@ const Home = () => {
               <div className={`h-8 border-l-2 border-dashed border-gold/50 transition-all duration-500 ${howItWorksPhase >= 2 ? 'opacity-100' : 'opacity-0'}`}></div>
 
               {/* Center Logo */}
-              <div className={`transition-all duration-500 ${howItWorksPhase >= 2 ? 'opacity-100 scale-100' : 'opacity-0 scale-90'}`}>
+              <div className={`flex flex-col items-center transition-all duration-500 ${howItWorksPhase >= 2 ? 'opacity-100 scale-100' : 'opacity-0 scale-90'}`}>
                 <div className="w-20 h-20 rounded-xl overflow-hidden shadow-xl shadow-black/50">
                   <img src={amicusALogo} alt="Amicus" className="w-full h-full object-cover" />
                 </div>
+                <img src={amicusGoldenASmall} alt="Amicus" className="w-8 h-auto mt-1.5" />
               </div>
 
               {/* Mobile Connector */}
