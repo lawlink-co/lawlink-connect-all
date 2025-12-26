@@ -5,6 +5,7 @@ import FeatureCarousel from "@/components/FeatureCarousel";
 import { useEffect, useRef, useState } from "react";
 import amicusGoldenA from "@/assets/amicus-golden-a.png";
 import amicusLogo from "@/assets/amicus-golden-a.png";
+import amicusALogo from "@/assets/amicus-a-logo.png";
 
 // Full typewriter text with line breaks (added dash after evolved)
 const TYPEWRITER_TEXT = `Litigants don't trust lawyers.
@@ -219,11 +220,6 @@ const Home = () => {
 
           {/* Visual Connection - Horizontal layout */}
           <div className="relative mb-16">
-            {/* Desktop: Horizontal connector line behind cards */}
-            <div className="hidden lg:block absolute top-1/2 left-0 right-0 -translate-y-1/2 z-0">
-              <div className={`h-px bg-gradient-to-r from-transparent via-gold/60 to-transparent transition-all duration-700 ${howItWorksPhase >= 2 ? 'opacity-100' : 'opacity-0'}`}></div>
-            </div>
-
             <div className="grid grid-cols-1 lg:grid-cols-5 gap-4 lg:gap-0 items-stretch relative z-10">
               {/* For Clients */}
               <div className={`lg:col-span-2 bg-zinc-950 border border-zinc-800/50 rounded-lg p-6 transition-all duration-500 ${howItWorksPhase >= 1 ? 'opacity-100' : 'opacity-0'} hover:border-gold/30 hover:shadow-lg hover:shadow-gold/5`}>
@@ -254,29 +250,29 @@ const Home = () => {
                 </div>
               </div>
 
-              {/* Mobile: Connector line down */}
-              <div className="lg:hidden flex flex-col items-center py-2">
-                <div className={`w-px h-6 bg-gold/60 transition-all duration-500 ${howItWorksPhase >= 2 ? 'opacity-100' : 'opacity-0'}`}></div>
-                <div className={`w-2 h-2 bg-gold rounded-full transition-all duration-500 ${howItWorksPhase >= 2 ? 'opacity-100 scale-100' : 'opacity-0 scale-0'}`}></div>
-                <div className={`w-px h-6 bg-gold/60 transition-all duration-500 ${howItWorksPhase >= 2 ? 'opacity-100' : 'opacity-0'}`}></div>
+              {/* Desktop: Dotted connector line to center */}
+              <div className="hidden lg:flex items-center justify-center">
+                <div className={`w-full border-t-2 border-dashed border-gold/60 transition-all duration-700 ${howItWorksPhase >= 2 ? 'opacity-100' : 'opacity-0'}`}></div>
               </div>
 
-              {/* Center: Amicus Platform */}
+              {/* Mobile: Connector line down */}
+              <div className="lg:hidden flex flex-col items-center py-2">
+                <div className={`w-px h-6 border-l-2 border-dashed border-gold/60 transition-all duration-500 ${howItWorksPhase >= 2 ? 'opacity-100' : 'opacity-0'}`}></div>
+              </div>
+
+              {/* Center: Amicus Platform - Just the logo image */}
               <div className={`lg:col-span-1 flex items-center justify-center transition-all duration-500 delay-100 ${howItWorksPhase >= 2 ? 'opacity-100 scale-100' : 'opacity-0 scale-95'}`}>
-                <div className="bg-zinc-900 border border-gold/40 rounded-lg p-4 lg:p-5 text-center shadow-lg shadow-gold/5">
-                  <div className="w-10 h-10 bg-gold/10 border border-gold/50 rounded-full flex items-center justify-center mx-auto mb-2">
-                    <img src={amicusLogo} alt="Amicus" className="w-5 h-5 object-contain" />
-                  </div>
-                  <p className="text-gold text-xs font-medium tracking-wide uppercase">Amicus</p>
-                  <p className="text-zinc-500 text-[10px] mt-0.5">Platform</p>
-                </div>
+                <img src={amicusALogo} alt="Amicus" className="w-20 h-20 object-contain" />
               </div>
 
               {/* Mobile: Connector line down */}
               <div className="lg:hidden flex flex-col items-center py-2">
-                <div className={`w-px h-6 bg-gold/60 transition-all duration-500 ${howItWorksPhase >= 2 ? 'opacity-100' : 'opacity-0'}`}></div>
-                <div className={`w-2 h-2 bg-gold rounded-full transition-all duration-500 ${howItWorksPhase >= 2 ? 'opacity-100 scale-100' : 'opacity-0 scale-0'}`}></div>
-                <div className={`w-px h-6 bg-gold/60 transition-all duration-500 ${howItWorksPhase >= 2 ? 'opacity-100' : 'opacity-0'}`}></div>
+                <div className={`w-px h-6 border-l-2 border-dashed border-gold/60 transition-all duration-500 ${howItWorksPhase >= 2 ? 'opacity-100' : 'opacity-0'}`}></div>
+              </div>
+
+              {/* Desktop: Dotted connector line from center */}
+              <div className="hidden lg:flex items-center justify-center">
+                <div className={`w-full border-t-2 border-dashed border-gold/60 transition-all duration-700 ${howItWorksPhase >= 2 ? 'opacity-100' : 'opacity-0'}`}></div>
               </div>
 
               {/* For Lawyers */}
@@ -307,12 +303,6 @@ const Home = () => {
                   </ul>
                 </div>
               </div>
-            </div>
-
-            {/* Desktop: Gold nodes at connection points */}
-            <div className="hidden lg:flex absolute top-1/2 left-0 right-0 -translate-y-1/2 z-20 justify-between px-[18%] pointer-events-none">
-              <div className={`w-2.5 h-2.5 bg-gold rounded-full shadow-lg shadow-gold/30 transition-all duration-500 ${howItWorksPhase >= 2 ? 'opacity-100 scale-100' : 'opacity-0 scale-0'}`}></div>
-              <div className={`w-2.5 h-2.5 bg-gold rounded-full shadow-lg shadow-gold/30 transition-all duration-500 delay-100 ${howItWorksPhase >= 2 ? 'opacity-100 scale-100' : 'opacity-0 scale-0'}`}></div>
             </div>
           </div>
 
