@@ -16,7 +16,8 @@ until now.`;
 
 const Home = () => {
   const [visibleChars, setVisibleChars] = useState(0);
-  const [logoPhase, setLogoPhase] = useState(0); // 0 = hidden, 0-1 = transitioning (text fade out, logo fade in/scale)
+  const [textFadedOut, setTextFadedOut] = useState(false); // true when text is fully gone
+  const [logoVisible, setLogoVisible] = useState(false); // true when logo should be at full opacity
   const [logoFadeOut, setLogoFadeOut] = useState(0); // 0 = fully visible, 1 = fully faded out
   const problemSectionRef = useRef<HTMLDivElement>(null);
   const featureCarouselRef = useRef<HTMLDivElement>(null);
@@ -42,12 +43,14 @@ const Home = () => {
       // Section is now 300vh, so we have 200vh of scroll room
       const scrollProgress = Math.max(0, Math.min(1, -rect.top / (sectionHeight - window.innerHeight)));
       
-      // Phase 1: Typewriter (0% - 50% scroll)
-      // Phase 2: Logo transition (50% - 100% scroll)
+      // Phase 1: Typewriter (0% - 40% scroll)
+      // Phase 2: Text fade out (40% - 55% scroll)  
+      // Phase 3: Logo fade in (55% - 70% scroll)
+      // Phase 4: Logo holds at full opacity (70% - 100% scroll)
       
-      if (scrollProgress <= 0.5) {
-        // Typewriter phase - map 0-50% to full text
-        const typewriterProgress = scrollProgress / 0.5;
+      if (scrollProgress <= 0.4) {
+        // Typewriter phase - map 0-40% to full text
+        const typewriterProgress = scrollProgress / 0.4;
         
         let charIndex: number;
         if (typewriterProgress <= 0.7) {
@@ -60,25 +63,36 @@ const Home = () => {
         }
         
         setVisibleChars(Math.min(charIndex, totalChars));
-        setLogoPhase(0);
-        setLogoFadeOut(0);
-      } else {
-        // Logo transition phase - map 50%-100% to 0-1
+        setTextFadedOut(false);
+        setLogoVisible(false);
+      } else if (scrollProgress <= 0.55) {
+        // Text fade out phase - text fades, logo not yet visible
         setVisibleChars(totalChars);
-        const logoProgress = (scrollProgress - 0.5) / 0.5;
-        setLogoPhase(logoProgress);
+        setTextFadedOut(true);
+        setLogoVisible(false);
+      } else {
+        // Logo visible phase - text gone, logo at full opacity
+        setVisibleChars(totalChars);
+        setTextFadedOut(true);
+        setLogoVisible(true);
       }
       
-      // Check if FeatureCarousel section is entering the viewport
-      if (featureCarouselRef.current) {
-        const carouselRect = featureCarouselRef.current.getBoundingClientRect();
-        // Only start fading when the carousel section enters the screen
-        if (carouselRect.top < window.innerHeight) {
-          // Calculate fade progress based on how far into the viewport the carousel is
-          const fadeProgress = Math.min(1, (window.innerHeight - carouselRect.top) / (window.innerHeight * 0.3));
-          setLogoFadeOut(fadeProgress);
+      // Logo fade out ONLY when problem section reaches top of viewport
+      // (i.e., when the sticky section is about to exit)
+      const stickyElement = section.querySelector('.sticky');
+      if (stickyElement) {
+        const stickyRect = stickyElement.getBoundingClientRect();
+        // Only fade out when the section's top is at or above the viewport top
+        // and the section is about to scroll out
+        const sectionBottom = rect.bottom;
+        const viewportHeight = window.innerHeight;
+        
+        // Start fading when section bottom is less than viewport height (section exiting)
+        if (sectionBottom < viewportHeight && sectionBottom > 0) {
+          const fadeProgress = 1 - (sectionBottom / viewportHeight);
+          setLogoFadeOut(Math.min(1, fadeProgress * 2)); // Faster fade
         } else {
-          setLogoFadeOut(0); // Carousel not visible yet, logo stays at full opacity
+          setLogoFadeOut(0);
         }
       }
     };
@@ -154,44 +168,33 @@ const Home = () => {
         className="relative h-[300vh] bg-gradient-to-b from-black via-zinc-950 to-black"
       >
         <div className="sticky top-0 h-screen flex items-center justify-center px-4 sm:px-6 lg:px-8">
-          {/* Typewriter Text - fades out longer over first 60% of logo phase */}
+          {/* Typewriter Text - fades out when textFadedOut is true */}
           <div 
-            className="container mx-auto max-w-5xl text-center absolute transition-opacity duration-500"
-            style={{ opacity: logoPhase < 0.6 ? 1 - (logoPhase / 0.6) : 0 }}
+            className="container mx-auto max-w-5xl text-center absolute transition-opacity duration-700"
+            style={{ opacity: textFadedOut ? 0 : 1 }}
           >
             <p className="text-3xl sm:text-4xl lg:text-5xl text-zinc-200 font-light leading-relaxed whitespace-pre-wrap">
               {TYPEWRITER_TEXT.slice(0, visibleChars)}
-              {logoPhase === 0 && (
+              {!textFadedOut && visibleChars < totalChars && (
                 <span className="inline-block w-[3px] h-[1em] bg-zinc-200 ml-1 align-middle animate-caret-blink" />
               )}
             </p>
           </div>
           
-          {/* Logo - starts fading in at 50% of logo phase, scales to 1.3, fades out when section reaches top third */}
-          {(() => {
-            // Logo only starts appearing at 50% of logoPhase
-            const logoOpacity = Math.max(0, (logoPhase - 0.5) / 0.5);
-            // Fade out is controlled by logoFadeOut state (when section scrolls past viewport)
-            const finalOpacity = logoOpacity * (1 - logoFadeOut);
-            // Scale from 0.5 to 1.3 (30% larger)
-            const scale = 0.5 + logoOpacity * 0.8;
-            
-            return (
-              <div 
-                className="absolute flex items-center justify-center transition-all duration-300"
-                style={{ 
-                  opacity: finalOpacity,
-                  transform: `scale(${scale})`
-                }}
-              >
-                <img 
-                  src={amicusGoldenA} 
-                  alt="Amicus" 
-                  className="w-48 sm:w-64 lg:w-80 h-auto"
-                />
-              </div>
-            );
-          })()}
+          {/* Logo - fades in AFTER text is fully gone, stays at full opacity until section exits viewport */}
+          <div 
+            className="absolute flex items-center justify-center transition-opacity duration-700"
+            style={{ 
+              opacity: logoVisible ? (1 - logoFadeOut) : 0,
+              transform: 'scale(1.3)'
+            }}
+          >
+            <img 
+              src={amicusGoldenA} 
+              alt="Amicus" 
+              className="w-48 sm:w-64 lg:w-80 h-auto"
+            />
+          </div>
         </div>
       </section>
 
