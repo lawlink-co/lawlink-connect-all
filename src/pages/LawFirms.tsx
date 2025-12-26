@@ -5,33 +5,28 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import Navigation from "@/components/Navigation";
 import ScrollRevealImages from "@/components/ScrollRevealImages";
 import { useEffect, useRef, useState } from "react";
-
 const LawFirms = () => {
   const [visibleCards, setVisibleCards] = useState<number[]>([]);
   const securitySectionRef = useRef<HTMLDivElement>(null);
-
   useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            // Stagger the card animations
-            [0, 1, 2].forEach((index) => {
-              setTimeout(() => {
-                setVisibleCards((prev) => [...prev, index]);
-              }, index * 200);
-            });
-            observer.disconnect();
-          }
-        });
-      },
-      { threshold: 0.3 }
-    );
-
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          // Stagger the card animations
+          [0, 1, 2].forEach(index => {
+            setTimeout(() => {
+              setVisibleCards(prev => [...prev, index]);
+            }, index * 200);
+          });
+          observer.disconnect();
+        }
+      });
+    }, {
+      threshold: 0.3
+    });
     if (securitySectionRef.current) {
       observer.observe(securitySectionRef.current);
     }
-
     return () => observer.disconnect();
   }, []);
   return <div className="min-h-screen bg-black text-white font-caslon">
@@ -42,18 +37,37 @@ const LawFirms = () => {
         <div className="container mx-auto max-w-5xl text-center">
           <h1 className="text-5xl sm:text-6xl lg:text-7xl font-light leading-tight tracking-wide mb-8">
             <div className="flex flex-col">
-              <span className="opacity-0 animate-fade-in" style={{ animationDelay: '0ms', animationFillMode: 'forwards' }}>Push Cases,</span>
-              <span className="opacity-0 animate-fade-in" style={{ animationDelay: '200ms', animationFillMode: 'forwards' }}>Draft Briefs,</span>
-              <span className="opacity-0 animate-fade-in" style={{ animationDelay: '400ms', animationFillMode: 'forwards' }}>Keep Clients Satisfied.</span>
+              <span className="opacity-0 animate-fade-in" style={{
+              animationDelay: '0ms',
+              animationFillMode: 'forwards'
+            }}>Push Cases,</span>
+              <span className="opacity-0 animate-fade-in" style={{
+              animationDelay: '200ms',
+              animationFillMode: 'forwards'
+            }}>Draft Briefs,</span>
+              <span className="opacity-0 animate-fade-in" style={{
+              animationDelay: '400ms',
+              animationFillMode: 'forwards'
+            }}>Keep Clients Satisfied.</span>
             </div>
           </h1>
-          <p className="text-4xl sm:text-5xl text-white font-light mb-6 opacity-0 animate-fade-in" style={{ animationDelay: '800ms', animationFillMode: 'forwards', animationDuration: '600ms' }}>
+          <p className="text-4xl sm:text-5xl text-white font-light mb-6 opacity-0 animate-fade-in" style={{
+          animationDelay: '800ms',
+          animationFillMode: 'forwards',
+          animationDuration: '600ms'
+        }}>
             All On One Platform.
           </p>
-          <p className="text-xl sm:text-2xl text-zinc-400 font-light mb-12 opacity-0 animate-fade-in" style={{ animationDelay: '1400ms', animationFillMode: 'forwards' }}>
+          <p style={{
+          animationDelay: '1400ms',
+          animationFillMode: 'forwards'
+        }} className="text-xl text-zinc-400 font-light mb-12 opacity-0 animate-fade-in sm:text-lg">
             From drafting to client updates, every part of your practice connected by AI.
           </p>
-          <div className="opacity-0 animate-fade-in" style={{ animationDelay: '1400ms', animationFillMode: 'forwards' }}>
+          <div className="opacity-0 animate-fade-in" style={{
+          animationDelay: '1400ms',
+          animationFillMode: 'forwards'
+        }}>
             <Button size="lg" className="text-lg px-14 py-8 bg-white text-black hover:bg-zinc-200 transition-all duration-300 hover:scale-105 font-sans">
               Book a Demo
             </Button>
@@ -136,13 +150,7 @@ const LawFirms = () => {
               <div className="bg-zinc-950 border border-zinc-800 rounded-lg p-8 sm:p-12">
                 {/* Demo Video */}
                 <div className="mb-10 rounded-lg overflow-hidden">
-                  <video 
-                    className="w-full aspect-video rounded-lg"
-                    autoPlay 
-                    loop 
-                    muted 
-                    playsInline
-                  >
+                  <video className="w-full aspect-video rounded-lg" autoPlay loop muted playsInline>
                     <source src="/videos/drafting-demo.mp4?v=1" type="video/mp4" />
                     Your browser does not support the video tag.
                   </video>
@@ -173,13 +181,7 @@ const LawFirms = () => {
               <div className="bg-zinc-950 border border-zinc-800 rounded-lg p-8 sm:p-12">
                 {/* Demo Video */}
                 <div className="mb-10 rounded-lg overflow-hidden">
-                  <video 
-                    className="w-full aspect-video rounded-lg"
-                    autoPlay 
-                    loop 
-                    muted 
-                    playsInline
-                  >
+                  <video className="w-full aspect-video rounded-lg" autoPlay loop muted playsInline>
                     <source src="/videos/mobile-ai-chat.mp4" type="video/mp4" />
                     Your browser does not support the video tag.
                   </video>
@@ -209,13 +211,7 @@ const LawFirms = () => {
               <div className="bg-zinc-950 border border-zinc-800 rounded-lg p-8 sm:p-12">
                 {/* Demo Video */}
                 <div className="mb-10 rounded-lg overflow-hidden">
-                  <video 
-                    className="w-full aspect-video rounded-lg"
-                    autoPlay 
-                    loop 
-                    muted 
-                    playsInline
-                  >
+                  <video className="w-full aspect-video rounded-lg" autoPlay loop muted playsInline>
                     <source src="/videos/customization-demo.mp4?v=5" type="video/mp4" />
                     Your browser does not support the video tag.
                   </video>
@@ -280,11 +276,7 @@ const LawFirms = () => {
           </div>
 
           <div ref={securitySectionRef} className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <Card className={`bg-zinc-950 border-zinc-800 hover:border-primary transition-all duration-500 ${
-              visibleCards.includes(0) 
-                ? 'opacity-100 translate-y-0' 
-                : 'opacity-0 translate-y-8'
-            }`}>
+            <Card className={`bg-zinc-950 border-zinc-800 hover:border-primary transition-all duration-500 ${visibleCards.includes(0) ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
               <CardContent className="pt-8 text-center">
                 <Lock className="w-14 h-14 text-primary mx-auto mb-6" />
                 <h3 className="text-xl font-normal mb-4 text-white">End-to-End Encryption</h3>
@@ -294,11 +286,7 @@ const LawFirms = () => {
               </CardContent>
             </Card>
 
-            <Card className={`bg-zinc-950 border-zinc-800 hover:border-primary transition-all duration-500 ${
-              visibleCards.includes(1) 
-                ? 'opacity-100 translate-y-0' 
-                : 'opacity-0 translate-y-8'
-            }`}>
+            <Card className={`bg-zinc-950 border-zinc-800 hover:border-primary transition-all duration-500 ${visibleCards.includes(1) ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
               <CardContent className="pt-8 text-center">
                 <Shield className="w-14 h-14 text-primary mx-auto mb-6" />
                 <h3 className="text-xl font-normal mb-4 text-white">Attorney-Client Privilege</h3>
@@ -308,11 +296,7 @@ const LawFirms = () => {
               </CardContent>
             </Card>
 
-            <Card className={`bg-zinc-950 border-zinc-800 hover:border-primary transition-all duration-500 ${
-              visibleCards.includes(2) 
-                ? 'opacity-100 translate-y-0' 
-                : 'opacity-0 translate-y-8'
-            }`}>
+            <Card className={`bg-zinc-950 border-zinc-800 hover:border-primary transition-all duration-500 ${visibleCards.includes(2) ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
               <CardContent className="pt-8 text-center">
                 <Database className="w-14 h-14 text-primary mx-auto mb-6" />
                 <h3 className="text-xl font-normal mb-4 text-white">SOC 2 Compliant</h3>
@@ -329,7 +313,13 @@ const LawFirms = () => {
       <section className="py-24 px-4 sm:px-6 lg:px-8 bg-black border-t border-zinc-800">
         <div className="container mx-auto max-w-4xl text-center">
           <p className="text-3xl sm:text-4xl font-light mb-12 leading-relaxed">
-            Amicus firms move <em className="italic" style={{ color: '#e4bf6c' }}>faster</em>, work <em className="italic" style={{ color: '#e4bf6c' }}>smarter</em>, and deliver a client experience that feels <em className="italic" style={{ color: '#e4bf6c' }}>effortless</em>.
+            Amicus firms move <em className="italic" style={{
+            color: '#e4bf6c'
+          }}>faster</em>, work <em className="italic" style={{
+            color: '#e4bf6c'
+          }}>smarter</em>, and deliver a client experience that feels <em className="italic" style={{
+            color: '#e4bf6c'
+          }}>effortless</em>.
           </p>
           <div className="flex flex-col sm:flex-row gap-6 justify-center pt-6">
             <Button size="lg" className="text-xl px-14 py-8 bg-white text-black hover:bg-zinc-200 transition-all duration-300 hover:scale-105 font-sans">
