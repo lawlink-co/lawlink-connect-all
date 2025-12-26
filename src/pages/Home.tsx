@@ -19,6 +19,7 @@ const Home = () => {
   const [logoPhase, setLogoPhase] = useState(0); // 0 = hidden, 0-1 = transitioning (text fade out, logo fade in/scale)
   const [logoFadeOut, setLogoFadeOut] = useState(0); // 0 = fully visible, 1 = fully faded out
   const problemSectionRef = useRef<HTMLDivElement>(null);
+  const featureCarouselRef = useRef<HTMLDivElement>(null);
   
   // How It Works animation states
   const [howItWorksPhase, setHowItWorksPhase] = useState(0);
@@ -66,21 +67,19 @@ const Home = () => {
         setVisibleChars(totalChars);
         const logoProgress = (scrollProgress - 0.5) / 0.5;
         setLogoPhase(logoProgress);
-        // No fade out during sticky phase - logo stays at full opacity
-        setLogoFadeOut(0);
       }
       
-      // Check if section has scrolled past and is at top third of screen
-      // This happens after the sticky section ends (when rect.top becomes very negative)
-      const stickyEndPoint = -(sectionHeight - window.innerHeight);
-      if (rect.top < stickyEndPoint) {
-        // Section is now scrolling normally past the viewport
-        // Calculate how far past the top third of the screen the section is
-        const topThird = window.innerHeight / 3;
-        const distancePastTopThird = Math.abs(rect.top) - Math.abs(stickyEndPoint);
-        const fadeOutDistance = topThird; // Fade out over the distance to top third
-        const fadeProgress = Math.min(1, distancePastTopThird / fadeOutDistance);
-        setLogoFadeOut(fadeProgress);
+      // Check if FeatureCarousel section is entering the viewport
+      if (featureCarouselRef.current) {
+        const carouselRect = featureCarouselRef.current.getBoundingClientRect();
+        // Only start fading when the carousel section enters the screen
+        if (carouselRect.top < window.innerHeight) {
+          // Calculate fade progress based on how far into the viewport the carousel is
+          const fadeProgress = Math.min(1, (window.innerHeight - carouselRect.top) / (window.innerHeight * 0.3));
+          setLogoFadeOut(fadeProgress);
+        } else {
+          setLogoFadeOut(0); // Carousel not visible yet, logo stays at full opacity
+        }
       }
     };
 
@@ -197,7 +196,9 @@ const Home = () => {
       </section>
 
       {/* Feature Carousel - The New Architecture */}
-      <FeatureCarousel />
+      <div ref={featureCarouselRef}>
+        <FeatureCarousel />
+      </div>
 
       {/* How It Works Section - Connection Between Client & Lawyer */}
       <section ref={howItWorksSectionRef} className="py-32 px-4 sm:px-6 lg:px-8 bg-black border-t border-zinc-800">
