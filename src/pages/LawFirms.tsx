@@ -33,7 +33,7 @@ const LawFirms = () => {
       <Navigation />
       
       {/* Hero Section */}
-      <section className="pt-32 pb-24 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-black via-zinc-950 to-black">
+      <section className="min-h-screen flex items-center justify-center px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-black via-zinc-950 to-black">
         <div className="container mx-auto max-w-5xl text-center">
           <h1 className="text-5xl sm:text-6xl lg:text-7xl font-light leading-tight tracking-wide mb-8">
             <div className="flex flex-col">
@@ -42,30 +42,30 @@ const LawFirms = () => {
               animationFillMode: 'forwards'
             }}>Push Cases,</span>
               <span className="opacity-0 animate-fade-in" style={{
-              animationDelay: '200ms',
+              animationDelay: '500ms',
               animationFillMode: 'forwards'
             }}>Draft Briefs,</span>
               <span className="opacity-0 animate-fade-in" style={{
-              animationDelay: '400ms',
+              animationDelay: '1000ms',
               animationFillMode: 'forwards'
             }}>Keep Clients Satisfied.</span>
             </div>
           </h1>
           <p className="text-4xl sm:text-5xl text-white font-light mb-6 opacity-0 animate-fade-in" style={{
-          animationDelay: '800ms',
+          animationDelay: '1500ms',
           animationFillMode: 'forwards',
           animationDuration: '600ms'
         }}>
             All On One Platform.
           </p>
           <p style={{
-          animationDelay: '1400ms',
+          animationDelay: '2000ms',
           animationFillMode: 'forwards'
         }} className="text-xl text-zinc-400 font-light mb-12 opacity-0 animate-fade-in sm:text-lg">
             From drafting to client updates, every part of your practice connected by AI.
           </p>
           <div className="opacity-0 animate-fade-in" style={{
-          animationDelay: '1400ms',
+          animationDelay: '2000ms',
           animationFillMode: 'forwards'
         }}>
             <Button size="lg" className="text-lg px-14 py-8 bg-white text-black hover:bg-zinc-200 transition-all duration-300 hover:scale-105 font-sans">
