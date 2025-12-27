@@ -75,25 +75,8 @@ const LawFirms = () => {
         </div>
       </section>
 
-      {/* CRM Demo Section */}
-      <section className="py-24 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-black to-zinc-950">
-        <div className="container mx-auto max-w-7xl">
-          <div className="mb-16">
-            <ScrollRevealImages />
-          </div>
-          <div className="text-center space-y-6 max-w-4xl mx-auto animate-fade-in">
-            <h2 className="text-3xl sm:text-4xl font-normal">
-              AI Drafting Powered by Your Firm's Own Record
-            </h2>
-            <p className="text-xl text-zinc-300 font-sans leading-relaxed">
-              Amicus learns from prior pleadings and deposition transcripts — adapting your firm's language, not replacing it.
-            </p>
-          </div>
-        </div>
-      </section>
-
       {/* All-in-One System Section */}
-      <section className="py-24 px-4 sm:px-6 lg:px-8 bg-black border-t border-zinc-800">
+      <section className="py-24 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-black to-zinc-950">
         <div className="container mx-auto max-w-6xl">
           <div className="text-center mb-12 space-y-6 animate-fade-in">
             <h2 className="text-3xl sm:text-4xl font-normal">
@@ -256,6 +239,23 @@ const LawFirms = () => {
               </div>
             </TabsContent>
           </Tabs>
+        </div>
+      </section>
+
+      {/* AI Drafting Section */}
+      <section className="py-24 px-4 sm:px-6 lg:px-8 bg-black border-t border-zinc-800">
+        <div className="container mx-auto max-w-7xl">
+          <div className="mb-16">
+            <ScrollRevealImages />
+          </div>
+          <div className="text-center space-y-6 max-w-4xl mx-auto animate-fade-in">
+            <h2 className="text-3xl sm:text-4xl font-normal">
+              AI Drafting Powered by Your Firm's Own Record
+            </h2>
+            <p className="text-xl text-zinc-300 font-sans leading-relaxed">
+              Amicus learns from prior pleadings and deposition transcripts — adapting your firm's language, not replacing it.
+            </p>
+          </div>
         </div>
       </section>
 
