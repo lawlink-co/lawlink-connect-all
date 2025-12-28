@@ -112,23 +112,42 @@ const LawFirms = () => {
 
             <TabsContent value="case-management">
               <div className="bg-zinc-950 border border-zinc-800 rounded-lg p-8 sm:p-12">
+                <h3 className="text-2xl sm:text-3xl font-normal mb-6 text-white">
+                  Command Every Case From a Single Dashboard.
+                </h3>
+                
                 <p className="text-xl text-zinc-300 font-sans leading-relaxed mb-8">
-                  Organize, assign, and move cases through every stage with total visibility.
+                  Amicus gives your firm complete oversight of every active matter — from intake to resolution. No more switching between systems or losing track of critical deadlines.
                 </p>
-                <ul className="space-y-4 font-sans">
-                  <li className="flex items-start space-x-3">
-                    <CheckCircle2 className="w-6 h-6 text-primary flex-shrink-0 mt-1" />
-                    <span className="text-zinc-300 text-lg">Unified dashboard for all active matters</span>
-                  </li>
-                  <li className="flex items-start space-x-3">
-                    <CheckCircle2 className="w-6 h-6 text-primary flex-shrink-0 mt-1" />
-                    <span className="text-zinc-300 text-lg">Task and deadline tracking tied directly to documents</span>
-                  </li>
-                  <li className="flex items-start space-x-3">
-                    <CheckCircle2 className="w-6 h-6 text-primary flex-shrink-0 mt-1" />
-                    <span className="text-zinc-300 text-lg">Secure collaboration within your team</span>
-                  </li>
-                </ul>
+
+                <div className="bg-zinc-900 border border-zinc-700 rounded-lg p-6 mb-8">
+                  <p className="text-lg text-zinc-300 font-sans leading-relaxed mb-6">
+                    Your case management hub provides <span className="text-white font-normal">real-time visibility</span> across all matters, with tools designed for how litigators actually work:
+                  </p>
+                  
+                  <ul className="space-y-3 font-sans">
+                    <li className="flex items-start space-x-3">
+                      <CheckCircle2 className="w-6 h-6 text-primary flex-shrink-0 mt-1" />
+                      <span className="text-zinc-300 text-lg">Unified dashboard displaying all active matters with status, deadlines, and assigned counsel</span>
+                    </li>
+                    <li className="flex items-start space-x-3">
+                      <CheckCircle2 className="w-6 h-6 text-primary flex-shrink-0 mt-1" />
+                      <span className="text-zinc-300 text-lg">Task and deadline tracking tied directly to documents and court filings</span>
+                    </li>
+                    <li className="flex items-start space-x-3">
+                      <CheckCircle2 className="w-6 h-6 text-primary flex-shrink-0 mt-1" />
+                      <span className="text-zinc-300 text-lg">Secure collaboration tools for seamless coordination across your team</span>
+                    </li>
+                    <li className="flex items-start space-x-3">
+                      <CheckCircle2 className="w-6 h-6 text-primary flex-shrink-0 mt-1" />
+                      <span className="text-zinc-300 text-lg">Instant access to case history, notes, and related documents from anywhere</span>
+                    </li>
+                  </ul>
+                </div>
+
+                <p className="text-xl text-zinc-300 font-sans leading-relaxed italic border-l-4 border-primary pl-6">
+                  Stop managing cases across scattered spreadsheets and email threads. Amicus consolidates everything into one intelligent system — so you can focus on practicing law, not hunting for information.
+                </p>
               </div>
             </TabsContent>
 
@@ -142,23 +161,42 @@ const LawFirms = () => {
                   </video>
                 </div>
 
+                <h3 className="text-2xl sm:text-3xl font-normal mb-6 text-white">
+                  Draft Smarter — With AI That Knows Your Voice.
+                </h3>
+                
                 <p className="text-xl text-zinc-300 font-sans leading-relaxed mb-8">
-                  Amicus's AI drafting engine learns from your prior work to produce new filings in your firm's own language.
+                  Amicus's AI drafting engine learns from your firm's prior work to produce new filings in your own language. No generic templates — just intelligent drafts built from your case record.
                 </p>
-                <ul className="space-y-4 font-sans">
-                  <li className="flex items-start space-x-3">
-                    <CheckCircle2 className="w-6 h-6 text-primary flex-shrink-0 mt-1" />
-                    <span className="text-zinc-300 text-lg">Draft motions, memos, and pleadings automatically from your case data</span>
-                  </li>
-                  <li className="flex items-start space-x-3">
-                    <CheckCircle2 className="w-6 h-6 text-primary flex-shrink-0 mt-1" />
-                    <span className="text-zinc-300 text-lg">Built-in legal formatting and citation awareness</span>
-                  </li>
-                  <li className="flex items-start space-x-3">
-                    <CheckCircle2 className="w-6 h-6 text-primary flex-shrink-0 mt-1" />
-                    <span className="text-zinc-300 text-lg">Export directly to Word or PDF</span>
-                  </li>
-                </ul>
+
+                <div className="bg-zinc-900 border border-zinc-700 rounded-lg p-6 mb-8">
+                  <p className="text-lg text-zinc-300 font-sans leading-relaxed mb-6">
+                    The drafting engine pulls from <span className="text-white font-normal">your depositions, prior pleadings, and case facts</span> to generate documents that sound like you wrote them:
+                  </p>
+                  
+                  <ul className="space-y-3 font-sans">
+                    <li className="flex items-start space-x-3">
+                      <CheckCircle2 className="w-6 h-6 text-primary flex-shrink-0 mt-1" />
+                      <span className="text-zinc-300 text-lg">Draft motions, memos, and pleadings automatically from your case data</span>
+                    </li>
+                    <li className="flex items-start space-x-3">
+                      <CheckCircle2 className="w-6 h-6 text-primary flex-shrink-0 mt-1" />
+                      <span className="text-zinc-300 text-lg">Built-in legal formatting and citation awareness for court-ready documents</span>
+                    </li>
+                    <li className="flex items-start space-x-3">
+                      <CheckCircle2 className="w-6 h-6 text-primary flex-shrink-0 mt-1" />
+                      <span className="text-zinc-300 text-lg">Export directly to Word or PDF with proper formatting preserved</span>
+                    </li>
+                    <li className="flex items-start space-x-3">
+                      <CheckCircle2 className="w-6 h-6 text-primary flex-shrink-0 mt-1" />
+                      <span className="text-zinc-300 text-lg">Continuously improves as it learns from your firm's writing style</span>
+                    </li>
+                  </ul>
+                </div>
+
+                <p className="text-xl text-zinc-300 font-sans leading-relaxed italic border-l-4 border-primary pl-6">
+                  Hours spent drafting from scratch become minutes of review. Amicus handles the first draft — you refine and file. That's time back in your day, every day.
+                </p>
               </div>
             </TabsContent>
 
@@ -173,23 +211,42 @@ const LawFirms = () => {
                   </video>
                 </div>
 
+                <h3 className="text-2xl sm:text-3xl font-normal mb-6 text-white">
+                  Stop Fielding "What's Happening With My Case?" Calls.
+                </h3>
+                
                 <p className="text-xl text-zinc-300 font-sans leading-relaxed mb-8">
-                  Keep clients informed without lifting a finger.
+                  Every attorney knows the drill: clients call asking for updates, and you spend billable hours explaining what's already in the file. Amicus eliminates that friction entirely — clients stay informed automatically, and your phone stays quiet.
                 </p>
-                <ul className="space-y-4 font-sans">
-                  <li className="flex items-start space-x-3">
-                    <CheckCircle2 className="w-6 h-6 text-primary flex-shrink-0 mt-1" />
-                    <span className="text-zinc-300 text-lg">Automatic updates sent through the Amicus client app</span>
-                  </li>
-                  <li className="flex items-start space-x-3">
-                    <CheckCircle2 className="w-6 h-6 text-primary flex-shrink-0 mt-1" />
-                    <span className="text-zinc-300 text-lg">Real-time progress tracking and notifications</span>
-                  </li>
-                  <li className="flex items-start space-x-3">
-                    <CheckCircle2 className="w-6 h-6 text-primary flex-shrink-0 mt-1" />
-                    <span className="text-zinc-300 text-lg">Built-in chat assistant that answers client questions instantly</span>
-                  </li>
-                </ul>
+
+                <div className="bg-zinc-900 border border-zinc-700 rounded-lg p-6 mb-8">
+                  <p className="text-lg text-zinc-300 font-sans leading-relaxed mb-6">
+                    The Amicus client app gives your clients <span className="text-white font-normal">real-time visibility</span> into their case without requiring your time:
+                  </p>
+                  
+                  <ul className="space-y-3 font-sans">
+                    <li className="flex items-start space-x-3">
+                      <CheckCircle2 className="w-6 h-6 text-primary flex-shrink-0 mt-1" />
+                      <span className="text-zinc-300 text-lg">Automatic updates pushed to clients whenever case status changes</span>
+                    </li>
+                    <li className="flex items-start space-x-3">
+                      <CheckCircle2 className="w-6 h-6 text-primary flex-shrink-0 mt-1" />
+                      <span className="text-zinc-300 text-lg">Real-time progress tracking so clients always know where things stand</span>
+                    </li>
+                    <li className="flex items-start space-x-3">
+                      <CheckCircle2 className="w-6 h-6 text-primary flex-shrink-0 mt-1" />
+                      <span className="text-zinc-300 text-lg">AI-powered chat assistant that answers routine questions instantly — 24/7</span>
+                    </li>
+                    <li className="flex items-start space-x-3">
+                      <CheckCircle2 className="w-6 h-6 text-primary flex-shrink-0 mt-1" />
+                      <span className="text-zinc-300 text-lg">Secure document sharing and messaging built directly into the app</span>
+                    </li>
+                  </ul>
+                </div>
+
+                <p className="text-xl text-zinc-300 font-sans leading-relaxed italic border-l-4 border-primary pl-6">
+                  Satisfied clients are retained clients. When they can check their case status anytime — without calling your office — they feel informed, respected, and confident in your representation. You reclaim your time; they get peace of mind.
+                </p>
               </div>
             </TabsContent>
 
