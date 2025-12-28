@@ -78,7 +78,7 @@ All colors MUST be HSL.
     --sidebar-ring: 42 68% 63%;
     
     /* Gold accent for emphasis - #e0b660 */
-    --gold: 42 65% 63%;
+    --gold: 40 68% 63%;
     --gold-foreground: 0 0% 0%;
   }
 }
