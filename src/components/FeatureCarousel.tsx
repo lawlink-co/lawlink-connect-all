@@ -4,6 +4,7 @@ import Fade from "embla-carousel-fade";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import aiDraftingDemo from "@/assets/ai-drafting-demo.png";
+import clientExperienceDemo from "@/assets/client-experience-demo.png";
 
 interface CarouselSlide {
   title: string;
@@ -28,8 +29,8 @@ const slides: CarouselSlide[] = [
   {
     title: "Connection That Redefines the Client Experience",
     description: "Clients don't log into portals — they join the process. Amicus bridges the space between lawyer and client, translating every update into clarity, trust, and forward motion.",
-    image: aiDraftingDemo,
-    imageAlt: "AI drafting summons and complaint interface"
+    image: clientExperienceDemo,
+    imageAlt: "Client case status tracking interface"
   }
 ];
 
