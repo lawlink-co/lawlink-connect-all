@@ -270,7 +270,7 @@ const Home = () => {
                 </div>
                 <div className={`transition-all duration-500 delay-300 ${howItWorksPhase >= 3 ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
                   <p className="text-zinc-400 mb-5 text-sm leading-relaxed">
-                    Cases become <span className="text-white font-medium">real</span> with an interactive app.
+                    Cases become <span style={{ color: '#e0b660' }} className="font-bold">real</span> with an interactive app.
                   </p>
                   <ul className="space-y-3 text-sm text-zinc-400">
                     <li className="flex items-center gap-3">
