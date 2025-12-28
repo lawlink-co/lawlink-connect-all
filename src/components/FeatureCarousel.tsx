@@ -16,7 +16,7 @@ const slides: CarouselSlide[] = [
   {
     title: "Intelligence That Understands Your Practice",
     description: "Amicus's AI reads every transcript, filing, and exhibit — transforming raw documents into organized, contextual knowledge. It doesn't just automate drafting — it understands the why behind your cases.",
-    image: "/src/assets/screenshot-drafting.png",
+    image: aiDraftingDemo,
     imageAlt: "AI-powered summons and complaint drafting interface"
   },
   {
