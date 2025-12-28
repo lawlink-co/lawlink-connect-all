@@ -48,13 +48,6 @@ const Demo = () => {
             />
           </div>
           
-          {/* Placeholder notice - remove this when you add your real Calendly link */}
-          <p className="text-center text-zinc-500 text-sm mt-6 opacity-0 animate-fade-in" style={{
-            animationDelay: '700ms',
-            animationFillMode: 'forwards'
-          }}>
-            📝 Replace the CALENDLY_URL in src/pages/Demo.tsx with your actual Calendly link
-          </p>
         </div>
       </section>
 
