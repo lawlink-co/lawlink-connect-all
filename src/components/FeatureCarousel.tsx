@@ -14,12 +14,6 @@ interface CarouselSlide {
 
 const slides: CarouselSlide[] = [
   {
-    title: "Connection That Redefines the Client Experience",
-    description: "Clients don't log into portals — they join the process. Amicus bridges the space between lawyer and client, translating every update into clarity, trust, and forward motion.",
-    image: aiDraftingDemo,
-    imageAlt: "AI drafting summons and complaint interface"
-  },
-  {
     title: "Intelligence That Understands Your Practice",
     description: "Amicus's AI reads every transcript, filing, and exhibit — transforming raw documents into organized, contextual knowledge. It doesn't just automate drafting — it understands the why behind your cases.",
     image: "/src/assets/screenshot-drafting.png",
@@ -30,6 +24,12 @@ const slides: CarouselSlide[] = [
     description: "Behind the interface is a layered system built for volume and precision. As your firm grows, customize your CRM to match: create new pages, reorganize your workspace, and set permissions to fit your evolving workflow. From intake to resolution, every document, update, and deadline connects across one living database — your firm's new operating system.",
     image: "/src/assets/screenshot-dashboard.png",
     imageAlt: "Case dashboard and management system"
+  },
+  {
+    title: "Connection That Redefines the Client Experience",
+    description: "Clients don't log into portals — they join the process. Amicus bridges the space between lawyer and client, translating every update into clarity, trust, and forward motion.",
+    image: aiDraftingDemo,
+    imageAlt: "AI drafting summons and complaint interface"
   }
 ];
 
