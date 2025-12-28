@@ -16,7 +16,6 @@ Lawyers drown in admin.
 The way legal work gets done hasn't evolved—
 
 until now.`;
-
 const Home = () => {
   const [visibleChars, setVisibleChars] = useState(0);
   const [textFadedOut, setTextFadedOut] = useState(false); // true when text is fully gone
@@ -24,7 +23,7 @@ const Home = () => {
   const [logoFadeOut, setLogoFadeOut] = useState(0); // 0 = fully visible, 1 = fully faded out
   const problemSectionRef = useRef<HTMLDivElement>(null);
   const featureCarouselRef = useRef<HTMLDivElement>(null);
-  
+
   // How It Works animation states
   const [howItWorksPhase, setHowItWorksPhase] = useState(0);
   const howItWorksSectionRef = useRef<HTMLDivElement>(null);
@@ -33,38 +32,34 @@ const Home = () => {
   // Calculate where "until now." starts in the text
   const untilNowStart = TYPEWRITER_TEXT.indexOf('until now.');
   const totalChars = TYPEWRITER_TEXT.length;
-
   useEffect(() => {
     const handleScroll = () => {
       if (!problemSectionRef.current) return;
-      
       const section = problemSectionRef.current;
       const rect = section.getBoundingClientRect();
       const sectionHeight = section.offsetHeight;
-      
+
       // Calculate scroll progress (0 to 1)
       // Section is now 300vh, so we have 200vh of scroll room
       const scrollProgress = Math.max(0, Math.min(1, -rect.top / (sectionHeight - window.innerHeight)));
-      
+
       // Phase 1: Typewriter (0% - 40% scroll)
       // Phase 2: Text fade out (40% - 55% scroll)  
       // Phase 3: Logo fade in (55% - 70% scroll)
       // Phase 4: Logo holds at full opacity (70% - 100% scroll)
-      
+
       if (scrollProgress <= 0.4) {
         // Typewriter phase - map 0-40% to full text
         const typewriterProgress = scrollProgress / 0.4;
-        
         let charIndex: number;
         if (typewriterProgress <= 0.7) {
           // Map 0-70% of typewriter phase to text before "until now."
-          charIndex = Math.floor((typewriterProgress / 0.7) * untilNowStart);
+          charIndex = Math.floor(typewriterProgress / 0.7 * untilNowStart);
         } else {
           // Map 70-100% of typewriter phase to "until now." (slower reveal)
           const slowProgress = (typewriterProgress - 0.7) / 0.3;
           charIndex = untilNowStart + Math.floor(slowProgress * (totalChars - untilNowStart));
         }
-        
         setVisibleChars(Math.min(charIndex, totalChars));
         setTextFadedOut(false);
         setLogoVisible(false);
@@ -79,7 +74,7 @@ const Home = () => {
         setTextFadedOut(true);
         setLogoVisible(true);
       }
-      
+
       // Logo fade out ONLY when problem section reaches top of viewport
       // (i.e., when the sticky section is about to exit)
       const stickyElement = section.querySelector('.sticky');
@@ -89,20 +84,20 @@ const Home = () => {
         // and the section is about to scroll out
         const sectionBottom = rect.bottom;
         const viewportHeight = window.innerHeight;
-        
+
         // Start fading when section bottom is less than viewport height (section exiting)
         if (sectionBottom < viewportHeight && sectionBottom > 0) {
-          const fadeProgress = 1 - (sectionBottom / viewportHeight);
+          const fadeProgress = 1 - sectionBottom / viewportHeight;
           setLogoFadeOut(Math.min(1, fadeProgress * 2)); // Faster fade
         } else {
           setLogoFadeOut(0);
         }
       }
     };
-
-    window.addEventListener('scroll', handleScroll, { passive: true });
+    window.addEventListener('scroll', handleScroll, {
+      passive: true
+    });
     handleScroll();
-    
     return () => {
       window.removeEventListener('scroll', handleScroll);
     };
@@ -112,10 +107,9 @@ const Home = () => {
   useEffect(() => {
     const handleHowItWorksScroll = () => {
       if (!howItWorksSectionRef.current || howItWorksTriggeredRef.current) return;
-      
       const section = howItWorksSectionRef.current;
       const rect = section.getBoundingClientRect();
-      
+
       // Trigger when section is 40% visible
       if (rect.top < window.innerHeight * 0.6) {
         howItWorksTriggeredRef.current = true;
@@ -129,15 +123,14 @@ const Home = () => {
         setTimeout(() => setHowItWorksPhase(4), 2000);
       }
     };
-
-    window.addEventListener('scroll', handleHowItWorksScroll, { passive: true });
+    window.addEventListener('scroll', handleHowItWorksScroll, {
+      passive: true
+    });
     handleHowItWorksScroll();
-    
     return () => {
       window.removeEventListener('scroll', handleHowItWorksScroll);
     };
   }, []);
-
   return <div className="min-h-screen bg-black text-white font-caslon">
       <Navigation />
       
@@ -147,10 +140,16 @@ const Home = () => {
           <h1 className="text-6xl sm:text-7xl lg:text-8xl font-normal mb-8 tracking-tight animate-fade-in-slow">
             Lawsuits, Reimagined.
           </h1>
-          <p className="text-2xl sm:text-3xl text-zinc-300 mb-16 max-w-4xl mx-auto leading-relaxed opacity-0 animate-fade-in" style={{ animationDelay: '0.5s', animationFillMode: 'forwards' }}>
+          <p className="text-2xl sm:text-3xl text-zinc-300 mb-16 max-w-4xl mx-auto leading-relaxed opacity-0 animate-fade-in" style={{
+          animationDelay: '0.5s',
+          animationFillMode: 'forwards'
+        }}>
             An AI-powered platform that connects lawyers and clients through automation and clarity.
           </p>
-          <div className="flex flex-col sm:flex-row gap-6 justify-center opacity-0 animate-slide-up" style={{ animationDelay: '0.8s', animationFillMode: 'forwards' }}>
+          <div className="flex flex-col sm:flex-row gap-6 justify-center opacity-0 animate-slide-up" style={{
+          animationDelay: '0.8s',
+          animationFillMode: 'forwards'
+        }}>
             <Link to="/law-firms">
               <Button size="lg" className="w-full sm:min-w-[180px] text-lg bg-white text-black border-2 border-transparent hover:bg-zinc-200 transition-all duration-300 hover:scale-105 px-[34px]">
                 For Law Firms
@@ -166,37 +165,24 @@ const Home = () => {
       </section>
 
       {/* Problem Section - Scroll-Locked Typography with Typewriter + Logo Reveal */}
-      <section 
-        ref={problemSectionRef}
-        className="relative h-[300vh] bg-gradient-to-b from-black via-zinc-950 to-black"
-      >
+      <section ref={problemSectionRef} className="relative h-[300vh] bg-gradient-to-b from-black via-zinc-950 to-black">
         <div className="sticky top-0 h-screen flex items-center justify-center px-4 sm:px-6 lg:px-8">
           {/* Typewriter Text - fades out when textFadedOut is true */}
-          <div 
-            className="container mx-auto max-w-5xl text-center absolute transition-opacity duration-700"
-            style={{ opacity: textFadedOut ? 0 : 1 }}
-          >
+          <div className="container mx-auto max-w-5xl text-center absolute transition-opacity duration-700" style={{
+          opacity: textFadedOut ? 0 : 1
+        }}>
             <p className="text-3xl sm:text-4xl lg:text-5xl text-zinc-200 font-light leading-relaxed whitespace-pre-wrap">
               {TYPEWRITER_TEXT.slice(0, visibleChars)}
-              {!textFadedOut && visibleChars < totalChars && (
-                <span className="inline-block w-[3px] h-[1em] bg-zinc-200 ml-1 align-middle animate-caret-blink" />
-              )}
+              {!textFadedOut && visibleChars < totalChars && <span className="inline-block w-[3px] h-[1em] bg-zinc-200 ml-1 align-middle animate-caret-blink" />}
             </p>
           </div>
           
           {/* Logo - fades in AFTER text is fully gone, stays at full opacity until section exits viewport */}
-          <div 
-            className="absolute flex items-center justify-center transition-opacity duration-700"
-            style={{ 
-              opacity: logoVisible ? (1 - logoFadeOut) : 0,
-              transform: 'scale(1.3)'
-            }}
-          >
-            <img 
-              src={amicusGoldenA} 
-              alt="Amicus" 
-              className="w-48 sm:w-64 lg:w-80 h-auto"
-            />
+          <div className="absolute flex items-center justify-center transition-opacity duration-700" style={{
+          opacity: logoVisible ? 1 - logoFadeOut : 0,
+          transform: 'scale(1.3)'
+        }}>
+            <img src={amicusGoldenA} alt="Amicus" className="w-48 sm:w-64 lg:w-80 h-auto" />
           </div>
         </div>
       </section>
@@ -224,7 +210,7 @@ const Home = () => {
             {/* Desktop Layout */}
             <div className="hidden lg:flex items-center justify-center gap-0">
               {/* For Lawyers Card */}
-              <Link to="/law-firms" className={`flex-1 max-w-sm bg-zinc-900/50 backdrop-blur-sm border border-zinc-800 rounded-2xl p-8 transition-all duration-500 ${howItWorksPhase >= 1 ? 'opacity-100' : 'opacity-0'} hover:border-gold/40 hover:bg-zinc-900/70 cursor-pointer`}>
+              <div className={`flex-1 max-w-sm bg-zinc-900/50 backdrop-blur-sm border border-zinc-800 rounded-2xl p-8 transition-all duration-500 ${howItWorksPhase >= 1 ? 'opacity-100' : 'opacity-0'} hover:border-gold/40 hover:bg-zinc-900/70`}>
                 <div className="flex items-center gap-3 mb-5">
                   <div className="w-10 h-10 bg-gold/10 border border-gold/30 rounded-xl flex items-center justify-center">
                     <svg className="w-5 h-5 text-gold" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -235,7 +221,7 @@ const Home = () => {
                 </div>
                 <div className={`transition-all duration-500 delay-200 ${howItWorksPhase >= 3 ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
                   <p className="text-zinc-400 mb-5 text-sm leading-relaxed">
-                    A <span className="font-medium" style={{ color: '#e0b660' }}>magnificent infrastructure</span> to handle litigation faster.
+                    A <span className="text-[#e0b661] font-semibold">magnificent infrastructure</span> to handle litigation faster.
                   </p>
                   <ul className="space-y-3 text-sm text-zinc-400">
                     <li className="flex items-center gap-3">
@@ -252,7 +238,7 @@ const Home = () => {
                     </li>
                   </ul>
                 </div>
-              </Link>
+              </div>
 
               {/* Left Connector */}
               <div className={`w-16 flex items-center transition-all duration-700 ${howItWorksPhase >= 2 ? 'opacity-100' : 'opacity-0'}`}>
@@ -273,7 +259,7 @@ const Home = () => {
               </div>
 
               {/* For Clients Card */}
-              <Link to="/clients" className={`flex-1 max-w-sm bg-zinc-900/50 backdrop-blur-sm border border-zinc-800 rounded-2xl p-8 transition-all duration-500 delay-100 ${howItWorksPhase >= 1 ? 'opacity-100' : 'opacity-0'} hover:border-gold/40 hover:bg-zinc-900/70 cursor-pointer`}>
+              <div className={`flex-1 max-w-sm bg-zinc-900/50 backdrop-blur-sm border border-zinc-800 rounded-2xl p-8 transition-all duration-500 delay-100 ${howItWorksPhase >= 1 ? 'opacity-100' : 'opacity-0'} hover:border-gold/40 hover:bg-zinc-900/70`}>
                 <div className="flex items-center gap-3 mb-5">
                   <div className="w-10 h-10 bg-gold/10 border border-gold/30 rounded-xl flex items-center justify-center">
                     <svg className="w-5 h-5 text-gold" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -284,30 +270,30 @@ const Home = () => {
                 </div>
                 <div className={`transition-all duration-500 delay-300 ${howItWorksPhase >= 3 ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
                   <p className="text-zinc-400 mb-5 text-sm leading-relaxed">
-                    Cases become <span className="font-medium" style={{ color: '#e0b660' }}>real</span> with an interactive app.
+                    Cases become <span className="text-white font-medium">real</span> with an interactive app.
                   </p>
                   <ul className="space-y-3 text-sm text-zinc-400">
                     <li className="flex items-center gap-3">
                       <span className="w-1.5 h-1.5 bg-gold rounded-full"></span>
-                      <span>Real-time progress tracking</span>
+                      <span>See progress in real-time</span>
                     </li>
                     <li className="flex items-center gap-3">
                       <span className="w-1.5 h-1.5 bg-gold rounded-full"></span>
-                      <span>Instant update delivery</span>
+                      <span>Receive instant updates</span>
                     </li>
                     <li className="flex items-center gap-3">
                       <span className="w-1.5 h-1.5 bg-gold rounded-full"></span>
-                      <span>Structured activity summaries</span>
+                      <span>Understand what's happening</span>
                     </li>
                   </ul>
                 </div>
-              </Link>
+              </div>
             </div>
 
             {/* Mobile Layout */}
             <div className="lg:hidden flex flex-col items-center gap-0">
               {/* For Lawyers Card */}
-              <Link to="/law-firms" className={`w-full max-w-sm bg-zinc-900/50 backdrop-blur-sm border border-zinc-800 rounded-2xl p-6 transition-all duration-500 ${howItWorksPhase >= 1 ? 'opacity-100' : 'opacity-0'} hover:border-gold/40`}>
+              <div className={`w-full max-w-sm bg-zinc-900/50 backdrop-blur-sm border border-zinc-800 rounded-2xl p-6 transition-all duration-500 ${howItWorksPhase >= 1 ? 'opacity-100' : 'opacity-0'}`}>
                 <div className="flex items-center gap-3 mb-4">
                   <div className="w-10 h-10 bg-gold/10 border border-gold/30 rounded-xl flex items-center justify-center">
                     <svg className="w-5 h-5 text-gold" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -316,13 +302,13 @@ const Home = () => {
                   </div>
                   <h3 className="text-lg font-medium text-white">For Lawyers</h3>
                 </div>
-                <p className="text-zinc-400 mb-4 text-sm">A <span className="font-medium" style={{ color: '#e0b660' }}>magnificent infrastructure</span> to handle litigation faster.</p>
+                <p className="text-zinc-400 mb-4 text-sm">A <span className="text-white font-medium">magnificent infrastructure</span> to handle litigation faster.</p>
                 <ul className="space-y-2 text-sm text-zinc-400">
                   <li className="flex items-center gap-2"><span className="w-1.5 h-1.5 bg-gold rounded-full"></span>AI-powered drafting</li>
                   <li className="flex items-center gap-2"><span className="w-1.5 h-1.5 bg-gold rounded-full"></span>Intelligent automation</li>
                   <li className="flex items-center gap-2"><span className="w-1.5 h-1.5 bg-gold rounded-full"></span>Turn chaos into clarity</li>
                 </ul>
-              </Link>
+              </div>
 
               {/* Mobile Connector */}
               <div className={`h-8 border-l-2 border-dashed border-gold/50 transition-all duration-500 ${howItWorksPhase >= 2 ? 'opacity-100' : 'opacity-0'}`}></div>
@@ -339,7 +325,7 @@ const Home = () => {
               <div className={`h-8 border-l-2 border-dashed border-gold/50 transition-all duration-500 ${howItWorksPhase >= 2 ? 'opacity-100' : 'opacity-0'}`}></div>
 
               {/* For Clients Card */}
-              <Link to="/clients" className={`w-full max-w-sm bg-zinc-900/50 backdrop-blur-sm border border-zinc-800 rounded-2xl p-6 transition-all duration-500 ${howItWorksPhase >= 1 ? 'opacity-100' : 'opacity-0'} hover:border-gold/40`}>
+              <div className={`w-full max-w-sm bg-zinc-900/50 backdrop-blur-sm border border-zinc-800 rounded-2xl p-6 transition-all duration-500 ${howItWorksPhase >= 1 ? 'opacity-100' : 'opacity-0'}`}>
                 <div className="flex items-center gap-3 mb-4">
                   <div className="w-10 h-10 bg-gold/10 border border-gold/30 rounded-xl flex items-center justify-center">
                     <svg className="w-5 h-5 text-gold" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -348,13 +334,13 @@ const Home = () => {
                   </div>
                   <h3 className="text-lg font-medium text-white">For Clients</h3>
                 </div>
-                <p className="text-zinc-400 mb-4 text-sm">Cases become <span className="font-medium" style={{ color: '#e0b660' }}>real</span> with an interactive app.</p>
+                <p className="text-zinc-400 mb-4 text-sm">Cases become <span className="text-white font-medium">real</span> with an interactive app.</p>
                 <ul className="space-y-2 text-sm text-zinc-400">
-                  <li className="flex items-center gap-2"><span className="w-1.5 h-1.5 bg-gold rounded-full"></span>Real-time progress tracking</li>
-                  <li className="flex items-center gap-2"><span className="w-1.5 h-1.5 bg-gold rounded-full"></span>Instant update delivery</li>
-                  <li className="flex items-center gap-2"><span className="w-1.5 h-1.5 bg-gold rounded-full"></span>Structured activity summaries</li>
+                  <li className="flex items-center gap-2"><span className="w-1.5 h-1.5 bg-gold rounded-full"></span>See progress in real-time</li>
+                  <li className="flex items-center gap-2"><span className="w-1.5 h-1.5 bg-gold rounded-full"></span>Receive instant updates</li>
+                  <li className="flex items-center gap-2"><span className="w-1.5 h-1.5 bg-gold rounded-full"></span>Understand what's happening</li>
                 </ul>
-              </Link>
+              </div>
             </div>
           </div>
 
