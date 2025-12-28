@@ -168,7 +168,7 @@ const LawFirms = () => {
                 {/* Demo Video */}
                 <div className="mb-10 rounded-lg overflow-hidden">
                   <video className="w-full aspect-video rounded-lg" autoPlay loop muted playsInline>
-                    <source src="/videos/mobile-ai-chat.mp4" type="video/mp4" />
+                    <source src="/videos/client-experience.mp4" type="video/mp4" />
                     Your browser does not support the video tag.
                   </video>
                 </div>
