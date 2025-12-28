@@ -3,7 +3,7 @@ import useEmblaCarousel from "embla-carousel-react";
 import Fade from "embla-carousel-fade";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import caseChatMobile from "@/assets/case-chat-mobile.png";
+import aiDraftingDemo from "@/assets/ai-drafting-demo.png";
 
 interface CarouselSlide {
   title: string;
@@ -16,8 +16,8 @@ const slides: CarouselSlide[] = [
   {
     title: "Intelligence That Understands Your Practice",
     description: "Amicus's AI reads every transcript, filing, and exhibit — transforming raw documents into organized, contextual knowledge. It doesn't just automate drafting — it understands the why behind your cases.",
-    image: caseChatMobile,
-    imageAlt: "Mobile app showing attorney-client communication"
+    image: "/src/assets/screenshot-drafting.png",
+    imageAlt: "AI-powered summons and complaint drafting interface"
   },
   {
     title: "Infrastructure That Scales With Every Case",
@@ -28,8 +28,8 @@ const slides: CarouselSlide[] = [
   {
     title: "Connection That Redefines the Client Experience",
     description: "Clients don't log into portals — they join the process. Amicus bridges the space between lawyer and client, translating every update into clarity, trust, and forward motion.",
-    image: "/src/assets/screenshot-mobile.png",
-    imageAlt: "Mobile app client interface"
+    image: aiDraftingDemo,
+    imageAlt: "AI drafting summons and complaint interface"
   }
 ];
 
