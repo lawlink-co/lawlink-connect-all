@@ -328,10 +328,10 @@ const LawFirms = () => {
       </section>
 
       {/* Security Section */}
-      <section className="py-24 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-black to-zinc-950 border-t border-zinc-800">
+      <section className="py-32 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-black to-zinc-950 border-t border-zinc-800">
         <div className="container mx-auto max-w-6xl">
-          <div className="text-center mb-20">
-            <Shield className="w-20 h-20 text-primary mx-auto mb-8" />
+          <div className="text-center mb-24">
+            <Shield className="w-20 h-20 mx-auto mb-8" style={{ color: '#e4bf6c' }} />
             <h2 className="text-4xl sm:text-5xl font-light mb-8">
               Security & Compliance
             </h2>
@@ -340,12 +340,12 @@ const LawFirms = () => {
             </p>
           </div>
 
-          <div ref={securitySectionRef} className="space-y-24">
+          <div ref={securitySectionRef} className="space-y-40">
             {/* End-to-End Encryption - Icon Left, Text Right */}
             <div className={`flex flex-col md:flex-row items-center gap-12 md:gap-20 transition-all duration-500 ${visibleCards.includes(0) ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
               <div className="flex-shrink-0 flex items-center justify-center w-full md:w-1/3">
                 <div className="bg-zinc-900 border border-zinc-800 rounded-2xl p-12">
-                  <Lock className="w-24 h-24 text-primary" />
+                  <Lock className="w-24 h-24" style={{ color: '#e4bf6c' }} />
                 </div>
               </div>
               <div className="flex-1 text-center md:text-left">
@@ -360,7 +360,7 @@ const LawFirms = () => {
             <div className={`flex flex-col md:flex-row-reverse items-center gap-12 md:gap-20 transition-all duration-500 ${visibleCards.includes(1) ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
               <div className="flex-shrink-0 flex items-center justify-center w-full md:w-1/3">
                 <div className="bg-zinc-900 border border-zinc-800 rounded-2xl p-12">
-                  <Shield className="w-24 h-24 text-primary" />
+                  <Shield className="w-24 h-24" style={{ color: '#e4bf6c' }} />
                 </div>
               </div>
               <div className="flex-1 text-center md:text-left">
@@ -375,7 +375,7 @@ const LawFirms = () => {
             <div className={`flex flex-col md:flex-row items-center gap-12 md:gap-20 transition-all duration-500 ${visibleCards.includes(2) ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
               <div className="flex-shrink-0 flex items-center justify-center w-full md:w-1/3">
                 <div className="bg-zinc-900 border border-zinc-800 rounded-2xl p-12">
-                  <Database className="w-24 h-24 text-primary" />
+                  <Database className="w-24 h-24" style={{ color: '#e4bf6c' }} />
                 </div>
               </div>
               <div className="flex-1 text-center md:text-left">
