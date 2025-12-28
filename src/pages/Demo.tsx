@@ -2,7 +2,7 @@ import Navigation from "@/components/Navigation";
 
 const Demo = () => {
   // Replace this with your actual Calendly link
-  const CALENDLY_URL = "https://calendly.com/your-link-here";
+  const CALENDLY_URL = "https://calendly.com/case-amicusai/30min";
 
   return (
     <div className="min-h-screen bg-black text-white">
