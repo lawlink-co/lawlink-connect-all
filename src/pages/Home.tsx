@@ -224,7 +224,7 @@ const Home = () => {
             {/* Desktop Layout */}
             <div className="hidden lg:flex items-center justify-center gap-0">
               {/* For Lawyers Card */}
-              <div className={`flex-1 max-w-sm bg-zinc-900/50 backdrop-blur-sm border border-zinc-800 rounded-2xl p-8 transition-all duration-500 ${howItWorksPhase >= 1 ? 'opacity-100' : 'opacity-0'} hover:border-gold/40 hover:bg-zinc-900/70`}>
+              <Link to="/law-firms" className={`flex-1 max-w-sm bg-zinc-900/50 backdrop-blur-sm border border-zinc-800 rounded-2xl p-8 transition-all duration-500 ${howItWorksPhase >= 1 ? 'opacity-100' : 'opacity-0'} hover:border-gold/40 hover:bg-zinc-900/70 cursor-pointer`}>
                 <div className="flex items-center gap-3 mb-5">
                   <div className="w-10 h-10 bg-gold/10 border border-gold/30 rounded-xl flex items-center justify-center">
                     <svg className="w-5 h-5 text-gold" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -252,7 +252,7 @@ const Home = () => {
                     </li>
                   </ul>
                 </div>
-              </div>
+              </Link>
 
               {/* Left Connector */}
               <div className={`w-16 flex items-center transition-all duration-700 ${howItWorksPhase >= 2 ? 'opacity-100' : 'opacity-0'}`}>
@@ -273,7 +273,7 @@ const Home = () => {
               </div>
 
               {/* For Clients Card */}
-              <div className={`flex-1 max-w-sm bg-zinc-900/50 backdrop-blur-sm border border-zinc-800 rounded-2xl p-8 transition-all duration-500 delay-100 ${howItWorksPhase >= 1 ? 'opacity-100' : 'opacity-0'} hover:border-gold/40 hover:bg-zinc-900/70`}>
+              <Link to="/clients" className={`flex-1 max-w-sm bg-zinc-900/50 backdrop-blur-sm border border-zinc-800 rounded-2xl p-8 transition-all duration-500 delay-100 ${howItWorksPhase >= 1 ? 'opacity-100' : 'opacity-0'} hover:border-gold/40 hover:bg-zinc-900/70 cursor-pointer`}>
                 <div className="flex items-center gap-3 mb-5">
                   <div className="w-10 h-10 bg-gold/10 border border-gold/30 rounded-xl flex items-center justify-center">
                     <svg className="w-5 h-5 text-gold" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -289,25 +289,25 @@ const Home = () => {
                   <ul className="space-y-3 text-sm text-zinc-400">
                     <li className="flex items-center gap-3">
                       <span className="w-1.5 h-1.5 bg-gold rounded-full"></span>
-                      <span>See progress in real-time</span>
+                      <span>Real-time progress tracking</span>
                     </li>
                     <li className="flex items-center gap-3">
                       <span className="w-1.5 h-1.5 bg-gold rounded-full"></span>
-                      <span>Receive instant updates</span>
+                      <span>Instant update delivery</span>
                     </li>
                     <li className="flex items-center gap-3">
                       <span className="w-1.5 h-1.5 bg-gold rounded-full"></span>
-                      <span>Understand what's happening</span>
+                      <span>Structured activity summaries</span>
                     </li>
                   </ul>
                 </div>
-              </div>
+              </Link>
             </div>
 
             {/* Mobile Layout */}
             <div className="lg:hidden flex flex-col items-center gap-0">
               {/* For Lawyers Card */}
-              <div className={`w-full max-w-sm bg-zinc-900/50 backdrop-blur-sm border border-zinc-800 rounded-2xl p-6 transition-all duration-500 ${howItWorksPhase >= 1 ? 'opacity-100' : 'opacity-0'}`}>
+              <Link to="/law-firms" className={`w-full max-w-sm bg-zinc-900/50 backdrop-blur-sm border border-zinc-800 rounded-2xl p-6 transition-all duration-500 ${howItWorksPhase >= 1 ? 'opacity-100' : 'opacity-0'} hover:border-gold/40`}>
                 <div className="flex items-center gap-3 mb-4">
                   <div className="w-10 h-10 bg-gold/10 border border-gold/30 rounded-xl flex items-center justify-center">
                     <svg className="w-5 h-5 text-gold" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -322,7 +322,7 @@ const Home = () => {
                   <li className="flex items-center gap-2"><span className="w-1.5 h-1.5 bg-gold rounded-full"></span>Intelligent automation</li>
                   <li className="flex items-center gap-2"><span className="w-1.5 h-1.5 bg-gold rounded-full"></span>Turn chaos into clarity</li>
                 </ul>
-              </div>
+              </Link>
 
               {/* Mobile Connector */}
               <div className={`h-8 border-l-2 border-dashed border-gold/50 transition-all duration-500 ${howItWorksPhase >= 2 ? 'opacity-100' : 'opacity-0'}`}></div>
@@ -339,7 +339,7 @@ const Home = () => {
               <div className={`h-8 border-l-2 border-dashed border-gold/50 transition-all duration-500 ${howItWorksPhase >= 2 ? 'opacity-100' : 'opacity-0'}`}></div>
 
               {/* For Clients Card */}
-              <div className={`w-full max-w-sm bg-zinc-900/50 backdrop-blur-sm border border-zinc-800 rounded-2xl p-6 transition-all duration-500 ${howItWorksPhase >= 1 ? 'opacity-100' : 'opacity-0'}`}>
+              <Link to="/clients" className={`w-full max-w-sm bg-zinc-900/50 backdrop-blur-sm border border-zinc-800 rounded-2xl p-6 transition-all duration-500 ${howItWorksPhase >= 1 ? 'opacity-100' : 'opacity-0'} hover:border-gold/40`}>
                 <div className="flex items-center gap-3 mb-4">
                   <div className="w-10 h-10 bg-gold/10 border border-gold/30 rounded-xl flex items-center justify-center">
                     <svg className="w-5 h-5 text-gold" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -350,11 +350,11 @@ const Home = () => {
                 </div>
                 <p className="text-zinc-400 mb-4 text-sm">Cases become <span className="text-white font-medium">real</span> with an interactive app.</p>
                 <ul className="space-y-2 text-sm text-zinc-400">
-                  <li className="flex items-center gap-2"><span className="w-1.5 h-1.5 bg-gold rounded-full"></span>See progress in real-time</li>
-                  <li className="flex items-center gap-2"><span className="w-1.5 h-1.5 bg-gold rounded-full"></span>Receive instant updates</li>
-                  <li className="flex items-center gap-2"><span className="w-1.5 h-1.5 bg-gold rounded-full"></span>Understand what's happening</li>
+                  <li className="flex items-center gap-2"><span className="w-1.5 h-1.5 bg-gold rounded-full"></span>Real-time progress tracking</li>
+                  <li className="flex items-center gap-2"><span className="w-1.5 h-1.5 bg-gold rounded-full"></span>Instant update delivery</li>
+                  <li className="flex items-center gap-2"><span className="w-1.5 h-1.5 bg-gold rounded-full"></span>Structured activity summaries</li>
                 </ul>
-              </div>
+              </Link>
             </div>
           </div>
 
