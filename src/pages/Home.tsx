@@ -361,7 +361,7 @@ const Home = () => {
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M13 10V3L4 14h7v7l9-11h-7z" />
                     </svg>
                   </div>
-                  <p className="text-white font-medium mb-1 text-sm">Faster Forward</p>
+                  <p className="text-white font-medium mb-1 text-sm">Faster <span className="text-[#e0b660] italic">Forward</span></p>
                   <p className="text-xs text-zinc-500">Every case moves at the speed of technology</p>
                 </div>
                 <div className={`flex flex-col items-center transition-all duration-500 delay-[200ms] ${howItWorksPhase >= 4 ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
@@ -370,7 +370,7 @@ const Home = () => {
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" />
                     </svg>
                   </div>
-                  <p className="text-white font-medium mb-1 text-sm">Instant Updates</p>
+                  <p className="text-white font-medium mb-1 text-sm"><span className="text-[#e0b660] italic">Instant</span> Updates</p>
                   <p className="text-xs text-zinc-500">Shared in real-time, never missed</p>
                 </div>
                 <div className={`flex flex-col items-center transition-all duration-500 delay-[300ms] ${howItWorksPhase >= 4 ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
@@ -379,7 +379,7 @@ const Home = () => {
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
                     </svg>
                   </div>
-                  <p className="text-white font-medium mb-1 text-sm">Total Transparency</p>
+                  <p className="text-white font-medium mb-1 text-sm">Total <span className="text-[#e0b660] italic">Transparency</span></p>
                   <p className="text-xs text-zinc-500">No one feels left in the dark</p>
                 </div>
               </div>
