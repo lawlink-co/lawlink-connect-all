@@ -5,6 +5,7 @@ import { ChevronLeft, ChevronRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import aiDraftingDemo from "@/assets/ai-drafting-demo.png";
 import clientExperienceDemo from "@/assets/client-experience-demo.png";
+import screenshotDashboard from "@/assets/screenshot-dashboard.png";
 
 interface CarouselSlide {
   title: string;
@@ -23,7 +24,7 @@ const slides: CarouselSlide[] = [
   {
     title: "Infrastructure That Scales With Every Case",
     description: "Behind the interface is a layered system built for volume and precision. As your firm grows, customize your CRM to match: create new pages, reorganize your workspace, and set permissions to fit your evolving workflow. From intake to resolution, every document, update, and deadline connects across one living database — your firm's new operating system.",
-    image: "/src/assets/screenshot-dashboard.png",
+    image: screenshotDashboard,
     imageAlt: "Case dashboard and management system"
   },
   {
