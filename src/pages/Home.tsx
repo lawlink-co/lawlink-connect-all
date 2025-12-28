@@ -207,18 +207,16 @@ const Home = () => {
       </div>
 
       {/* How It Works Section - Connection Between Client & Lawyer */}
-      <section ref={howItWorksSectionRef} className="py-24 px-4 sm:px-6 lg:px-8 bg-black border-t border-gold/20">
+      <section ref={howItWorksSectionRef} className="py-24 px-4 sm:px-6 lg:px-8 bg-black border-t border-zinc-800/50">
         <div className="container mx-auto max-w-5xl">
-          <h2 className={`text-2xl sm:text-3xl lg:text-4xl font-normal mb-4 text-center transition-all duration-500 leading-tight ${howItWorksPhase >= 3 ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
-            <span className="text-gold">How</span> It Works
-          </h2>
+          <h2 className={`text-2xl sm:text-3xl lg:text-4xl font-normal mb-4 text-center transition-all duration-500 leading-tight ${howItWorksPhase >= 3 ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>How It Works</h2>
           <p className={`text-lg text-zinc-400 text-center mb-16 max-w-2xl mx-auto transition-all duration-500 delay-100 leading-relaxed ${howItWorksPhase >= 3 ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
-            Amicus bridges clients and their lawyers — making every case <span className="text-gold font-medium">tangible</span>, <span className="text-gold font-medium">fast-moving</span>, and <span className="text-gold font-medium">transparent</span>.
+            Amicus bridges clients and their lawyers — making every case tangible, fast-moving, and transparent.
           </p>
 
           {/* Gold accent divider under heading */}
           <div className={`flex justify-center mb-12 transition-all duration-500 delay-150 ${howItWorksPhase >= 3 ? 'opacity-100' : 'opacity-0'}`}>
-            <div className="w-16 h-0.5 bg-gradient-to-r from-transparent via-gold to-transparent rounded-full"></div>
+            <div className="w-12 h-0.5 bg-gold rounded-full"></div>
           </div>
 
           {/* Visual Connection - Horizontal layout */}
