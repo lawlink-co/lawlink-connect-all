@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { CheckCircle2, Shield, Lock, Database, Briefcase, FileText, MessageCircle, Settings } from "lucide-react";
@@ -68,9 +69,11 @@ const LawFirms = () => {
           animationDelay: '2000ms',
           animationFillMode: 'forwards'
         }}>
-            <Button size="lg" className="text-lg px-14 py-8 bg-white text-black hover:bg-zinc-200 transition-all duration-300 hover:scale-105 font-sans">
-              Book a Demo
-            </Button>
+            <Link to="/demo">
+              <Button size="lg" className="text-lg px-14 py-8 bg-white text-black hover:bg-zinc-200 transition-all duration-300 hover:scale-105 font-sans">
+                Book a Demo
+              </Button>
+            </Link>
           </div>
         </div>
       </section>
@@ -322,12 +325,16 @@ const LawFirms = () => {
           }}>effortless</em>.
           </p>
           <div className="flex flex-col sm:flex-row gap-6 justify-center pt-6">
-            <Button size="lg" className="text-xl px-14 py-8 bg-white text-black hover:bg-zinc-200 transition-all duration-300 hover:scale-105 font-sans">
-              See a Demo
-            </Button>
-            <Button size="lg" className="text-xl px-14 py-8 bg-white text-black hover:bg-zinc-200 transition-all duration-300 hover:scale-105 font-sans">
-              Talk to Our Team
-            </Button>
+            <Link to="/demo">
+              <Button size="lg" className="text-xl px-14 py-8 bg-white text-black hover:bg-zinc-200 transition-all duration-300 hover:scale-105 font-sans">
+                See a Demo
+              </Button>
+            </Link>
+            <Link to="/demo">
+              <Button size="lg" className="text-xl px-14 py-8 bg-white text-black hover:bg-zinc-200 transition-all duration-300 hover:scale-105 font-sans">
+                Talk to Our Team
+              </Button>
+            </Link>
           </div>
           <p className="text-sm text-zinc-500 mt-8 font-sans">
             No credit card required • White-glove onboarding

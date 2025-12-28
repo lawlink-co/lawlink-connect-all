@@ -21,9 +21,11 @@ const Navigation = () => {
             <Link to="/clients" className="text-white hover:text-primary transition-colors">
               For Clients
             </Link>
-            <Button size="sm" className="bg-primary hover:bg-primary/90 text-white">
-              Book a Demo
-            </Button>
+            <Link to="/demo">
+              <Button size="sm" className="bg-primary hover:bg-primary/90 text-white">
+                Book a Demo
+              </Button>
+            </Link>
           </div>
         </div>
       </div>
