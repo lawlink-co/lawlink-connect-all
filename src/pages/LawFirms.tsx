@@ -344,7 +344,7 @@ const LawFirms = () => {
             {/* End-to-End Encryption - Icon Left, Text Right */}
             <div className={`flex flex-col md:flex-row items-center gap-12 md:gap-20 transition-all duration-500 ${visibleCards.includes(0) ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
               <div className="flex-shrink-0 flex items-center justify-center w-full md:w-1/3">
-                <Lock className="w-32 h-32" style={{ color: '#e4bf6c' }} />
+                <Lock className="w-24 h-24" style={{ color: '#e4bf6c' }} />
               </div>
               <div className="flex-1 text-center md:text-left">
                 <h3 className="text-3xl sm:text-4xl font-normal mb-6 text-white">End-to-End Encryption</h3>
@@ -357,7 +357,7 @@ const LawFirms = () => {
             {/* Attorney-Client Privilege - Text Left, Icon Right */}
             <div className={`flex flex-col md:flex-row-reverse items-center gap-12 md:gap-20 transition-all duration-500 ${visibleCards.includes(1) ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
               <div className="flex-shrink-0 flex items-center justify-center w-full md:w-1/3">
-                <Shield className="w-32 h-32" style={{ color: '#e4bf6c' }} />
+                <Shield className="w-24 h-24" style={{ color: '#e4bf6c' }} />
               </div>
               <div className="flex-1 text-center md:text-left">
                 <h3 className="text-3xl sm:text-4xl font-normal mb-6 text-white">Attorney-Client Privilege</h3>
@@ -370,7 +370,7 @@ const LawFirms = () => {
             {/* SOC 2 Compliant - Icon Left, Text Right */}
             <div className={`flex flex-col md:flex-row items-center gap-12 md:gap-20 transition-all duration-500 ${visibleCards.includes(2) ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
               <div className="flex-shrink-0 flex items-center justify-center w-full md:w-1/3">
-                <Database className="w-32 h-32" style={{ color: '#e4bf6c' }} />
+                <Database className="w-24 h-24" style={{ color: '#e4bf6c' }} />
               </div>
               <div className="flex-1 text-center md:text-left">
                 <h3 className="text-3xl sm:text-4xl font-normal mb-6 text-white">SOC 2 Compliant</h3>
