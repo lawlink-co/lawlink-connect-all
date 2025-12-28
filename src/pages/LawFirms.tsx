@@ -330,11 +330,8 @@ const LawFirms = () => {
       {/* Security Section */}
       <section className="py-24 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-black to-zinc-950 border-t border-zinc-800">
         <div className="container mx-auto max-w-6xl">
-          <div className="text-center mb-16">
-            <div className="relative inline-block mb-8">
-              <div className="absolute inset-0 bg-primary/20 blur-2xl rounded-full"></div>
-              <Shield className="w-20 h-20 text-primary mx-auto relative animate-pulse" />
-            </div>
+          <div className="text-center mb-20">
+            <Shield className="w-20 h-20 text-primary mx-auto mb-8" />
             <h2 className="text-4xl sm:text-5xl font-light mb-8">
               Security & Compliance
             </h2>
@@ -343,36 +340,51 @@ const LawFirms = () => {
             </p>
           </div>
 
-          <div ref={securitySectionRef} className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <Card className={`bg-zinc-950 border-zinc-800 hover:border-primary transition-all duration-500 ${visibleCards.includes(0) ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
-              <CardContent className="pt-8 text-center">
-                <Lock className="w-14 h-14 text-primary mx-auto mb-6" />
-                <h3 className="text-xl font-normal mb-4 text-white">End-to-End Encryption</h3>
-                <p className="text-zinc-400 font-sans">
-                  All data encrypted in transit and at rest with AES-256 encryption.
+          <div ref={securitySectionRef} className="space-y-24">
+            {/* End-to-End Encryption - Icon Left, Text Right */}
+            <div className={`flex flex-col md:flex-row items-center gap-12 md:gap-20 transition-all duration-500 ${visibleCards.includes(0) ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
+              <div className="flex-shrink-0 flex items-center justify-center w-full md:w-1/3">
+                <div className="bg-zinc-900 border border-zinc-800 rounded-2xl p-12">
+                  <Lock className="w-24 h-24 text-primary" />
+                </div>
+              </div>
+              <div className="flex-1 text-center md:text-left">
+                <h3 className="text-3xl sm:text-4xl font-normal mb-6 text-white">End-to-End Encryption</h3>
+                <p className="text-xl text-zinc-400 font-sans leading-relaxed">
+                  All data encrypted in transit and at rest with AES-256 encryption. Your client data and case files are protected with the same standards used by financial institutions.
                 </p>
-              </CardContent>
-            </Card>
+              </div>
+            </div>
 
-            <Card className={`bg-zinc-950 border-zinc-800 hover:border-primary transition-all duration-500 ${visibleCards.includes(1) ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
-              <CardContent className="pt-8 text-center">
-                <Shield className="w-14 h-14 text-primary mx-auto mb-6" />
-                <h3 className="text-xl font-normal mb-4 text-white">Attorney-Client Privilege</h3>
-                <p className="text-zinc-400 font-sans">
-                  Full compliance with confidentiality requirements and privilege protection.
+            {/* Attorney-Client Privilege - Text Left, Icon Right */}
+            <div className={`flex flex-col md:flex-row-reverse items-center gap-12 md:gap-20 transition-all duration-500 ${visibleCards.includes(1) ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
+              <div className="flex-shrink-0 flex items-center justify-center w-full md:w-1/3">
+                <div className="bg-zinc-900 border border-zinc-800 rounded-2xl p-12">
+                  <Shield className="w-24 h-24 text-primary" />
+                </div>
+              </div>
+              <div className="flex-1 text-center md:text-left">
+                <h3 className="text-3xl sm:text-4xl font-normal mb-6 text-white">Attorney-Client Privilege</h3>
+                <p className="text-xl text-zinc-400 font-sans leading-relaxed">
+                  Full compliance with confidentiality requirements and privilege protection. Amicus is designed from the ground up to respect the sanctity of the attorney-client relationship.
                 </p>
-              </CardContent>
-            </Card>
+              </div>
+            </div>
 
-            <Card className={`bg-zinc-950 border-zinc-800 hover:border-primary transition-all duration-500 ${visibleCards.includes(2) ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
-              <CardContent className="pt-8 text-center">
-                <Database className="w-14 h-14 text-primary mx-auto mb-6" />
-                <h3 className="text-xl font-normal mb-4 text-white">SOC 2 Compliant</h3>
-                <p className="text-zinc-400 font-sans">
-                  Regular security audits and compliance with industry standards.
+            {/* SOC 2 Compliant - Icon Left, Text Right */}
+            <div className={`flex flex-col md:flex-row items-center gap-12 md:gap-20 transition-all duration-500 ${visibleCards.includes(2) ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
+              <div className="flex-shrink-0 flex items-center justify-center w-full md:w-1/3">
+                <div className="bg-zinc-900 border border-zinc-800 rounded-2xl p-12">
+                  <Database className="w-24 h-24 text-primary" />
+                </div>
+              </div>
+              <div className="flex-1 text-center md:text-left">
+                <h3 className="text-3xl sm:text-4xl font-normal mb-6 text-white">SOC 2 Compliant</h3>
+                <p className="text-xl text-zinc-400 font-sans leading-relaxed">
+                  Regular security audits and compliance with industry standards. Our infrastructure meets the rigorous requirements that law firms and their clients expect.
                 </p>
-              </CardContent>
-            </Card>
+              </div>
+            </div>
           </div>
         </div>
       </section>
