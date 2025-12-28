@@ -189,10 +189,10 @@ const Clients = () => {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
             <div className="space-y-8 animate-fade-in-slow">
               <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold text-gray-900 leading-tight">
-                Know What's Happening<br />in Your Case.
+                Cases Become Real<br />With Amicus.
               </h1>
               <p className="text-2xl sm:text-3xl text-gray-700 leading-relaxed">
-                Amicus clients get real updates, real context, and real clarity.
+                An interactive app that delivers real updates, real context, and real clarity.
               </p>
               <Button size="lg" className="text-lg px-10 py-7 bg-primary text-white hover:bg-primary/90 transition-all duration-300 hover:scale-105 shadow-lg">
                 Find an Amicus Lawyer
@@ -211,10 +211,10 @@ const Clients = () => {
         <div className="container mx-auto max-w-6xl text-center">
           <Smartphone className="w-20 h-20 text-primary mx-auto mb-8 animate-scale-in" />
           <h2 className="text-4xl sm:text-5xl font-bold mb-8 text-gray-900">
-            Your Case, in One View
+            Every Case, in One View
           </h2>
           <p className="text-xl sm:text-2xl text-gray-700 max-w-4xl mx-auto leading-relaxed mb-16">
-            Amicus turns lawsuits into something tangible. See every update, motion, and court filing — right in your pocket.
+            Lawsuits become tangible. Every update, motion, and court filing — accessible in one pocket-sized app.
           </p>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-12">
@@ -223,7 +223,7 @@ const Clients = () => {
                 <Bell className="w-12 h-12 text-primary mb-6 mx-auto" />
                 <h3 className="text-2xl font-bold mb-4 text-gray-900">Real-Time Updates</h3>
                 <p className="text-gray-700 text-lg leading-relaxed">
-                  Get instant notifications about every important development in your case—filings, hearings, and settlements.
+                  Instant notifications deliver every important development — filings, hearings, and settlements — as they happen.
                 </p>
               </CardContent>
             </Card>
@@ -233,7 +233,7 @@ const Clients = () => {
                 <MessageSquare className="w-12 h-12 text-primary mb-6 mx-auto" />
                 <h3 className="text-2xl font-bold mb-4 text-gray-900">AI Chat</h3>
                 <p className="text-gray-700 text-lg leading-relaxed">
-                  Talk directly to an AI that knows your case — every filing, message, and deadline. Ask questions, get updates, and understand your case in plain language, anytime.
+                  An AI that knows every filing, message, and deadline. Questions get answered and complex legal terms become plain language, anytime.
                 </p>
               </CardContent>
             </Card>
@@ -243,7 +243,7 @@ const Clients = () => {
                 <FileSearch className="w-12 h-12 text-primary mb-6 mx-auto" />
                 <h3 className="text-2xl font-bold mb-4 text-gray-900">Case Hub</h3>
                 <p className="text-gray-700 text-lg leading-relaxed">
-                  Every document, update, and message lives in one place. Amicus becomes the central hub for your entire case — clear, connected, and always in motion.
+                  Every document, update, and message lives in one place. The entire case becomes a central hub — clear, connected, and always in motion.
                 </p>
               </CardContent>
             </Card>
@@ -251,9 +251,9 @@ const Clients = () => {
             <Card className="bg-white border-2 border-gray-200 hover:border-primary hover:shadow-xl transition-all duration-300 rounded-2xl">
               <CardContent className="pt-8">
                 <Briefcase className="w-12 h-12 text-primary mb-6 mx-auto" />
-                <h3 className="text-2xl font-bold mb-4 text-gray-900">All Your Cases, One App</h3>
+                <h3 className="text-2xl font-bold mb-4 text-gray-900">All Cases, One App</h3>
                 <p className="text-gray-700 text-lg leading-relaxed">
-                  Keep all your ongoing cases organized in a single app, with appointments, deadlines, and updates for each — always at your fingertips.
+                  Multiple ongoing cases stay organized in a single app, with appointments, deadlines, and updates for each — always accessible.
                 </p>
               </CardContent>
             </Card>
@@ -267,7 +267,7 @@ const Clients = () => {
           <div className="text-center mb-16">
             <Bell className="w-16 h-16 text-primary mx-auto mb-6" />
             <h2 className="text-5xl sm:text-6xl lg:text-7xl font-bold text-gray-900">
-              Catch Up with Your Case
+              Progress Becomes Visible
             </h2>
           </div>
           
@@ -286,7 +286,7 @@ const Clients = () => {
             {/* Text Content */}
             <div className={`mt-16 max-w-3xl text-center transition-all duration-700 delay-300 ease-out ${notificationVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
               <p className="text-xl sm:text-2xl text-gray-700 leading-relaxed">
-                Get a micro-view of your case and feel the progress as it happens — every filing, every motion, every development delivered in clear, understandable language so you always know exactly what's happening.
+                A micro-view of every case reveals progress as it happens — every filing, every motion, every development delivered in clear, understandable language.
               </p>
             </div>
           </div>
@@ -300,10 +300,10 @@ const Clients = () => {
             <div className="text-center mb-12">
               <MessageSquare className="w-20 h-20 text-primary mx-auto mb-8 animate-scale-in" />
               <h2 className="text-4xl sm:text-5xl font-bold mb-8 text-gray-900">
-                Chat with Your Case — Literally
+                Cases That Talk Back
               </h2>
               <p className="text-xl sm:text-2xl text-gray-700 max-w-3xl mx-auto leading-relaxed">
-                Amicus's AI knows every document and event, so you never have to ask twice.
+                AI that knows every document and event — questions get answered once, clearly.
               </p>
             </div>
             
@@ -312,7 +312,7 @@ const Clients = () => {
                 <Clock className="w-8 h-8 text-primary flex-shrink-0 mt-1" />
                 <div>
                   <h4 className="font-bold text-lg text-gray-900 mb-2">24/7 Availability</h4>
-                  <p className="text-gray-700">Get answers to your questions any time of day or night.</p>
+                  <p className="text-gray-700">Answers available any time of day or night.</p>
                 </div>
               </div>
               
@@ -320,7 +320,7 @@ const Clients = () => {
                 <Shield className="w-8 h-8 text-primary flex-shrink-0 mt-1" />
                 <div>
                   <h4 className="font-bold text-lg text-gray-900 mb-2">Completely Secure</h4>
-                  <p className="text-gray-700">Your conversations are encrypted and confidential.</p>
+                  <p className="text-gray-700">Conversations stay encrypted and confidential.</p>
                 </div>
               </div>
               
@@ -328,7 +328,7 @@ const Clients = () => {
                 <Calendar className="w-8 h-8 text-primary flex-shrink-0 mt-1" />
                 <div>
                   <h4 className="font-bold text-lg text-gray-900 mb-2">Context-Aware</h4>
-                  <p className="text-gray-700">Understands your entire case history for accurate answers.</p>
+                  <p className="text-gray-700">Full case history understood for accurate answers.</p>
                 </div>
               </div>
               
@@ -355,10 +355,10 @@ const Clients = () => {
         <div className="container mx-auto max-w-5xl text-center pt-[650px] pb-32">
           <Shield className="w-20 h-20 text-primary mx-auto mb-8" />
           <h2 className="text-4xl sm:text-5xl font-bold mb-8 text-white">
-            Your Information, Secured.
+            Sensitive Information, Secured.
           </h2>
           <p className="text-xl sm:text-2xl text-gray-300 mb-16 max-w-3xl mx-auto leading-relaxed">
-            Attorney-client privilege is sacred. Amicus is built from the ground up to protect your most sensitive information with enterprise-grade security.
+            Attorney-client privilege stays sacred. Built from the ground up with enterprise-grade security to protect the most sensitive information.
           </p>
           
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto mb-16">
@@ -367,7 +367,7 @@ const Clients = () => {
                 <Shield className="w-8 h-8 text-primary" />
               </div>
               <h3 className="text-xl font-bold mb-3 text-white">End-to-End Encryption</h3>
-              <p className="text-gray-400">Every message, document, and update is encrypted in transit and at rest. Your data stays private.</p>
+              <p className="text-gray-400">Every message, document, and update encrypted in transit and at rest. Data stays private.</p>
             </div>
             
             <div className="text-center bg-white/5 backdrop-blur-sm rounded-2xl p-8 border border-white/10">
