@@ -3,6 +3,7 @@ import useEmblaCarousel from "embla-carousel-react";
 import Fade from "embla-carousel-fade";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import caseChatMobile from "@/assets/case-chat-mobile.png";
 
 interface CarouselSlide {
   title: string;
@@ -15,8 +16,8 @@ const slides: CarouselSlide[] = [
   {
     title: "Intelligence That Understands Your Practice",
     description: "Amicus's AI reads every transcript, filing, and exhibit — transforming raw documents into organized, contextual knowledge. It doesn't just automate drafting — it understands the why behind your cases.",
-    image: "/src/assets/screenshot-drafting.png",
-    imageAlt: "AI-powered summons and complaint drafting interface"
+    image: caseChatMobile,
+    imageAlt: "Mobile app showing attorney-client communication"
   },
   {
     title: "Infrastructure That Scales With Every Case",
