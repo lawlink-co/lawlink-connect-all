@@ -216,36 +216,40 @@ const LawFirms = () => {
                 </h3>
                 
                 <p className="text-xl text-zinc-300 font-sans leading-relaxed mb-8">
-                  Every attorney knows the drill: clients call asking for updates, and you spend billable hours explaining what's already in the file. Amicus eliminates that friction entirely — clients stay informed automatically, and your phone stays quiet.
+                  You didn't become a personal injury lawyer to spend your day giving status updates. Yet case after case, the phone rings with the same questions — not because clients are unreasonable, but because they lack visibility. Amicus removes that drag on your practice. Clients stay informed automatically, without pulling you away from depositions, motion practice, or case strategy.
                 </p>
 
                 <div className="bg-zinc-900 border border-zinc-700 rounded-lg p-6 mb-8">
                   <p className="text-lg text-zinc-300 font-sans leading-relaxed mb-6">
-                    The Amicus client app gives your clients <span className="text-white font-normal">real-time visibility</span> into their case without requiring your time:
+                    The Amicus client app gives clients <span className="text-white font-normal">structured, real-time insight</span> into their case — without requiring your involvement:
                   </p>
                   
                   <ul className="space-y-3 font-sans">
                     <li className="flex items-start space-x-3">
                       <CheckCircle2 className="w-6 h-6 text-primary flex-shrink-0 mt-1" />
-                      <span className="text-zinc-300 text-lg">Automatic updates pushed to clients whenever case status changes</span>
+                      <span className="text-zinc-300 text-lg">Automatic status updates triggered by real case activity</span>
                     </li>
                     <li className="flex items-start space-x-3">
                       <CheckCircle2 className="w-6 h-6 text-primary flex-shrink-0 mt-1" />
-                      <span className="text-zinc-300 text-lg">Real-time progress tracking so clients always know where things stand</span>
+                      <span className="text-zinc-300 text-lg">Live progress tracking so clients always know where their case stands</span>
                     </li>
                     <li className="flex items-start space-x-3">
                       <CheckCircle2 className="w-6 h-6 text-primary flex-shrink-0 mt-1" />
-                      <span className="text-zinc-300 text-lg">AI-powered chat assistant that answers routine questions instantly — 24/7</span>
+                      <span className="text-zinc-300 text-lg">AI-powered assistant that handles routine questions instantly, 24/7</span>
                     </li>
                     <li className="flex items-start space-x-3">
                       <CheckCircle2 className="w-6 h-6 text-primary flex-shrink-0 mt-1" />
-                      <span className="text-zinc-300 text-lg">Secure document sharing and messaging built directly into the app</span>
+                      <span className="text-zinc-300 text-lg">Secure messaging built directly into the app</span>
                     </li>
                   </ul>
                 </div>
 
+                <p className="text-xl text-zinc-300 font-sans leading-relaxed mb-6">
+                  When clients understand the process, they call less. When they call less, you litigate more.
+                </p>
+
                 <p className="text-xl text-zinc-300 font-sans leading-relaxed italic border-l-4 border-primary pl-6">
-                  Satisfied clients are retained clients. When they can check their case status anytime — without calling your office — they feel informed, respected, and confident in your representation. You reclaim your time; they get peace of mind.
+                  Better-informed clients are more confident, more patient, and easier to manage through long PI timelines. You stay focused on building value in the case — not explaining it. Less noise. More leverage. More time where it matters.
                 </p>
               </div>
             </TabsContent>
