@@ -330,7 +330,7 @@ const LawFirms = () => {
                 See a Demo
               </Button>
             </Link>
-            <Link to="/demo">
+            <Link to="/contact">
               <Button size="lg" className="text-xl px-14 py-8 bg-white text-black hover:bg-zinc-200 transition-all duration-300 hover:scale-105 font-sans">
                 Talk to Our Team
               </Button>
