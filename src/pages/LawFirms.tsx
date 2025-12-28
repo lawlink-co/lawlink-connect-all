@@ -248,8 +248,12 @@ const LawFirms = () => {
                   When clients understand the process, they call less. When they call less, you litigate more.
                 </p>
 
-                <p className="text-xl text-zinc-300 font-sans leading-relaxed italic border-l-4 border-primary pl-6">
-                  Better-informed clients are more confident, more patient, and easier to manage through long PI timelines. You stay focused on building value in the case — not explaining it. Less noise. More leverage. More time where it matters.
+                <p className="text-xl text-zinc-300 font-sans leading-relaxed italic border-l-4 border-primary pl-6 mb-6">
+                  Better-informed clients are more confident, more patient, and easier to manage through long PI timelines. You stay focused on building value in the case — not explaining it.
+                </p>
+
+                <p className="text-xl text-white font-bold font-sans leading-relaxed">
+                  Less noise. More leverage. More time where it matters.
                 </p>
               </div>
             </TabsContent>
