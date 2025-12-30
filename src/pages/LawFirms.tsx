@@ -6,9 +6,11 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import Navigation from "@/components/Navigation";
 import ScrollRevealImages from "@/components/ScrollRevealImages";
 import { useEffect, useRef, useState } from "react";
+import { useIsMobile } from "@/hooks/use-mobile";
 const LawFirms = () => {
   const [visibleCards, setVisibleCards] = useState<number[]>([]);
   const securitySectionRef = useRef<HTMLDivElement>(null);
+  const isMobile = useIsMobile();
   useEffect(() => {
     const observer = new IntersectionObserver(entries => {
       entries.forEach(entry => {
@@ -80,7 +82,7 @@ const LawFirms = () => {
 
       {/* All-in-One System Section */}
       <section className="py-24 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-black to-zinc-950">
-        <div className="container mx-auto max-w-7xl">
+        <div className="container mx-auto sm:max-w-7xl">
           <div className="text-center mb-12 space-y-6 animate-fade-in">
             <h2 className="text-3xl sm:text-4xl font-normal">
               The All-in-One System for Modern Litigation
@@ -154,7 +156,7 @@ const LawFirms = () => {
               <div className="bg-zinc-950 border border-zinc-800 rounded-lg p-8 sm:p-12">
                 {/* Demo Video */}
                 <div className="mb-10 rounded-lg overflow-hidden">
-                  <video className="w-full aspect-video rounded-lg" autoPlay loop muted playsInline>
+                  <video className="w-full aspect-video rounded-lg" autoPlay loop muted playsInline controls={isMobile}>
                     <source src="/videos/drafting-demo.mp4?v=1" type="video/mp4" />
                     Your browser does not support the video tag.
                   </video>
@@ -204,7 +206,7 @@ const LawFirms = () => {
               <div className="bg-zinc-950 border border-zinc-800 rounded-lg p-8 sm:p-12">
                 {/* Demo Video */}
                 <div className="mb-10 rounded-lg overflow-hidden">
-                  <video className="w-full aspect-video rounded-lg" autoPlay loop muted playsInline>
+                  <video className="w-full aspect-video rounded-lg" autoPlay loop muted playsInline controls={isMobile}>
                     <source src="/videos/client-experience.mp4" type="video/mp4" />
                     Your browser does not support the video tag.
                   </video>
@@ -261,7 +263,7 @@ const LawFirms = () => {
               <div className="bg-zinc-950 border border-zinc-800 rounded-lg p-8 sm:p-12">
                 {/* Demo Video */}
                 <div className="mb-10 rounded-lg overflow-hidden">
-                  <video className="w-full aspect-video rounded-lg" autoPlay loop muted playsInline>
+                  <video className="w-full aspect-video rounded-lg" autoPlay loop muted playsInline controls={isMobile}>
                     <source src="/videos/customization-demo.mp4?v=5" type="video/mp4" />
                     Your browser does not support the video tag.
                   </video>
