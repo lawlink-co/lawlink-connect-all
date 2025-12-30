@@ -12,6 +12,7 @@ import caseIconLeft from "@/assets/case-icon-left.svg";
 import caseIconRight from "@/assets/case-icon-right.svg";
 import casePhoneCenter from "@/assets/case-phone-center.png";
 import { useEffect, useRef, useState } from "react";
+import { useIsMobile } from "@/hooks/use-mobile";
 
 const caseHubSlides = [
   { image: clientApp1, alt: "Amicus app - medical treatment" },
@@ -166,20 +167,22 @@ const AllCasesSection = () => {
 const Clients = () => {
   const [notificationVisible, setNotificationVisible] = useState(false);
   const notificationSectionRef = useRef<HTMLDivElement>(null);
+  const isMobile = useIsMobile();
+  
   useEffect(() => {
     const observer = new IntersectionObserver(([entry]) => {
       if (entry.isIntersecting) {
         setNotificationVisible(true);
       }
     }, {
-      threshold: 0.5,
-      rootMargin: '-20% 0px -20% 0px'
+      threshold: isMobile ? 0.2 : 0.5,
+      rootMargin: isMobile ? '0px' : '-20% 0px -20% 0px'
     });
     if (notificationSectionRef.current) {
       observer.observe(notificationSectionRef.current);
     }
     return () => observer.disconnect();
-  }, []);
+  }, [isMobile]);
   return <div className="min-h-screen bg-white font-sans [&_h1]:font-sans [&_h2]:font-sans [&_h3]:font-sans [&_h4]:font-sans [&_p]:font-sans">
       <Navigation />
       
