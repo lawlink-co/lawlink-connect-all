@@ -113,7 +113,7 @@ const AllCasesSection = () => {
           <div 
             className={`absolute z-10 transition-all duration-700 ease-out ${
               phoneAnimationComplete 
-                ? 'left-[5%] sm:left-[22%] opacity-100' 
+                ? 'left-0 sm:left-[22%] opacity-100' 
                 : 'left-1/2 -translate-x-1/2 opacity-0'
             }`}
           >
@@ -143,7 +143,7 @@ const AllCasesSection = () => {
           <div 
             className={`absolute z-10 transition-all duration-700 ease-out ${
               phoneAnimationComplete 
-                ? 'right-[5%] sm:right-[22%] opacity-100' 
+                ? 'right-0 sm:right-[22%] opacity-100' 
                 : 'right-1/2 translate-x-1/2 opacity-0'
             }`}
           >
