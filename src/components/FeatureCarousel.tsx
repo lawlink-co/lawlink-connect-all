@@ -134,23 +134,23 @@ const FeatureCarousel = () => {
             </div>
           </div>
 
-          {/* Navigation Arrows - Positioned in outer black space */}
-          <div className="hidden lg:flex justify-between items-center absolute top-1/2 -translate-y-1/2 left-0 right-0 pointer-events-none px-8">
+          {/* Navigation Arrows - Positioned on sides */}
+          <div className="flex justify-between items-center absolute top-1/2 -translate-y-1/2 left-0 right-0 pointer-events-none px-2 sm:px-4 lg:px-8">
             <Button
               variant="outline"
               size="icon"
               onClick={scrollPrev}
-              className="pointer-events-auto bg-zinc-900/80 border-zinc-700 hover:bg-zinc-800 hover:border-zinc-600 backdrop-blur-sm opacity-70 hover:opacity-100 transition-opacity"
+              className="pointer-events-auto bg-zinc-900/80 border-zinc-700 hover:bg-zinc-800 hover:border-zinc-600 backdrop-blur-sm opacity-70 hover:opacity-100 transition-opacity h-10 w-10 sm:h-12 sm:w-12"
             >
-              <ChevronLeft className="h-6 w-6" />
+              <ChevronLeft className="h-5 w-5 sm:h-6 sm:w-6" />
             </Button>
             <Button
               variant="outline"
               size="icon"
               onClick={scrollNext}
-              className="pointer-events-auto bg-zinc-900/80 border-zinc-700 hover:bg-zinc-800 hover:border-zinc-600 backdrop-blur-sm opacity-70 hover:opacity-100 transition-opacity"
+              className="pointer-events-auto bg-zinc-900/80 border-zinc-700 hover:bg-zinc-800 hover:border-zinc-600 backdrop-blur-sm opacity-70 hover:opacity-100 transition-opacity h-10 w-10 sm:h-12 sm:w-12"
             >
-              <ChevronRight className="h-6 w-6" />
+              <ChevronRight className="h-5 w-5 sm:h-6 sm:w-6" />
             </Button>
           </div>
         </div>
