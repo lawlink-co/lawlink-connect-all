@@ -81,9 +81,9 @@ const LawFirms = () => {
       </section>
 
       {/* All-in-One System Section */}
-      <section className="py-24 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-black to-zinc-950">
-        <div className="container mx-auto sm:max-w-7xl">
-          <div className="text-center mb-12 space-y-6 animate-fade-in">
+      <section className="py-24 px-0 sm:px-6 lg:px-8 bg-gradient-to-b from-black to-zinc-950">
+        <div className="mx-auto w-full sm:container sm:max-w-7xl">
+          <div className="text-center mb-12 space-y-6 animate-fade-in px-4 sm:px-0">
             <h2 className="text-3xl sm:text-4xl font-normal">
               The All-in-One System for Modern Litigation
             </h2>
@@ -93,7 +93,7 @@ const LawFirms = () => {
           </div>
 
           <Tabs defaultValue="drafting" className="w-full">
-            <div className="overflow-x-auto scrollbar-hide -mx-4 px-4 sm:mx-0 sm:px-0 mb-12">
+            <div className="overflow-x-auto scrollbar-hide px-4 sm:px-0 mb-12">
               <TabsList className="inline-flex w-max sm:grid sm:w-full sm:grid-cols-3 bg-zinc-950 border border-zinc-800 items-center h-auto min-h-14 gap-1 sm:gap-0">
                 {/* Case Management tab hidden but code preserved below */}
                 <TabsTrigger value="drafting" className="text-sm sm:text-lg py-3 sm:py-4 px-4 sm:px-2 h-full flex items-center justify-center whitespace-nowrap data-[state=active]:bg-black data-[state=active]:text-white data-[state=active]:border-b-2 data-[state=active]:border-primary">
@@ -112,7 +112,7 @@ const LawFirms = () => {
             </div>
 
             <TabsContent value="case-management">
-              <div className="bg-zinc-950 border border-zinc-800 rounded-lg p-8 sm:p-12">
+              <div className="bg-zinc-950 border border-zinc-800 rounded-none sm:rounded-lg p-8 sm:p-12">
                 <h3 className="text-2xl sm:text-3xl font-normal mb-6 text-white">
                   Command Every Case From a Single Dashboard.
                 </h3>
@@ -153,10 +153,10 @@ const LawFirms = () => {
             </TabsContent>
 
             <TabsContent value="drafting">
-              <div className="bg-zinc-950 border border-zinc-800 rounded-lg p-8 sm:p-12">
+              <div className="bg-zinc-950 border border-zinc-800 rounded-none sm:rounded-lg p-8 sm:p-12">
                 {/* Demo Video */}
-                <div className="mb-10 rounded-lg overflow-hidden">
-                  <video className="w-full aspect-video rounded-lg" autoPlay loop muted playsInline controls={isMobile}>
+                <div className="mb-10 rounded-none sm:rounded-lg overflow-hidden">
+                  <video className="w-full aspect-video rounded-none sm:rounded-lg" autoPlay loop muted playsInline controls={isMobile}>
                     <source src="/videos/drafting-demo.mp4?v=1" type="video/mp4" />
                     Your browser does not support the video tag.
                   </video>
@@ -203,10 +203,10 @@ const LawFirms = () => {
 
 
             <TabsContent value="client-communication">
-              <div className="bg-zinc-950 border border-zinc-800 rounded-lg p-8 sm:p-12">
+              <div className="bg-zinc-950 border border-zinc-800 rounded-none sm:rounded-lg p-8 sm:p-12">
                 {/* Demo Video */}
-                <div className="mb-10 rounded-lg overflow-hidden">
-                  <video className="w-full aspect-video rounded-lg" autoPlay loop muted playsInline controls={isMobile}>
+                <div className="mb-10 rounded-none sm:rounded-lg overflow-hidden">
+                  <video className="w-full aspect-video rounded-none sm:rounded-lg" autoPlay loop muted playsInline controls={isMobile}>
                     <source src="/videos/client-experience.mp4" type="video/mp4" />
                     Your browser does not support the video tag.
                   </video>
@@ -260,10 +260,10 @@ const LawFirms = () => {
             </TabsContent>
 
             <TabsContent value="customization">
-              <div className="bg-zinc-950 border border-zinc-800 rounded-lg p-8 sm:p-12">
+              <div className="bg-zinc-950 border border-zinc-800 rounded-none sm:rounded-lg p-8 sm:p-12">
                 {/* Demo Video */}
-                <div className="mb-10 rounded-lg overflow-hidden">
-                  <video className="w-full aspect-video rounded-lg" autoPlay loop muted playsInline controls={isMobile}>
+                <div className="mb-10 rounded-none sm:rounded-lg overflow-hidden">
+                  <video className="w-full aspect-video rounded-none sm:rounded-lg" autoPlay loop muted playsInline controls={isMobile}>
                     <source src="/videos/customization-demo.mp4?v=5" type="video/mp4" />
                     Your browser does not support the video tag.
                   </video>
