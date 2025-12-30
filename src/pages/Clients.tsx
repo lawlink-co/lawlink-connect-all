@@ -419,9 +419,11 @@ const Clients = () => {
             Your Case Deserves Better
           </h2>
           <div className="flex flex-col sm:flex-row gap-6 justify-center">
-            <Button size="lg" className="text-lg px-10 py-7 bg-primary text-white hover:bg-primary/90 transition-all duration-300 hover:scale-105 shadow-lg">
-              Find an Amicus Lawyer
-            </Button>
+            <a href="tel:2125882922">
+              <Button size="lg" className="text-lg px-10 py-7 bg-primary text-white hover:bg-primary/90 transition-all duration-300 hover:scale-105 shadow-lg">
+                Find an Amicus Lawyer
+              </Button>
+            </a>
           </div>
         </div>
       </section>
