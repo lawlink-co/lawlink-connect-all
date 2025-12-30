@@ -398,7 +398,7 @@ const Home = () => {
             Amicus is shaping the future of litigation — where cases flow from intake to resolution with intelligence and ease.
           </p>
           <div className="pt-8">
-            <p className="text-3xl font-normal text-white"><span className="text-[#e0b660] italic">Real</span> context. <span className="text-[#e0b660] italic">Real</span> results.</p>
+            <p className="text-3xl font-normal text-white"><span className="text-[#e0b660] italic">Real</span> context.<br className="sm:hidden" /> <span className="text-[#e0b660] italic">Real</span> results.</p>
           </div>
         </div>
       </section>
