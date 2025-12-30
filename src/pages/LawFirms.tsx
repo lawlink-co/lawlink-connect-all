@@ -156,7 +156,7 @@ const LawFirms = () => {
               <div className="bg-zinc-950 border border-zinc-800 rounded-none sm:rounded-lg p-8 sm:p-12">
                 {/* Demo Video */}
                 <div className="mb-10 rounded-none sm:rounded-lg overflow-hidden">
-                  <video className="w-full aspect-video rounded-none sm:rounded-lg" autoPlay loop muted playsInline controls={isMobile}>
+                  <video className="w-full aspect-video rounded-none sm:rounded-lg" autoPlay loop muted playsInline>
                     <source src="/videos/drafting-demo.mp4?v=1" type="video/mp4" />
                     Your browser does not support the video tag.
                   </video>
@@ -206,7 +206,7 @@ const LawFirms = () => {
               <div className="bg-zinc-950 border border-zinc-800 rounded-none sm:rounded-lg p-8 sm:p-12">
                 {/* Demo Video */}
                 <div className="mb-10 rounded-none sm:rounded-lg overflow-hidden">
-                  <video className="w-full aspect-video rounded-none sm:rounded-lg" autoPlay loop muted playsInline controls={isMobile}>
+                  <video className="w-full aspect-video rounded-none sm:rounded-lg" autoPlay loop muted playsInline>
                     <source src="/videos/client-experience.mp4" type="video/mp4" />
                     Your browser does not support the video tag.
                   </video>
@@ -263,7 +263,7 @@ const LawFirms = () => {
               <div className="bg-zinc-950 border border-zinc-800 rounded-none sm:rounded-lg p-8 sm:p-12">
                 {/* Demo Video */}
                 <div className="mb-10 rounded-none sm:rounded-lg overflow-hidden">
-                  <video className="w-full aspect-video rounded-none sm:rounded-lg" autoPlay loop muted playsInline controls={isMobile}>
+                  <video className="w-full aspect-video rounded-none sm:rounded-lg" autoPlay loop muted playsInline>
                     <source src="/videos/customization-demo.mp4?v=5" type="video/mp4" />
                     Your browser does not support the video tag.
                   </video>
