@@ -36,8 +36,13 @@ const Navigation = () => {
             </Link>
           </div>
 
-          {/* Mobile Navigation Dropdown */}
-          <div className="md:hidden">
+          {/* Mobile Navigation */}
+          <div className="md:hidden flex items-center space-x-3">
+            <Link to="/demo">
+              <Button size="sm" className="bg-primary hover:bg-primary/90 text-white">
+                Book a Demo
+              </Button>
+            </Link>
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
                 <Button variant="ghost" size="icon" className="text-white hover:bg-white/10">
