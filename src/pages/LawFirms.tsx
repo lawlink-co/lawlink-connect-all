@@ -312,7 +312,7 @@ const LawFirms = () => {
       {/* AI Drafting Section */}
       <section className="py-24 px-4 sm:px-6 lg:px-8 bg-black border-t border-zinc-800">
         <div className="container mx-auto max-w-7xl">
-          <div className="mb-16">
+          <div className="mb-6 sm:mb-16">
             <ScrollRevealImages />
           </div>
           <div className="text-center space-y-6 max-w-4xl mx-auto animate-fade-in">
