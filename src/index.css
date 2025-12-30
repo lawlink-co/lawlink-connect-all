@@ -120,3 +120,14 @@ All colors MUST be HSL.
     @apply font-body;
   }
 }
+
+@layer utilities {
+  /* Hide scrollbar for swipeable elements */
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+}
