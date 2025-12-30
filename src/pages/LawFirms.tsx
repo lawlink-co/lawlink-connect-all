@@ -86,7 +86,7 @@ const LawFirms = () => {
               The All-in-One System for Modern Litigation
             </h2>
             <p className="text-xl text-zinc-300 font-sans leading-relaxed max-w-4xl mx-auto">
-              Amicus connects every part of a case — drafting, discovery, management, and client communication — under one intelligent infrastructure.
+              Amicus connects every part of a case — drafting, discovery, and client communication — under one intelligent infrastructure.
             </p>
           </div>
 
