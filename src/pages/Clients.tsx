@@ -197,9 +197,11 @@ const Clients = () => {
               <p className="text-2xl sm:text-3xl text-gray-700 leading-relaxed">
                 An interactive app that delivers real updates, real context, and real clarity.
               </p>
-              <Button size="lg" className="text-lg px-10 py-7 bg-primary text-white hover:bg-primary/90 transition-all duration-300 hover:scale-105 shadow-lg">
-                Find an Amicus Lawyer
-              </Button>
+              <a href="tel:2125882922">
+                <Button size="lg" className="text-lg px-10 py-7 bg-primary text-white hover:bg-primary/90 transition-all duration-300 hover:scale-105 shadow-lg">
+                  Find an Amicus Lawyer
+                </Button>
+              </a>
             </div>
             <div className="relative animate-scale-in flex items-center justify-center h-full">
               <div className="absolute inset-0 bg-primary/10 blur-3xl rounded-full"></div>
