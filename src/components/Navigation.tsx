@@ -1,5 +1,12 @@
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
+import { Menu } from "lucide-react";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 import amicusLogo from "@/assets/amicus-logo.png";
 
 const Navigation = () => {
@@ -11,6 +18,7 @@ const Navigation = () => {
             <img src={amicusLogo} alt="Amicus" className="h-10 w-auto" />
           </Link>
           
+          {/* Desktop Navigation */}
           <div className="hidden md:flex items-center space-x-8">
             <Link to="/" className="text-white hover:text-primary transition-colors">
               Home
@@ -26,6 +34,39 @@ const Navigation = () => {
                 Book a Demo
               </Button>
             </Link>
+          </div>
+
+          {/* Mobile Navigation Dropdown */}
+          <div className="md:hidden">
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <Button variant="ghost" size="icon" className="text-white hover:bg-white/10">
+                  <Menu className="h-6 w-6" />
+                </Button>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent align="end" className="w-48 bg-zinc-900 border-zinc-800">
+                <DropdownMenuItem asChild>
+                  <Link to="/" className="w-full text-white hover:text-primary cursor-pointer">
+                    Home
+                  </Link>
+                </DropdownMenuItem>
+                <DropdownMenuItem asChild>
+                  <Link to="/law-firms" className="w-full text-white hover:text-primary cursor-pointer">
+                    For Law Firms
+                  </Link>
+                </DropdownMenuItem>
+                <DropdownMenuItem asChild>
+                  <Link to="/clients" className="w-full text-white hover:text-primary cursor-pointer">
+                    For Clients
+                  </Link>
+                </DropdownMenuItem>
+                <DropdownMenuItem asChild>
+                  <Link to="/demo" className="w-full text-primary font-medium cursor-pointer">
+                    Book a Demo
+                  </Link>
+                </DropdownMenuItem>
+              </DropdownMenuContent>
+            </DropdownMenu>
           </div>
         </div>
       </div>
