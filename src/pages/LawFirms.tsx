@@ -91,21 +91,23 @@ const LawFirms = () => {
           </div>
 
           <Tabs defaultValue="drafting" className="w-full">
-            <TabsList className="grid w-full grid-cols-3 bg-zinc-950 border border-zinc-800 mb-12 items-center h-auto min-h-14">
-              {/* Case Management tab hidden but code preserved below */}
-              <TabsTrigger value="drafting" className="text-base sm:text-lg py-4 h-full flex items-center justify-center data-[state=active]:bg-black data-[state=active]:text-white data-[state=active]:border-b-2 data-[state=active]:border-primary">
-                <FileText className="w-5 h-5 mr-2 hidden sm:inline" />
-                Drafting
-              </TabsTrigger>
-              <TabsTrigger value="customization" className="text-base sm:text-lg py-4 h-full flex items-center justify-center data-[state=active]:bg-black data-[state=active]:text-white data-[state=active]:border-b-2 data-[state=active]:border-primary">
-                <Settings className="w-5 h-5 mr-2 hidden sm:inline" />
-                Customization
-              </TabsTrigger>
-              <TabsTrigger value="client-communication" className="text-base sm:text-lg py-4 h-full flex items-center justify-center data-[state=active]:bg-black data-[state=active]:text-white data-[state=active]:border-b-2 data-[state=active]:border-primary">
-                <MessageCircle className="w-5 h-5 mr-2 hidden sm:inline" />
-                Client Experience
-              </TabsTrigger>
-            </TabsList>
+            <div className="overflow-x-auto scrollbar-hide -mx-4 px-4 sm:mx-0 sm:px-0 mb-12">
+              <TabsList className="inline-flex w-max sm:grid sm:w-full sm:grid-cols-3 bg-zinc-950 border border-zinc-800 items-center h-auto min-h-14 gap-1 sm:gap-0">
+                {/* Case Management tab hidden but code preserved below */}
+                <TabsTrigger value="drafting" className="text-sm sm:text-lg py-3 sm:py-4 px-4 sm:px-2 h-full flex items-center justify-center whitespace-nowrap data-[state=active]:bg-black data-[state=active]:text-white data-[state=active]:border-b-2 data-[state=active]:border-primary">
+                  <FileText className="w-4 h-4 sm:w-5 sm:h-5 mr-2" />
+                  Drafting
+                </TabsTrigger>
+                <TabsTrigger value="customization" className="text-sm sm:text-lg py-3 sm:py-4 px-4 sm:px-2 h-full flex items-center justify-center whitespace-nowrap data-[state=active]:bg-black data-[state=active]:text-white data-[state=active]:border-b-2 data-[state=active]:border-primary">
+                  <Settings className="w-4 h-4 sm:w-5 sm:h-5 mr-2" />
+                  Customization
+                </TabsTrigger>
+                <TabsTrigger value="client-communication" className="text-sm sm:text-lg py-3 sm:py-4 px-4 sm:px-2 h-full flex items-center justify-center whitespace-nowrap data-[state=active]:bg-black data-[state=active]:text-white data-[state=active]:border-b-2 data-[state=active]:border-primary">
+                  <MessageCircle className="w-4 h-4 sm:w-5 sm:h-5 mr-2" />
+                  Client Experience
+                </TabsTrigger>
+              </TabsList>
+            </div>
 
             <TabsContent value="case-management">
               <div className="bg-zinc-950 border border-zinc-800 rounded-lg p-8 sm:p-12">
