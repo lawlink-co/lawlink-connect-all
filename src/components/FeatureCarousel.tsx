@@ -36,7 +36,7 @@ const slides: CarouselSlide[] = [
 ];
 
 const FeatureCarousel = () => {
-  const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true }, [Fade()]);
+  const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true, dragFree: false }, [Fade()]);
   const [selectedIndex, setSelectedIndex] = useState(0);
 
   const scrollPrev = useCallback(() => {
@@ -84,8 +84,8 @@ const FeatureCarousel = () => {
         {/* Content container with max-width */}
         <div className="max-w-6xl mx-auto">
             {/* Carousel Container */}
-            <div className="overflow-hidden" ref={emblaRef}>
-              <div className="flex">
+            <div className="overflow-hidden cursor-grab active:cursor-grabbing touch-pan-y" ref={emblaRef}>
+              <div className="flex touch-pan-y">
                 {slides.map((slide, index) => (
                   <div 
                     key={index} 
