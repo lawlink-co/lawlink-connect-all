@@ -80,7 +80,7 @@ const LawFirms = () => {
 
       {/* All-in-One System Section */}
       <section className="py-24 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-black to-zinc-950">
-        <div className="container mx-auto max-w-6xl">
+        <div className="container mx-auto max-w-7xl">
           <div className="text-center mb-12 space-y-6 animate-fade-in">
             <h2 className="text-3xl sm:text-4xl font-normal">
               The All-in-One System for Modern Litigation
