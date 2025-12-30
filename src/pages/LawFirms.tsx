@@ -90,12 +90,9 @@ const LawFirms = () => {
             </p>
           </div>
 
-          <Tabs defaultValue="case-management" className="w-full">
-            <TabsList className="grid w-full grid-cols-2 lg:grid-cols-4 bg-zinc-950 border border-zinc-800 mb-12 items-center h-auto min-h-14">
-              <TabsTrigger value="case-management" className="text-base sm:text-lg py-4 h-full flex items-center justify-center data-[state=active]:bg-black data-[state=active]:text-white data-[state=active]:border-b-2 data-[state=active]:border-primary">
-                <Briefcase className="w-5 h-5 mr-2 hidden sm:inline" />
-                Case Management
-              </TabsTrigger>
+          <Tabs defaultValue="drafting" className="w-full">
+            <TabsList className="grid w-full grid-cols-3 bg-zinc-950 border border-zinc-800 mb-12 items-center h-auto min-h-14">
+              {/* Case Management tab hidden but code preserved below */}
               <TabsTrigger value="drafting" className="text-base sm:text-lg py-4 h-full flex items-center justify-center data-[state=active]:bg-black data-[state=active]:text-white data-[state=active]:border-b-2 data-[state=active]:border-primary">
                 <FileText className="w-5 h-5 mr-2 hidden sm:inline" />
                 Drafting
