@@ -151,12 +151,12 @@ const Home = () => {
           animationFillMode: 'forwards'
         }}>
             <Link to="/law-firms">
-              <Button size="lg" className="w-auto sm:min-w-[180px] text-sm sm:text-lg bg-white text-black border-2 border-transparent hover:bg-zinc-200 transition-all duration-300 hover:scale-105 px-4 sm:px-[34px] py-2 sm:py-3 h-auto">
+              <Button size="lg" className="w-auto sm:min-w-[180px] text-base sm:text-lg bg-white text-black border-2 border-transparent hover:bg-zinc-200 transition-all duration-300 hover:scale-105 px-6 sm:px-[34px] py-2.5 sm:py-3 h-auto">
                 For Law Firms
               </Button>
             </Link>
             <Link to="/clients">
-              <Button size="lg" className="w-auto sm:min-w-[180px] text-sm sm:text-lg bg-white text-black border-2 border-transparent hover:bg-zinc-200 transition-all duration-300 hover:scale-105 px-4 sm:px-12 py-2 sm:py-3 h-auto">
+              <Button size="lg" className="w-auto sm:min-w-[180px] text-base sm:text-lg bg-white text-black border-2 border-transparent hover:bg-zinc-200 transition-all duration-300 hover:scale-105 px-6 sm:px-12 py-2.5 sm:py-3 h-auto">
                 For Clients
               </Button>
             </Link>
@@ -171,7 +171,7 @@ const Home = () => {
           <div className="container mx-auto max-w-5xl text-center absolute transition-opacity duration-700" style={{
           opacity: textFadedOut ? 0 : 1
         }}>
-            <p className="text-3xl sm:text-4xl lg:text-5xl text-zinc-200 font-light leading-relaxed whitespace-pre-wrap">
+            <p className="text-xl sm:text-4xl lg:text-5xl text-zinc-200 font-light leading-normal sm:leading-relaxed whitespace-pre-wrap">
               {TYPEWRITER_TEXT.slice(0, visibleChars)}
               {!textFadedOut && visibleChars < totalChars && <span className="inline-block w-[3px] h-[1em] bg-zinc-200 ml-1 align-middle animate-caret-blink" />}
             </p>
