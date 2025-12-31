@@ -74,7 +74,7 @@ const FeatureCarousel = () => {
   return (
     <section className="py-32 px-6 sm:px-8 lg:px-16 bg-gradient-to-b from-black to-zinc-950">
       <div className="container mx-auto max-w-6xl px-4 sm:px-6">
-        <h2 className="text-3xl sm:text-5xl lg:text-6xl font-normal mb-16 text-center text-white font-lora">
+        <h2 className="text-3xl sm:text-5xl lg:text-6xl font-normal mb-8 sm:mb-16 text-center text-white font-lora">
           The New Architecture of Legal Work
         </h2>
       </div>
