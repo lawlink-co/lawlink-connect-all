@@ -140,23 +140,23 @@ const Home = () => {
           <h1 className="text-6xl sm:text-7xl lg:text-8xl font-normal mb-8 tracking-tight animate-fade-in-slow text-center w-full">
             Lawsuits, Reimagined.
           </h1>
-          <p className="text-2xl sm:text-3xl text-zinc-300 mb-16 max-w-4xl mx-auto leading-relaxed opacity-0 animate-fade-in" style={{
+          <p className="text-lg sm:text-3xl text-zinc-300 mb-16 max-w-4xl mx-auto leading-relaxed opacity-0 animate-fade-in" style={{
           animationDelay: '0.5s',
           animationFillMode: 'forwards'
         }}>
             An AI-powered platform that connects lawyers and clients through automation and clarity.
           </p>
-          <div className="flex flex-col sm:flex-row gap-6 justify-center opacity-0 animate-slide-up" style={{
+          <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center opacity-0 animate-slide-up" style={{
           animationDelay: '0.8s',
           animationFillMode: 'forwards'
         }}>
             <Link to="/law-firms">
-              <Button size="lg" className="w-full sm:min-w-[180px] text-lg bg-white text-black border-2 border-transparent hover:bg-zinc-200 transition-all duration-300 hover:scale-105 px-[34px]">
+              <Button size="lg" className="w-auto sm:min-w-[180px] text-sm sm:text-lg bg-white text-black border-2 border-transparent hover:bg-zinc-200 transition-all duration-300 hover:scale-105 px-4 sm:px-[34px] py-2 sm:py-3 h-auto">
                 For Law Firms
               </Button>
             </Link>
             <Link to="/clients">
-              <Button size="lg" className="w-full sm:min-w-[180px] text-lg px-12 bg-white text-black border-2 border-transparent hover:bg-zinc-200 transition-all duration-300 hover:scale-105">
+              <Button size="lg" className="w-auto sm:min-w-[180px] text-sm sm:text-lg bg-white text-black border-2 border-transparent hover:bg-zinc-200 transition-all duration-300 hover:scale-105 px-4 sm:px-12 py-2 sm:py-3 h-auto">
                 For Clients
               </Button>
             </Link>
