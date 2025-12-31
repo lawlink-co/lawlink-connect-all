@@ -94,8 +94,11 @@ const LawFirms = () => {
 
           <Tabs defaultValue="drafting" className="w-full">
             <div className="overflow-x-auto scrollbar-hide px-4 sm:px-0 mb-12">
-              <TabsList className="inline-flex w-max sm:grid sm:w-full sm:grid-cols-3 bg-zinc-950 border border-zinc-800 items-center h-auto min-h-14 gap-1 sm:gap-0">
-                {/* Case Management tab hidden but code preserved below */}
+              <TabsList className="inline-flex w-max sm:grid sm:w-full sm:grid-cols-4 bg-zinc-950 border border-zinc-800 items-center h-auto min-h-14 gap-1 sm:gap-0">
+                <TabsTrigger value="case-management" className="text-sm sm:text-lg py-3 sm:py-4 px-4 sm:px-2 h-full flex items-center justify-center whitespace-nowrap data-[state=active]:bg-black data-[state=active]:text-white data-[state=active]:border-b-2 data-[state=active]:border-primary">
+                  <Briefcase className="w-4 h-4 sm:w-5 sm:h-5 mr-2" />
+                  Case Management
+                </TabsTrigger>
                 <TabsTrigger value="drafting" className="text-sm sm:text-lg py-3 sm:py-4 px-4 sm:px-2 h-full flex items-center justify-center whitespace-nowrap data-[state=active]:bg-black data-[state=active]:text-white data-[state=active]:border-b-2 data-[state=active]:border-primary">
                   <FileText className="w-4 h-4 sm:w-5 sm:h-5 mr-2" />
                   Drafting
@@ -113,6 +116,14 @@ const LawFirms = () => {
 
             <TabsContent value="case-management">
               <div className="bg-zinc-950 border border-zinc-800 rounded-none sm:rounded-lg p-8 sm:p-12">
+                {/* Demo Video */}
+                <div className="mb-10 rounded-none sm:rounded-lg overflow-hidden">
+                  <video className="w-full aspect-video rounded-none sm:rounded-lg" autoPlay loop muted playsInline>
+                    <source src="/videos/case-management-demo.mp4" type="video/mp4" />
+                    Your browser does not support the video tag.
+                  </video>
+                </div>
+
                 <h3 className="text-2xl sm:text-3xl font-normal mb-6 text-white">
                   Command Every Case From a Single Dashboard.
                 </h3>
