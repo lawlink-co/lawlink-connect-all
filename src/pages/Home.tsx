@@ -171,7 +171,7 @@ const Home = () => {
           <div className="container mx-auto max-w-5xl text-center absolute transition-opacity duration-700" style={{
           opacity: textFadedOut ? 0 : 1
         }}>
-            <p className="text-xl sm:text-4xl lg:text-5xl text-zinc-200 font-light leading-normal sm:leading-relaxed whitespace-pre-wrap">
+            <p className="text-2xl sm:text-4xl lg:text-5xl text-zinc-200 font-light leading-snug sm:leading-relaxed whitespace-pre-wrap">
               {TYPEWRITER_TEXT.slice(0, visibleChars)}
               {!textFadedOut && visibleChars < totalChars && <span className="inline-block w-[3px] h-[1em] bg-zinc-200 ml-1 align-middle animate-caret-blink" />}
             </p>
