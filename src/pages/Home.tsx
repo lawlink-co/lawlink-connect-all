@@ -137,10 +137,10 @@ const Home = () => {
       {/* Hero Section */}
       <section className="relative min-h-screen flex items-center justify-center px-4 sm:px-6 lg:px-8 overflow-hidden bg-black">
         <div className="mx-auto w-full max-w-6xl text-center relative z-10 px-4">
-          <h1 className="text-6xl sm:text-7xl lg:text-8xl font-normal mb-8 tracking-tight animate-fade-in-slow text-center w-full mx-auto">
+          <h1 className="text-6xl sm:text-7xl lg:text-8xl font-normal mb-6 sm:mb-8 tracking-tight animate-fade-in-slow text-center w-full mx-auto">
             Lawsuits, Reimagined.
           </h1>
-          <p className="text-lg sm:text-3xl text-zinc-300 mb-16 max-w-4xl mx-auto leading-relaxed opacity-0 animate-fade-in" style={{
+          <p className="text-lg sm:text-3xl text-zinc-300 mb-6 sm:mb-16 max-w-4xl mx-auto leading-relaxed opacity-0 animate-fade-in" style={{
           animationDelay: '0.5s',
           animationFillMode: 'forwards'
         }}>
