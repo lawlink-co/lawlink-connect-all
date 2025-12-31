@@ -94,10 +94,10 @@ const FeatureCarousel = () => {
                     <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center px-4">
                       {/* Text Content */}
                       <div className="space-y-6">
-                        <h3 className="text-2xl sm:text-3xl font-normal text-white leading-tight">
+                        <h3 className="text-3xl sm:text-4xl font-normal text-white leading-tight">
                           {slide.title}
                         </h3>
-                        <p className="text-base sm:text-lg text-zinc-400 leading-relaxed">
+                        <p className="text-lg sm:text-xl text-zinc-400 leading-relaxed">
                           {slide.description}
                         </p>
                       </div>
