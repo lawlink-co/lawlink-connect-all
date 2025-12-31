@@ -90,6 +90,7 @@ All colors MUST be HSL.
 
   body {
     @apply bg-background text-foreground font-body;
+    overflow-x: hidden;
   }
 
   /* Primary serif for headings - elegant display font */
