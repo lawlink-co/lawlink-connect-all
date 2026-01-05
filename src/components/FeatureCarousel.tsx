@@ -109,7 +109,7 @@ const FeatureCarousel = () => {
                       </div>
 
                       {/* Image */}
-                      <div className="relative w-full px-1 sm:px-0">
+                      <div className="relative w-full px-4 sm:px-0">
                         <div className="absolute inset-0 bg-blue-500/20 blur-3xl rounded-full"></div>
                         <img
                           src={slide.image}
