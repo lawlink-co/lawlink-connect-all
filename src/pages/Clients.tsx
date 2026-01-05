@@ -13,26 +13,27 @@ import caseIconRight from "@/assets/case-icon-right.svg";
 import casePhoneCenter from "@/assets/case-phone-center.png";
 import { useEffect, useRef, useState } from "react";
 import { useIsMobile } from "@/hooks/use-mobile";
-
-const caseHubSlides = [
-  { image: clientApp1, alt: "Amicus app - medical treatment" },
-  { image: clientApp2, alt: "Amicus app - case update" },
-  { image: clientApp3, alt: "Amicus app - attorney chat" },
-];
-
+const caseHubSlides = [{
+  image: clientApp1,
+  alt: "Amicus app - medical treatment"
+}, {
+  image: clientApp2,
+  alt: "Amicus app - case update"
+}, {
+  image: clientApp3,
+  alt: "Amicus app - attorney chat"
+}];
 const CaseHubCarousel = () => {
   const [activeIndex, setActiveIndex] = useState(0);
 
   // Auto-transition every 4 seconds
   useEffect(() => {
     const interval = setInterval(() => {
-      setActiveIndex((prev) => (prev + 1) % caseHubSlides.length);
+      setActiveIndex(prev => (prev + 1) % caseHubSlides.length);
     }, 4000);
     return () => clearInterval(interval);
   }, []);
-
-  return (
-    <section className="py-24 px-4 sm:px-6 lg:px-8 bg-white overflow-hidden">
+  return <section className="py-24 px-4 sm:px-6 lg:px-8 bg-white overflow-hidden">
       <div className="container mx-auto max-w-6xl text-center">
         <FileSearch className="w-20 h-20 text-primary mx-auto mb-8" />
         <h2 className="text-4xl sm:text-5xl font-bold text-gray-900 mb-12">
@@ -41,47 +42,24 @@ const CaseHubCarousel = () => {
         
         {/* Fade Image Container */}
         <div className="relative flex items-center justify-center h-[320px] sm:h-[400px]">
-          {caseHubSlides.map((slide, index) => (
-            <img
-              key={index}
-              src={slide.image}
-              alt={slide.alt}
-              className={`absolute left-1/2 -translate-x-1/2 h-[304px] sm:h-[384px] w-auto transition-opacity duration-1000 ease-in-out ${
-                index === activeIndex ? 'opacity-100' : 'opacity-0'
-              }`}
-            />
-          ))}
+          {caseHubSlides.map((slide, index) => <img key={index} src={slide.image} alt={slide.alt} className={`absolute left-1/2 -translate-x-1/2 h-[304px] sm:h-[384px] w-auto transition-opacity duration-1000 ease-in-out ${index === activeIndex ? 'opacity-100' : 'opacity-0'}`} />)}
         </div>
 
         {/* Navigation Dots */}
         <div className="flex justify-center gap-2 mt-8">
-          {caseHubSlides.map((_, index) => (
-            <button
-              key={index}
-              onClick={() => setActiveIndex(index)}
-              className={`h-2 rounded-full transition-all duration-300 ${
-                index === activeIndex
-                  ? "w-8 bg-primary"
-                  : "w-2 bg-gray-300 hover:bg-gray-400"
-              }`}
-              aria-label={`Go to slide ${index + 1}`}
-            />
-          ))}
+          {caseHubSlides.map((_, index) => <button key={index} onClick={() => setActiveIndex(index)} className={`h-2 rounded-full transition-all duration-300 ${index === activeIndex ? "w-8 bg-primary" : "w-2 bg-gray-300 hover:bg-gray-400"}`} aria-label={`Go to slide ${index + 1}`} />)}
         </div>
         
         <p className="text-xl sm:text-2xl text-gray-700 max-w-3xl mx-auto leading-relaxed mt-8">
           No more endless phone calls or wondering what's happening with your case. Everything you need — documents, updates, messages, and deadlines — lives in one place, accessible anytime.
         </p>
       </div>
-    </section>
-  );
+    </section>;
 };
-
 const AllCasesSection = () => {
   const [isVisible, setIsVisible] = useState(false);
   const [phoneAnimationComplete, setPhoneAnimationComplete] = useState(false);
   const sectionRef = useRef<HTMLDivElement>(null);
-
   useEffect(() => {
     const observer = new IntersectionObserver(([entry]) => {
       if (entry.isIntersecting) {
@@ -98,9 +76,7 @@ const AllCasesSection = () => {
     }
     return () => observer.disconnect();
   }, []);
-
-  return (
-    <section ref={sectionRef} className="py-24 px-4 sm:px-6 lg:px-8 bg-gray-50">
+  return <section ref={sectionRef} className="py-24 px-4 sm:px-6 lg:px-8 bg-gray-50">
       <div className="container mx-auto max-w-5xl text-center">
         <Briefcase className="w-20 h-20 text-primary mx-auto mb-8" />
         <h2 className="text-4xl sm:text-5xl font-bold text-gray-900 mb-16">
@@ -110,65 +86,31 @@ const AllCasesSection = () => {
         {/* Icons Animation Container */}
         <div className="relative flex items-center justify-center h-[300px] sm:h-[400px]">
           {/* Left Icon */}
-          <div 
-            className={`absolute z-10 transition-all duration-700 ease-out ${
-              phoneAnimationComplete 
-                ? 'left-0 sm:left-[22%] opacity-100' 
-                : 'left-1/2 -translate-x-1/2 opacity-0'
-            }`}
-          >
-            <img 
-              src={caseIconLeft} 
-              alt="Case document" 
-              className="w-[80px] sm:w-[120px] h-auto drop-shadow-xl"
-            />
+          <div className={`absolute z-10 transition-all duration-700 ease-out ${phoneAnimationComplete ? 'left-0 sm:left-[22%] opacity-100' : 'left-1/2 -translate-x-1/2 opacity-0'}`}>
+            <img src={caseIconLeft} alt="Case document" className="w-[80px] sm:w-[120px] h-auto drop-shadow-xl" />
           </div>
 
           {/* Center Phone - Fade in while expanding */}
-          <div 
-            className={`relative z-20 transition-all duration-700 ease-out ${
-              isVisible 
-                ? 'opacity-100 scale-100' 
-                : 'opacity-0 scale-50'
-            }`}
-          >
-            <img 
-              src={casePhoneCenter} 
-              alt="Amicus app showing multiple cases" 
-              className="w-[132px] sm:w-[198px] h-auto drop-shadow-2xl"
-            />
+          <div className={`relative z-20 transition-all duration-700 ease-out ${isVisible ? 'opacity-100 scale-100' : 'opacity-0 scale-50'}`}>
+            <img src={casePhoneCenter} alt="Amicus app showing multiple cases" className="w-[132px] sm:w-[198px] h-auto drop-shadow-2xl" />
           </div>
 
           {/* Right Icon */}
-          <div 
-            className={`absolute z-10 transition-all duration-700 ease-out ${
-              phoneAnimationComplete 
-                ? 'right-0 sm:right-[22%] opacity-100' 
-                : 'right-1/2 translate-x-1/2 opacity-0'
-            }`}
-          >
-            <img 
-              src={caseIconRight} 
-              alt="Case files" 
-              className="w-[80px] sm:w-[120px] h-auto drop-shadow-xl"
-            />
+          <div className={`absolute z-10 transition-all duration-700 ease-out ${phoneAnimationComplete ? 'right-0 sm:right-[22%] opacity-100' : 'right-1/2 translate-x-1/2 opacity-0'}`}>
+            <img src={caseIconRight} alt="Case files" className="w-[80px] sm:w-[120px] h-auto drop-shadow-xl" />
           </div>
         </div>
         
-        <p className={`text-xl sm:text-2xl text-gray-700 max-w-3xl mx-auto leading-relaxed mt-8 transition-all duration-700 ${
-          phoneAnimationComplete ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
-        }`}>
+        <p className={`text-xl sm:text-2xl text-gray-700 max-w-3xl mx-auto leading-relaxed mt-8 transition-all duration-700 ${phoneAnimationComplete ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
           Ditch the scattered paperwork and endless folders. Amicus brings all your cases together — with appointments, deadlines, and updates for each — always at your fingertips.
         </p>
       </div>
-    </section>
-  );
+    </section>;
 };
 const Clients = () => {
   const [notificationVisible, setNotificationVisible] = useState(false);
   const notificationSectionRef = useRef<HTMLDivElement>(null);
   const isMobile = useIsMobile();
-  
   useEffect(() => {
     const observer = new IntersectionObserver(([entry]) => {
       if (entry.isIntersecting) {
@@ -189,29 +131,21 @@ const Clients = () => {
       {/* Hero Section */}
       <section className="pt-32 pb-24 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-blue-50 via-white to-indigo-50">
         <div className="container mx-auto max-w-6xl">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-center">
-            <div className="space-y-6 lg:space-y-8 animate-fade-in-slow flex flex-col">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+            <div className="space-y-8 animate-fade-in-slow">
               <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold text-gray-900 leading-tight">
                 Cases Become Real<br />With Amicus.
               </h1>
-              <p className="text-2xl sm:text-3xl text-gray-700 leading-relaxed">
+              <p className="sm:text-3xl text-gray-700 leading-relaxed text-xl">
                 An interactive app that delivers real updates, real context, and real clarity.
               </p>
-              
-              {/* Image - shows here on mobile only, between text and button */}
-              <div className="relative animate-scale-in flex items-center justify-center lg:hidden mt-4 mb-2">
-                <div className="absolute inset-0 bg-primary/10 blur-3xl rounded-full"></div>
-                <img src={clientHeaderPhone} alt="Amicus mobile app interface" className="relative mx-auto h-[350px] w-auto object-contain drop-shadow-2xl" />
-              </div>
-              
               <a href="tel:2125882922">
                 <Button size="lg" className="text-lg px-10 py-7 bg-primary text-white hover:bg-primary/90 transition-all duration-300 hover:scale-105 shadow-lg">
                   Find an Amicus Lawyer
                 </Button>
               </a>
             </div>
-            {/* Image - shows here on desktop only */}
-            <div className="relative animate-scale-in hidden lg:flex items-center justify-center h-full">
+            <div className="relative animate-scale-in flex items-center justify-center h-full">
               <div className="absolute inset-0 bg-primary/10 blur-3xl rounded-full"></div>
               <img src={clientHeaderPhone} alt="Amicus mobile app interface" className="relative mx-auto h-[425px] lg:h-[510px] w-auto object-contain drop-shadow-2xl" />
             </div>
