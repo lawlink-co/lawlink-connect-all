@@ -315,10 +315,10 @@ const Home = () => {
 
               {/* Center Logo */}
               <div className={`flex flex-col items-center transition-all duration-500 ${howItWorksPhase >= 2 ? 'opacity-100 scale-100' : 'opacity-0 scale-90'}`}>
-                <div className="w-24 h-24 rounded-xl overflow-hidden shadow-xl shadow-black/50">
+                <div className="w-20 h-20 rounded-xl overflow-hidden shadow-xl shadow-black/50">
                   <img src={amicusALogo} alt="Amicus" className="w-full h-full object-cover" />
                 </div>
-                <img src={amicusGoldenASmall} alt="Amicus" className="w-[7.5rem] h-auto mt-6" />
+                <img src={amicusGoldenASmall} alt="Amicus" className="w-[7.5rem] h-auto mt-3" />
               </div>
 
               {/* Mobile Connector */}
