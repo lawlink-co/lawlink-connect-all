@@ -9,6 +9,7 @@ import { useEffect, useRef, useState } from "react";
 import { useIsMobile } from "@/hooks/use-mobile";
 const LawFirms = () => {
   const [visibleCards, setVisibleCards] = useState<number[]>([]);
+  const [activeTab, setActiveTab] = useState<string>("case-management");
   const securitySectionRef = useRef<HTMLDivElement>(null);
   const isMobile = useIsMobile();
   useEffect(() => {
