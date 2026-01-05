@@ -93,7 +93,7 @@ const LawFirms = () => {
             </p>
           </div>
 
-          <Tabs defaultValue="drafting" className="w-full">
+          <Tabs defaultValue="case-management" className="w-full">
             <div className="overflow-x-auto scrollbar-hide px-4 sm:px-0 mb-12">
               <TabsList className="inline-flex w-max sm:grid sm:w-full sm:grid-cols-4 bg-zinc-950 border border-zinc-800 items-center h-auto min-h-14 gap-1 sm:gap-0">
                 <TabsTrigger value="case-management" className="text-sm sm:text-lg py-3 sm:py-4 px-4 sm:px-2 h-full flex items-center justify-center whitespace-nowrap data-[state=active]:bg-black data-[state=active]:text-white data-[state=active]:border-b-2 data-[state=active]:border-primary">
