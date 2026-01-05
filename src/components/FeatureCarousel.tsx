@@ -42,7 +42,7 @@ const FeatureCarousel = () => {
   const plugins = isMobile 
     ? [Fade(), Autoplay({ delay: 5000, stopOnInteraction: false })]
     : [Fade()];
-  const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true, dragFree: false }, plugins);
+  const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true, dragFree: false, duration: 40 }, plugins);
   const [selectedIndex, setSelectedIndex] = useState(0);
 
   const scrollPrev = useCallback(() => {
@@ -95,7 +95,7 @@ const FeatureCarousel = () => {
                 {slides.map((slide, index) => (
                   <div 
                     key={index} 
-                    className="flex-[0_0_100%] min-w-0 transition-opacity duration-500 ease-in-out"
+                    className="flex-[0_0_100%] min-w-0 transition-opacity duration-700 ease-out"
                   >
                     <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-12 items-center px-0 sm:px-4">
                       {/* Text Content */}
