@@ -8,6 +8,7 @@ import { useEffect, useRef, useState } from "react";
 
 const LawFirms = () => {
   const [visibleCards, setVisibleCards] = useState<number[]>([]);
+  const [activeTab, setActiveTab] = useState<string>("case-management");
   const securitySectionRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -90,7 +91,7 @@ const LawFirms = () => {
             </p>
           </div>
 
-          <Tabs defaultValue="case-management" className="w-full">
+          <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
             <TabsList className="grid w-full grid-cols-2 lg:grid-cols-4 bg-zinc-950 border border-zinc-800 mb-12 items-center h-auto min-h-14">
               <TabsTrigger value="case-management" className="text-base sm:text-lg py-4 h-full flex items-center justify-center data-[state=active]:bg-black data-[state=active]:text-white data-[state=active]:border-b-2 data-[state=active]:border-primary">
                 <Briefcase className="w-5 h-5 mr-2 hidden sm:inline" />
@@ -112,6 +113,19 @@ const LawFirms = () => {
 
             <TabsContent value="case-management">
               <div className="bg-zinc-950 border border-zinc-800 rounded-lg p-8 sm:p-12">
+                {/* Demo Video */}
+                <div className="mb-10 rounded-lg overflow-hidden">
+                  <video 
+                    className="w-full aspect-video rounded-lg"
+                    autoPlay 
+                    loop 
+                    muted 
+                    playsInline
+                  >
+                    <source src={activeTab === "case-management" ? "/videos/Case--Mangement.mp4" : "/videos/case-management-demo.mp4"} type="video/mp4" />
+                    Your browser does not support the video tag.
+                  </video>
+                </div>
                 <p className="text-xl text-zinc-300 font-sans leading-relaxed mb-8">
                   Organize, assign, and move cases through every stage with total visibility.
                 </p>
