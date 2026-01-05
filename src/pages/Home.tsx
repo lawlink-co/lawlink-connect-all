@@ -318,7 +318,7 @@ const Home = () => {
                 <div className="w-24 h-24 rounded-xl overflow-hidden shadow-xl shadow-black/50">
                   <img src={amicusALogo} alt="Amicus" className="w-full h-full object-cover" />
                 </div>
-                <img src={amicusGoldenASmall} alt="Amicus" className="w-12 h-auto mt-3" />
+                <img src={amicusGoldenASmall} alt="Amicus" className="w-[7.5rem] h-auto mt-3" />
               </div>
 
               {/* Mobile Connector */}
