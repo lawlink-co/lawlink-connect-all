@@ -204,11 +204,13 @@ const Clients = () => {
                 <img src={clientHeaderPhone} alt="Amicus mobile app interface" className="relative mx-auto h-[400px] w-auto object-contain drop-shadow-2xl" />
               </div>
               
-              <a href="tel:2125882922">
-                <Button size="lg" className="text-lg px-10 py-7 bg-primary text-white hover:bg-primary/90 transition-all duration-300 hover:scale-105 shadow-lg">
-                  Find an Amicus Lawyer
-                </Button>
-              </a>
+              <div className="flex justify-center sm:justify-start">
+                <a href="tel:2125882922">
+                  <Button size="lg" className="text-lg px-10 py-7 bg-primary text-white hover:bg-primary/90 transition-all duration-300 hover:scale-105 shadow-lg">
+                    Find an Amicus Lawyer
+                  </Button>
+                </a>
+              </div>
             </div>
             {/* Image - shows here on desktop only */}
             <div className="relative animate-scale-in hidden lg:flex items-center justify-center h-full">
