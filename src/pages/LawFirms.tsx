@@ -55,7 +55,7 @@ const LawFirms = () => {
             }}>Keep Clients Satisfied.</span>
             </div>
           </h1>
-          <p className="text-4xl sm:text-5xl text-white font-light mb-6 opacity-0 animate-fade-in" style={{
+          <p className="text-2xl sm:text-3xl text-white font-light mb-4 opacity-0 animate-fade-in" style={{
           animationDelay: '1500ms',
           animationFillMode: 'forwards',
           animationDuration: '600ms'
