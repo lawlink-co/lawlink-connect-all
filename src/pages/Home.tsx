@@ -270,7 +270,9 @@ const Home = () => {
                 </div>
                 <div className={`transition-all duration-500 delay-300 ${howItWorksPhase >= 3 ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
                   <p className="text-zinc-400 mb-5 text-sm leading-relaxed">
-                    Cases become <span style={{ color: '#e0b660' }} className="font-bold">real</span> with an interactive app.
+                    Cases become <span style={{
+                    color: '#e0b660'
+                  }} className="font-bold">real</span> with an interactive app.
                   </p>
                   <ul className="space-y-3 text-sm text-zinc-400">
                     <li className="flex items-center gap-3">
@@ -350,7 +352,9 @@ const Home = () => {
               <div className="flex items-center justify-center gap-2 mb-6">
                 <div className="w-8 h-px bg-gold/40"></div>
                 <h3 className="text-lg sm:text-xl font-medium">
-                  For Both: <span style={{ color: '#e0b660' }} className="italic">Progress That Moves</span>
+                  For Both: <span style={{
+                  color: '#e0b660'
+                }} className="italic">Progress That Moves</span>
                 </h3>
                 <div className="w-8 h-px bg-gold/40"></div>
               </div>
@@ -391,12 +395,10 @@ const Home = () => {
       {/* Vision Section */}
       <section className="py-32 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-black to-zinc-950 border-t border-zinc-800">
         <div className="container mx-auto max-w-5xl text-center space-y-12 animate-scale-in">
-          <p className="text-4xl sm:text-5xl lg:text-6xl font-normal leading-snug sm:leading-normal">
+          <p className="sm:text-5xl lg:text-6xl font-normal leading-snug sm:leading-normal text-3xl">
             Where litigation meets intelligence.
           </p>
-          <p className="text-2xl sm:text-3xl text-zinc-300 leading-relaxed">
-            Amicus is shaping the future of litigation — where cases flow from intake to resolution with intelligence and ease.
-          </p>
+          <p className="sm:text-3xl text-zinc-300 leading-relaxed text-xl">Amicus is shaping the future of litigation — where cases flow from intake to resolution with intelligence and ease.</p>
           <div className="pt-8">
             <p className="text-3xl font-normal text-white"><span className="text-[#e0b660] italic">Real</span> context.<br className="sm:hidden" /> <span className="text-[#e0b660] italic">Real</span> results.</p>
           </div>
