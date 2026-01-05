@@ -5,7 +5,7 @@ import Autoplay from "embla-carousel-autoplay";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useIsMobile } from "@/hooks/use-mobile";
-import aiDraftingDemo from "@/assets/ai-drafting-demo.png";
+import aiDraftingNew from "@/assets/ai-drafting-new.png";
 import clientExperienceDemo from "@/assets/client-experience-demo.png";
 import screenshotDashboard from "@/assets/screenshot-dashboard.png";
 
@@ -20,7 +20,7 @@ const slides: CarouselSlide[] = [
   {
     title: "Intelligence That Understands Your Practice",
     description: "Amicus's AI reads every transcript, filing, and exhibit — transforming raw documents into organized, contextual knowledge. It doesn't just automate drafting — it understands the why behind your cases.",
-    image: aiDraftingDemo,
+    image: aiDraftingNew,
     imageAlt: "AI-powered summons and complaint drafting interface"
   },
   {
