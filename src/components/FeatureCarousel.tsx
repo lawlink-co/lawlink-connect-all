@@ -109,12 +109,12 @@ const FeatureCarousel = () => {
                       </div>
 
                       {/* Image */}
-                      <div className="relative w-full">
+                      <div className="relative w-full px-1 sm:px-0">
                         <div className="absolute inset-0 bg-blue-500/20 blur-3xl rounded-full"></div>
                         <img
                           src={slide.image}
                           alt={slide.imageAlt}
-                          className="relative rounded-none sm:rounded-lg shadow-2xl w-full"
+                          className="relative rounded-sm sm:rounded-lg shadow-2xl w-full"
                         />
                         
                         {/* Mobile Navigation Dots - Inside each slide, below image */}
