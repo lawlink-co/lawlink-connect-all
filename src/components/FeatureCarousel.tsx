@@ -3,6 +3,9 @@ import useEmblaCarousel from "embla-carousel-react";
 import Fade from "embla-carousel-fade";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import aiDraftingDemo from "@/assets/ai-drafting-demo.png";
+import clientExperienceDemo from "@/assets/client-experience-demo.png";
+import screenshotDashboard from "@/assets/screenshot-dashboard.png";
 
 interface CarouselSlide {
   title: string;
@@ -15,25 +18,25 @@ const slides: CarouselSlide[] = [
   {
     title: "Intelligence That Understands Your Practice",
     description: "Amicus's AI reads every transcript, filing, and exhibit — transforming raw documents into organized, contextual knowledge. It doesn't just automate drafting — it understands the why behind your cases.",
-    image: "/src/assets/screenshot-drafting.png",
+    image: aiDraftingDemo,
     imageAlt: "AI-powered summons and complaint drafting interface"
   },
   {
     title: "Infrastructure That Scales With Every Case",
     description: "Behind the interface is a layered system built for volume and precision. As your firm grows, customize your CRM to match: create new pages, reorganize your workspace, and set permissions to fit your evolving workflow. From intake to resolution, every document, update, and deadline connects across one living database — your firm's new operating system.",
-    image: "/src/assets/screenshot-dashboard.png",
+    image: screenshotDashboard,
     imageAlt: "Case dashboard and management system"
   },
   {
     title: "Connection That Redefines the Client Experience",
     description: "Clients don't log into portals — they join the process. Amicus bridges the space between lawyer and client, translating every update into clarity, trust, and forward motion.",
-    image: "/src/assets/screenshot-mobile.png",
-    imageAlt: "Mobile app client interface"
+    image: clientExperienceDemo,
+    imageAlt: "Client case status tracking interface"
   }
 ];
 
 const FeatureCarousel = () => {
-  const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true }, [Fade()]);
+  const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true, dragFree: false }, [Fade()]);
   const [selectedIndex, setSelectedIndex] = useState(0);
 
   const scrollPrev = useCallback(() => {
@@ -69,9 +72,9 @@ const FeatureCarousel = () => {
   }, [emblaApi, onSelect]);
 
   return (
-    <section className="py-32 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-black to-zinc-950">
-      <div className="container mx-auto max-w-6xl">
-        <h2 className="text-4xl sm:text-5xl lg:text-6xl font-normal mb-16 text-center text-white font-lora">
+    <section className="py-32 px-6 sm:px-8 lg:px-16 bg-gradient-to-b from-black to-zinc-950">
+      <div className="container mx-auto max-w-6xl px-4 sm:px-6">
+        <h2 className="text-3xl sm:text-5xl lg:text-6xl font-normal mb-8 sm:mb-16 text-center text-white font-lora">
           The New Architecture of Legal Work
         </h2>
       </div>
@@ -81,8 +84,8 @@ const FeatureCarousel = () => {
         {/* Content container with max-width */}
         <div className="max-w-6xl mx-auto">
             {/* Carousel Container */}
-            <div className="overflow-hidden" ref={emblaRef}>
-              <div className="flex">
+            <div className="overflow-hidden cursor-grab active:cursor-grabbing touch-pan-y" ref={emblaRef}>
+              <div className="flex touch-pan-y">
                 {slides.map((slide, index) => (
                   <div 
                     key={index} 
@@ -91,10 +94,10 @@ const FeatureCarousel = () => {
                     <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center px-4">
                       {/* Text Content */}
                       <div className="space-y-6">
-                        <h3 className="text-3xl sm:text-4xl font-semibold text-white leading-tight">
+                        <h3 className="text-2xl sm:text-4xl font-normal text-white leading-tight">
                           {slide.title}
                         </h3>
-                        <p className="text-lg sm:text-xl text-zinc-400 leading-relaxed">
+                        <p className="text-base sm:text-xl text-zinc-400 leading-relaxed">
                           {slide.description}
                         </p>
                       </div>
@@ -131,23 +134,23 @@ const FeatureCarousel = () => {
             </div>
           </div>
 
-          {/* Navigation Arrows - Positioned in outer black space */}
-          <div className="hidden lg:flex justify-between items-center absolute top-1/2 -translate-y-1/2 left-0 right-0 pointer-events-none px-8">
+          {/* Navigation Arrows - Positioned on sides */}
+          <div className="flex justify-between items-center absolute top-1/2 -translate-y-1/2 left-0 right-0 pointer-events-none px-2 sm:px-4 lg:px-8">
             <Button
               variant="outline"
               size="icon"
               onClick={scrollPrev}
-              className="pointer-events-auto bg-zinc-900/80 border-zinc-700 hover:bg-zinc-800 hover:border-zinc-600 backdrop-blur-sm opacity-70 hover:opacity-100 transition-opacity"
+              className="pointer-events-auto bg-zinc-900/80 border-zinc-700 hover:bg-zinc-800 hover:border-zinc-600 backdrop-blur-sm opacity-70 hover:opacity-100 transition-opacity h-10 w-10 sm:h-12 sm:w-12"
             >
-              <ChevronLeft className="h-6 w-6" />
+              <ChevronLeft className="h-5 w-5 sm:h-6 sm:w-6" />
             </Button>
             <Button
               variant="outline"
               size="icon"
               onClick={scrollNext}
-              className="pointer-events-auto bg-zinc-900/80 border-zinc-700 hover:bg-zinc-800 hover:border-zinc-600 backdrop-blur-sm opacity-70 hover:opacity-100 transition-opacity"
+              className="pointer-events-auto bg-zinc-900/80 border-zinc-700 hover:bg-zinc-800 hover:border-zinc-600 backdrop-blur-sm opacity-70 hover:opacity-100 transition-opacity h-10 w-10 sm:h-12 sm:w-12"
             >
-              <ChevronRight className="h-6 w-6" />
+              <ChevronRight className="h-5 w-5 sm:h-6 sm:w-6" />
             </Button>
           </div>
         </div>

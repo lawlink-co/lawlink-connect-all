@@ -4,6 +4,9 @@ import Navigation from "@/components/Navigation";
 import FeatureCarousel from "@/components/FeatureCarousel";
 import { useEffect, useRef, useState } from "react";
 import amicusGoldenA from "@/assets/amicus-golden-a.png";
+import amicusLogo from "@/assets/amicus-golden-a.png";
+import amicusALogo from "@/assets/amicus-a-logo.png";
+import amicusGoldenASmall from "@/assets/amicus-golden-a-small.png";
 
 // Full typewriter text with line breaks (added dash after evolved)
 const TYPEWRITER_TEXT = `Litigants don't trust lawyers.
@@ -13,14 +16,14 @@ Lawyers drown in admin.
 The way legal work gets done hasn't evolved—
 
 until now.`;
-
 const Home = () => {
   const [visibleChars, setVisibleChars] = useState(0);
-  const [logoPhase, setLogoPhase] = useState(0); // 0 = hidden, 0-1 = transitioning (text fade out, logo fade in/scale)
+  const [textFadedOut, setTextFadedOut] = useState(false); // true when text is fully gone
+  const [logoVisible, setLogoVisible] = useState(false); // true when logo should be at full opacity
   const [logoFadeOut, setLogoFadeOut] = useState(0); // 0 = fully visible, 1 = fully faded out
   const problemSectionRef = useRef<HTMLDivElement>(null);
   const featureCarouselRef = useRef<HTMLDivElement>(null);
-  
+
   // How It Works animation states
   const [howItWorksPhase, setHowItWorksPhase] = useState(0);
   const howItWorksSectionRef = useRef<HTMLDivElement>(null);
@@ -29,63 +32,72 @@ const Home = () => {
   // Calculate where "until now." starts in the text
   const untilNowStart = TYPEWRITER_TEXT.indexOf('until now.');
   const totalChars = TYPEWRITER_TEXT.length;
-
   useEffect(() => {
     const handleScroll = () => {
       if (!problemSectionRef.current) return;
-      
       const section = problemSectionRef.current;
       const rect = section.getBoundingClientRect();
       const sectionHeight = section.offsetHeight;
-      
+
       // Calculate scroll progress (0 to 1)
       // Section is now 300vh, so we have 200vh of scroll room
       const scrollProgress = Math.max(0, Math.min(1, -rect.top / (sectionHeight - window.innerHeight)));
-      
-      // Phase 1: Typewriter (0% - 50% scroll)
-      // Phase 2: Logo transition (50% - 100% scroll)
-      
-      if (scrollProgress <= 0.5) {
-        // Typewriter phase - map 0-50% to full text
-        const typewriterProgress = scrollProgress / 0.5;
-        
+
+      // Phase 1: Typewriter (0% - 40% scroll)
+      // Phase 2: Text fade out (40% - 55% scroll)  
+      // Phase 3: Logo fade in (55% - 70% scroll)
+      // Phase 4: Logo holds at full opacity (70% - 100% scroll)
+
+      if (scrollProgress <= 0.4) {
+        // Typewriter phase - map 0-40% to full text
+        const typewriterProgress = scrollProgress / 0.4;
         let charIndex: number;
         if (typewriterProgress <= 0.7) {
           // Map 0-70% of typewriter phase to text before "until now."
-          charIndex = Math.floor((typewriterProgress / 0.7) * untilNowStart);
+          charIndex = Math.floor(typewriterProgress / 0.7 * untilNowStart);
         } else {
           // Map 70-100% of typewriter phase to "until now." (slower reveal)
           const slowProgress = (typewriterProgress - 0.7) / 0.3;
           charIndex = untilNowStart + Math.floor(slowProgress * (totalChars - untilNowStart));
         }
-        
         setVisibleChars(Math.min(charIndex, totalChars));
-        setLogoPhase(0);
-        setLogoFadeOut(0);
-      } else {
-        // Logo transition phase - map 50%-100% to 0-1
+        setTextFadedOut(false);
+        setLogoVisible(false);
+      } else if (scrollProgress <= 0.55) {
+        // Text fade out phase - text fades, logo not yet visible
         setVisibleChars(totalChars);
-        const logoProgress = (scrollProgress - 0.5) / 0.5;
-        setLogoPhase(logoProgress);
+        setTextFadedOut(true);
+        setLogoVisible(false);
+      } else {
+        // Logo visible phase - text gone, logo at full opacity
+        setVisibleChars(totalChars);
+        setTextFadedOut(true);
+        setLogoVisible(true);
       }
-      
-      // Check if FeatureCarousel section is entering the viewport
-      if (featureCarouselRef.current) {
-        const carouselRect = featureCarouselRef.current.getBoundingClientRect();
-        // Only start fading when the carousel section enters the screen
-        if (carouselRect.top < window.innerHeight) {
-          // Calculate fade progress based on how far into the viewport the carousel is
-          const fadeProgress = Math.min(1, (window.innerHeight - carouselRect.top) / (window.innerHeight * 0.3));
-          setLogoFadeOut(fadeProgress);
+
+      // Logo fade out ONLY when problem section reaches top of viewport
+      // (i.e., when the sticky section is about to exit)
+      const stickyElement = section.querySelector('.sticky');
+      if (stickyElement) {
+        const stickyRect = stickyElement.getBoundingClientRect();
+        // Only fade out when the section's top is at or above the viewport top
+        // and the section is about to scroll out
+        const sectionBottom = rect.bottom;
+        const viewportHeight = window.innerHeight;
+
+        // Start fading when section bottom is less than viewport height (section exiting)
+        if (sectionBottom < viewportHeight && sectionBottom > 0) {
+          const fadeProgress = 1 - sectionBottom / viewportHeight;
+          setLogoFadeOut(Math.min(1, fadeProgress * 2)); // Faster fade
         } else {
-          setLogoFadeOut(0); // Carousel not visible yet, logo stays at full opacity
+          setLogoFadeOut(0);
         }
       }
     };
-
-    window.addEventListener('scroll', handleScroll, { passive: true });
+    window.addEventListener('scroll', handleScroll, {
+      passive: true
+    });
     handleScroll();
-    
     return () => {
       window.removeEventListener('scroll', handleScroll);
     };
@@ -95,10 +107,9 @@ const Home = () => {
   useEffect(() => {
     const handleHowItWorksScroll = () => {
       if (!howItWorksSectionRef.current || howItWorksTriggeredRef.current) return;
-      
       const section = howItWorksSectionRef.current;
       const rect = section.getBoundingClientRect();
-      
+
       // Trigger when section is 40% visible
       if (rect.top < window.innerHeight * 0.6) {
         howItWorksTriggeredRef.current = true;
@@ -112,35 +123,40 @@ const Home = () => {
         setTimeout(() => setHowItWorksPhase(4), 2000);
       }
     };
-
-    window.addEventListener('scroll', handleHowItWorksScroll, { passive: true });
+    window.addEventListener('scroll', handleHowItWorksScroll, {
+      passive: true
+    });
     handleHowItWorksScroll();
-    
     return () => {
       window.removeEventListener('scroll', handleHowItWorksScroll);
     };
   }, []);
-
   return <div className="min-h-screen bg-black text-white font-caslon">
       <Navigation />
       
       {/* Hero Section */}
       <section className="relative min-h-screen flex items-center justify-center px-4 sm:px-6 lg:px-8 overflow-hidden bg-black">
-        <div className="container mx-auto text-center max-w-6xl relative z-10">
-          <h1 className="text-6xl sm:text-7xl lg:text-8xl font-normal mb-8 tracking-tight animate-fade-in-slow">
-            Hello Legal
+        <div className="mx-auto w-full max-w-6xl text-center relative z-10 px-4">
+          <h1 className="text-6xl sm:text-7xl lg:text-8xl font-normal mb-6 sm:mb-8 tracking-tight animate-fade-in-slow text-center w-full mx-auto">
+            Lawsuits, Reimagined.
           </h1>
-          <p className="text-2xl sm:text-3xl text-zinc-300 mb-16 max-w-4xl mx-auto leading-relaxed opacity-0 animate-fade-in" style={{ animationDelay: '0.5s', animationFillMode: 'forwards' }}>
+          <p className="text-lg sm:text-3xl text-zinc-300 mb-6 sm:mb-16 max-w-4xl mx-auto leading-relaxed opacity-0 animate-fade-in" style={{
+          animationDelay: '0.5s',
+          animationFillMode: 'forwards'
+        }}>
             An AI-powered platform that connects lawyers and clients through automation and clarity.
           </p>
-          <div className="flex flex-col sm:flex-row gap-6 justify-center opacity-0 animate-slide-up" style={{ animationDelay: '0.8s', animationFillMode: 'forwards' }}>
+          <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center opacity-0 animate-slide-up" style={{
+          animationDelay: '0.8s',
+          animationFillMode: 'forwards'
+        }}>
             <Link to="/law-firms">
-              <Button size="lg" className="w-full sm:min-w-[180px] text-lg bg-white text-black border-2 border-transparent hover:bg-zinc-200 transition-all duration-300 hover:scale-105 px-[34px]">
+              <Button size="lg" className="w-auto sm:min-w-[180px] text-base sm:text-lg bg-white text-black border-2 border-transparent hover:bg-zinc-200 transition-all duration-300 hover:scale-105 px-6 sm:px-[34px] py-2.5 sm:py-3 h-auto">
                 For Law Firms
               </Button>
             </Link>
             <Link to="/clients">
-              <Button size="lg" className="w-full sm:min-w-[180px] text-lg px-12 bg-white text-black border-2 border-transparent hover:bg-zinc-200 transition-all duration-300 hover:scale-105">
+              <Button size="lg" className="w-auto sm:min-w-[180px] text-base sm:text-lg bg-white text-black border-2 border-transparent hover:bg-zinc-200 transition-all duration-300 hover:scale-105 px-6 sm:px-12 py-2.5 sm:py-3 h-auto">
                 For Clients
               </Button>
             </Link>
@@ -149,49 +165,25 @@ const Home = () => {
       </section>
 
       {/* Problem Section - Scroll-Locked Typography with Typewriter + Logo Reveal */}
-      <section 
-        ref={problemSectionRef}
-        className="relative h-[300vh] bg-gradient-to-b from-black via-zinc-950 to-black"
-      >
+      <section ref={problemSectionRef} className="relative h-[300vh] bg-gradient-to-b from-black via-zinc-950 to-black">
         <div className="sticky top-0 h-screen flex items-center justify-center px-4 sm:px-6 lg:px-8">
-          {/* Typewriter Text - fades out longer over first 60% of logo phase */}
-          <div 
-            className="container mx-auto max-w-5xl text-center absolute transition-opacity duration-500"
-            style={{ opacity: logoPhase < 0.6 ? 1 - (logoPhase / 0.6) : 0 }}
-          >
-            <p className="text-3xl sm:text-4xl lg:text-5xl text-zinc-200 font-light leading-relaxed whitespace-pre-wrap">
+          {/* Typewriter Text - fades out when textFadedOut is true */}
+          <div className="container mx-auto max-w-5xl text-center absolute transition-opacity duration-700" style={{
+          opacity: textFadedOut ? 0 : 1
+        }}>
+            <p className="text-2xl sm:text-4xl lg:text-5xl text-zinc-200 font-light leading-tight sm:leading-relaxed whitespace-pre-wrap">
               {TYPEWRITER_TEXT.slice(0, visibleChars)}
-              {logoPhase === 0 && (
-                <span className="inline-block w-[3px] h-[1em] bg-zinc-200 ml-1 align-middle animate-caret-blink" />
-              )}
+              {!textFadedOut && visibleChars < totalChars && <span className="inline-block w-[3px] h-[1em] bg-zinc-200 ml-1 align-middle animate-caret-blink" />}
             </p>
           </div>
           
-          {/* Logo - starts fading in at 50% of logo phase, scales to 1.3, fades out when section reaches top third */}
-          {(() => {
-            // Logo only starts appearing at 50% of logoPhase
-            const logoOpacity = Math.max(0, (logoPhase - 0.5) / 0.5);
-            // Fade out is controlled by logoFadeOut state (when section scrolls past viewport)
-            const finalOpacity = logoOpacity * (1 - logoFadeOut);
-            // Scale from 0.5 to 1.3 (30% larger)
-            const scale = 0.5 + logoOpacity * 0.8;
-            
-            return (
-              <div 
-                className="absolute flex items-center justify-center transition-all duration-300"
-                style={{ 
-                  opacity: finalOpacity,
-                  transform: `scale(${scale})`
-                }}
-              >
-                <img 
-                  src={amicusGoldenA} 
-                  alt="Amicus" 
-                  className="w-48 sm:w-64 lg:w-80 h-auto"
-                />
-              </div>
-            );
-          })()}
+          {/* Logo - fades in AFTER text is fully gone, stays at full opacity until section exits viewport */}
+          <div className="absolute flex items-center justify-center transition-opacity duration-700" style={{
+          opacity: logoVisible ? 1 - logoFadeOut : 0,
+          transform: 'scale(1.3)'
+        }}>
+            <img src={amicusGoldenA} alt="Amicus" className="w-48 sm:w-64 lg:w-80 h-auto" />
+          </div>
         </div>
       </section>
 
@@ -201,146 +193,194 @@ const Home = () => {
       </div>
 
       {/* How It Works Section - Connection Between Client & Lawyer */}
-      <section ref={howItWorksSectionRef} className="py-32 px-4 sm:px-6 lg:px-8 bg-black border-t border-zinc-800">
-        <div className="container mx-auto max-w-6xl">
-          <h2 className={`text-3xl sm:text-4xl lg:text-5xl font-normal mb-8 text-center transition-all duration-500 ${howItWorksPhase >= 3 ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>How It Works</h2>
-          <p className={`text-xl text-zinc-400 text-center mb-20 max-w-3xl mx-auto transition-all duration-500 delay-100 ${howItWorksPhase >= 3 ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
+      <section ref={howItWorksSectionRef} className="py-24 px-4 sm:px-6 lg:px-8 bg-black border-t border-zinc-800/50">
+        <div className="container mx-auto max-w-5xl">
+          <h2 className={`text-2xl sm:text-3xl lg:text-4xl font-normal mb-4 text-center transition-all duration-500 leading-tight ${howItWorksPhase >= 3 ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>How It Works</h2>
+          <p className={`text-lg text-zinc-400 text-center mb-16 max-w-2xl mx-auto transition-all duration-500 delay-100 leading-relaxed ${howItWorksPhase >= 3 ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
             Amicus bridges clients and their lawyers — making every case tangible, fast-moving, and transparent.
           </p>
 
-          {/* Visual Connection */}
-          <div className="relative mb-24">
-            <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-center">
-              {/* For Clients - Icon shows first */}
-              <div className="relative group">
-                <div className={`absolute -inset-1 bg-gradient-to-r from-blue-500 to-primary rounded-lg blur transition-opacity duration-500 ${howItWorksPhase >= 1 ? 'opacity-25 group-hover:opacity-40' : 'opacity-0'}`}></div>
-                <div className={`relative bg-zinc-950 border border-zinc-800 rounded-lg p-10 transition-all duration-500 ${howItWorksPhase >= 1 ? 'opacity-100 scale-100' : 'opacity-0 scale-95'} hover:border-blue-500/50`}>
-                  <div className="w-20 h-20 bg-blue-500/20 rounded-full flex items-center justify-center mx-auto mb-6">
-                    <svg className="w-10 h-10 text-blue-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+          {/* Gold accent divider under heading */}
+          <div className={`flex justify-center mb-12 transition-all duration-500 delay-150 ${howItWorksPhase >= 3 ? 'opacity-100' : 'opacity-0'}`}>
+            <div className="w-12 h-0.5 bg-gold rounded-full"></div>
+          </div>
+
+          {/* Visual Connection - Horizontal layout */}
+          <div className="relative mb-16">
+            {/* Desktop Layout */}
+            <div className="hidden lg:flex items-center justify-center gap-0">
+              {/* For Lawyers Card */}
+              <div className={`flex-1 max-w-sm bg-zinc-900/50 backdrop-blur-sm border border-zinc-800 rounded-2xl p-8 transition-all duration-500 ${howItWorksPhase >= 1 ? 'opacity-100' : 'opacity-0'} hover:border-gold/40 hover:bg-zinc-900/70`}>
+                <div className="flex items-center gap-3 mb-5">
+                  <div className="w-10 h-10 bg-gold/10 border border-gold/30 rounded-xl flex items-center justify-center">
+                    <svg className="w-5 h-5 text-gold" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
                     </svg>
                   </div>
-                  <div className={`transition-all duration-500 delay-200 ${howItWorksPhase >= 3 ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
-                    <h3 className="text-2xl font-normal mb-4 text-center">For Clients</h3>
-                    <p className="text-zinc-400 text-center mb-6 leading-relaxed">
-                      Your case becomes <span className="text-white font-normal">real</span> through an interactive app.
-                    </p>
-                    <ul className="space-y-3 text-sm text-zinc-400">
-                      <li className="flex items-start">
-                        <span className="text-blue-400 mr-2">→</span>
-                        <span>See progress in real-time</span>
-                      </li>
-                      <li className="flex items-start">
-                        <span className="text-blue-400 mr-2">→</span>
-                        <span>Receive instant updates</span>
-                      </li>
-                      <li className="flex items-start">
-                        <span className="text-blue-400 mr-2">→</span>
-                        <span>Understand what's happening</span>
-                      </li>
-                    </ul>
-                  </div>
+                  <h3 className="text-xl font-medium text-white">For Lawyers</h3>
+                </div>
+                <div className={`transition-all duration-500 delay-200 ${howItWorksPhase >= 3 ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
+                  <p className="text-zinc-400 mb-5 text-sm leading-relaxed">
+                    A <span className="text-[#e0b661] font-normal">magnificent infrastructure</span> to handle litigation faster.
+                  </p>
+                  <ul className="space-y-3 text-sm text-zinc-400">
+                    <li className="flex items-center gap-3">
+                      <span className="w-1.5 h-1.5 bg-gold rounded-full"></span>
+                      <span>AI-powered drafting</span>
+                    </li>
+                    <li className="flex items-center gap-3">
+                      <span className="w-1.5 h-1.5 bg-gold rounded-full"></span>
+                      <span>Intelligent automation</span>
+                    </li>
+                    <li className="flex items-center gap-3">
+                      <span className="w-1.5 h-1.5 bg-gold rounded-full"></span>
+                      <span>Turn chaos into clarity</span>
+                    </li>
+                  </ul>
                 </div>
               </div>
 
-              {/* Connection Visual - Shows "Not Connected" first, then animates to "Connected" */}
-              <div className="hidden lg:flex flex-col items-center justify-center">
-                <div className="relative">
-                  {/* Glow appears when connected */}
-                  <div className={`absolute inset-0 bg-gradient-to-r from-blue-500 via-primary to-blue-500 blur-xl transition-opacity duration-700 ${howItWorksPhase >= 2 ? 'opacity-50 animate-pulse' : 'opacity-0'}`}></div>
-                  <div className="relative flex flex-col items-center gap-4">
-                    {/* Top dot - always shows in phase 1 */}
-                    <div className={`w-3 h-3 bg-blue-400 rounded-full transition-all duration-500 ${howItWorksPhase >= 1 ? 'opacity-100 scale-100' : 'opacity-0 scale-0'} ${howItWorksPhase >= 2 ? 'animate-pulse' : ''}`}></div>
-                    
-                    {/* Top line - grows in phase 2 */}
-                    <div className={`w-1 bg-gradient-to-b from-blue-400 to-primary transition-all duration-500 origin-top ${howItWorksPhase >= 2 ? 'h-16 opacity-100' : 'h-0 opacity-0'}`}></div>
-                    
-                    {/* Center node - appears in phase 2 */}
-                    <div className={`w-6 h-6 bg-primary rounded-full flex items-center justify-center transition-all duration-300 ${howItWorksPhase >= 2 ? 'opacity-100 scale-100' : 'opacity-0 scale-0'}`}>
-                      <div className="w-3 h-3 bg-white rounded-full"></div>
-                    </div>
-                    
-                    {/* Bottom line - grows in phase 2 */}
-                    <div className={`w-1 bg-gradient-to-b from-primary to-blue-400 transition-all duration-500 delay-200 origin-top ${howItWorksPhase >= 2 ? 'h-16 opacity-100' : 'h-0 opacity-0'}`}></div>
-                    
-                    {/* Bottom dot - always shows in phase 1 */}
-                    <div className={`w-3 h-3 bg-blue-400 rounded-full transition-all duration-500 ${howItWorksPhase >= 1 ? 'opacity-100 scale-100' : 'opacity-0 scale-0'} ${howItWorksPhase >= 2 ? 'animate-pulse' : ''}`}></div>
-                  </div>
-                </div>
-                {/* Status text - changes from "Not Connected" to "Connected" */}
-                <p className={`text-xs mt-6 text-center font-normal tracking-wider uppercase transition-all duration-500 ${howItWorksPhase >= 1 ? 'opacity-100' : 'opacity-0'} ${howItWorksPhase >= 2 ? 'text-primary' : 'text-zinc-500'}`}>
-                  {howItWorksPhase >= 2 ? 'Connected' : 'Not Connected'}
-                </p>
+              {/* Left Connector */}
+              <div className={`w-16 flex items-center transition-all duration-700 ${howItWorksPhase >= 2 ? 'opacity-100' : 'opacity-0'}`}>
+                <div className="w-full border-t-2 border-dashed border-gold/50"></div>
               </div>
 
-              {/* For Lawyers - Icon shows first */}
-              <div className="relative group">
-                <div className={`absolute -inset-1 bg-gradient-to-r from-primary to-blue-500 rounded-lg blur transition-opacity duration-500 ${howItWorksPhase >= 1 ? 'opacity-25 group-hover:opacity-40' : 'opacity-0'}`}></div>
-                <div className={`relative bg-zinc-950 border border-zinc-800 rounded-lg p-10 transition-all duration-500 delay-100 ${howItWorksPhase >= 1 ? 'opacity-100 scale-100' : 'opacity-0 scale-95'} hover:border-primary/50`}>
-                  <div className="w-20 h-20 bg-primary/20 rounded-full flex items-center justify-center mx-auto mb-6">
-                    <svg className="w-10 h-10 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
+              {/* Center Logo */}
+              <div className={`flex-shrink-0 flex flex-col items-center transition-all duration-500 delay-100 ${howItWorksPhase >= 2 ? 'opacity-100 scale-100' : 'opacity-0 scale-90'}`}>
+                <div className="w-24 h-24 rounded-2xl overflow-hidden shadow-2xl shadow-black/50">
+                  <img src={amicusALogo} alt="Amicus" className="w-full h-full object-cover" />
+                </div>
+                <img src={amicusGoldenASmall} alt="Amicus" className="w-10 h-auto mt-2" />
+              </div>
+
+              {/* Right Connector */}
+              <div className={`w-16 flex items-center transition-all duration-700 ${howItWorksPhase >= 2 ? 'opacity-100' : 'opacity-0'}`}>
+                <div className="w-full border-t-2 border-dashed border-gold/50"></div>
+              </div>
+
+              {/* For Clients Card */}
+              <div className={`flex-1 max-w-sm bg-zinc-900/50 backdrop-blur-sm border border-zinc-800 rounded-2xl p-8 transition-all duration-500 delay-100 ${howItWorksPhase >= 1 ? 'opacity-100' : 'opacity-0'} hover:border-gold/40 hover:bg-zinc-900/70`}>
+                <div className="flex items-center gap-3 mb-5">
+                  <div className="w-10 h-10 bg-gold/10 border border-gold/30 rounded-xl flex items-center justify-center">
+                    <svg className="w-5 h-5 text-gold" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
                     </svg>
                   </div>
-                  <div className={`transition-all duration-500 delay-300 ${howItWorksPhase >= 3 ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
-                    <h3 className="text-2xl font-normal mb-4 text-center">For Lawyers</h3>
-                    <p className="text-zinc-400 text-center mb-6 leading-relaxed">
-                      A <span className="text-white font-normal">magnificent infrastructure</span> to handle litigation faster.
-                    </p>
-                    <ul className="space-y-3 text-sm text-zinc-400">
-                      <li className="flex items-start">
-                        <span className="text-primary mr-2">→</span>
-                        <span>AI-powered drafting</span>
-                      </li>
-                      <li className="flex items-start">
-                        <span className="text-primary mr-2">→</span>
-                        <span>Intelligent automation</span>
-                      </li>
-                      <li className="flex items-start">
-                        <span className="text-primary mr-2">→</span>
-                        <span>Turn chaos into clarity</span>
-                      </li>
-                    </ul>
-                  </div>
+                  <h3 className="text-xl font-medium text-white">For Clients</h3>
                 </div>
+                <div className={`transition-all duration-500 delay-300 ${howItWorksPhase >= 3 ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
+                  <p className="text-zinc-400 mb-5 text-sm leading-relaxed">
+                    Cases become <span style={{ color: '#e0b660' }} className="font-bold">real</span> with an interactive app.
+                  </p>
+                  <ul className="space-y-3 text-sm text-zinc-400">
+                    <li className="flex items-center gap-3">
+                      <span className="w-1.5 h-1.5 bg-gold rounded-full"></span>
+                      <span>See progress in real-time</span>
+                    </li>
+                    <li className="flex items-center gap-3">
+                      <span className="w-1.5 h-1.5 bg-gold rounded-full"></span>
+                      <span>Receive instant updates</span>
+                    </li>
+                    <li className="flex items-center gap-3">
+                      <span className="w-1.5 h-1.5 bg-gold rounded-full"></span>
+                      <span>Understand what's happening</span>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+            {/* Mobile Layout */}
+            <div className="lg:hidden flex flex-col items-center gap-0">
+              {/* For Lawyers Card */}
+              <div className={`w-full max-w-sm bg-zinc-900/50 backdrop-blur-sm border border-zinc-800 rounded-2xl p-6 transition-all duration-500 ${howItWorksPhase >= 1 ? 'opacity-100' : 'opacity-0'}`}>
+                <div className="flex items-center gap-3 mb-4">
+                  <div className="w-10 h-10 bg-gold/10 border border-gold/30 rounded-xl flex items-center justify-center">
+                    <svg className="w-5 h-5 text-gold" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
+                    </svg>
+                  </div>
+                  <h3 className="text-lg font-medium text-white">For Lawyers</h3>
+                </div>
+                <p className="text-zinc-400 mb-4 text-sm">A <span className="text-[#e0b661] font-normal">magnificent infrastructure</span> to handle litigation faster.</p>
+                <ul className="space-y-2 text-sm text-zinc-400">
+                  <li className="flex items-center gap-2"><span className="w-1.5 h-1.5 bg-gold rounded-full"></span>AI-powered drafting</li>
+                  <li className="flex items-center gap-2"><span className="w-1.5 h-1.5 bg-gold rounded-full"></span>Intelligent automation</li>
+                  <li className="flex items-center gap-2"><span className="w-1.5 h-1.5 bg-gold rounded-full"></span>Turn chaos into clarity</li>
+                </ul>
+              </div>
+
+              {/* Mobile Connector */}
+              <div className={`h-12 border-l-2 border-dashed border-gold/50 transition-all duration-500 ${howItWorksPhase >= 2 ? 'opacity-100' : 'opacity-0'}`}></div>
+
+              {/* Center Logo */}
+              <div className={`flex flex-col items-center transition-all duration-500 ${howItWorksPhase >= 2 ? 'opacity-100 scale-100' : 'opacity-0 scale-90'}`}>
+                <div className="w-24 h-24 rounded-xl overflow-hidden shadow-xl shadow-black/50">
+                  <img src={amicusALogo} alt="Amicus" className="w-full h-full object-cover" />
+                </div>
+                <img src={amicusGoldenASmall} alt="Amicus" className="w-12 h-auto mt-3" />
+              </div>
+
+              {/* Mobile Connector */}
+              <div className={`h-12 border-l-2 border-dashed border-gold/50 transition-all duration-500 ${howItWorksPhase >= 2 ? 'opacity-100' : 'opacity-0'}`}></div>
+
+              {/* For Clients Card */}
+              <div className={`w-full max-w-sm bg-zinc-900/50 backdrop-blur-sm border border-zinc-800 rounded-2xl p-6 transition-all duration-500 ${howItWorksPhase >= 1 ? 'opacity-100' : 'opacity-0'}`}>
+                <div className="flex items-center gap-3 mb-4">
+                  <div className="w-10 h-10 bg-gold/10 border border-gold/30 rounded-xl flex items-center justify-center">
+                    <svg className="w-5 h-5 text-gold" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                    </svg>
+                  </div>
+                  <h3 className="text-lg font-medium text-white">For Clients</h3>
+                </div>
+                <p className="text-zinc-400 mb-4 text-sm">Cases become <span className="text-[#e0b660] font-bold">real</span> with an interactive app.</p>
+                <ul className="space-y-2 text-sm text-zinc-400">
+                  <li className="flex items-center gap-2"><span className="w-1.5 h-1.5 bg-gold rounded-full"></span>See progress in real-time</li>
+                  <li className="flex items-center gap-2"><span className="w-1.5 h-1.5 bg-gold rounded-full"></span>Receive instant updates</li>
+                  <li className="flex items-center gap-2"><span className="w-1.5 h-1.5 bg-gold rounded-full"></span>Understand what's happening</li>
+                </ul>
               </div>
             </div>
           </div>
 
           {/* Shared Outcome - appears in phase 4 */}
-          <div className={`relative transition-all duration-700 ${howItWorksPhase >= 4 ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
-            <div className="absolute inset-0 bg-gradient-to-r from-blue-500/10 via-primary/10 to-blue-500/10 blur-3xl"></div>
-            <div className="relative bg-zinc-950/80 border border-zinc-800 rounded-lg p-12 text-center backdrop-blur">
-              <h3 className="text-2xl sm:text-3xl font-normal mb-6">
-                For Both: Progress That Moves
-              </h3>
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl mx-auto">
+          <div className={`transition-all duration-700 ${howItWorksPhase >= 4 ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
+            <div className="bg-zinc-950 border border-zinc-800/50 rounded-lg p-8 text-center">
+              <div className="flex items-center justify-center gap-2 mb-6">
+                <div className="w-8 h-px bg-gold/40"></div>
+                <h3 className="text-lg sm:text-xl font-medium">
+                  For Both: <span style={{ color: '#e0b660' }} className="italic">Progress That Moves</span>
+                </h3>
+                <div className="w-8 h-px bg-gold/40"></div>
+              </div>
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-5 max-w-3xl mx-auto">
                 <div className={`flex flex-col items-center transition-all duration-500 delay-[100ms] ${howItWorksPhase >= 4 ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
-                  <div className="w-16 h-16 bg-gradient-to-br from-blue-500/20 to-primary/20 rounded-full flex items-center justify-center mb-4">
-                    <svg className="w-8 h-8 text-blue-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
+                  <div className="w-11 h-11 bg-zinc-900 border border-gold/30 rounded-full flex items-center justify-center mb-3">
+                    <svg className="w-5 h-5 text-gold" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M13 10V3L4 14h7v7l9-11h-7z" />
                     </svg>
                   </div>
-                  <p className="text-white font-normal mb-2">Faster Forward</p>
-                  <p className="text-sm text-zinc-400">Every case moves at the speed of technology</p>
+                  <p className="text-white font-medium mb-1 text-sm">Faster <span className="text-[#e0b660] italic">Forward</span></p>
+                  <p className="text-xs text-zinc-500">Every case moves at the speed of technology</p>
                 </div>
                 <div className={`flex flex-col items-center transition-all duration-500 delay-[200ms] ${howItWorksPhase >= 4 ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
-                  <div className="w-16 h-16 bg-gradient-to-br from-blue-500/20 to-primary/20 rounded-full flex items-center justify-center mb-4">
-                    <svg className="w-8 h-8 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" />
+                  <div className="w-11 h-11 bg-zinc-900 border border-gold/30 rounded-full flex items-center justify-center mb-3">
+                    <svg className="w-5 h-5 text-gold" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" />
                     </svg>
                   </div>
-                  <p className="text-white font-normal mb-2">Instant Updates</p>
-                  <p className="text-sm text-zinc-400">Shared in real-time, never missed</p>
+                  <p className="text-white font-medium mb-1 text-sm"><span className="text-[#e0b660] italic">Instant</span> Updates</p>
+                  <p className="text-xs text-zinc-500">Shared in real-time, never missed</p>
                 </div>
                 <div className={`flex flex-col items-center transition-all duration-500 delay-[300ms] ${howItWorksPhase >= 4 ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
-                  <div className="w-16 h-16 bg-gradient-to-br from-blue-500/20 to-primary/20 rounded-full flex items-center justify-center mb-4">
-                    <svg className="w-8 h-8 text-blue-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                  <div className="w-11 h-11 bg-zinc-900 border border-gold/30 rounded-full flex items-center justify-center mb-3">
+                    <svg className="w-5 h-5 text-gold" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
                     </svg>
                   </div>
-                  <p className="text-white font-normal mb-2">Total Transparency</p>
-                  <p className="text-sm text-zinc-400">No one feels left in the dark</p>
+                  <p className="text-white font-medium mb-1 text-sm">Total <span className="text-[#e0b660] italic">Transparency</span></p>
+                  <p className="text-xs text-zinc-500">No one feels left in the dark</p>
                 </div>
               </div>
             </div>
@@ -351,14 +391,14 @@ const Home = () => {
       {/* Vision Section */}
       <section className="py-32 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-black to-zinc-950 border-t border-zinc-800">
         <div className="container mx-auto max-w-5xl text-center space-y-12 animate-scale-in">
-          <p className="text-4xl sm:text-5xl lg:text-6xl font-normal leading-tight">
+          <p className="text-4xl sm:text-5xl lg:text-6xl font-normal leading-snug sm:leading-normal">
             Where litigation meets intelligence.
           </p>
           <p className="text-2xl sm:text-3xl text-zinc-300 leading-relaxed">
             Amicus is shaping the future of litigation — where cases flow from intake to resolution with intelligence and ease.
           </p>
           <div className="pt-8">
-            <p className="text-3xl font-normal text-white">Real context. Real results.</p>
+            <p className="text-3xl font-normal text-white"><span className="text-[#e0b660] italic">Real</span> context.<br className="sm:hidden" /> <span className="text-[#e0b660] italic">Real</span> results.</p>
           </div>
         </div>
       </section>

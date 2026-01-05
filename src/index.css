@@ -57,25 +57,29 @@ All colors MUST be HSL.
     --popover-foreground: 0 0% 100%;
     --primary: 225 12% 30%;
     --primary-foreground: 0 0% 100%;
-    --secondary: 0 0% 20%;
-    --secondary-foreground: 0 0% 100%;
+    --secondary: 42 68% 63%;
+    --secondary-foreground: 0 0% 0%;
     --muted: 0 0% 10%;
     --muted-foreground: 0 0% 65%;
-    --accent: 225 12% 30%;
-    --accent-foreground: 0 0% 100%;
+    --accent: 42 68% 63%;
+    --accent-foreground: 0 0% 0%;
     --destructive: 0 62.8% 30.6%;
     --destructive-foreground: 0 0% 100%;
     --border: 0 0% 15%;
     --input: 0 0% 15%;
-    --ring: 225 12% 30%;
+    --ring: 42 68% 63%;
     --sidebar-background: 240 5.9% 10%;
     --sidebar-foreground: 240 4.8% 95.9%;
-    --sidebar-primary: 224.3 76.3% 48%;
-    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-primary: 42 68% 63%;
+    --sidebar-primary-foreground: 0 0% 0%;
     --sidebar-accent: 240 3.7% 15.9%;
     --sidebar-accent-foreground: 240 4.8% 95.9%;
     --sidebar-border: 240 3.7% 15.9%;
-    --sidebar-ring: 225 12% 30%;
+    --sidebar-ring: 42 68% 63%;
+    
+    /* Gold accent for emphasis - #e0b660 */
+    --gold: 40 68% 63%;
+    --gold-foreground: 0 0% 0%;
   }
 }
 
@@ -86,6 +90,7 @@ All colors MUST be HSL.
 
   body {
     @apply bg-background text-foreground font-body;
+    overflow-x: hidden;
   }
 
   /* Primary serif for headings - elegant display font */
@@ -114,5 +119,16 @@ All colors MUST be HSL.
 
   h4, h5, h6 {
     @apply font-body;
+  }
+}
+
+@layer utilities {
+  /* Hide scrollbar for swipeable elements */
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
   }
 }

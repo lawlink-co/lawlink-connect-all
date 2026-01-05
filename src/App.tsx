@@ -8,6 +8,8 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Home from "./pages/Home";
 import LawFirms from "./pages/LawFirms";
 import Clients from "./pages/Clients";
+import Demo from "./pages/Demo";
+import Contact from "./pages/Contact";
 import NotFound from "./pages/NotFound";
 
 function ScrollToTop() {
@@ -33,6 +35,8 @@ const App = () => (
           <Route path="/" element={<Home />} />
           <Route path="/law-firms" element={<LawFirms />} />
           <Route path="/clients" element={<Clients />} />
+          <Route path="/demo" element={<Demo />} />
+          <Route path="/contact" element={<Contact />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
