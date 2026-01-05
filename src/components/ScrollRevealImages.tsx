@@ -7,7 +7,7 @@ const ScrollRevealImages = () => {
         <img
           src={sourcesUsedImage}
           alt="Sources Used in This Draft - Prior Complaints & Bills Of Particulars, Motion Papers Filed by Your Firm, Deposition Transcripts, Prior Verdicts & Settlements, Firm-Specific Clause Library"
-          className="w-[120%] sm:w-full mx-auto rounded-lg"
+          className="w-[140%] sm:w-full mx-auto rounded-lg"
         />
       </div>
     </div>
