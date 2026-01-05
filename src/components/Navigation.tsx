@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Menu } from "lucide-react";
 import {
@@ -10,8 +10,11 @@ import {
 import amicusLogo from "@/assets/amicus-logo.png";
 
 const Navigation = () => {
+  const location = useLocation();
+  const isClientsPage = location.pathname === "/clients";
+
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 bg-black border-b border-white/10">
+    <nav className={`fixed top-0 left-0 right-0 z-50 border-b ${isClientsPage ? 'bg-white border-black/10' : 'bg-black border-white/10'}`}>
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-20">
           <Link to="/" className="flex items-center space-x-2">
@@ -20,13 +23,13 @@ const Navigation = () => {
           
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center space-x-8">
-            <Link to="/" className="text-white hover:text-primary transition-colors">
+            <Link to="/" className={`${isClientsPage ? 'text-black' : 'text-white'} hover:text-primary transition-colors`}>
               Home
             </Link>
-            <Link to="/law-firms" className="text-white hover:text-primary transition-colors">
+            <Link to="/law-firms" className={`${isClientsPage ? 'text-black' : 'text-white'} hover:text-primary transition-colors`}>
               For Law Firms
             </Link>
-            <Link to="/clients" className="text-white hover:text-primary transition-colors">
+            <Link to="/clients" className={`${isClientsPage ? 'text-black' : 'text-white'} hover:text-primary transition-colors`}>
               For Clients
             </Link>
             <Link to="/demo">
@@ -45,7 +48,7 @@ const Navigation = () => {
             </Link>
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
-                <Button variant="ghost" size="icon" className="text-white hover:bg-white/10">
+                <Button variant="ghost" size="icon" className={`${isClientsPage ? 'text-black hover:bg-black/10' : 'text-white hover:bg-white/10'}`}>
                   <Menu className="h-6 w-6" />
                 </Button>
               </DropdownMenuTrigger>
