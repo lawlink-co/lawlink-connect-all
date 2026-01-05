@@ -194,14 +194,14 @@ const Clients = () => {
               <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold text-gray-900 leading-tight">
                 Cases Become Real<br />With Amicus.
               </h1>
-              <p className="text-2xl sm:text-3xl text-gray-700 leading-relaxed">
+              <p className="text-xl sm:text-2xl text-gray-700 leading-relaxed">
                 An interactive app that delivers real updates, real context, and real clarity.
               </p>
               
               {/* Image - shows here on mobile only, between text and button */}
               <div className="relative animate-scale-in flex items-center justify-center lg:hidden mt-4 mb-2">
                 <div className="absolute inset-0 bg-primary/10 blur-3xl rounded-full"></div>
-                <img src={clientHeaderPhone} alt="Amicus mobile app interface" className="relative mx-auto h-[350px] w-auto object-contain drop-shadow-2xl" />
+                <img src={clientHeaderPhone} alt="Amicus mobile app interface" className="relative mx-auto h-[400px] w-auto object-contain drop-shadow-2xl" />
               </div>
               
               <a href="tel:2125882922">
