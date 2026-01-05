@@ -189,21 +189,29 @@ const Clients = () => {
       {/* Hero Section */}
       <section className="pt-32 pb-24 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-blue-50 via-white to-indigo-50">
         <div className="container mx-auto max-w-6xl">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-            <div className="space-y-8 animate-fade-in-slow">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-center">
+            <div className="space-y-6 lg:space-y-8 animate-fade-in-slow flex flex-col">
               <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold text-gray-900 leading-tight">
                 Cases Become Real<br />With Amicus.
               </h1>
               <p className="text-2xl sm:text-3xl text-gray-700 leading-relaxed">
                 An interactive app that delivers real updates, real context, and real clarity.
               </p>
+              
+              {/* Image - shows here on mobile only, between text and button */}
+              <div className="relative animate-scale-in flex items-center justify-center lg:hidden mt-4 mb-2">
+                <div className="absolute inset-0 bg-primary/10 blur-3xl rounded-full"></div>
+                <img src={clientHeaderPhone} alt="Amicus mobile app interface" className="relative mx-auto h-[350px] w-auto object-contain drop-shadow-2xl" />
+              </div>
+              
               <a href="tel:2125882922">
                 <Button size="lg" className="text-lg px-10 py-7 bg-primary text-white hover:bg-primary/90 transition-all duration-300 hover:scale-105 shadow-lg">
                   Find an Amicus Lawyer
                 </Button>
               </a>
             </div>
-            <div className="relative animate-scale-in flex items-center justify-center h-full">
+            {/* Image - shows here on desktop only */}
+            <div className="relative animate-scale-in hidden lg:flex items-center justify-center h-full">
               <div className="absolute inset-0 bg-primary/10 blur-3xl rounded-full"></div>
               <img src={clientHeaderPhone} alt="Amicus mobile app interface" className="relative mx-auto h-[425px] lg:h-[510px] w-auto object-contain drop-shadow-2xl" />
             </div>
