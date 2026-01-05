@@ -73,7 +73,7 @@ const LawFirms = () => {
           animationFillMode: 'forwards'
         }}>
             <Link to="/demo">
-              <Button size="lg" className="text-lg px-14 py-8 bg-white text-black hover:bg-zinc-200 transition-all duration-300 hover:scale-105 font-sans">
+              <Button size="sm" className="bg-primary hover:bg-primary/90 text-white font-sans">
                 Book a Demo
               </Button>
             </Link>
