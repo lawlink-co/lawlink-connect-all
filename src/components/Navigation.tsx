@@ -30,7 +30,7 @@ const Navigation = () => {
               For Clients
             </Link>
             <Link to="/demo">
-              <Button size="sm" className="bg-white hover:bg-white/90 text-black">
+              <Button size="sm" className="bg-primary hover:bg-primary/90 text-white">
                 Book a Demo
               </Button>
             </Link>
@@ -39,7 +39,7 @@ const Navigation = () => {
           {/* Mobile Navigation */}
           <div className="md:hidden flex items-center space-x-3">
             <Link to="/demo">
-              <Button size="sm" className="bg-white hover:bg-white/90 text-black">
+              <Button size="sm" className="bg-primary hover:bg-primary/90 text-white">
                 Book a Demo
               </Button>
             </Link>
