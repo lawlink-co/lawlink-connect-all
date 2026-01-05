@@ -190,7 +190,7 @@ const Clients = () => {
       <section className="pt-32 pb-24 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-blue-50 via-white to-indigo-50">
         <div className="container mx-auto max-w-6xl">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-center">
-            <div className="space-y-8 lg:space-y-8 animate-fade-in-slow flex flex-col">
+            <div className="space-y-4 lg:space-y-8 animate-fade-in-slow flex flex-col">
               <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold text-gray-900 leading-tight">
                 Cases Become Real<br />With Amicus.
               </h1>
