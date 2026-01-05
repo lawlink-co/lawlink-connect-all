@@ -318,11 +318,11 @@ const Home = () => {
                 <div className="w-24 h-24 rounded-xl overflow-hidden shadow-xl shadow-black/50">
                   <img src={amicusALogo} alt="Amicus" className="w-full h-full object-cover" />
                 </div>
-                <img src={amicusGoldenASmall} alt="Amicus" className="w-[7.5rem] h-auto mt-3" />
+                <img src={amicusGoldenASmall} alt="Amicus" className="w-[7.5rem] h-auto mt-6" />
               </div>
 
               {/* Mobile Connector */}
-              <div className={`h-12 border-l-2 border-dashed border-gold/50 transition-all duration-500 ${howItWorksPhase >= 2 ? 'opacity-100' : 'opacity-0'}`}></div>
+              <div className={`h-6 border-l-2 border-dashed border-gold/50 transition-all duration-500 ${howItWorksPhase >= 2 ? 'opacity-100' : 'opacity-0'}`}></div>
 
               {/* For Clients Card */}
               <div className={`w-full max-w-sm bg-zinc-900/50 backdrop-blur-sm border border-zinc-800 rounded-2xl p-6 transition-all duration-500 ${howItWorksPhase >= 1 ? 'opacity-100' : 'opacity-0'}`}>
