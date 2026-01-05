@@ -1,8 +1,10 @@
 import { useState, useCallback, useEffect } from "react";
 import useEmblaCarousel from "embla-carousel-react";
 import Fade from "embla-carousel-fade";
+import Autoplay from "embla-carousel-autoplay";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { useIsMobile } from "@/hooks/use-mobile";
 import aiDraftingDemo from "@/assets/ai-drafting-demo.png";
 import clientExperienceDemo from "@/assets/client-experience-demo.png";
 import screenshotDashboard from "@/assets/screenshot-dashboard.png";
@@ -36,7 +38,11 @@ const slides: CarouselSlide[] = [
 ];
 
 const FeatureCarousel = () => {
-  const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true, dragFree: false }, [Fade()]);
+  const isMobile = useIsMobile();
+  const plugins = isMobile 
+    ? [Fade(), Autoplay({ delay: 5000, stopOnInteraction: false })]
+    : [Fade()];
+  const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true, dragFree: false }, plugins);
   const [selectedIndex, setSelectedIndex] = useState(0);
 
   const scrollPrev = useCallback(() => {
@@ -91,9 +97,9 @@ const FeatureCarousel = () => {
                     key={index} 
                     className="flex-[0_0_100%] min-w-0 transition-opacity duration-500 ease-in-out"
                   >
-                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center px-4">
+                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center px-0 sm:px-4">
                       {/* Text Content */}
-                      <div className="space-y-6">
+                      <div className="space-y-4 sm:space-y-6">
                         <h3 className="text-2xl sm:text-4xl font-normal text-white leading-tight">
                           {slide.title}
                         </h3>
@@ -108,7 +114,7 @@ const FeatureCarousel = () => {
                         <img
                           src={slide.image}
                           alt={slide.imageAlt}
-                          className="relative rounded-lg shadow-2xl w-full"
+                          className="relative rounded-none sm:rounded-lg shadow-2xl w-full"
                         />
                       </div>
                     </div>
@@ -134,8 +140,8 @@ const FeatureCarousel = () => {
             </div>
           </div>
 
-          {/* Navigation Arrows - Positioned on sides */}
-          <div className="flex justify-between items-center absolute top-1/2 -translate-y-1/2 left-0 right-0 pointer-events-none px-2 sm:px-4 lg:px-8">
+          {/* Navigation Arrows - Hidden on mobile */}
+          <div className="hidden sm:flex justify-between items-center absolute top-1/2 -translate-y-1/2 left-0 right-0 pointer-events-none px-2 sm:px-4 lg:px-8">
             <Button
               variant="outline"
               size="icon"
