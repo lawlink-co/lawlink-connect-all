@@ -334,7 +334,7 @@ const Home = () => {
                   </div>
                   <h3 className="text-lg font-medium text-white">For Clients</h3>
                 </div>
-                <p className="text-zinc-400 mb-4 text-sm">Cases become <span className="text-[#e0b660] font-bold">real</span> with an interactive app.</p>
+                <p className="text-zinc-400 mb-4 text-sm">Cases become real with an interactive app.</p>
                 <ul className="space-y-2 text-sm text-zinc-400">
                   <li className="flex items-center gap-2"><span className="w-1.5 h-1.5 bg-gold rounded-full"></span>See progress in real-time</li>
                   <li className="flex items-center gap-2"><span className="w-1.5 h-1.5 bg-gold rounded-full"></span>Receive instant updates</li>
