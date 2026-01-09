@@ -349,12 +349,10 @@ const Home = () => {
             <div className="bg-zinc-950 border border-zinc-800/50 rounded-lg p-8 text-center">
               <div className="flex items-center justify-center gap-2 mb-6">
                 <div className="w-8 h-px bg-gold/40"></div>
-                <h3 className="text-lg sm:text-xl font-medium">
-                  <span className="block sm:inline">For Both:</span>
-                  <br className="sm:hidden" />
-                  <span style={{
+                <h3 className="text-lg sm:text-xl font-medium leading-tight">
+                  <span className="block sm:inline">For Both:</span><br className="sm:hidden" /><span style={{
                   color: '#e0b660'
-                }} className="italic"> Progress That Moves</span>
+                }} className="italic">Progress That Moves</span>
                 </h3>
                 <div className="w-8 h-px bg-gold/40"></div>
               </div>
