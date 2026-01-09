@@ -398,7 +398,7 @@ const Home = () => {
           <p className="sm:text-5xl lg:text-6xl font-normal leading-snug sm:leading-normal text-3xl">
             Where litigation meets intelligence.
           </p>
-          <p className="sm:text-3xl text-zinc-300 leading-relaxed text-xl">Amicus is shaping the future of litigation — where cases flow from intake to resolution with intelligence and ease.</p>
+          <p className="sm:text-xl text-zinc-300 leading-relaxed text-base">Amicus is shaping the future of litigation — where cases flow from intake to resolution with intelligence and ease.</p>
           <div className="pt-8">
             <p className="text-3xl font-normal text-white"><span className="text-[#e0b660] italic">Real</span> context.<br className="sm:hidden" /> <span className="text-[#e0b660] italic">Real</span> results.</p>
           </div>
