@@ -221,7 +221,7 @@ const Home = () => {
                 </div>
                 <div className={`transition-all duration-500 delay-200 ${howItWorksPhase >= 3 ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
                   <p className="text-zinc-400 mb-5 text-sm leading-relaxed">
-                    A <span className="text-[#e0b661] font-normal">magnificent infrastructure</span> to handle litigation faster.
+                    A magnificent infrastructure to handle litigation faster.
                   </p>
                   <ul className="space-y-3 text-sm text-zinc-400">
                     <li className="flex items-center gap-3">
@@ -270,9 +270,7 @@ const Home = () => {
                 </div>
                 <div className={`transition-all duration-500 delay-300 ${howItWorksPhase >= 3 ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
                   <p className="text-zinc-400 mb-5 text-sm leading-relaxed">
-                    Cases become <span style={{
-                    color: '#e0b660'
-                  }} className="font-bold">real</span> with an interactive app.
+                    Cases become real with an interactive app.
                   </p>
                   <ul className="space-y-3 text-sm text-zinc-400">
                     <li className="flex items-center gap-3">
@@ -304,7 +302,7 @@ const Home = () => {
                   </div>
                   <h3 className="text-lg font-medium text-white">For Lawyers</h3>
                 </div>
-                <p className="text-zinc-400 mb-4 text-sm">A <span className="text-[#e0b661] font-normal">magnificent infrastructure</span> to handle litigation faster.</p>
+                <p className="text-zinc-400 mb-4 text-sm">A magnificent infrastructure to handle litigation faster.</p>
                 <ul className="space-y-2 text-sm text-zinc-400">
                   <li className="flex items-center gap-2"><span className="w-1.5 h-1.5 bg-gold rounded-full"></span>AI-powered drafting</li>
                   <li className="flex items-center gap-2"><span className="w-1.5 h-1.5 bg-gold rounded-full"></span>Intelligent automation</li>
