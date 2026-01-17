@@ -116,21 +116,45 @@ const NavigationArrows = memo(({
 ));
 NavigationArrows.displayName = "NavigationArrows";
 
+// Mobile swipe hint component
+const SwipeHint = memo(({ visible }: { visible: boolean }) => (
+  <div 
+    className={`absolute inset-0 pointer-events-none flex items-center justify-between px-2 transition-opacity duration-500 ${
+      visible ? 'opacity-100' : 'opacity-0'
+    }`}
+  >
+    <div className="bg-black/40 backdrop-blur-sm rounded-full p-1.5 animate-pulse">
+      <ChevronLeft className="h-4 w-4 text-white/70" />
+    </div>
+    <div className="bg-black/40 backdrop-blur-sm rounded-full p-1.5 animate-pulse">
+      <ChevronRight className="h-4 w-4 text-white/70" />
+    </div>
+  </div>
+));
+SwipeHint.displayName = "SwipeHint";
+
 const FeatureCarousel = () => {
   const isMobile = useIsMobile();
   const prefersReducedMotion = useReducedMotion();
   const [selectedIndex, setSelectedIndex] = useState(0);
   const [isTransitioning, setIsTransitioning] = useState(false);
+  const [hasInteracted, setHasInteracted] = useState(false);
   const autoplayRef = useRef<NodeJS.Timeout | null>(null);
+  
+  // Touch gesture refs
+  const touchStartX = useRef<number>(0);
+  const touchStartY = useRef<number>(0);
+  const isSwiping = useRef<boolean>(false);
 
-  // Transition timing - instant when reduced motion is preferred
-  const fadeOutDuration = prefersReducedMotion ? 0 : 400;
+  // Faster transition timing for snappier feel
+  const fadeOutDuration = prefersReducedMotion ? 0 : 200;
   const fadeInDelay = prefersReducedMotion ? 0 : 50;
 
   const scrollTo = useCallback((index: number) => {
     if (isTransitioning || index === selectedIndex) return;
     
     setIsTransitioning(true);
+    setHasInteracted(true);
     
     // After fade out completes, switch slides
     setTimeout(() => {
@@ -152,7 +176,37 @@ const FeatureCarousel = () => {
     scrollTo(newIndex);
   }, [selectedIndex, scrollTo]);
 
-  // Autoplay for mobile
+  // Touch gesture handlers for mobile swipe
+  const handleTouchStart = useCallback((e: React.TouchEvent) => {
+    touchStartX.current = e.touches[0].clientX;
+    touchStartY.current = e.touches[0].clientY;
+    isSwiping.current = false;
+  }, []);
+
+  const handleTouchMove = useCallback((e: React.TouchEvent) => {
+    const deltaX = e.touches[0].clientX - touchStartX.current;
+    const deltaY = e.touches[0].clientY - touchStartY.current;
+    
+    // If horizontal movement > vertical, it's a swipe
+    if (Math.abs(deltaX) > Math.abs(deltaY) && Math.abs(deltaX) > 10) {
+      isSwiping.current = true;
+    }
+  }, []);
+
+  const handleTouchEnd = useCallback((e: React.TouchEvent) => {
+    const deltaX = e.changedTouches[0].clientX - touchStartX.current;
+    const swipeThreshold = 50;
+    
+    if (isSwiping.current && Math.abs(deltaX) > swipeThreshold) {
+      if (deltaX > 0) {
+        scrollPrev(); // Swipe right = previous
+      } else {
+        scrollNext(); // Swipe left = next
+      }
+    }
+  }, [scrollPrev, scrollNext]);
+
+  // Autoplay for mobile (pauses after interaction for better UX)
   useEffect(() => {
     if (!isMobile) return;
     
@@ -198,11 +252,14 @@ const FeatureCarousel = () => {
       <div className="relative container mx-auto px-0 sm:px-0">
         {/* Content container with max-width */}
         <div className="max-w-6xl mx-auto">
-          {/* Slide Content with fade animation */}
+          {/* Slide Content with fade animation and touch handlers */}
           <div 
-            className={`transition-opacity duration-[400ms] ease-out ${
+            className={`transition-opacity duration-200 ease-out ${
               isTransitioning ? 'opacity-0' : 'opacity-100'
             }`}
+            onTouchStart={isMobile ? handleTouchStart : undefined}
+            onTouchMove={isMobile ? handleTouchMove : undefined}
+            onTouchEnd={isMobile ? handleTouchEnd : undefined}
           >
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-12 items-center px-0 sm:px-4">
               <SlideContent slide={currentSlide} />
@@ -210,17 +267,30 @@ const FeatureCarousel = () => {
               <div className="relative w-full px-4 sm:px-0">
                 <SlideImage slide={currentSlide} preloadImages={preloadImages} />
                 
+                {/* Mobile swipe hint - shows chevrons until first interaction */}
+                {isMobile && <SwipeHint visible={!hasInteracted} />}
+                
                 {/* Mobile Navigation Dots - Inside each slide, below image */}
                 {isMobile && (
-                  <div className="flex justify-center gap-2 mt-6">
-                    {slides.map((_, dotIndex) => (
-                      <NavigationDot
-                        key={dotIndex}
-                        index={dotIndex}
-                        isActive={dotIndex === selectedIndex}
-                        onClick={dotClickHandlers[dotIndex]}
-                      />
-                    ))}
+                  <div className="flex flex-col items-center gap-2 mt-6">
+                    <div className="flex justify-center gap-2">
+                      {slides.map((_, dotIndex) => (
+                        <NavigationDot
+                          key={dotIndex}
+                          index={dotIndex}
+                          isActive={dotIndex === selectedIndex}
+                          onClick={dotClickHandlers[dotIndex]}
+                        />
+                      ))}
+                    </div>
+                    {/* Swipe hint text */}
+                    <p 
+                      className={`text-xs text-zinc-500 transition-opacity duration-500 ${
+                        hasInteracted ? 'opacity-0' : 'opacity-100'
+                      }`}
+                    >
+                      Swipe to explore
+                    </p>
                   </div>
                 )}
               </div>
