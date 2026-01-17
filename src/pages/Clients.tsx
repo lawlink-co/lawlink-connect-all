@@ -33,7 +33,7 @@ const CarouselSlideImage = memo(({
   <img
     src={src}
     alt={alt}
-    className={`absolute left-1/2 -translate-x-1/2 h-[304px] sm:h-[384px] w-auto transition-opacity duration-1000 ease-in-out ${
+    className={`absolute left-1/2 -translate-x-1/2 h-[304px] sm:h-[384px] w-auto transition-opacity duration-1000 ease-in-out will-change-[opacity] ${
       isActive ? 'opacity-100' : 'opacity-0'
     }`}
   />
@@ -149,7 +149,7 @@ const AnimatedIcon = memo(({
     : isVisible ? 'right-0 sm:right-[22%] opacity-100' : 'right-1/2 translate-x-1/2 opacity-0';
 
   return (
-    <div className={`absolute z-10 transition-[transform,opacity] duration-700 ease-out ${positionClasses}`}>
+    <div className={`absolute z-10 transition-[transform,opacity] duration-700 ease-out will-change-transform ${positionClasses}`}>
       <img 
         src={src} 
         alt={alt} 
@@ -163,7 +163,7 @@ AnimatedIcon.displayName = "AnimatedIcon";
 // Memoized center phone component
 const CenterPhone = memo(({ src, alt, isVisible }: { src: string; alt: string; isVisible: boolean }) => (
   <div 
-    className={`relative z-20 transition-[transform,opacity] duration-700 ease-out ${
+    className={`relative z-20 transition-[transform,opacity] duration-700 ease-out will-change-transform ${
       isVisible ? 'opacity-100 scale-100' : 'opacity-0 scale-50'
     }`}
   >
