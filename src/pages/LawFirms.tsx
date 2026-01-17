@@ -6,8 +6,17 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import Navigation from "@/components/Navigation";
 import ScrollRevealImages from "@/components/ScrollRevealImages";
 import HLSVideo from "@/components/HLSVideo";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, memo } from "react";
 import { useIsMobile } from "@/hooks/use-mobile";
+
+// Pre-define static animation styles to prevent object recreation
+const ANIMATION_STYLES = {
+  delay0: { animationDelay: '0ms', animationFillMode: 'forwards' as const },
+  delay500: { animationDelay: '500ms', animationFillMode: 'forwards' as const },
+  delay1000: { animationDelay: '1000ms', animationFillMode: 'forwards' as const },
+  delay1500: { animationDelay: '1500ms', animationFillMode: 'forwards' as const, animationDuration: '600ms' },
+  delay2000: { animationDelay: '2000ms', animationFillMode: 'forwards' as const },
+};
 const LawFirms = () => {
   const [visibleCards, setVisibleCards] = useState<number[]>([]);
   const [activeTab, setActiveTab] = useState<string>("case-management");
@@ -42,37 +51,18 @@ const LawFirms = () => {
         <div className="container mx-auto max-w-5xl text-center">
           <h1 className="text-[2.625rem] sm:text-6xl lg:text-7xl xl:text-7xl font-light leading-tight tracking-wide mb-8">
             <div className="flex flex-col gap-1 sm:gap-2">
-              <span className="opacity-0 animate-fade-in" style={{
-              animationDelay: '0ms',
-              animationFillMode: 'forwards'
-            }}>Push Cases,</span>
-              <span className="opacity-0 animate-fade-in" style={{
-              animationDelay: '500ms',
-              animationFillMode: 'forwards'
-            }}>Draft Briefs,</span>
-              <span className="opacity-0 animate-fade-in" style={{
-              animationDelay: '1000ms',
-              animationFillMode: 'forwards'
-            }}>Keep Clients Satisfied.</span>
+              <span className="opacity-0 animate-fade-in" style={ANIMATION_STYLES.delay0}>Push Cases,</span>
+              <span className="opacity-0 animate-fade-in" style={ANIMATION_STYLES.delay500}>Draft Briefs,</span>
+              <span className="opacity-0 animate-fade-in" style={ANIMATION_STYLES.delay1000}>Keep Clients Satisfied.</span>
             </div>
           </h1>
-          <p className="text-2xl sm:text-3xl text-white font-light mb-4 opacity-0 animate-fade-in" style={{
-          animationDelay: '1500ms',
-          animationFillMode: 'forwards',
-          animationDuration: '600ms'
-        }}>
+          <p className="text-2xl sm:text-3xl text-white font-light mb-4 opacity-0 animate-fade-in" style={ANIMATION_STYLES.delay1500}>
             All On One Platform.
           </p>
-          <p style={{
-          animationDelay: '2000ms',
-          animationFillMode: 'forwards'
-        }} className="text-xl text-zinc-400 font-light mb-12 opacity-0 animate-fade-in sm:text-lg">
+          <p style={ANIMATION_STYLES.delay2000} className="text-xl text-zinc-400 font-light mb-12 opacity-0 animate-fade-in sm:text-lg">
             From drafting to client updates, every part of your practice connected by AI.
           </p>
-          <div className="opacity-0 animate-fade-in" style={{
-          animationDelay: '2000ms',
-          animationFillMode: 'forwards'
-        }}>
+          <div className="opacity-0 animate-fade-in" style={ANIMATION_STYLES.delay2000}>
             <Link to="/demo">
               <Button size="lg" className="w-auto sm:min-w-[180px] text-base sm:text-lg bg-white text-black border-2 border-transparent hover:bg-zinc-200 transition-transform duration-300 hover:scale-105 px-6 sm:px-[34px] py-2.5 sm:py-3 h-auto font-sans">
                 Book a Demo

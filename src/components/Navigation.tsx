@@ -1,3 +1,4 @@
+import { memo } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Menu } from "lucide-react";
@@ -9,7 +10,7 @@ import {
 } from "@/components/ui/dropdown-menu";
 import amicusLogo from "@/assets/amicus-logo.png";
 
-const Navigation = () => {
+const Navigation = memo(() => {
   const location = useLocation();
   const isClientsPage = location.pathname === "/clients";
 
@@ -80,6 +81,8 @@ const Navigation = () => {
       </div>
     </nav>
   );
-};
+});
+
+Navigation.displayName = "Navigation";
 
 export default Navigation;
