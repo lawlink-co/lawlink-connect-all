@@ -13,6 +13,7 @@ import caseIconRight from "@/assets/case-icon-right.svg";
 import casePhoneCenter from "@/assets/case-phone-center.png";
 import { useEffect, useRef, useState, memo, useCallback, useMemo } from "react";
 import { useIsMobile } from "@/hooks/use-mobile";
+import { useReducedMotion } from "@/hooks/use-reduced-motion";
 
 const caseHubSlides = [
   { image: clientApp1, alt: "Amicus app - medical treatment" },
@@ -180,13 +181,15 @@ const AllCasesSection = memo(() => {
   const [isVisible, setIsVisible] = useState(false);
   const [phoneAnimationComplete, setPhoneAnimationComplete] = useState(false);
   const sectionRef = useRef<HTMLDivElement>(null);
+  const prefersReducedMotion = useReducedMotion();
 
   useEffect(() => {
     const observer = new IntersectionObserver(([entry]) => {
       if (entry.isIntersecting) {
         setIsVisible(true);
-        // Trigger card animations after phone animation completes (800ms)
-        setTimeout(() => setPhoneAnimationComplete(true), 800);
+        // Skip animation delay when reduced motion is preferred
+        const delay = prefersReducedMotion ? 0 : 800;
+        setTimeout(() => setPhoneAnimationComplete(true), delay);
       }
     }, {
       threshold: 0.3,
@@ -196,7 +199,7 @@ const AllCasesSection = memo(() => {
       observer.observe(sectionRef.current);
     }
     return () => observer.disconnect();
-  }, []);
+  }, [prefersReducedMotion]);
 
   return (
     <section ref={sectionRef} className="py-24 px-4 sm:px-6 lg:px-8 bg-gray-50">

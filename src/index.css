@@ -136,3 +136,28 @@ All colors MUST be HSL.
     display: none;
   }
 }
+
+/* Reduced motion preferences - disable/simplify non-essential animations */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  /* Keep essential opacity transitions but make them instant */
+  .transition-opacity,
+  .transition-\[opacity\],
+  .transition-\[transform\,opacity\] {
+    transition-duration: 0.01ms !important;
+  }
+
+  /* Disable will-change hints when motion is reduced */
+  .will-change-transform,
+  .will-change-\[opacity\] {
+    will-change: auto !important;
+  }
+}

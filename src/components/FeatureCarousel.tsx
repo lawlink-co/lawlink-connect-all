@@ -2,6 +2,7 @@ import { useState, useCallback, useEffect, useRef, memo, useMemo } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useIsMobile } from "@/hooks/use-mobile";
+import { useReducedMotion } from "@/hooks/use-reduced-motion";
 import aiDraftingNew from "@/assets/ai-drafting-new.png";
 import clientExperienceDemo from "@/assets/client-experience-demo.png";
 import screenshotDashboard from "@/assets/screenshot-dashboard.png";
@@ -117,24 +118,29 @@ NavigationArrows.displayName = "NavigationArrows";
 
 const FeatureCarousel = () => {
   const isMobile = useIsMobile();
+  const prefersReducedMotion = useReducedMotion();
   const [selectedIndex, setSelectedIndex] = useState(0);
   const [isTransitioning, setIsTransitioning] = useState(false);
   const autoplayRef = useRef<NodeJS.Timeout | null>(null);
+
+  // Transition timing - instant when reduced motion is preferred
+  const fadeOutDuration = prefersReducedMotion ? 0 : 400;
+  const fadeInDelay = prefersReducedMotion ? 0 : 50;
 
   const scrollTo = useCallback((index: number) => {
     if (isTransitioning || index === selectedIndex) return;
     
     setIsTransitioning(true);
     
-    // After fade out completes (400ms), switch slides
+    // After fade out completes, switch slides
     setTimeout(() => {
       setSelectedIndex(index);
       // After a brief moment, end transition to fade in
       setTimeout(() => {
         setIsTransitioning(false);
-      }, 50);
-    }, 400);
-  }, [isTransitioning, selectedIndex]);
+      }, fadeInDelay);
+    }, fadeOutDuration);
+  }, [isTransitioning, selectedIndex, fadeOutDuration, fadeInDelay]);
 
   const scrollPrev = useCallback(() => {
     const newIndex = selectedIndex === 0 ? slides.length - 1 : selectedIndex - 1;
