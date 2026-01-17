@@ -83,6 +83,14 @@ const FeatureCarousel = () => {
     };
   }, [isMobile, selectedIndex, isTransitioning, scrollTo]);
 
+  // Virtualized: compute visible slides (current + neighbors for preloading)
+  const getVisibleIndices = (current: number, total: number): number[] => {
+    const prev = current === 0 ? total - 1 : current - 1;
+    const next = current === total - 1 ? 0 : current + 1;
+    return [prev, current, next];
+  };
+
+  const visibleIndices = getVisibleIndices(selectedIndex, slides.length);
   const currentSlide = slides[selectedIndex];
 
   return (
@@ -122,6 +130,12 @@ const FeatureCarousel = () => {
                   alt={currentSlide.imageAlt}
                   className="relative rounded-sm sm:rounded-lg shadow-2xl w-full"
                 />
+                {/* Preload neighbor images (hidden, for cache warming) */}
+                {visibleIndices
+                  .filter((i) => i !== selectedIndex)
+                  .map((i) => (
+                    <link key={i} rel="preload" as="image" href={slides[i].image} />
+                  ))}
                 
                 {/* Mobile Navigation Dots - Inside each slide, below image */}
                 {isMobile && (
@@ -151,7 +165,7 @@ const FeatureCarousel = () => {
                 <button
                   key={index}
                   onClick={() => scrollTo(index)}
-                  className={`h-2 rounded-full transition-all duration-300 ${
+                  className={`h-2 rounded-full transition-[transform,opacity] duration-300 ${
                     index === selectedIndex
                       ? "w-8 bg-white"
                       : "w-2 bg-zinc-600 hover:bg-zinc-500"
