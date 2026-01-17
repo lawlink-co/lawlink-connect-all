@@ -24,6 +24,7 @@ import Hls from "hls.js";
 interface HLSVideoProps {
   src: string;
   fallbackSrc?: string;
+  poster?: string;
   className?: string;
   autoPlay?: boolean;
   loop?: boolean;
@@ -34,6 +35,7 @@ interface HLSVideoProps {
 const HLSVideo = ({
   src,
   fallbackSrc,
+  poster,
   className,
   autoPlay = true,
   loop = true,
@@ -110,6 +112,7 @@ const HLSVideo = ({
     <video
       ref={videoRef}
       className={className}
+      poster={poster}
       autoPlay={autoPlay}
       loop={loop}
       muted={muted}
