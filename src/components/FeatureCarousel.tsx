@@ -51,11 +51,11 @@ SlideContent.displayName = "SlideContent";
 // Memoized slide image component - only re-renders when image changes
 const SlideImage = memo(({ slide, preloadImages }: { slide: CarouselSlide; preloadImages: string[] }) => (
   <>
-    <div className="absolute inset-0 bg-blue-500/20 blur-3xl rounded-full pointer-events-none"></div>
+    <div className="absolute inset-0 bg-blue-500/10 rounded-full pointer-events-none"></div>
     <img
       src={slide.image}
       alt={slide.imageAlt}
-      className="relative rounded-sm sm:rounded-lg shadow-2xl w-full"
+      className="relative rounded-sm sm:rounded-lg shadow-xl w-full"
     />
     {/* Preload neighbor images */}
     {preloadImages.map((src) => (
@@ -100,7 +100,7 @@ const NavigationArrows = memo(({
       variant="outline"
       size="icon"
       onClick={onPrev}
-      className="pointer-events-auto bg-zinc-900/80 border-zinc-700 hover:bg-zinc-800 hover:border-zinc-600 backdrop-blur-sm opacity-70 hover:opacity-100 transition-opacity h-10 w-10 sm:h-12 sm:w-12"
+      className="pointer-events-auto bg-zinc-900/90 border-zinc-700 hover:bg-zinc-800 hover:border-zinc-600 opacity-70 hover:opacity-100 transition-opacity h-10 w-10 sm:h-12 sm:w-12"
     >
       <ChevronLeft className="h-5 w-5 sm:h-6 sm:w-6" />
     </Button>
@@ -108,7 +108,7 @@ const NavigationArrows = memo(({
       variant="outline"
       size="icon"
       onClick={onNext}
-      className="pointer-events-auto bg-zinc-900/80 border-zinc-700 hover:bg-zinc-800 hover:border-zinc-600 backdrop-blur-sm opacity-70 hover:opacity-100 transition-opacity h-10 w-10 sm:h-12 sm:w-12"
+      className="pointer-events-auto bg-zinc-900/90 border-zinc-700 hover:bg-zinc-800 hover:border-zinc-600 opacity-70 hover:opacity-100 transition-opacity h-10 w-10 sm:h-12 sm:w-12"
     >
       <ChevronRight className="h-5 w-5 sm:h-6 sm:w-6" />
     </Button>

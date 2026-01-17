@@ -270,7 +270,7 @@ const Home = () => {
             {/* Desktop Layout */}
             <div className="hidden lg:flex items-center justify-center gap-0">
               {/* For Lawyers Card */}
-              <div className={`flex-1 max-w-sm bg-zinc-900/50 backdrop-blur-sm border border-zinc-800 rounded-2xl p-8 transition-all duration-500 ${howItWorksPhase >= 1 ? 'opacity-100' : 'opacity-0'} hover:border-gold/40 hover:bg-zinc-900/70`}>
+              <div className={`flex-1 max-w-sm bg-zinc-900/60 border border-zinc-800 rounded-2xl p-8 transition-all duration-500 ${howItWorksPhase >= 1 ? 'opacity-100' : 'opacity-0'} hover:border-gold/40 hover:bg-zinc-900/80`}>
                 <div className="flex items-center gap-3 mb-5">
                   <div className="w-10 h-10 bg-gold/10 border border-gold/30 rounded-xl flex items-center justify-center">
                     <svg className="w-5 h-5 text-gold" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -307,7 +307,7 @@ const Home = () => {
 
               {/* Center Logo */}
               <div className={`flex-shrink-0 flex flex-col items-center transition-all duration-500 delay-100 ${howItWorksPhase >= 2 ? 'opacity-100 scale-100' : 'opacity-0 scale-90'}`}>
-                <div className="w-24 h-24 rounded-2xl overflow-hidden shadow-2xl shadow-black/50">
+                <div className="w-24 h-24 rounded-2xl overflow-hidden shadow-xl shadow-black/40">
                   <img src={amicusALogo} alt="Amicus" className="w-full h-full object-cover" />
                 </div>
                 <img src={amicusGoldenASmall} alt="Amicus" className="w-10 h-auto mt-2" />
@@ -319,7 +319,7 @@ const Home = () => {
               </div>
 
               {/* For Clients Card */}
-              <div className={`flex-1 max-w-sm bg-zinc-900/50 backdrop-blur-sm border border-zinc-800 rounded-2xl p-8 transition-all duration-500 delay-100 ${howItWorksPhase >= 1 ? 'opacity-100' : 'opacity-0'} hover:border-gold/40 hover:bg-zinc-900/70`}>
+              <div className={`flex-1 max-w-sm bg-zinc-900/60 border border-zinc-800 rounded-2xl p-8 transition-all duration-500 delay-100 ${howItWorksPhase >= 1 ? 'opacity-100' : 'opacity-0'} hover:border-gold/40 hover:bg-zinc-900/80`}>
                 <div className="flex items-center gap-3 mb-5">
                   <div className="w-10 h-10 bg-gold/10 border border-gold/30 rounded-xl flex items-center justify-center">
                     <svg className="w-5 h-5 text-gold" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -353,7 +353,7 @@ const Home = () => {
             {/* Mobile Layout */}
             <div className="lg:hidden flex flex-col items-center gap-0">
               {/* For Lawyers Card - Phase 1 */}
-              <div className={`w-full max-w-sm bg-zinc-900/50 backdrop-blur-sm border border-zinc-800 rounded-2xl p-6 transition-all duration-500 ${howItWorksPhase >= 1 ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
+              <div className={`w-full max-w-sm bg-zinc-900/60 border border-zinc-800 rounded-2xl p-6 transition-all duration-500 ${howItWorksPhase >= 1 ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
                 <div className="flex items-center gap-3 mb-4">
                   <div className="w-10 h-10 bg-gold/10 border border-gold/30 rounded-xl flex items-center justify-center">
                     <svg className="w-5 h-5 text-gold" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -375,7 +375,7 @@ const Home = () => {
 
               {/* Center Logo - Phase 2 (delayed) */}
               <div className={`flex flex-col items-center transition-all duration-500 delay-200 ${howItWorksPhase >= 2 ? 'opacity-100 scale-100' : 'opacity-0 scale-90'}`}>
-                <div className="w-20 h-20 rounded-xl overflow-hidden shadow-xl shadow-black/50">
+                <div className="w-20 h-20 rounded-xl overflow-hidden shadow-lg shadow-black/40">
                   <img src={amicusALogo} alt="Amicus" className="w-full h-full object-cover" />
                 </div>
                 <img src={amicusGoldenASmall} alt="Amicus" className="w-[7.5rem] h-auto mt-1" />
@@ -385,7 +385,7 @@ const Home = () => {
               <div className={`h-6 border-l-2 border-dashed border-gold/50 transition-all duration-500 ${howItWorksPhase >= 3 ? 'opacity-100' : 'opacity-0'}`}></div>
 
               {/* For Clients Card - Phase 3 (delayed) */}
-              <div className={`w-full max-w-sm bg-zinc-900/50 backdrop-blur-sm border border-zinc-800 rounded-2xl p-6 transition-all duration-500 delay-100 ${howItWorksPhase >= 3 ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
+              <div className={`w-full max-w-sm bg-zinc-900/60 border border-zinc-800 rounded-2xl p-6 transition-all duration-500 delay-100 ${howItWorksPhase >= 3 ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
                 <div className="flex items-center gap-3 mb-4">
                   <div className="w-10 h-10 bg-gold/10 border border-gold/30 rounded-xl flex items-center justify-center">
                     <svg className="w-5 h-5 text-gold" fill="none" viewBox="0 0 24 24" stroke="currentColor">
