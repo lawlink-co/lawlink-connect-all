@@ -50,18 +50,18 @@ SlideContent.displayName = "SlideContent";
 
 // Memoized slide image component - only re-renders when image changes
 const SlideImage = memo(({ slide, preloadImages }: { slide: CarouselSlide; preloadImages: string[] }) => (
-  <div className="relative w-full px-4 sm:px-0">
-    <div className="absolute inset-0 bg-blue-500/20 blur-3xl rounded-full"></div>
+  <>
+    <div className="absolute inset-0 bg-blue-500/20 blur-3xl rounded-full pointer-events-none"></div>
     <img
       src={slide.image}
       alt={slide.imageAlt}
       className="relative rounded-sm sm:rounded-lg shadow-2xl w-full"
     />
-    {/* Preload neighbor images (hidden, for cache warming) */}
+    {/* Preload neighbor images */}
     {preloadImages.map((src) => (
       <link key={src} rel="preload" as="image" href={src} />
     ))}
-  </div>
+  </>
 ));
 SlideImage.displayName = "SlideImage";
 

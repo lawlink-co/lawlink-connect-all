@@ -133,7 +133,7 @@ const CaseHubCarousel = memo(() => {
 });
 CaseHubCarousel.displayName = "CaseHubCarousel";
 
-// Memoized static icon component
+// Memoized static icon component - uses img directly without wrapper
 const AnimatedIcon = memo(({ 
   src, 
   alt, 
@@ -150,30 +150,24 @@ const AnimatedIcon = memo(({
     : isVisible ? 'right-0 sm:right-[22%] opacity-100' : 'right-1/2 translate-x-1/2 opacity-0';
 
   return (
-    <div className={`absolute z-10 transition-[transform,opacity] duration-700 ease-out will-change-transform ${positionClasses}`}>
-      <img 
-        src={src} 
-        alt={alt} 
-        className="w-[80px] sm:w-[120px] h-auto"
-      />
-    </div>
+    <img 
+      src={src} 
+      alt={alt} 
+      className={`absolute z-10 transition-[transform,opacity] duration-700 ease-out will-change-transform w-[80px] sm:w-[120px] h-auto ${positionClasses}`}
+    />
   );
 });
 AnimatedIcon.displayName = "AnimatedIcon";
 
-// Memoized center phone component
+// Memoized center phone component - uses img directly without wrapper
 const CenterPhone = memo(({ src, alt, isVisible }: { src: string; alt: string; isVisible: boolean }) => (
-  <div 
-    className={`relative z-20 transition-[transform,opacity] duration-700 ease-out will-change-transform ${
+  <img 
+    src={src} 
+    alt={alt} 
+    className={`relative z-20 transition-[transform,opacity] duration-700 ease-out will-change-transform w-[132px] sm:w-[198px] h-auto ${
       isVisible ? 'opacity-100 scale-100' : 'opacity-0 scale-50'
     }`}
-  >
-    <img 
-      src={src} 
-      alt={alt} 
-      className="w-[132px] sm:w-[198px] h-auto"
-    />
-  </div>
+  />
 ));
 CenterPhone.displayName = "CenterPhone";
 
