@@ -74,7 +74,7 @@ const LawFirms = () => {
           animationFillMode: 'forwards'
         }}>
             <Link to="/demo">
-              <Button size="lg" className="w-auto sm:min-w-[180px] text-base sm:text-lg bg-white text-black border-2 border-transparent hover:bg-zinc-200 transition-all duration-300 hover:scale-105 px-6 sm:px-[34px] py-2.5 sm:py-3 h-auto font-sans">
+              <Button size="lg" className="w-auto sm:min-w-[180px] text-base sm:text-lg bg-white text-black border-2 border-transparent hover:bg-zinc-200 transition-transform duration-300 hover:scale-105 px-6 sm:px-[34px] py-2.5 sm:py-3 h-auto font-sans">
                 Book a Demo
               </Button>
             </Link>
@@ -364,7 +364,7 @@ const LawFirms = () => {
 
           <div ref={securitySectionRef} className="space-y-40">
             {/* End-to-End Encryption - Icon Left, Text Right */}
-            <div className={`flex flex-col md:flex-row items-center gap-12 md:gap-20 transition-all duration-500 ${visibleCards.includes(0) ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
+            <div className={`flex flex-col md:flex-row items-center gap-12 md:gap-20 transition-[transform,opacity] duration-500 ${visibleCards.includes(0) ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
               <div className="flex-shrink-0 flex items-center justify-center w-full md:w-1/3">
                 <Lock className="w-48 h-48" style={{ color: '#e4bf6c' }} />
               </div>
@@ -377,7 +377,7 @@ const LawFirms = () => {
             </div>
 
             {/* Attorney-Client Privilege - Text Left, Icon Right */}
-            <div className={`flex flex-col md:flex-row-reverse items-center gap-12 md:gap-20 transition-all duration-500 ${visibleCards.includes(1) ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
+            <div className={`flex flex-col md:flex-row-reverse items-center gap-12 md:gap-20 transition-[transform,opacity] duration-500 ${visibleCards.includes(1) ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
               <div className="flex-shrink-0 flex items-center justify-center w-full md:w-1/3">
                 <Shield className="w-48 h-48" style={{ color: '#e4bf6c' }} />
               </div>
@@ -390,7 +390,7 @@ const LawFirms = () => {
             </div>
 
             {/* SOC 2 Compliant - Icon Left, Text Right */}
-            <div className={`flex flex-col md:flex-row items-center gap-12 md:gap-20 transition-all duration-500 ${visibleCards.includes(2) ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
+            <div className={`flex flex-col md:flex-row items-center gap-12 md:gap-20 transition-[transform,opacity] duration-500 ${visibleCards.includes(2) ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
               <div className="flex-shrink-0 flex items-center justify-center w-full md:w-1/3">
                 <Database className="w-48 h-48" style={{ color: '#e4bf6c' }} />
               </div>

@@ -292,14 +292,14 @@ const Clients = () => {
               {/* Phone Frame */}
               <img src={phoneFrame} alt="Phone frame" className="w-full h-auto" />
               
-              {/* Notification - Positioned at top of phone, animates down */}
-              <div className={`absolute left-1/2 -translate-x-1/2 w-[97%] transition-all duration-700 ease-out ${notificationVisible ? 'opacity-100 top-[8%]' : 'opacity-0 -top-[6%]'}`}>
-                <img src={caseNotification} alt="Case update notification" className="w-full scale-[1.14] drop-shadow-2xl" />
+              {/* Notification - Positioned at top of phone, animates with transform */}
+              <div className={`absolute left-1/2 -translate-x-1/2 top-[8%] w-[97%] transition-[transform,opacity] duration-700 ease-out ${notificationVisible ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-[14%]'}`}>
+                <img src={caseNotification} alt="Case update notification" className="w-full scale-[1.14]" />
               </div>
             </div>
             
             {/* Text Content */}
-            <div className={`mt-16 max-w-3xl text-center transition-all duration-700 delay-300 ease-out ${notificationVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
+            <div className={`mt-16 max-w-3xl text-center transition-[transform,opacity] duration-700 delay-300 ease-out ${notificationVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
               <p className="text-xl sm:text-2xl text-gray-700 leading-relaxed">
                 A micro-view of every case reveals progress as it happens — every filing, every motion, every development delivered in clear, understandable language.
               </p>
