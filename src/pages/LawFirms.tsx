@@ -121,8 +121,8 @@ const LawFirms = () => {
                 {/* Demo Video */}
                 <div className="mb-10 rounded-none sm:rounded-lg overflow-hidden">
                   <HLSVideo
-                    src="/videos/case-management/master.m3u8"
-                    fallbackSrc="/videos/Case___Management.mp4"
+                    src="/videos/case-management-demo.m3u8"
+                    fallbackSrc="/videos/case-management-demo.mp4"
                     className="w-full aspect-video rounded-none sm:rounded-lg"
                   />
                 </div>
@@ -171,7 +171,7 @@ const LawFirms = () => {
                 {/* Demo Video */}
                 <div className="mb-10 rounded-none sm:rounded-lg overflow-hidden">
                   <HLSVideo
-                    src="/videos/drafting/master.m3u8"
+                    src="/videos/drafting-demo.m3u8"
                     fallbackSrc="/videos/drafting-demo.mp4"
                     className="w-full aspect-video rounded-none sm:rounded-lg"
                   />
@@ -222,7 +222,7 @@ const LawFirms = () => {
                 {/* Demo Video */}
                 <div className="mb-10 rounded-none sm:rounded-lg overflow-hidden">
                   <HLSVideo
-                    src="/videos/client-experience/master.m3u8"
+                    src="/videos/client-experience.m3u8"
                     fallbackSrc="/videos/client-experience.mp4"
                     className="w-full aspect-video rounded-none sm:rounded-lg"
                   />
@@ -280,7 +280,7 @@ const LawFirms = () => {
                 {/* Demo Video */}
                 <div className="mb-10 rounded-none sm:rounded-lg overflow-hidden">
                   <HLSVideo
-                    src="/videos/customization/master.m3u8"
+                    src="/videos/customization-demo.m3u8"
                     fallbackSrc="/videos/customization-demo.mp4"
                     className="w-full aspect-video rounded-none sm:rounded-lg"
                   />
