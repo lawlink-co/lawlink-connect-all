@@ -276,8 +276,8 @@ const Clients = () => {
               
               {/* Image - shows here on mobile only, between text and button */}
               <div className="relative animate-scale-in flex items-center justify-center lg:hidden mt-4 mb-2">
-                <div className="absolute inset-0 bg-primary/10 blur-3xl rounded-full"></div>
-                <img src={clientHeaderPhone} alt="Amicus mobile app interface" className="relative mx-auto h-[400px] w-auto object-contain drop-shadow-2xl" />
+                <div className="absolute inset-0 bg-primary/5 rounded-full"></div>
+                <img src={clientHeaderPhone} alt="Amicus mobile app interface" className="relative mx-auto h-[400px] w-auto object-contain drop-shadow-lg" />
               </div>
               
               <div className="flex justify-center sm:justify-start">
@@ -290,8 +290,8 @@ const Clients = () => {
             </div>
             {/* Image - shows here on desktop only */}
             <div className="relative animate-scale-in hidden lg:flex items-center justify-center h-full">
-              <div className="absolute inset-0 bg-primary/10 blur-3xl rounded-full"></div>
-              <img src={clientHeaderPhone} alt="Amicus mobile app interface" className="relative mx-auto h-[425px] lg:h-[510px] w-auto object-contain drop-shadow-2xl" />
+              <div className="absolute inset-0 bg-primary/5 rounded-full"></div>
+              <img src={clientHeaderPhone} alt="Amicus mobile app interface" className="relative mx-auto h-[425px] lg:h-[510px] w-auto object-contain drop-shadow-lg" />
             </div>
           </div>
         </div>
@@ -453,7 +453,7 @@ const Clients = () => {
           </p>
           
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto mb-16">
-            <div className="text-center bg-white/5 backdrop-blur-sm rounded-2xl p-8 border border-white/10">
+            <div className="text-center bg-white/5 rounded-2xl p-8 border border-white/10">
               <div className="w-16 h-16 bg-primary/20 rounded-full flex items-center justify-center mx-auto mb-4">
                 <Shield className="w-8 h-8 text-primary" />
               </div>
@@ -461,7 +461,7 @@ const Clients = () => {
               <p className="text-gray-400">Every message, document, and update encrypted in transit and at rest. Data stays private.</p>
             </div>
             
-            <div className="text-center bg-white/5 backdrop-blur-sm rounded-2xl p-8 border border-white/10">
+            <div className="text-center bg-white/5 rounded-2xl p-8 border border-white/10">
               <div className="w-16 h-16 bg-primary/20 rounded-full flex items-center justify-center mx-auto mb-4">
                 <Check className="w-8 h-8 text-primary" />
               </div>
@@ -469,7 +469,7 @@ const Clients = () => {
               <p className="text-gray-400">Amicus respects and preserves the confidentiality of all attorney-client communications. No exceptions.</p>
             </div>
             
-            <div className="text-center bg-white/5 backdrop-blur-sm rounded-2xl p-8 border border-white/10">
+            <div className="text-center bg-white/5 rounded-2xl p-8 border border-white/10">
               <div className="w-16 h-16 bg-primary/20 rounded-full flex items-center justify-center mx-auto mb-4">
                 <Check className="w-8 h-8 text-primary" />
               </div>
@@ -479,7 +479,7 @@ const Clients = () => {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-            <div className="text-center bg-white/5 backdrop-blur-sm rounded-2xl p-8 border border-white/10">
+            <div className="text-center bg-white/5 rounded-2xl p-8 border border-white/10">
               <div className="w-16 h-16 bg-primary/20 rounded-full flex items-center justify-center mx-auto mb-4">
                 <Check className="w-8 h-8 text-primary" />
               </div>
@@ -487,7 +487,7 @@ const Clients = () => {
               <p className="text-gray-400">Built on enterprise-grade cloud infrastructure with SOC 2 compliance and continuous security monitoring.</p>
             </div>
             
-            <div className="text-center bg-white/5 backdrop-blur-sm rounded-2xl p-8 border border-white/10">
+            <div className="text-center bg-white/5 rounded-2xl p-8 border border-white/10">
               <div className="w-16 h-16 bg-primary/20 rounded-full flex items-center justify-center mx-auto mb-4">
                 <Check className="w-8 h-8 text-primary" />
               </div>
