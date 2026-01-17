@@ -151,12 +151,12 @@ const Home = () => {
           animationFillMode: 'forwards'
         }}>
             <Link to="/law-firms">
-              <Button size="lg" className="w-auto sm:min-w-[180px] text-base sm:text-lg bg-white text-black border-2 border-transparent hover:bg-zinc-200 transition-all duration-300 hover:scale-105 px-6 sm:px-[34px] py-2.5 sm:py-3 h-auto">
+              <Button size="lg" className="w-auto sm:min-w-[180px] text-base sm:text-lg bg-white text-black border-2 border-transparent hover:bg-zinc-200 transition-transform duration-300 hover:scale-105 px-6 sm:px-[34px] py-2.5 sm:py-3 h-auto">
                 For Law Firms
               </Button>
             </Link>
             <Link to="/clients">
-              <Button size="lg" className="w-auto sm:min-w-[180px] text-base sm:text-lg bg-white text-black border-2 border-transparent hover:bg-zinc-200 transition-all duration-300 hover:scale-105 px-6 sm:px-12 py-2.5 sm:py-3 h-auto">
+              <Button size="lg" className="w-auto sm:min-w-[180px] text-base sm:text-lg bg-white text-black border-2 border-transparent hover:bg-zinc-200 transition-transform duration-300 hover:scale-105 px-6 sm:px-12 py-2.5 sm:py-3 h-auto">
                 For Clients
               </Button>
             </Link>

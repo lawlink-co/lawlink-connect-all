@@ -130,10 +130,10 @@ const FeatureCarousel = () => {
                       <button
                         key={dotIndex}
                         onClick={() => scrollTo(dotIndex)}
-                        className={`h-2 rounded-full transition-all duration-300 ${
+                        className={`h-2 rounded-full transition-[transform,opacity] duration-300 ${
                           dotIndex === selectedIndex
-                            ? "w-8 bg-white"
-                            : "w-2 bg-zinc-600 hover:bg-zinc-500"
+                            ? "w-8 bg-white scale-x-100"
+                            : "w-2 bg-zinc-600 hover:bg-zinc-500 scale-x-100"
                         }`}
                         aria-label={`Go to slide ${dotIndex + 1}`}
                       />

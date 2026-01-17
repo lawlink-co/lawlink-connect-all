@@ -6,14 +6,16 @@
 .logo {
   height: 6em;
   padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
+  will-change: transform, opacity;
+  transition: transform 300ms, opacity 300ms;
 }
 .logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
+  transform: scale(1.05);
+  opacity: 0.9;
 }
 .logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+  transform: scale(1.05);
+  opacity: 0.9;
 }
 
 @keyframes logo-spin {
