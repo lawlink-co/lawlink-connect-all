@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import Navigation from "@/components/Navigation";
 import FeatureCarousel from "@/components/FeatureCarousel";
-import { useEffect, useRef, useState, useMemo, useCallback } from "react";
+import { useEffect, useRef, useState, useMemo, useCallback, memo } from "react";
 import amicusGoldenA from "@/assets/amicus-golden-a.png";
 import amicusLogo from "@/assets/amicus-golden-a.png";
 import amicusALogo from "@/assets/amicus-a-logo.png";
@@ -29,6 +29,21 @@ const ANIMATION_STYLES = {
   fadeIn2000: { animationDelay: '2000ms', animationFillMode: 'forwards' as const },
   logoScale: { transform: 'scale(1.3)' },
 };
+
+// Memoized typewriter text component - only re-renders when visibleChars changes
+const TypewriterText = memo(({ visibleChars, textFadedOut }: { visibleChars: number; textFadedOut: boolean }) => {
+  // Memoize the sliced text to avoid string operations on each render
+  const displayText = useMemo(() => TYPEWRITER_TEXT.slice(0, visibleChars), [visibleChars]);
+  const showCursor = !textFadedOut && visibleChars < TOTAL_CHARS;
+  
+  return (
+    <p className="text-2xl sm:text-4xl lg:text-5xl text-zinc-200 font-light leading-tight sm:leading-relaxed whitespace-pre-wrap">
+      {displayText}
+      {showCursor && <span className="inline-block w-[3px] h-[1em] bg-zinc-200 ml-1 align-middle animate-caret-blink" />}
+    </p>
+  );
+});
+TypewriterText.displayName = "TypewriterText";
 
 const Home = () => {
   const [visibleChars, setVisibleChars] = useState(0);
@@ -174,10 +189,7 @@ const Home = () => {
           <div className="container mx-auto max-w-5xl text-center absolute transition-opacity duration-700" style={{
           opacity: textFadedOut ? 0 : 1
         }}>
-            <p className="text-2xl sm:text-4xl lg:text-5xl text-zinc-200 font-light leading-tight sm:leading-relaxed whitespace-pre-wrap">
-              {TYPEWRITER_TEXT.slice(0, visibleChars)}
-              {!textFadedOut && visibleChars < TOTAL_CHARS && <span className="inline-block w-[3px] h-[1em] bg-zinc-200 ml-1 align-middle animate-caret-blink" />}
-            </p>
+            <TypewriterText visibleChars={visibleChars} textFadedOut={textFadedOut} />
           </div>
           
           {/* Logo - fades in AFTER text is fully gone, stays at full opacity until section exits viewport */}

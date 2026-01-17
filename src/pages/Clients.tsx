@@ -183,6 +183,12 @@ const AllCasesSection = memo(() => {
   const sectionRef = useRef<HTMLDivElement>(null);
   const prefersReducedMotion = useReducedMotion();
 
+  // Memoize observer options to prevent recreation on each render
+  const observerOptions = useMemo(() => ({
+    threshold: 0.3,
+    rootMargin: '-10% 0px -10% 0px'
+  }), []);
+
   useEffect(() => {
     const observer = new IntersectionObserver(([entry]) => {
       if (entry.isIntersecting) {
@@ -191,15 +197,12 @@ const AllCasesSection = memo(() => {
         const delay = prefersReducedMotion ? 0 : 800;
         setTimeout(() => setPhoneAnimationComplete(true), delay);
       }
-    }, {
-      threshold: 0.3,
-      rootMargin: '-10% 0px -10% 0px'
-    });
+    }, observerOptions);
     if (sectionRef.current) {
       observer.observe(sectionRef.current);
     }
     return () => observer.disconnect();
-  }, [prefersReducedMotion]);
+  }, [prefersReducedMotion, observerOptions]);
 
   return (
     <section ref={sectionRef} className="py-24 px-4 sm:px-6 lg:px-8 bg-gray-50">
@@ -245,20 +248,23 @@ const Clients = () => {
   const notificationSectionRef = useRef<HTMLDivElement>(null);
   const isMobile = useIsMobile();
   
+  // Memoize observer options based on isMobile to prevent recreation
+  const observerOptions = useMemo(() => ({
+    threshold: isMobile ? 0.2 : 0.5,
+    rootMargin: isMobile ? '0px' : '-20% 0px -20% 0px'
+  }), [isMobile]);
+  
   useEffect(() => {
     const observer = new IntersectionObserver(([entry]) => {
       if (entry.isIntersecting) {
         setNotificationVisible(true);
       }
-    }, {
-      threshold: isMobile ? 0.2 : 0.5,
-      rootMargin: isMobile ? '0px' : '-20% 0px -20% 0px'
-    });
+    }, observerOptions);
     if (notificationSectionRef.current) {
       observer.observe(notificationSectionRef.current);
     }
     return () => observer.disconnect();
-  }, [isMobile]);
+  }, [observerOptions]);
   return <div className="min-h-screen bg-white font-sans [&_h1]:font-sans [&_h2]:font-sans [&_h3]:font-sans [&_h4]:font-sans [&_p]:font-sans">
       <Navigation />
       
