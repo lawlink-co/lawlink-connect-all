@@ -5,6 +5,7 @@ import { CheckCircle2, Shield, Lock, Database, Briefcase, FileText, MessageCircl
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import Navigation from "@/components/Navigation";
 import ScrollRevealImages from "@/components/ScrollRevealImages";
+import HLSVideo from "@/components/HLSVideo";
 import { useEffect, useRef, useState } from "react";
 import { useIsMobile } from "@/hooks/use-mobile";
 const LawFirms = () => {
@@ -119,10 +120,11 @@ const LawFirms = () => {
               <div className="bg-zinc-950 border border-zinc-800 rounded-none sm:rounded-lg p-8 sm:p-12">
                 {/* Demo Video */}
                 <div className="mb-10 rounded-none sm:rounded-lg overflow-hidden">
-                  <video className="w-full aspect-video rounded-none sm:rounded-lg" autoPlay loop muted playsInline>
-                    <source src="/videos/Case___Management.mp4" type="video/mp4" />
-                    Your browser does not support the video tag.
-                  </video>
+                  <HLSVideo
+                    src="/videos/case-management/master.m3u8"
+                    fallbackSrc="/videos/Case___Management.mp4"
+                    className="w-full aspect-video rounded-none sm:rounded-lg"
+                  />
                 </div>
 
                 <h3 className="text-2xl sm:text-3xl font-normal mb-6 text-white">
@@ -168,10 +170,11 @@ const LawFirms = () => {
               <div className="bg-zinc-950 border border-zinc-800 rounded-none sm:rounded-lg p-8 sm:p-12">
                 {/* Demo Video */}
                 <div className="mb-10 rounded-none sm:rounded-lg overflow-hidden">
-                  <video className="w-full aspect-video rounded-none sm:rounded-lg" autoPlay loop muted playsInline>
-                    <source src="/videos/drafting-demo.mp4?v=1" type="video/mp4" />
-                    Your browser does not support the video tag.
-                  </video>
+                  <HLSVideo
+                    src="/videos/drafting/master.m3u8"
+                    fallbackSrc="/videos/drafting-demo.mp4"
+                    className="w-full aspect-video rounded-none sm:rounded-lg"
+                  />
                 </div>
 
                 <h3 className="text-2xl sm:text-3xl font-normal mb-6 text-white">
@@ -218,10 +221,11 @@ const LawFirms = () => {
               <div className="bg-zinc-950 border border-zinc-800 rounded-none sm:rounded-lg p-8 sm:p-12">
                 {/* Demo Video */}
                 <div className="mb-10 rounded-none sm:rounded-lg overflow-hidden">
-                  <video className="w-full aspect-video rounded-none sm:rounded-lg" autoPlay loop muted playsInline>
-                    <source src="/videos/client-experience.mp4" type="video/mp4" />
-                    Your browser does not support the video tag.
-                  </video>
+                  <HLSVideo
+                    src="/videos/client-experience/master.m3u8"
+                    fallbackSrc="/videos/client-experience.mp4"
+                    className="w-full aspect-video rounded-none sm:rounded-lg"
+                  />
                 </div>
 
                 <h3 className="text-2xl sm:text-3xl font-normal mb-6 text-white">
@@ -275,10 +279,11 @@ const LawFirms = () => {
               <div className="bg-zinc-950 border border-zinc-800 rounded-none sm:rounded-lg p-8 sm:p-12">
                 {/* Demo Video */}
                 <div className="mb-10 rounded-none sm:rounded-lg overflow-hidden">
-                  <video className="w-full aspect-video rounded-none sm:rounded-lg" autoPlay loop muted playsInline>
-                    <source src="/videos/customization-demo.mp4?v=5" type="video/mp4" />
-                    Your browser does not support the video tag.
-                  </video>
+                  <HLSVideo
+                    src="/videos/customization/master.m3u8"
+                    fallbackSrc="/videos/customization-demo.mp4"
+                    className="w-full aspect-video rounded-none sm:rounded-lg"
+                  />
                 </div>
 
                 <h3 className="text-2xl sm:text-3xl font-normal mb-6 text-white">
