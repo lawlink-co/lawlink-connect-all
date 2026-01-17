@@ -1,6 +1,7 @@
-import { useEffect, useRef, useState, forwardRef, memo, useMemo } from "react";
+import { useEffect, useRef, useState, forwardRef, memo, useMemo, useCallback } from "react";
 import Hls from "hls.js";
 import { useIsMobile } from "@/hooks/use-mobile";
+import { Play } from "lucide-react";
 
 /**
  * HLSVideo Component
@@ -31,8 +32,8 @@ import { useIsMobile } from "@/hooks/use-mobile";
  * 
  * MOBILE BEHAVIOR:
  * On mobile devices, autoplay is disabled to reduce CPU, memory usage, and
- * playback contention. Users must tap to play. Native video controls are
- * shown on mobile for tap-to-play functionality.
+ * playback contention. A poster image is shown with a subtle play icon.
+ * Users must tap to play. Native video controls are shown after playback starts.
  * 
  * FFmpeg encoding example:
  * ffmpeg -i input.mov -c:v libx264 -profile:v main -level 3.1 \
@@ -65,6 +66,7 @@ const HLSVideo = memo(forwardRef<HTMLDivElement, HLSVideoProps>(({
   const hlsRef = useRef<Hls | null>(null);
   const [isVisible, setIsVisible] = useState(false);
   const [hasLoaded, setHasLoaded] = useState(false);
+  const [hasStartedPlaying, setHasStartedPlaying] = useState(false);
   const isMobile = useIsMobile();
 
   // On mobile, disable autoplay to reduce CPU/memory usage
@@ -75,6 +77,15 @@ const HLSVideo = memo(forwardRef<HTMLDivElement, HLSVideoProps>(({
     rootMargin: "200px", // Start loading 200px before entering viewport
     threshold: 0,
   }), []);
+
+  // Handle tap to play on mobile
+  const handlePlayClick = useCallback(() => {
+    const video = videoRef.current;
+    if (video && isMobile && !hasStartedPlaying) {
+      video.play().catch(() => {});
+      setHasStartedPlaying(true);
+    }
+  }, [isMobile, hasStartedPlaying]);
 
   // IntersectionObserver for lazy loading - always use internal ref
   useEffect(() => {
@@ -178,21 +189,38 @@ const HLSVideo = memo(forwardRef<HTMLDivElement, HLSVideoProps>(({
     }
   };
 
+  // Show mobile tap-to-play overlay with poster
+  const showMobileOverlay = isMobile && !hasStartedPlaying;
+
   return (
     <div ref={setRefs} className={className}>
       {hasLoaded ? (
-        <video
-          ref={videoRef}
-          className="w-full h-full object-cover"
-          poster={poster}
-          loop={loop}
-          muted={muted}
-          playsInline={playsInline}
-          preload="metadata"
-          controls={isMobile}
-        >
-          Your browser does not support the video tag.
-        </video>
+        <div className="relative w-full h-full">
+          <video
+            ref={videoRef}
+            className="w-full h-full object-cover"
+            poster={poster}
+            loop={loop}
+            muted={muted}
+            playsInline={playsInline}
+            preload="metadata"
+            controls={isMobile && hasStartedPlaying}
+          >
+            Your browser does not support the video tag.
+          </video>
+          
+          {/* Mobile tap-to-play overlay */}
+          {showMobileOverlay && (
+            <div 
+              onClick={handlePlayClick}
+              className="absolute inset-0 flex items-center justify-center cursor-pointer bg-black/10"
+            >
+              <div className="w-14 h-14 rounded-full bg-black/50 backdrop-blur-sm flex items-center justify-center transition-transform hover:scale-110">
+                <Play className="w-6 h-6 text-white ml-1" fill="white" />
+              </div>
+            </div>
+          )}
+        </div>
       ) : (
         poster && (
           <img
