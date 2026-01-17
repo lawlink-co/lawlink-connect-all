@@ -1,4 +1,4 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import Hls from "hls.js";
 
 /**
@@ -15,6 +15,11 @@ import Hls from "hls.js";
  * 
  * These settings ensure smooth playback on mobile devices without requiring
  * runtime transcoding or client-side processing.
+ * 
+ * LAZY LOADING:
+ * Videos use IntersectionObserver for lazy loading. They only begin loading
+ * when near the viewport and pause when scrolled out of view to conserve
+ * network and CPU resources.
  * 
  * FFmpeg encoding example:
  * ffmpeg -i input.mov -c:v libx264 -profile:v main -level 3.1 \
@@ -42,22 +47,55 @@ const HLSVideo = ({
   muted = true,
   playsInline = true,
 }: HLSVideoProps) => {
+  const containerRef = useRef<HTMLDivElement>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
   const hlsRef = useRef<Hls | null>(null);
+  const [isVisible, setIsVisible] = useState(false);
+  const [hasLoaded, setHasLoaded] = useState(false);
 
+  // IntersectionObserver for lazy loading
+  useEffect(() => {
+    const container = containerRef.current;
+    if (!container) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setIsVisible(true);
+            if (!hasLoaded) {
+              setHasLoaded(true);
+            }
+          } else {
+            setIsVisible(false);
+          }
+        });
+      },
+      {
+        rootMargin: "200px", // Start loading 200px before entering viewport
+        threshold: 0,
+      }
+    );
+
+    observer.observe(container);
+
+    return () => {
+      observer.disconnect();
+    };
+  }, [hasLoaded]);
+
+  // Handle video loading and playback
   useEffect(() => {
     const video = videoRef.current;
-    if (!video) return;
+    if (!video || !hasLoaded) return;
 
-    // Check if source is HLS (.m3u8)
     const isHLS = src.endsWith(".m3u8");
 
     if (isHLS && Hls.isSupported()) {
-      // Use hls.js for browsers that don't natively support HLS
       const hls = new Hls({
         enableWorker: true,
         lowLatencyMode: false,
-        startLevel: -1, // Auto-select quality based on bandwidth
+        startLevel: -1,
       });
 
       hlsRef.current = hls;
@@ -65,19 +103,16 @@ const HLSVideo = ({
       hls.attachMedia(video);
 
       hls.on(Hls.Events.MANIFEST_PARSED, () => {
-        if (autoPlay) {
-          video.play().catch(() => {
-            // Autoplay blocked, that's okay
-          });
+        if (autoPlay && isVisible) {
+          video.play().catch(() => {});
         }
       });
 
       hls.on(Hls.Events.ERROR, (_, data) => {
         if (data.fatal && fallbackSrc) {
-          // Fall back to MP4 if HLS fails
           hls.destroy();
           video.src = fallbackSrc;
-          if (autoPlay) {
+          if (autoPlay && isVisible) {
             video.play().catch(() => {});
           }
         }
@@ -88,38 +123,50 @@ const HLSVideo = ({
         hlsRef.current = null;
       };
     } else if (isHLS && video.canPlayType("application/vnd.apple.mpegurl")) {
-      // Safari supports HLS natively
       video.src = src;
-      if (autoPlay) {
-        video.play().catch(() => {});
-      }
     } else if (fallbackSrc) {
-      // Use fallback MP4 for non-HLS sources or if HLS not supported
       video.src = fallbackSrc;
-      if (autoPlay) {
-        video.play().catch(() => {});
-      }
     } else {
-      // Direct source
       video.src = src;
-      if (autoPlay) {
-        video.play().catch(() => {});
-      }
     }
-  }, [src, fallbackSrc, autoPlay]);
+  }, [src, fallbackSrc, hasLoaded]);
+
+  // Handle play/pause based on visibility
+  useEffect(() => {
+    const video = videoRef.current;
+    if (!video || !hasLoaded) return;
+
+    if (isVisible && autoPlay) {
+      video.play().catch(() => {});
+    } else {
+      video.pause();
+    }
+  }, [isVisible, hasLoaded, autoPlay]);
 
   return (
-    <video
-      ref={videoRef}
-      className={className}
-      poster={poster}
-      autoPlay={autoPlay}
-      loop={loop}
-      muted={muted}
-      playsInline={playsInline}
-    >
-      Your browser does not support the video tag.
-    </video>
+    <div ref={containerRef} className={className}>
+      {hasLoaded ? (
+        <video
+          ref={videoRef}
+          className="w-full h-full object-cover"
+          poster={poster}
+          loop={loop}
+          muted={muted}
+          playsInline={playsInline}
+          preload="metadata"
+        >
+          Your browser does not support the video tag.
+        </video>
+      ) : (
+        poster && (
+          <img
+            src={poster}
+            alt=""
+            className="w-full h-full object-cover"
+          />
+        )
+      )}
+    </div>
   );
 };
 
