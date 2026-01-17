@@ -6,8 +6,38 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import Navigation from "@/components/Navigation";
 import ScrollRevealImages from "@/components/ScrollRevealImages";
 import HLSVideo from "@/components/HLSVideo";
-import { useEffect, useRef, useState, memo } from "react";
+import { useEffect, useRef, useState, memo, useMemo } from "react";
 import { useIsMobile } from "@/hooks/use-mobile";
+
+// Memoized security card - prevents re-renders when visibility state of other cards changes
+const SecurityCard = memo(({ 
+  icon: Icon, 
+  title, 
+  description, 
+  isVisible, 
+  reverse = false 
+}: { 
+  icon: React.ComponentType<{ className?: string; style?: React.CSSProperties }>; 
+  title: string; 
+  description: string; 
+  isVisible: boolean; 
+  reverse?: boolean;
+}) => {
+  const flexDirection = reverse ? 'md:flex-row-reverse' : 'md:flex-row';
+  
+  return (
+    <div className={`flex flex-col ${flexDirection} items-center gap-12 md:gap-20 transition-[transform,opacity] duration-500 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
+      <div className="flex-shrink-0 flex items-center justify-center w-full md:w-1/3">
+        <Icon className="w-48 h-48" style={{ color: '#e4bf6c' }} />
+      </div>
+      <div className="flex-1 text-center md:text-left">
+        <h3 className="text-3xl sm:text-4xl font-normal mb-6 text-white">{title}</h3>
+        <p className="text-xl text-zinc-400 font-sans leading-relaxed">{description}</p>
+      </div>
+    </div>
+  );
+});
+SecurityCard.displayName = "SecurityCard";
 
 // Pre-define static animation styles to prevent object recreation
 const ANIMATION_STYLES = {
@@ -353,44 +383,25 @@ const LawFirms = () => {
           </div>
 
           <div ref={securitySectionRef} className="space-y-40">
-            {/* End-to-End Encryption - Icon Left, Text Right */}
-            <div className={`flex flex-col md:flex-row items-center gap-12 md:gap-20 transition-[transform,opacity] duration-500 ${visibleCards.includes(0) ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
-              <div className="flex-shrink-0 flex items-center justify-center w-full md:w-1/3">
-                <Lock className="w-48 h-48" style={{ color: '#e4bf6c' }} />
-              </div>
-              <div className="flex-1 text-center md:text-left">
-                <h3 className="text-3xl sm:text-4xl font-normal mb-6 text-white">End-to-End Encryption</h3>
-                <p className="text-xl text-zinc-400 font-sans leading-relaxed">
-                  All data encrypted in transit and at rest with AES-256 encryption. Your client data and case files are protected with the same standards used by financial institutions.
-                </p>
-              </div>
-            </div>
-
-            {/* Attorney-Client Privilege - Text Left, Icon Right */}
-            <div className={`flex flex-col md:flex-row-reverse items-center gap-12 md:gap-20 transition-[transform,opacity] duration-500 ${visibleCards.includes(1) ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
-              <div className="flex-shrink-0 flex items-center justify-center w-full md:w-1/3">
-                <Shield className="w-48 h-48" style={{ color: '#e4bf6c' }} />
-              </div>
-              <div className="flex-1 text-center md:text-left">
-                <h3 className="text-3xl sm:text-4xl font-normal mb-6 text-white">Attorney-Client Privilege</h3>
-                <p className="text-xl text-zinc-400 font-sans leading-relaxed">
-                  Full compliance with confidentiality requirements and privilege protection. Amicus is designed from the ground up to respect the sanctity of the attorney-client relationship.
-                </p>
-              </div>
-            </div>
-
-            {/* SOC 2 Compliant - Icon Left, Text Right */}
-            <div className={`flex flex-col md:flex-row items-center gap-12 md:gap-20 transition-[transform,opacity] duration-500 ${visibleCards.includes(2) ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
-              <div className="flex-shrink-0 flex items-center justify-center w-full md:w-1/3">
-                <Database className="w-48 h-48" style={{ color: '#e4bf6c' }} />
-              </div>
-              <div className="flex-1 text-center md:text-left">
-                <h3 className="text-3xl sm:text-4xl font-normal mb-6 text-white">SOC 2 Compliant</h3>
-                <p className="text-xl text-zinc-400 font-sans leading-relaxed">
-                  Regular security audits and compliance with industry standards. Our infrastructure meets the rigorous requirements that law firms and their clients expect.
-                </p>
-              </div>
-            </div>
+            <SecurityCard
+              icon={Lock}
+              title="End-to-End Encryption"
+              description="All data encrypted in transit and at rest with AES-256 encryption. Your client data and case files are protected with the same standards used by financial institutions."
+              isVisible={visibleCards.includes(0)}
+            />
+            <SecurityCard
+              icon={Shield}
+              title="Attorney-Client Privilege"
+              description="Full compliance with confidentiality requirements and privilege protection. Amicus is designed from the ground up to respect the sanctity of the attorney-client relationship."
+              isVisible={visibleCards.includes(1)}
+              reverse
+            />
+            <SecurityCard
+              icon={Database}
+              title="SOC 2 Compliant"
+              description="Regular security audits and compliance with industry standards. Our infrastructure meets the rigorous requirements that law firms and their clients expect."
+              isVisible={visibleCards.includes(2)}
+            />
           </div>
         </div>
       </section>

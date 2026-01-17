@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, memo } from "react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -8,6 +8,54 @@ import { useToast } from "@/hooks/use-toast";
 import { supabase } from "@/integrations/supabase/client";
 import { Mail, Phone, Send, ArrowLeft } from "lucide-react";
 import Navigation from "@/components/Navigation";
+
+// Memoized static contact info sidebar - never needs to re-render
+const ContactInfoSidebar = memo(() => (
+  <div className="lg:col-span-2">
+    <div className="bg-zinc-900/50 border border-zinc-800 rounded-2xl p-8 md:p-10 sticky top-32">
+      <h2 className="text-2xl font-display mb-6 text-white">Contact Information</h2>
+      
+      <div className="space-y-8">
+        <div className="flex items-start gap-4">
+          <div className="w-12 h-12 rounded-full bg-[#e4bf6c]/10 flex items-center justify-center flex-shrink-0">
+            <Mail className="w-5 h-5 text-[#e4bf6c]" />
+          </div>
+          <div>
+            <p className="text-zinc-400 text-sm mb-1">Email us at</p>
+            <a 
+              href="mailto:case@amicusai.com" 
+              className="text-white hover:text-[#e4bf6c] transition-colors text-lg font-body"
+            >
+              case@amicusai.com
+            </a>
+          </div>
+        </div>
+
+        <div className="flex items-start gap-4">
+          <div className="w-12 h-12 rounded-full bg-[#e4bf6c]/10 flex items-center justify-center flex-shrink-0">
+            <Phone className="w-5 h-5 text-[#e4bf6c]" />
+          </div>
+          <div>
+            <p className="text-zinc-400 text-sm mb-1">Call us at</p>
+            <a 
+              href="tel:+12125882922" 
+              className="text-white hover:text-[#e4bf6c] transition-colors text-lg font-body"
+            >
+              (212) 588-2922
+            </a>
+          </div>
+        </div>
+
+        <div className="border-t border-zinc-800 pt-8">
+          <p className="text-zinc-400 text-sm leading-relaxed">
+            Our team typically responds within 24 hours during business days. For urgent matters, please call us directly.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+));
+ContactInfoSidebar.displayName = "ContactInfoSidebar";
 
 const Contact = () => {
   const { toast } = useToast();
@@ -205,50 +253,7 @@ const Contact = () => {
               </div>
             </div>
 
-            {/* Contact Info */}
-            <div className="lg:col-span-2">
-              <div className="bg-zinc-900/50 border border-zinc-800 rounded-2xl p-8 md:p-10 sticky top-32">
-                <h2 className="text-2xl font-display mb-6 text-white">Contact Information</h2>
-                
-                <div className="space-y-8">
-                  <div className="flex items-start gap-4">
-                    <div className="w-12 h-12 rounded-full bg-[#e4bf6c]/10 flex items-center justify-center flex-shrink-0">
-                      <Mail className="w-5 h-5 text-[#e4bf6c]" />
-                    </div>
-                    <div>
-                      <p className="text-zinc-400 text-sm mb-1">Email us at</p>
-                      <a 
-                        href="mailto:case@amicusai.com" 
-                        className="text-white hover:text-[#e4bf6c] transition-colors text-lg font-body"
-                      >
-                        case@amicusai.com
-                      </a>
-                    </div>
-                  </div>
-
-                  <div className="flex items-start gap-4">
-                    <div className="w-12 h-12 rounded-full bg-[#e4bf6c]/10 flex items-center justify-center flex-shrink-0">
-                      <Phone className="w-5 h-5 text-[#e4bf6c]" />
-                    </div>
-                    <div>
-                      <p className="text-zinc-400 text-sm mb-1">Call us at</p>
-                      <a 
-                        href="tel:+12125882922" 
-                        className="text-white hover:text-[#e4bf6c] transition-colors text-lg font-body"
-                      >
-                        (212) 588-2922
-                      </a>
-                    </div>
-                  </div>
-
-                  <div className="border-t border-zinc-800 pt-8">
-                    <p className="text-zinc-400 text-sm leading-relaxed">
-                      Our team typically responds within 24 hours during business days. For urgent matters, please call us directly.
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </div>
+            <ContactInfoSidebar />
           </div>
         </div>
       </section>

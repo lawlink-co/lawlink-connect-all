@@ -1,7 +1,7 @@
+import { memo, useEffect } from "react";
 import { useLocation } from "react-router-dom";
-import { useEffect } from "react";
 
-const NotFound = () => {
+const NotFound = memo(() => {
   const location = useLocation();
 
   useEffect(() => {
@@ -19,6 +19,7 @@ const NotFound = () => {
       </div>
     </div>
   );
-};
+});
+NotFound.displayName = "NotFound";
 
 export default NotFound;
