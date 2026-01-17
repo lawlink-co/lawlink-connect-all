@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import Hls from "hls.js";
+import { useIsMobile } from "@/hooks/use-mobile";
 
 /**
  * HLSVideo Component
@@ -20,6 +21,11 @@ import Hls from "hls.js";
  * Videos use IntersectionObserver for lazy loading. They only begin loading
  * when near the viewport and pause when scrolled out of view to conserve
  * network and CPU resources.
+ * 
+ * MOBILE BEHAVIOR:
+ * On mobile devices, autoplay is disabled to reduce CPU, memory usage, and
+ * playback contention. Users must tap to play. Native video controls are
+ * shown on mobile for tap-to-play functionality.
  * 
  * FFmpeg encoding example:
  * ffmpeg -i input.mov -c:v libx264 -profile:v main -level 3.1 \
@@ -52,6 +58,10 @@ const HLSVideo = ({
   const hlsRef = useRef<Hls | null>(null);
   const [isVisible, setIsVisible] = useState(false);
   const [hasLoaded, setHasLoaded] = useState(false);
+  const isMobile = useIsMobile();
+
+  // On mobile, disable autoplay to reduce CPU/memory usage
+  const shouldAutoPlay = autoPlay && !isMobile;
 
   // IntersectionObserver for lazy loading
   useEffect(() => {
@@ -103,7 +113,7 @@ const HLSVideo = ({
       hls.attachMedia(video);
 
       hls.on(Hls.Events.MANIFEST_PARSED, () => {
-        if (autoPlay && isVisible) {
+        if (shouldAutoPlay && isVisible) {
           video.play().catch(() => {});
         }
       });
@@ -112,7 +122,7 @@ const HLSVideo = ({
         if (data.fatal && fallbackSrc) {
           hls.destroy();
           video.src = fallbackSrc;
-          if (autoPlay && isVisible) {
+          if (shouldAutoPlay && isVisible) {
             video.play().catch(() => {});
           }
         }
@@ -129,19 +139,22 @@ const HLSVideo = ({
     } else {
       video.src = src;
     }
-  }, [src, fallbackSrc, hasLoaded]);
+  }, [src, fallbackSrc, hasLoaded, shouldAutoPlay, isVisible]);
 
-  // Handle play/pause based on visibility
+  // Handle play/pause based on visibility (desktop only)
   useEffect(() => {
     const video = videoRef.current;
     if (!video || !hasLoaded) return;
 
-    if (isVisible && autoPlay) {
+    // Only auto-manage playback on desktop
+    if (isMobile) return;
+
+    if (isVisible && shouldAutoPlay) {
       video.play().catch(() => {});
     } else {
       video.pause();
     }
-  }, [isVisible, hasLoaded, autoPlay]);
+  }, [isVisible, hasLoaded, shouldAutoPlay, isMobile]);
 
   return (
     <div ref={containerRef} className={className}>
@@ -154,6 +167,7 @@ const HLSVideo = ({
           muted={muted}
           playsInline={playsInline}
           preload="metadata"
+          controls={isMobile}
         >
           Your browser does not support the video tag.
         </video>
