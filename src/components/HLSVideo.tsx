@@ -14,8 +14,15 @@ import { useIsMobile } from "@/hooks/use-mobile";
  * - Bitrate: 1–3 Mbps target
  * - Container: MP4 for fallback, HLS (.m3u8) for adaptive streaming
  * 
- * These settings ensure smooth playback on mobile devices without requiring
- * runtime transcoding or client-side processing.
+ * CDN & CACHING REQUIREMENTS:
+ * Video assets must be served from a CDN that supports:
+ * - Byte-range requests (Accept-Ranges: bytes) for seeking/streaming
+ * - Appropriate cache headers for long-lived assets:
+ *   - Cache-Control: public, max-age=31536000, immutable (for versioned files)
+ *   - Or Cache-Control: public, max-age=86400 (for frequently updated files)
+ * 
+ * Note: Lovable's hosting infrastructure handles this automatically for
+ * published apps. For self-hosted deployments, configure at CDN/server level.
  * 
  * LAZY LOADING:
  * Videos use IntersectionObserver for lazy loading. They only begin loading
