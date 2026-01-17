@@ -1,6 +1,26 @@
 import { useEffect, useRef } from "react";
 import Hls from "hls.js";
 
+/**
+ * HLSVideo Component
+ * 
+ * VIDEO ENCODING REQUIREMENTS:
+ * All UI videos must be encoded with the following specifications for optimal
+ * mobile playback and cross-browser compatibility:
+ * 
+ * - Codec: H.264 (baseline or main profile)
+ * - Resolution: Max 720p (1280x720)
+ * - Bitrate: 1–3 Mbps target
+ * - Container: MP4 for fallback, HLS (.m3u8) for adaptive streaming
+ * 
+ * These settings ensure smooth playback on mobile devices without requiring
+ * runtime transcoding or client-side processing.
+ * 
+ * FFmpeg encoding example:
+ * ffmpeg -i input.mov -c:v libx264 -profile:v main -level 3.1 \
+ *   -vf "scale=-2:720" -b:v 2M -maxrate 3M -bufsize 6M \
+ *   -c:a aac -b:a 128k output.mp4
+ */
 interface HLSVideoProps {
   src: string;
   fallbackSrc?: string;
