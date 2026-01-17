@@ -52,6 +52,9 @@ const LawFirms = () => {
   const [activeTab, setActiveTab] = useState<string>("case-management");
   const securitySectionRef = useRef<HTMLDivElement>(null);
   const isMobile = useIsMobile();
+  // Memoize observer options to prevent recreation
+  const observerOptions = useMemo(() => ({ threshold: 0.3 }), []);
+  
   useEffect(() => {
     const observer = new IntersectionObserver(entries => {
       entries.forEach(entry => {
@@ -65,14 +68,12 @@ const LawFirms = () => {
           observer.disconnect();
         }
       });
-    }, {
-      threshold: 0.3
-    });
+    }, observerOptions);
     if (securitySectionRef.current) {
       observer.observe(securitySectionRef.current);
     }
     return () => observer.disconnect();
-  }, []);
+  }, [observerOptions]);
   return <div className="min-h-screen bg-black text-white font-caslon">
       <Navigation />
       
