@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import Navigation from "@/components/Navigation";
 import FeatureCarousel from "@/components/FeatureCarousel";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, useMemo, useCallback } from "react";
 import amicusGoldenA from "@/assets/amicus-golden-a.png";
 import amicusLogo from "@/assets/amicus-golden-a.png";
 import amicusALogo from "@/assets/amicus-a-logo.png";
@@ -16,11 +16,25 @@ Lawyers drown in admin.
 The way legal work gets done hasn't evolved—
 
 until now.`;
+
+// Pre-calculate static values outside component
+const UNTIL_NOW_START = TYPEWRITER_TEXT.indexOf('until now.');
+const TOTAL_CHARS = TYPEWRITER_TEXT.length;
+
+// Memoized inline style objects to prevent re-renders
+const ANIMATION_STYLES = {
+  fadeIn500: { animationDelay: '0.5s', animationFillMode: 'forwards' as const },
+  fadeIn800: { animationDelay: '0.8s', animationFillMode: 'forwards' as const },
+  fadeIn1500: { animationDelay: '1500ms', animationFillMode: 'forwards', animationDuration: '600ms' as const },
+  fadeIn2000: { animationDelay: '2000ms', animationFillMode: 'forwards' as const },
+  logoScale: { transform: 'scale(1.3)' },
+};
+
 const Home = () => {
   const [visibleChars, setVisibleChars] = useState(0);
-  const [textFadedOut, setTextFadedOut] = useState(false); // true when text is fully gone
-  const [logoVisible, setLogoVisible] = useState(false); // true when logo should be at full opacity
-  const [logoFadeOut, setLogoFadeOut] = useState(0); // 0 = fully visible, 1 = fully faded out
+  const [textFadedOut, setTextFadedOut] = useState(false);
+  const [logoVisible, setLogoVisible] = useState(false);
+  const [logoFadeOut, setLogoFadeOut] = useState(0);
   const problemSectionRef = useRef<HTMLDivElement>(null);
   const featureCarouselRef = useRef<HTMLDivElement>(null);
 
@@ -28,10 +42,6 @@ const Home = () => {
   const [howItWorksPhase, setHowItWorksPhase] = useState(0);
   const howItWorksSectionRef = useRef<HTMLDivElement>(null);
   const howItWorksTriggeredRef = useRef(false);
-
-  // Calculate where "until now." starts in the text
-  const untilNowStart = TYPEWRITER_TEXT.indexOf('until now.');
-  const totalChars = TYPEWRITER_TEXT.length;
   useEffect(() => {
     const handleScroll = () => {
       if (!problemSectionRef.current) return;
@@ -54,23 +64,23 @@ const Home = () => {
         let charIndex: number;
         if (typewriterProgress <= 0.7) {
           // Map 0-70% of typewriter phase to text before "until now."
-          charIndex = Math.floor(typewriterProgress / 0.7 * untilNowStart);
+          charIndex = Math.floor(typewriterProgress / 0.7 * UNTIL_NOW_START);
         } else {
           // Map 70-100% of typewriter phase to "until now." (slower reveal)
           const slowProgress = (typewriterProgress - 0.7) / 0.3;
-          charIndex = untilNowStart + Math.floor(slowProgress * (totalChars - untilNowStart));
+          charIndex = UNTIL_NOW_START + Math.floor(slowProgress * (TOTAL_CHARS - UNTIL_NOW_START));
         }
-        setVisibleChars(Math.min(charIndex, totalChars));
+        setVisibleChars(Math.min(charIndex, TOTAL_CHARS));
         setTextFadedOut(false);
         setLogoVisible(false);
       } else if (scrollProgress <= 0.55) {
         // Text fade out phase - text fades, logo not yet visible
-        setVisibleChars(totalChars);
+        setVisibleChars(TOTAL_CHARS);
         setTextFadedOut(true);
         setLogoVisible(false);
       } else {
         // Logo visible phase - text gone, logo at full opacity
-        setVisibleChars(totalChars);
+        setVisibleChars(TOTAL_CHARS);
         setTextFadedOut(true);
         setLogoVisible(true);
       }
@@ -79,7 +89,6 @@ const Home = () => {
       // (i.e., when the sticky section is about to exit)
       const stickyElement = section.querySelector('.sticky');
       if (stickyElement) {
-        const stickyRect = stickyElement.getBoundingClientRect();
         // Only fade out when the section's top is at or above the viewport top
         // and the section is about to scroll out
         const sectionBottom = rect.bottom;
@@ -101,7 +110,7 @@ const Home = () => {
     return () => {
       window.removeEventListener('scroll', handleScroll);
     };
-  }, [untilNowStart, totalChars]);
+  }, []);
 
   // How It Works section animation
   useEffect(() => {
@@ -140,16 +149,10 @@ const Home = () => {
           <h1 className="text-6xl sm:text-7xl lg:text-8xl font-normal mb-6 sm:mb-8 tracking-tight animate-fade-in-slow text-center w-full mx-auto">
             Lawsuits, Reimagined.
           </h1>
-          <p className="text-lg sm:text-3xl text-zinc-300 mb-6 sm:mb-16 max-w-4xl mx-auto leading-relaxed opacity-0 animate-fade-in" style={{
-          animationDelay: '0.5s',
-          animationFillMode: 'forwards'
-        }}>
+          <p className="text-lg sm:text-3xl text-zinc-300 mb-6 sm:mb-16 max-w-4xl mx-auto leading-relaxed opacity-0 animate-fade-in" style={ANIMATION_STYLES.fadeIn500}>
             An AI-powered platform that connects lawyers and clients through automation and clarity.
           </p>
-          <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center opacity-0 animate-slide-up" style={{
-          animationDelay: '0.8s',
-          animationFillMode: 'forwards'
-        }}>
+          <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center opacity-0 animate-slide-up" style={ANIMATION_STYLES.fadeIn800}>
             <Link to="/law-firms">
               <Button size="lg" className="w-auto sm:min-w-[180px] text-base sm:text-lg bg-white text-black border-2 border-transparent hover:bg-zinc-200 transition-transform duration-300 hover:scale-105 px-6 sm:px-[34px] py-2.5 sm:py-3 h-auto">
                 For Law Firms
@@ -173,15 +176,18 @@ const Home = () => {
         }}>
             <p className="text-2xl sm:text-4xl lg:text-5xl text-zinc-200 font-light leading-tight sm:leading-relaxed whitespace-pre-wrap">
               {TYPEWRITER_TEXT.slice(0, visibleChars)}
-              {!textFadedOut && visibleChars < totalChars && <span className="inline-block w-[3px] h-[1em] bg-zinc-200 ml-1 align-middle animate-caret-blink" />}
+              {!textFadedOut && visibleChars < TOTAL_CHARS && <span className="inline-block w-[3px] h-[1em] bg-zinc-200 ml-1 align-middle animate-caret-blink" />}
             </p>
           </div>
           
           {/* Logo - fades in AFTER text is fully gone, stays at full opacity until section exits viewport */}
-          <div className="absolute flex items-center justify-center transition-opacity duration-700" style={{
-          opacity: logoVisible ? 1 - logoFadeOut : 0,
-          transform: 'scale(1.3)'
-        }}>
+          <div 
+            className="absolute flex items-center justify-center transition-opacity duration-700" 
+            style={{
+              opacity: logoVisible ? 1 - logoFadeOut : 0,
+              ...ANIMATION_STYLES.logoScale
+            }}
+          >
             <img src={amicusGoldenA} alt="Amicus" className="w-48 sm:w-64 lg:w-80 h-auto" />
           </div>
         </div>

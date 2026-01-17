@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, forwardRef, memo } from "react";
 import Hls from "hls.js";
 import { useIsMobile } from "@/hooks/use-mobile";
 
@@ -50,7 +50,7 @@ interface HLSVideoProps {
   playsInline?: boolean;
 }
 
-const HLSVideo = ({
+const HLSVideo = memo(forwardRef<HTMLDivElement, HLSVideoProps>(({
   src,
   fallbackSrc,
   poster,
@@ -59,8 +59,8 @@ const HLSVideo = ({
   loop = true,
   muted = true,
   playsInline = true,
-}: HLSVideoProps) => {
-  const containerRef = useRef<HTMLDivElement>(null);
+}, forwardedRef) => {
+  const internalRef = useRef<HTMLDivElement>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
   const hlsRef = useRef<Hls | null>(null);
   const [isVisible, setIsVisible] = useState(false);
@@ -70,9 +70,9 @@ const HLSVideo = ({
   // On mobile, disable autoplay to reduce CPU/memory usage
   const shouldAutoPlay = autoPlay && !isMobile;
 
-  // IntersectionObserver for lazy loading
+  // IntersectionObserver for lazy loading - always use internal ref
   useEffect(() => {
-    const container = containerRef.current;
+    const container = internalRef.current;
     if (!container) return;
 
     const observer = new IntersectionObserver(
@@ -163,8 +163,20 @@ const HLSVideo = ({
     }
   }, [isVisible, hasLoaded, shouldAutoPlay, isMobile]);
 
+  // Combine refs for external use while keeping internal ref for observer
+  const setRefs = (node: HTMLDivElement | null) => {
+    // Set internal ref
+    (internalRef as React.MutableRefObject<HTMLDivElement | null>).current = node;
+    // Forward to external ref if provided
+    if (typeof forwardedRef === 'function') {
+      forwardedRef(node);
+    } else if (forwardedRef) {
+      forwardedRef.current = node;
+    }
+  };
+
   return (
-    <div ref={containerRef} className={className}>
+    <div ref={setRefs} className={className}>
       {hasLoaded ? (
         <video
           ref={videoRef}
@@ -189,6 +201,8 @@ const HLSVideo = ({
       )}
     </div>
   );
-};
+}));
+
+HLSVideo.displayName = "HLSVideo";
 
 export default HLSVideo;
