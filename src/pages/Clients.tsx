@@ -31,6 +31,15 @@ const CaseHubCarousel = () => {
     return () => clearInterval(interval);
   }, []);
 
+  // Virtualized rendering: only mount active slide and immediate neighbors
+  const getVisibleIndices = (current: number, total: number): number[] => {
+    const prev = current === 0 ? total - 1 : current - 1;
+    const next = current === total - 1 ? 0 : current + 1;
+    return [prev, current, next];
+  };
+
+  const visibleIndices = getVisibleIndices(activeIndex, caseHubSlides.length);
+
   return (
     <section className="py-24 px-4 sm:px-6 lg:px-8 bg-white overflow-hidden">
       <div className="container mx-auto max-w-6xl text-center">
@@ -39,18 +48,23 @@ const CaseHubCarousel = () => {
           Everything you need in one app
         </h2>
         
-        {/* Fade Image Container */}
+        {/* Virtualized Fade Image Container - only renders active + neighbors */}
         <div className="relative flex items-center justify-center h-[320px] sm:h-[400px]">
-          {caseHubSlides.map((slide, index) => (
-            <img
-              key={index}
-              src={slide.image}
-              alt={slide.alt}
-              className={`absolute left-1/2 -translate-x-1/2 h-[304px] sm:h-[384px] w-auto transition-opacity duration-1000 ease-in-out ${
-                index === activeIndex ? 'opacity-100' : 'opacity-0'
-              }`}
-            />
-          ))}
+          {caseHubSlides.map((slide, index) => {
+            // Only mount slides that are visible (active + prev/next)
+            if (!visibleIndices.includes(index)) return null;
+            
+            return (
+              <img
+                key={index}
+                src={slide.image}
+                alt={slide.alt}
+                className={`absolute left-1/2 -translate-x-1/2 h-[304px] sm:h-[384px] w-auto transition-opacity duration-1000 ease-in-out ${
+                  index === activeIndex ? 'opacity-100' : 'opacity-0'
+                }`}
+              />
+            );
+          })}
         </div>
 
         {/* Navigation Dots */}
@@ -59,7 +73,7 @@ const CaseHubCarousel = () => {
             <button
               key={index}
               onClick={() => setActiveIndex(index)}
-              className={`h-2 rounded-full transition-all duration-300 ${
+              className={`h-2 rounded-full transition-[transform,opacity] duration-300 ${
                 index === activeIndex
                   ? "w-8 bg-primary"
                   : "w-2 bg-gray-300 hover:bg-gray-400"
