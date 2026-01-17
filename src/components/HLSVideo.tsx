@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState, forwardRef, memo } from "react";
+import { useEffect, useRef, useState, forwardRef, memo, useMemo } from "react";
 import Hls from "hls.js";
 import { useIsMobile } from "@/hooks/use-mobile";
 
@@ -70,6 +70,12 @@ const HLSVideo = memo(forwardRef<HTMLDivElement, HLSVideoProps>(({
   // On mobile, disable autoplay to reduce CPU/memory usage
   const shouldAutoPlay = autoPlay && !isMobile;
 
+  // Memoize IntersectionObserver options to prevent recreation
+  const observerOptions = useMemo(() => ({
+    rootMargin: "200px", // Start loading 200px before entering viewport
+    threshold: 0,
+  }), []);
+
   // IntersectionObserver for lazy loading - always use internal ref
   useEffect(() => {
     const container = internalRef.current;
@@ -88,10 +94,7 @@ const HLSVideo = memo(forwardRef<HTMLDivElement, HLSVideoProps>(({
           }
         });
       },
-      {
-        rootMargin: "200px", // Start loading 200px before entering viewport
-        threshold: 0,
-      }
+      observerOptions
     );
 
     observer.observe(container);
@@ -99,7 +102,7 @@ const HLSVideo = memo(forwardRef<HTMLDivElement, HLSVideoProps>(({
     return () => {
       observer.disconnect();
     };
-  }, [hasLoaded]);
+  }, [hasLoaded, observerOptions]);
 
   // Handle video loading and playback
   useEffect(() => {
