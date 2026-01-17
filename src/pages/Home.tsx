@@ -30,6 +30,9 @@ const ANIMATION_STYLES = {
   logoScale: { transform: 'scale(1.3)' },
 };
 
+// Static gold color style for reuse
+const GOLD_COLOR_STYLE = { color: '#e0b660' } as const;
+
 // Memoized typewriter text component - only re-renders when visibleChars changes
 const TypewriterText = memo(({ visibleChars, textFadedOut }: { visibleChars: number; textFadedOut: boolean }) => {
   // Memoize the sliced text to avoid string operations on each render
@@ -57,6 +60,16 @@ const Home = () => {
   const [howItWorksPhase, setHowItWorksPhase] = useState(0);
   const howItWorksSectionRef = useRef<HTMLDivElement>(null);
   const howItWorksTriggeredRef = useRef(false);
+
+  // Memoize dynamic style objects to prevent recreation on unrelated state changes
+  const typewriterContainerStyle = useMemo(() => ({
+    opacity: textFadedOut ? 0 : 1
+  }), [textFadedOut]);
+
+  const logoContainerStyle = useMemo(() => ({
+    opacity: logoVisible ? 1 - logoFadeOut : 0,
+    ...ANIMATION_STYLES.logoScale
+  }), [logoVisible, logoFadeOut]);
   useEffect(() => {
     const handleScroll = () => {
       if (!problemSectionRef.current) return;
@@ -186,19 +199,14 @@ const Home = () => {
       <section ref={problemSectionRef} className="relative h-[300vh] bg-gradient-to-b from-black via-zinc-950 to-black">
         <div className="sticky top-0 h-screen flex items-center justify-center px-4 sm:px-6 lg:px-8">
           {/* Typewriter Text - fades out when textFadedOut is true */}
-          <div className="container mx-auto max-w-5xl text-center absolute transition-opacity duration-700" style={{
-          opacity: textFadedOut ? 0 : 1
-        }}>
+          <div className="container mx-auto max-w-5xl text-center absolute transition-opacity duration-700" style={typewriterContainerStyle}>
             <TypewriterText visibleChars={visibleChars} textFadedOut={textFadedOut} />
           </div>
           
           {/* Logo - fades in AFTER text is fully gone, stays at full opacity until section exits viewport */}
           <div 
             className="absolute flex items-center justify-center transition-opacity duration-700" 
-            style={{
-              opacity: logoVisible ? 1 - logoFadeOut : 0,
-              ...ANIMATION_STYLES.logoScale
-            }}
+            style={logoContainerStyle}
           >
             <img src={amicusGoldenA} alt="Amicus" className="w-48 sm:w-64 lg:w-80 h-auto" />
           </div>
@@ -368,9 +376,7 @@ const Home = () => {
               <div className="flex items-center justify-center gap-2 mb-6">
                 <div className="w-8 h-px bg-gold/40"></div>
                 <h3 className="text-lg sm:text-xl font-medium leading-tight">
-                  <span className="block sm:inline">For Both:</span><br className="sm:hidden" /><span style={{
-                  color: '#e0b660'
-                }} className="italic">Progress That Moves</span>
+                  <span className="block sm:inline">For Both:</span><br className="sm:hidden" /><span style={GOLD_COLOR_STYLE} className="italic">Progress That Moves</span>
                 </h3>
                 <div className="w-8 h-px bg-gold/40"></div>
               </div>

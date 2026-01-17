@@ -47,6 +47,9 @@ const ANIMATION_STYLES = {
   delay1500: { animationDelay: '1500ms', animationFillMode: 'forwards' as const, animationDuration: '600ms' },
   delay2000: { animationDelay: '2000ms', animationFillMode: 'forwards' as const },
 };
+
+// Static gold color style for reuse
+const GOLD_COLOR_STYLE = { color: '#e4bf6c' } as const;
 const LawFirms = () => {
   const [visibleCards, setVisibleCards] = useState<number[]>([]);
   const [activeTab, setActiveTab] = useState<string>("case-management");
@@ -374,7 +377,7 @@ const LawFirms = () => {
       <section className="py-32 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-black to-zinc-950 border-t border-zinc-800">
         <div className="container mx-auto max-w-6xl">
           <div className="text-center mb-24">
-            <Shield className="w-20 h-20 mx-auto mb-8" style={{ color: '#e4bf6c' }} />
+            <Shield className="w-20 h-20 mx-auto mb-8" style={GOLD_COLOR_STYLE} />
             <h2 className="text-4xl sm:text-5xl font-light mb-8">
               Security & Compliance
             </h2>
@@ -411,13 +414,7 @@ const LawFirms = () => {
       <section className="py-24 px-4 sm:px-6 lg:px-8 bg-black border-t border-zinc-800">
         <div className="container mx-auto max-w-4xl text-center">
           <p className="text-3xl sm:text-4xl font-light mb-12 leading-relaxed">
-            Amicus firms move <em className="italic" style={{
-            color: '#e4bf6c'
-          }}>faster</em>, work <em className="italic" style={{
-            color: '#e4bf6c'
-          }}>smarter</em>, and deliver a client experience that feels <em className="italic" style={{
-            color: '#e4bf6c'
-          }}>effortless</em>.
+            Amicus firms move <em className="italic" style={GOLD_COLOR_STYLE}>faster</em>, work <em className="italic" style={GOLD_COLOR_STYLE}>smarter</em>, and deliver a client experience that feels <em className="italic" style={GOLD_COLOR_STYLE}>effortless</em>.
           </p>
           <div className="flex flex-col sm:flex-row gap-6 justify-center pt-6">
             <Link to="/demo">
