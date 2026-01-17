@@ -9,6 +9,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import amicusLogo from "@/assets/amicus-logo.png";
+import amicusLogoBlack from "@/assets/amicus-logo-black.png";
 
 const Navigation = memo(() => {
   const location = useLocation();
@@ -19,7 +20,7 @@ const Navigation = memo(() => {
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-20">
           <Link to="/" className="flex items-center space-x-2">
-            <img src={amicusLogo} alt="Amicus" className="h-10 w-auto" />
+            <img src={isClientsPage ? amicusLogoBlack : amicusLogo} alt="Amicus" className="h-10 w-auto" />
           </Link>
           
           {/* Desktop Navigation */}
