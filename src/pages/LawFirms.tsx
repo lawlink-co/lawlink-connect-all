@@ -123,6 +123,7 @@ const LawFirms = () => {
                   <HLSVideo
                     src="/videos/case-management-demo.m3u8"
                     fallbackSrc="/videos/case-management-demo.mp4"
+                    poster="/videos/case-management-demo-poster.jpg"
                     className="w-full aspect-video rounded-none sm:rounded-lg"
                   />
                 </div>
@@ -173,6 +174,7 @@ const LawFirms = () => {
                   <HLSVideo
                     src="/videos/drafting-demo.m3u8"
                     fallbackSrc="/videos/drafting-demo.mp4"
+                    poster="/videos/drafting-demo-poster.jpg"
                     className="w-full aspect-video rounded-none sm:rounded-lg"
                   />
                 </div>
@@ -224,6 +226,7 @@ const LawFirms = () => {
                   <HLSVideo
                     src="/videos/client-experience.m3u8"
                     fallbackSrc="/videos/client-experience.mp4"
+                    poster="/videos/client-experience-poster.jpg"
                     className="w-full aspect-video rounded-none sm:rounded-lg"
                   />
                 </div>
@@ -282,6 +285,7 @@ const LawFirms = () => {
                   <HLSVideo
                     src="/videos/customization-demo.m3u8"
                     fallbackSrc="/videos/customization-demo.mp4"
+                    poster="/videos/customization-demo-poster.jpg"
                     className="w-full aspect-video rounded-none sm:rounded-lg"
                   />
                 </div>
