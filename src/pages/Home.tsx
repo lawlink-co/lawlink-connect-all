@@ -71,8 +71,14 @@ const Home = () => {
     ...ANIMATION_STYLES.logoScale
   }), [logoVisible, logoFadeOut]);
   useEffect(() => {
-    const handleScroll = () => {
-      if (!problemSectionRef.current) return;
+    let rafId: number | null = null;
+    let ticking = false;
+
+    const updateScrollState = () => {
+      if (!problemSectionRef.current) {
+        ticking = false;
+        return;
+      }
       const section = problemSectionRef.current;
       const rect = section.getBoundingClientRect();
       const sectionHeight = section.offsetHeight;
@@ -130,20 +136,37 @@ const Home = () => {
           setLogoFadeOut(0);
         }
       }
+      ticking = false;
     };
-    window.addEventListener('scroll', handleScroll, {
-      passive: true
-    });
-    handleScroll();
+
+    const handleScroll = () => {
+      if (!ticking) {
+        rafId = requestAnimationFrame(updateScrollState);
+        ticking = true;
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    // Initial call
+    updateScrollState();
     return () => {
       window.removeEventListener('scroll', handleScroll);
+      if (rafId !== null) {
+        cancelAnimationFrame(rafId);
+      }
     };
   }, []);
 
-  // How It Works section animation
+  // How It Works section animation - RAF throttled
   useEffect(() => {
-    const handleHowItWorksScroll = () => {
-      if (!howItWorksSectionRef.current || howItWorksTriggeredRef.current) return;
+    let rafId: number | null = null;
+    let ticking = false;
+
+    const checkHowItWorksVisibility = () => {
+      if (!howItWorksSectionRef.current || howItWorksTriggeredRef.current) {
+        ticking = false;
+        return;
+      }
       const section = howItWorksSectionRef.current;
       const rect = section.getBoundingClientRect();
 
@@ -159,13 +182,24 @@ const Home = () => {
         // Phase 4: "For Both" section appears after 2000ms
         setTimeout(() => setHowItWorksPhase(4), 2000);
       }
+      ticking = false;
     };
-    window.addEventListener('scroll', handleHowItWorksScroll, {
-      passive: true
-    });
-    handleHowItWorksScroll();
+
+    const handleScroll = () => {
+      if (!ticking && !howItWorksTriggeredRef.current) {
+        rafId = requestAnimationFrame(checkHowItWorksVisibility);
+        ticking = true;
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    // Initial check
+    checkHowItWorksVisibility();
     return () => {
-      window.removeEventListener('scroll', handleHowItWorksScroll);
+      window.removeEventListener('scroll', handleScroll);
+      if (rafId !== null) {
+        cancelAnimationFrame(rafId);
+      }
     };
   }, []);
   return <div className="min-h-screen bg-black text-white font-caslon">
