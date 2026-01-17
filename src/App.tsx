@@ -1,23 +1,16 @@
-import { useEffect, lazy, Suspense } from "react";
+import { useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-
-// Lazy-loaded route components
-const Home = lazy(() => import("./pages/Home"));
-const LawFirms = lazy(() => import("./pages/LawFirms"));
-const Clients = lazy(() => import("./pages/Clients"));
-const Demo = lazy(() => import("./pages/Demo"));
-const Contact = lazy(() => import("./pages/Contact"));
-const NotFound = lazy(() => import("./pages/NotFound"));
-
-// Minimal loading fallback - just prevents layout shift
-const PageLoader = () => (
-  <div className="min-h-screen bg-background" aria-busy="true" aria-label="Loading page" />
-);
+import Home from "./pages/Home";
+import LawFirms from "./pages/LawFirms";
+import Clients from "./pages/Clients";
+import Demo from "./pages/Demo";
+import Contact from "./pages/Contact";
+import NotFound from "./pages/NotFound";
 
 function ScrollToTop() {
   const { pathname } = useLocation();
@@ -43,17 +36,15 @@ const App = () => (
       <Sonner />
       <BrowserRouter>
         <ScrollToTop />
-        <Suspense fallback={<PageLoader />}>
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/law-firms" element={<LawFirms />} />
-            <Route path="/clients" element={<Clients />} />
-            <Route path="/demo" element={<Demo />} />
-            <Route path="/contact" element={<Contact />} />
-            {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
-            <Route path="*" element={<NotFound />} />
-          </Routes>
-        </Suspense>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/law-firms" element={<LawFirms />} />
+          <Route path="/clients" element={<Clients />} />
+          <Route path="/demo" element={<Demo />} />
+          <Route path="/contact" element={<Contact />} />
+          {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
+          <Route path="*" element={<NotFound />} />
+        </Routes>
       </BrowserRouter>
     </TooltipProvider>
   </QueryClientProvider>
