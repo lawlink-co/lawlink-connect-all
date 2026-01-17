@@ -30,7 +30,28 @@ function ScrollToTop() {
   return null;
 }
 
-const queryClient = new QueryClient();
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      // Data stays fresh for 5 minutes - no refetch during this window
+      staleTime: 5 * 60 * 1000,
+      // Keep unused data in cache for 30 minutes
+      gcTime: 30 * 60 * 1000,
+      // Don't refetch on window focus for static content
+      refetchOnWindowFocus: false,
+      // Don't refetch on reconnect unless stale
+      refetchOnReconnect: false,
+      // Don't refetch on mount if data exists and is fresh
+      refetchOnMount: false,
+      // Retry failed requests once
+      retry: 1,
+    },
+    mutations: {
+      // Retry mutations once on failure
+      retry: 1,
+    },
+  },
+});
 
 const App = () => (
   <QueryClientProvider client={queryClient}>
