@@ -65,6 +65,8 @@ CarouselDot.displayName = "CarouselDot";
 
 const CaseHubCarousel = memo(() => {
   const [activeIndex, setActiveIndex] = useState(0);
+  const touchStartX = useRef<number | null>(null);
+  const touchEndX = useRef<number | null>(null);
 
   // Auto-transition every 4 seconds
   useEffect(() => {
@@ -87,6 +89,36 @@ const CaseHubCarousel = memo(() => {
     []
   );
 
+  // Touch handlers for swipe navigation
+  const handleTouchStart = useCallback((e: React.TouchEvent) => {
+    touchStartX.current = e.touches[0].clientX;
+    touchEndX.current = null;
+  }, []);
+
+  const handleTouchMove = useCallback((e: React.TouchEvent) => {
+    touchEndX.current = e.touches[0].clientX;
+  }, []);
+
+  const handleTouchEnd = useCallback(() => {
+    if (touchStartX.current === null || touchEndX.current === null) return;
+    
+    const diff = touchStartX.current - touchEndX.current;
+    const minSwipeDistance = 50;
+
+    if (Math.abs(diff) > minSwipeDistance) {
+      if (diff > 0) {
+        // Swipe left - go to next
+        setActiveIndex((prev) => (prev + 1) % caseHubSlides.length);
+      } else {
+        // Swipe right - go to previous
+        setActiveIndex((prev) => (prev === 0 ? caseHubSlides.length - 1 : prev - 1));
+      }
+    }
+    
+    touchStartX.current = null;
+    touchEndX.current = null;
+  }, []);
+
   return (
     <section className="py-24 px-4 sm:px-6 lg:px-8 bg-white overflow-hidden">
       <div className="container mx-auto max-w-6xl text-center">
@@ -96,7 +128,12 @@ const CaseHubCarousel = memo(() => {
         </h2>
         
         {/* Virtualized Fade Image Container - only renders active + neighbors */}
-        <div className="relative flex items-center justify-center h-[320px] sm:h-[400px]">
+        <div 
+          className="relative flex items-center justify-center h-[320px] sm:h-[400px] touch-pan-y"
+          onTouchStart={handleTouchStart}
+          onTouchMove={handleTouchMove}
+          onTouchEnd={handleTouchEnd}
+        >
           {caseHubSlides.map((slide, index) => {
             // Only mount slides that are visible (active + prev/next)
             if (!visibleIndices.includes(index)) return null;
