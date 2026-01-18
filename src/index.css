@@ -135,41 +135,6 @@ All colors MUST be HSL.
   .scrollbar-hide::-webkit-scrollbar {
     display: none;
   }
-  
-  /* CSS containment for isolated sections - reduces paint/layout scope */
-  .contain-paint {
-    contain: layout paint style;
-  }
-  
-  /* Strict containment for completely isolated elements */
-  .contain-strict {
-    contain: strict;
-  }
-  
-  /* Content containment for size-aware sections */
-  .contain-content {
-    contain: content;
-  }
-}
-
-/* CSS-driven typewriter animation - no JS state updates during animation */
-@keyframes typewriter-reveal {
-  from {
-    clip-path: inset(0 100% 0 0);
-  }
-  to {
-    clip-path: inset(0 0 0 0);
-  }
-}
-
-/* Caret blink animation */
-@keyframes caret-blink {
-  0%, 50% { opacity: 1; }
-  51%, 100% { opacity: 0; }
-}
-
-.animate-caret-blink {
-  animation: caret-blink 0.8s infinite;
 }
 
 /* Reduced motion preferences - disable/simplify non-essential animations */

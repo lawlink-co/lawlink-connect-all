@@ -31,20 +31,14 @@ const ANIMATION_STYLES = {
 // Static gold color style for reuse
 const GOLD_COLOR_STYLE = { color: '#e0b660' } as const;
 
-// Memoized typewriter text component - CSS animation driven, no per-char state updates
-const TypewriterText = memo(({ isTyping, textFadedOut }: { isTyping: boolean; textFadedOut: boolean }) => {
-  // CSS-driven typewriter: text is always full, overflow hidden animates width
-  const showCursor = !textFadedOut && isTyping;
+// Memoized typewriter text component - only re-renders when visibleChars changes
+const TypewriterText = memo(({ visibleChars, textFadedOut }: { visibleChars: number; textFadedOut: boolean }) => {
+  const displayText = useMemo(() => TYPEWRITER_TEXT.slice(0, visibleChars), [visibleChars]);
+  const showCursor = !textFadedOut && visibleChars < TOTAL_CHARS;
   
   return (
-    <p 
-      className={`text-2xl sm:text-4xl lg:text-5xl text-zinc-200 font-light leading-tight sm:leading-relaxed whitespace-pre-wrap transition-opacity duration-300 ${isTyping || textFadedOut ? '' : 'opacity-0'}`}
-      style={{
-        // CSS typewriter animation via clip-path or overflow
-        animation: isTyping && !textFadedOut ? 'typewriter-reveal 3.5s steps(60, end) forwards' : 'none',
-      }}
-    >
-      {TYPEWRITER_TEXT}
+    <p className="text-2xl sm:text-4xl lg:text-5xl text-zinc-200 font-light leading-tight sm:leading-relaxed whitespace-pre-wrap">
+      {displayText}
       {showCursor && <span className="inline-block w-[3px] h-[1em] bg-zinc-200 ml-1 align-middle animate-caret-blink" />}
     </p>
   );
@@ -60,7 +54,11 @@ const Home = () => {
   const howItWorksSectionRef = useRef<HTMLDivElement>(null);
 
   // Derived values from phase - no state updates during animation
-  const isTyping = problemPhase >= 1 && problemPhase < 3;
+  const visibleChars = useMemo(() => {
+    if (problemPhase === 0) return 0;
+    if (problemPhase >= 2) return TOTAL_CHARS;
+    return TOTAL_CHARS; // Phase 1 triggers typewriter CSS animation
+  }, [problemPhase]);
 
   const textFadedOut = problemPhase >= 3;
   const logoVisible = problemPhase >= 3;
@@ -76,17 +74,19 @@ const Home = () => {
     const observers: IntersectionObserver[] = [];
     
     // Phase 1: Section enters viewport (start typewriter)
-    // Uses single timeout to phase 2 instead of per-char state updates
     const phase1Observer = new IntersectionObserver(
       (entries) => {
         if (entries[0].isIntersecting) {
           setProblemPhase(1);
-          // Calculate total typewriter duration and set single timeout to phase 2
-          // Total chars / 2 chars per tick * 50ms per tick
-          const typewriterDuration = (TOTAL_CHARS / 2) * 50;
-          setTimeout(() => {
-            setProblemPhase(2);
-          }, typewriterDuration);
+          // Start typewriter effect via timeout sequence
+          let charIndex = 0;
+          const typewriterInterval = setInterval(() => {
+            charIndex += 2;
+            if (charIndex >= TOTAL_CHARS) {
+              clearInterval(typewriterInterval);
+              setProblemPhase(2);
+            }
+          }, 50);
           phase1Observer.disconnect();
         }
       },
@@ -177,13 +177,13 @@ const Home = () => {
       </section>
 
       {/* Problem Section - Scroll-Locked Typography with Typewriter + Logo Reveal */}
-      <section ref={problemSectionRef} className="relative h-[300vh] bg-gradient-to-b from-black via-zinc-950 to-black contain-paint">
+      <section ref={problemSectionRef} className="relative h-[300vh] bg-gradient-to-b from-black via-zinc-950 to-black">
         <div className="sticky top-0 h-screen flex items-center justify-center px-4 sm:px-6 lg:px-8">
           {/* Typewriter Text - CSS-only opacity transition */}
           <div 
             className={`container mx-auto max-w-5xl text-center absolute transition-opacity duration-700 ${textFadedOut ? 'opacity-0' : 'opacity-100'}`}
           >
-            <TypewriterText isTyping={isTyping} textFadedOut={textFadedOut} />
+            <TypewriterText visibleChars={visibleChars} textFadedOut={textFadedOut} />
           </div>
           
           {/* Logo - CSS-only opacity and transform transitions */}
@@ -197,7 +197,7 @@ const Home = () => {
       </section>
 
       {/* Feature Carousel - The New Architecture */}
-      <div className="contain-paint">
+      <div>
         <FeatureCarousel />
       </div>
 
@@ -254,16 +254,12 @@ const Home = () => {
                 <div className="w-full border-t-2 border-dashed border-gold/50"></div>
               </div>
 
-              {/* Center Logo - shadow on static wrapper */}
-              <div className="flex-shrink-0 relative">
-                {/* Static shadow layer */}
-                <div className="absolute inset-0 w-24 h-24 rounded-2xl shadow-xl shadow-black/40 pointer-events-none" />
-                <div className={`flex flex-col items-center transition-[transform,opacity] duration-500 delay-100 ${howItWorksPhase >= 2 ? 'opacity-100 scale-100' : 'opacity-0 scale-90'}`}>
-                  <div className="w-24 h-24 rounded-2xl overflow-hidden">
-                    <img src={amicusALogo} alt="Amicus" className="w-full h-full object-cover" />
-                  </div>
-                  <img src={amicusGoldenASmall} alt="Amicus" className="w-10 h-auto mt-2" />
+              {/* Center Logo */}
+              <div className={`flex-shrink-0 flex flex-col items-center transition-[transform,opacity] duration-500 delay-100 ${howItWorksPhase >= 2 ? 'opacity-100 scale-100' : 'opacity-0 scale-90'}`}>
+                <div className="w-24 h-24 rounded-2xl overflow-hidden shadow-xl shadow-black/40">
+                  <img src={amicusALogo} alt="Amicus" className="w-full h-full object-cover" />
                 </div>
+                <img src={amicusGoldenASmall} alt="Amicus" className="w-10 h-auto mt-2" />
               </div>
 
               {/* Right Connector */}
@@ -326,16 +322,12 @@ const Home = () => {
               {/* Mobile Connector - Phase 2 */}
               <div className={`h-12 border-l-2 border-dashed border-gold/50 transition-opacity duration-500 delay-100 ${howItWorksPhase >= 2 ? 'opacity-100' : 'opacity-0'}`}></div>
 
-              {/* Center Logo - Phase 2 (delayed) - shadow on static wrapper */}
-              <div className="relative">
-                {/* Static shadow layer */}
-                <div className="absolute inset-0 w-20 h-20 rounded-xl shadow-lg shadow-black/40 pointer-events-none" />
-                <div className={`flex flex-col items-center transition-[transform,opacity] duration-500 delay-200 ${howItWorksPhase >= 2 ? 'opacity-100 scale-100' : 'opacity-0 scale-90'}`}>
-                  <div className="w-20 h-20 rounded-xl overflow-hidden">
-                    <img src={amicusALogo} alt="Amicus" className="w-full h-full object-cover" />
-                  </div>
-                  <img src={amicusGoldenASmall} alt="Amicus" className="w-[7.5rem] h-auto mt-1" />
+              {/* Center Logo - Phase 2 (delayed) */}
+              <div className={`flex flex-col items-center transition-[transform,opacity] duration-500 delay-200 ${howItWorksPhase >= 2 ? 'opacity-100 scale-100' : 'opacity-0 scale-90'}`}>
+                <div className="w-20 h-20 rounded-xl overflow-hidden shadow-lg shadow-black/40">
+                  <img src={amicusALogo} alt="Amicus" className="w-full h-full object-cover" />
                 </div>
+                <img src={amicusGoldenASmall} alt="Amicus" className="w-[7.5rem] h-auto mt-1" />
               </div>
 
               {/* Mobile Connector - Phase 3 */}

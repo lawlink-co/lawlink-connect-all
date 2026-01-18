@@ -81,7 +81,7 @@ const LawFirms = () => {
       <Navigation />
       
       {/* Hero Section */}
-      <section className="min-h-screen flex items-center justify-center px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-black via-zinc-950 to-black contain-paint">
+      <section className="min-h-screen flex items-center justify-center px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-black via-zinc-950 to-black">
         <div className="container mx-auto max-w-5xl text-center">
           <h1 className="text-[2.625rem] sm:text-6xl lg:text-7xl xl:text-7xl font-light leading-tight tracking-wide mb-8">
             <div className="flex flex-col gap-1 sm:gap-2">
@@ -107,7 +107,7 @@ const LawFirms = () => {
       </section>
 
       {/* All-in-One System Section */}
-      <section className="py-24 px-0 sm:px-6 lg:px-8 bg-gradient-to-b from-black to-zinc-950 contain-paint">
+      <section className="py-24 px-0 sm:px-6 lg:px-8 bg-gradient-to-b from-black to-zinc-950">
         <div className="mx-auto w-full sm:container sm:max-w-7xl">
           <div className="text-center mb-12 space-y-6 animate-fade-in px-4 sm:px-0">
             <h2 className="text-3xl sm:text-4xl font-normal">
