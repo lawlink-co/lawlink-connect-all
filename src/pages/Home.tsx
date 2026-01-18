@@ -31,14 +31,20 @@ const ANIMATION_STYLES = {
 // Static gold color style for reuse
 const GOLD_COLOR_STYLE = { color: '#e0b660' } as const;
 
-// Memoized typewriter text component - only re-renders when visibleChars changes
-const TypewriterText = memo(({ visibleChars, textFadedOut }: { visibleChars: number; textFadedOut: boolean }) => {
-  const displayText = useMemo(() => TYPEWRITER_TEXT.slice(0, visibleChars), [visibleChars]);
-  const showCursor = !textFadedOut && visibleChars < TOTAL_CHARS;
+// Memoized typewriter text component - CSS animation driven, no per-char state updates
+const TypewriterText = memo(({ isTyping, textFadedOut }: { isTyping: boolean; textFadedOut: boolean }) => {
+  // CSS-driven typewriter: text is always full, overflow hidden animates width
+  const showCursor = !textFadedOut && isTyping;
   
   return (
-    <p className="text-2xl sm:text-4xl lg:text-5xl text-zinc-200 font-light leading-tight sm:leading-relaxed whitespace-pre-wrap">
-      {displayText}
+    <p 
+      className={`text-2xl sm:text-4xl lg:text-5xl text-zinc-200 font-light leading-tight sm:leading-relaxed whitespace-pre-wrap transition-opacity duration-300 ${isTyping || textFadedOut ? '' : 'opacity-0'}`}
+      style={{
+        // CSS typewriter animation via clip-path or overflow
+        animation: isTyping && !textFadedOut ? 'typewriter-reveal 3.5s steps(60, end) forwards' : 'none',
+      }}
+    >
+      {TYPEWRITER_TEXT}
       {showCursor && <span className="inline-block w-[3px] h-[1em] bg-zinc-200 ml-1 align-middle animate-caret-blink" />}
     </p>
   );
@@ -54,11 +60,7 @@ const Home = () => {
   const howItWorksSectionRef = useRef<HTMLDivElement>(null);
 
   // Derived values from phase - no state updates during animation
-  const visibleChars = useMemo(() => {
-    if (problemPhase === 0) return 0;
-    if (problemPhase >= 2) return TOTAL_CHARS;
-    return TOTAL_CHARS; // Phase 1 triggers typewriter CSS animation
-  }, [problemPhase]);
+  const isTyping = problemPhase >= 1 && problemPhase < 3;
 
   const textFadedOut = problemPhase >= 3;
   const logoVisible = problemPhase >= 3;
@@ -74,19 +76,17 @@ const Home = () => {
     const observers: IntersectionObserver[] = [];
     
     // Phase 1: Section enters viewport (start typewriter)
+    // Uses single timeout to phase 2 instead of per-char state updates
     const phase1Observer = new IntersectionObserver(
       (entries) => {
         if (entries[0].isIntersecting) {
           setProblemPhase(1);
-          // Start typewriter effect via timeout sequence
-          let charIndex = 0;
-          const typewriterInterval = setInterval(() => {
-            charIndex += 2;
-            if (charIndex >= TOTAL_CHARS) {
-              clearInterval(typewriterInterval);
-              setProblemPhase(2);
-            }
-          }, 50);
+          // Calculate total typewriter duration and set single timeout to phase 2
+          // Total chars / 2 chars per tick * 50ms per tick
+          const typewriterDuration = (TOTAL_CHARS / 2) * 50;
+          setTimeout(() => {
+            setProblemPhase(2);
+          }, typewriterDuration);
           phase1Observer.disconnect();
         }
       },
@@ -183,7 +183,7 @@ const Home = () => {
           <div 
             className={`container mx-auto max-w-5xl text-center absolute transition-opacity duration-700 ${textFadedOut ? 'opacity-0' : 'opacity-100'}`}
           >
-            <TypewriterText visibleChars={visibleChars} textFadedOut={textFadedOut} />
+            <TypewriterText isTyping={isTyping} textFadedOut={textFadedOut} />
           </div>
           
           {/* Logo - CSS-only opacity and transform transitions */}
