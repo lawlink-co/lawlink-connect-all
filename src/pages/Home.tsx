@@ -1,6 +1,5 @@
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import Navigation from "@/components/Navigation";
 import FeatureCarousel from "@/components/FeatureCarousel";
 import { useEffect, useRef, useState } from "react";
 import amicusGoldenA from "@/assets/amicus-golden-a.png";
@@ -132,8 +131,6 @@ const Home = () => {
     };
   }, []);
   return <div className="min-h-screen bg-black text-white font-caslon">
-      <Navigation />
-      
       {/* Hero Section */}
       <section className="relative min-h-screen flex items-center justify-center px-4 sm:px-6 lg:px-8 overflow-hidden bg-black">
         <div className="mx-auto w-full max-w-6xl text-center relative z-10 px-4">

@@ -1,7 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { MessageSquare, Bell, FileSearch, Shield, Smartphone, Clock, Check, Calendar, Briefcase } from "lucide-react";
-import Navigation from "@/components/Navigation";
 import clientHeaderPhone from "@/assets/client-header-phone.png";
 import caseNotification from "@/assets/case-notification-v2.png";
 import phoneFrame from "@/assets/phone-frame.svg";
@@ -184,8 +183,6 @@ const Clients = () => {
     return () => observer.disconnect();
   }, [isMobile]);
   return <div className="min-h-screen bg-white font-sans [&_h1]:font-sans [&_h2]:font-sans [&_h3]:font-sans [&_h4]:font-sans [&_p]:font-sans">
-      <Navigation />
-      
       {/* Hero Section */}
       <section className="pt-32 pb-24 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-blue-50 via-white to-indigo-50">
         <div className="container mx-auto max-w-6xl">

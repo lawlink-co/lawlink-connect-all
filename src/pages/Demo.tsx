@@ -1,13 +1,9 @@
-import Navigation from "@/components/Navigation";
-
 const Demo = () => {
   // Replace this with your actual Calendly link
   const CALENDLY_URL = "https://calendly.com/case-amicusai/30min";
 
   return (
     <div className="min-h-screen bg-black text-white">
-      <Navigation />
-      
       {/* Hero Section */}
       <section className="pt-32 pb-12 px-4 sm:px-6 lg:px-8">
         <div className="container mx-auto max-w-4xl text-center">
