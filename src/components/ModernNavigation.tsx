@@ -172,7 +172,13 @@ const ModernNavigation = () => {
                 Solutions
               </Link>
               <Link
-                to="/contact"
+                to="/clients"
+                className="text-white hover:text-[#e0b660] transition-colors px-4 py-2"
+              >
+                Clients
+              </Link>
+              <Link
+                to="/about"
                 className="text-white hover:text-[#e0b660] transition-colors px-4 py-2"
               >
                 About
@@ -302,7 +308,14 @@ const ModernNavigation = () => {
                   Solutions
                 </Link>
                 <Link
-                  to="/contact"
+                  to="/clients"
+                  onClick={() => setIsMobileMenuOpen(false)}
+                  className="block px-4 py-4 text-lg font-medium text-white hover:text-[#e0b660] hover:bg-zinc-900/50 rounded-lg transition-colors"
+                >
+                  Clients
+                </Link>
+                <Link
+                  to="/about"
                   onClick={() => setIsMobileMenuOpen(false)}
                   className="block px-4 py-4 text-lg font-medium text-white hover:text-[#e0b660] hover:bg-zinc-900/50 rounded-lg transition-colors"
                 >
