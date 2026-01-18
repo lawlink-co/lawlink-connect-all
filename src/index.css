@@ -137,6 +137,26 @@ All colors MUST be HSL.
   }
 }
 
+/* CSS-driven typewriter animation - no JS state updates during animation */
+@keyframes typewriter-reveal {
+  from {
+    clip-path: inset(0 100% 0 0);
+  }
+  to {
+    clip-path: inset(0 0 0 0);
+  }
+}
+
+/* Caret blink animation */
+@keyframes caret-blink {
+  0%, 50% { opacity: 1; }
+  51%, 100% { opacity: 0; }
+}
+
+.animate-caret-blink {
+  animation: caret-blink 0.8s infinite;
+}
+
 /* Reduced motion preferences - disable/simplify non-essential animations */
 @media (prefers-reduced-motion: reduce) {
   *,
