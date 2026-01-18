@@ -25,13 +25,13 @@ const Navigation = memo(() => {
           
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center space-x-8">
-            <Link to="/" className={`${isClientsPage ? 'text-black' : 'text-white'} hover:text-primary transition-colors`}>
+            <Link to="/" className={`${isClientsPage ? 'text-black' : 'text-white/90'} hover:text-primary transition-colors`}>
               Home
             </Link>
-            <Link to="/law-firms" className={`${isClientsPage ? 'text-black' : 'text-white'} hover:text-primary transition-colors`}>
+            <Link to="/law-firms" className={`${isClientsPage ? 'text-black' : 'text-white/90'} hover:text-primary transition-colors`}>
               For Law Firms
             </Link>
-            <Link to="/clients" className={`${isClientsPage ? 'text-black' : 'text-white'} hover:text-primary transition-colors`}>
+            <Link to="/clients" className={`${isClientsPage ? 'text-black' : 'text-white/90'} hover:text-primary transition-colors`}>
               For Clients
             </Link>
             <Link to="/demo">
