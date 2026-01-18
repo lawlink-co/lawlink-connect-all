@@ -2,9 +2,8 @@ import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import Navigation from "@/components/Navigation";
 import FeatureCarousel from "@/components/FeatureCarousel";
-import { useEffect, useRef, useState, useMemo, useCallback, memo } from "react";
+import { useEffect, useRef, useState, useMemo, memo } from "react";
 import amicusGoldenA from "@/assets/amicus-golden-a.png";
-import amicusLogo from "@/assets/amicus-golden-a.png";
 import amicusALogo from "@/assets/amicus-a-logo.png";
 import amicusGoldenASmall from "@/assets/amicus-golden-a-small.png";
 
@@ -27,7 +26,6 @@ const ANIMATION_STYLES = {
   fadeIn800: { animationDelay: '0.8s', animationFillMode: 'forwards' as const },
   fadeIn1500: { animationDelay: '1500ms', animationFillMode: 'forwards', animationDuration: '600ms' as const },
   fadeIn2000: { animationDelay: '2000ms', animationFillMode: 'forwards' as const },
-  logoScale: { transform: 'scale(1.3)' },
 };
 
 // Static gold color style for reuse
@@ -35,7 +33,6 @@ const GOLD_COLOR_STYLE = { color: '#e0b660' } as const;
 
 // Memoized typewriter text component - only re-renders when visibleChars changes
 const TypewriterText = memo(({ visibleChars, textFadedOut }: { visibleChars: number; textFadedOut: boolean }) => {
-  // Memoize the sliced text to avoid string operations on each render
   const displayText = useMemo(() => TYPEWRITER_TEXT.slice(0, visibleChars), [visibleChars]);
   const showCursor = !textFadedOut && visibleChars < TOTAL_CHARS;
   
@@ -49,160 +46,110 @@ const TypewriterText = memo(({ visibleChars, textFadedOut }: { visibleChars: num
 TypewriterText.displayName = "TypewriterText";
 
 const Home = () => {
-  const [visibleChars, setVisibleChars] = useState(0);
-  const [textFadedOut, setTextFadedOut] = useState(false);
-  const [logoVisible, setLogoVisible] = useState(false);
-  const [logoFadeOut, setLogoFadeOut] = useState(0);
-  const problemSectionRef = useRef<HTMLDivElement>(null);
-  const featureCarouselRef = useRef<HTMLDivElement>(null);
-
-  // How It Works animation states
+  // Animation phases - set once, never updated during motion
+  const [problemPhase, setProblemPhase] = useState(0); // 0: initial, 1: typewriter, 2: text visible, 3: logo visible, 4: exiting
   const [howItWorksPhase, setHowItWorksPhase] = useState(0);
+  
+  const problemSectionRef = useRef<HTMLDivElement>(null);
   const howItWorksSectionRef = useRef<HTMLDivElement>(null);
-  const howItWorksTriggeredRef = useRef(false);
 
-  // Memoize dynamic style objects to prevent recreation on unrelated state changes
-  const typewriterContainerStyle = useMemo(() => ({
-    opacity: textFadedOut ? 0 : 1
-  }), [textFadedOut]);
+  // Derived values from phase - no state updates during animation
+  const visibleChars = useMemo(() => {
+    if (problemPhase === 0) return 0;
+    if (problemPhase >= 2) return TOTAL_CHARS;
+    return TOTAL_CHARS; // Phase 1 triggers typewriter CSS animation
+  }, [problemPhase]);
 
-  const logoContainerStyle = useMemo(() => ({
-    opacity: logoVisible ? 1 - logoFadeOut : 0,
-    ...ANIMATION_STYLES.logoScale
-  }), [logoVisible, logoFadeOut]);
+  const textFadedOut = problemPhase >= 3;
+  const logoVisible = problemPhase >= 3;
+  const logoFadeOut = problemPhase >= 4;
+
+  // Problem section observer - triggers phase changes at thresholds
   useEffect(() => {
-    let rafId: number | null = null;
-    let ticking = false;
+    if (!problemSectionRef.current) return;
 
-    const updateScrollState = () => {
-      if (!problemSectionRef.current) {
-        ticking = false;
-        return;
-      }
-      const section = problemSectionRef.current;
-      const rect = section.getBoundingClientRect();
-      const sectionHeight = section.offsetHeight;
-
-      // Calculate scroll progress (0 to 1)
-      // Section is now 300vh, so we have 200vh of scroll room
-      const scrollProgress = Math.max(0, Math.min(1, -rect.top / (sectionHeight - window.innerHeight)));
-
-      // Phase 1: Typewriter (0% - 40% scroll)
-      // Phase 2: Text fade out (40% - 55% scroll)  
-      // Phase 3: Logo fade in (55% - 70% scroll)
-      // Phase 4: Logo holds at full opacity (70% - 100% scroll)
-
-      if (scrollProgress <= 0.4) {
-        // Typewriter phase - map 0-40% to full text
-        const typewriterProgress = scrollProgress / 0.4;
-        let charIndex: number;
-        if (typewriterProgress <= 0.7) {
-          // Map 0-70% of typewriter phase to text before "until now."
-          charIndex = Math.floor(typewriterProgress / 0.7 * UNTIL_NOW_START);
-        } else {
-          // Map 70-100% of typewriter phase to "until now." (slower reveal)
-          const slowProgress = (typewriterProgress - 0.7) / 0.3;
-          charIndex = UNTIL_NOW_START + Math.floor(slowProgress * (TOTAL_CHARS - UNTIL_NOW_START));
+    const section = problemSectionRef.current;
+    
+    // Create observers for different scroll positions
+    const observers: IntersectionObserver[] = [];
+    
+    // Phase 1: Section enters viewport (start typewriter)
+    const phase1Observer = new IntersectionObserver(
+      (entries) => {
+        if (entries[0].isIntersecting) {
+          setProblemPhase(1);
+          // Start typewriter effect via timeout sequence
+          let charIndex = 0;
+          const typewriterInterval = setInterval(() => {
+            charIndex += 2;
+            if (charIndex >= TOTAL_CHARS) {
+              clearInterval(typewriterInterval);
+              setProblemPhase(2);
+            }
+          }, 50);
+          phase1Observer.disconnect();
         }
-        setVisibleChars(Math.min(charIndex, TOTAL_CHARS));
-        setTextFadedOut(false);
-        setLogoVisible(false);
-      } else if (scrollProgress <= 0.55) {
-        // Text fade out phase - text fades, logo not yet visible
-        setVisibleChars(TOTAL_CHARS);
-        setTextFadedOut(true);
-        setLogoVisible(false);
-      } else {
-        // Logo visible phase - text gone, logo at full opacity
-        setVisibleChars(TOTAL_CHARS);
-        setTextFadedOut(true);
-        setLogoVisible(true);
-      }
-
-      // Logo fade out ONLY when problem section reaches top of viewport
-      // (i.e., when the sticky section is about to exit)
-      const stickyElement = section.querySelector('.sticky');
-      if (stickyElement) {
-        // Only fade out when the section's top is at or above the viewport top
-        // and the section is about to scroll out
-        const sectionBottom = rect.bottom;
-        const viewportHeight = window.innerHeight;
-
-        // Start fading when section bottom is less than viewport height (section exiting)
-        if (sectionBottom < viewportHeight && sectionBottom > 0) {
-          const fadeProgress = 1 - sectionBottom / viewportHeight;
-          setLogoFadeOut(Math.min(1, fadeProgress * 2)); // Faster fade
-        } else {
-          setLogoFadeOut(0);
+      },
+      { threshold: 0.1 }
+    );
+    
+    // Phase 2->3: Text fades out, logo fades in (40% scrolled through)
+    const phase3Observer = new IntersectionObserver(
+      (entries) => {
+        // When top 55% of section is out of view
+        if (!entries[0].isIntersecting) {
+          setProblemPhase(3);
         }
-      }
-      ticking = false;
-    };
-
-    const handleScroll = () => {
-      if (!ticking) {
-        rafId = requestAnimationFrame(updateScrollState);
-        ticking = true;
-      }
-    };
-
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    // Initial call
-    updateScrollState();
-    return () => {
-      window.removeEventListener('scroll', handleScroll);
-      if (rafId !== null) {
-        cancelAnimationFrame(rafId);
-      }
-    };
+      },
+      { threshold: 0.55, rootMargin: '0px 0px 0px 0px' }
+    );
+    
+    // Phase 4: Logo fades out (section exiting)
+    const phase4Observer = new IntersectionObserver(
+      (entries) => {
+        if (!entries[0].isIntersecting) {
+          setProblemPhase(4);
+        }
+      },
+      { threshold: 0.1 }
+    );
+    
+    phase1Observer.observe(section);
+    phase3Observer.observe(section);
+    phase4Observer.observe(section);
+    
+    observers.push(phase1Observer, phase3Observer, phase4Observer);
+    
+    return () => observers.forEach(o => o.disconnect());
   }, []);
 
-  // How It Works section animation - RAF throttled
+  // How It Works section observer - triggers once
   useEffect(() => {
-    let rafId: number | null = null;
-    let ticking = false;
-
-    const checkHowItWorksVisibility = () => {
-      if (!howItWorksSectionRef.current || howItWorksTriggeredRef.current) {
-        ticking = false;
-        return;
-      }
-      const section = howItWorksSectionRef.current;
-      const rect = section.getBoundingClientRect();
-
-      // Trigger when section is 40% visible
-      if (rect.top < window.innerHeight * 0.6) {
-        howItWorksTriggeredRef.current = true;
-        // Phase 1: Icons appear with "Not Connected"
-        setHowItWorksPhase(1);
-        // Phase 2: Line connects after 800ms
-        setTimeout(() => setHowItWorksPhase(2), 800);
-        // Phase 3: Rest of content loads after 1400ms
-        setTimeout(() => setHowItWorksPhase(3), 1400);
-        // Phase 4: "For Both" section appears after 2000ms
-        setTimeout(() => setHowItWorksPhase(4), 2000);
-      }
-      ticking = false;
-    };
-
-    const handleScroll = () => {
-      if (!ticking && !howItWorksTriggeredRef.current) {
-        rafId = requestAnimationFrame(checkHowItWorksVisibility);
-        ticking = true;
-      }
-    };
-
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    // Initial check
-    checkHowItWorksVisibility();
-    return () => {
-      window.removeEventListener('scroll', handleScroll);
-      if (rafId !== null) {
-        cancelAnimationFrame(rafId);
-      }
-    };
+    if (!howItWorksSectionRef.current) return;
+    
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (entries[0].isIntersecting) {
+          // Phase 1: Icons appear with "Not Connected"
+          setHowItWorksPhase(1);
+          // Phase 2: Line connects after 800ms
+          setTimeout(() => setHowItWorksPhase(2), 800);
+          // Phase 3: Rest of content loads after 1400ms
+          setTimeout(() => setHowItWorksPhase(3), 1400);
+          // Phase 4: "For Both" section appears after 2000ms
+          setTimeout(() => setHowItWorksPhase(4), 2000);
+          observer.disconnect();
+        }
+      },
+      { threshold: 0.4 }
+    );
+    
+    observer.observe(howItWorksSectionRef.current);
+    return () => observer.disconnect();
   }, []);
-  return <div className="min-h-screen bg-black text-white font-caslon">
+
+  return (
+    <div className="min-h-screen bg-black text-white font-caslon">
       <Navigation />
       
       {/* Hero Section */}
@@ -232,15 +179,17 @@ const Home = () => {
       {/* Problem Section - Scroll-Locked Typography with Typewriter + Logo Reveal */}
       <section ref={problemSectionRef} className="relative h-[300vh] bg-gradient-to-b from-black via-zinc-950 to-black">
         <div className="sticky top-0 h-screen flex items-center justify-center px-4 sm:px-6 lg:px-8">
-          {/* Typewriter Text - fades out when textFadedOut is true */}
-          <div className="container mx-auto max-w-5xl text-center absolute transition-opacity duration-700" style={typewriterContainerStyle}>
+          {/* Typewriter Text - CSS-only opacity transition */}
+          <div 
+            className={`container mx-auto max-w-5xl text-center absolute transition-opacity duration-700 ${textFadedOut ? 'opacity-0' : 'opacity-100'}`}
+          >
             <TypewriterText visibleChars={visibleChars} textFadedOut={textFadedOut} />
           </div>
           
-          {/* Logo - fades in AFTER text is fully gone, stays at full opacity until section exits viewport */}
+          {/* Logo - CSS-only opacity and transform transitions */}
           <div 
-            className="absolute flex items-center justify-center transition-opacity duration-700" 
-            style={logoContainerStyle}
+            className={`absolute flex items-center justify-center transition-opacity duration-700 ${logoVisible ? (logoFadeOut ? 'opacity-0' : 'opacity-100') : 'opacity-0'}`}
+            style={{ transform: 'scale(1.3)' }}
           >
             <img src={amicusGoldenA} alt="Amicus" className="w-48 sm:w-64 lg:w-80 h-auto" />
           </div>
@@ -248,20 +197,20 @@ const Home = () => {
       </section>
 
       {/* Feature Carousel - The New Architecture */}
-      <div ref={featureCarouselRef}>
+      <div>
         <FeatureCarousel />
       </div>
 
       {/* How It Works Section - Connection Between Client & Lawyer */}
       <section ref={howItWorksSectionRef} className="py-24 px-4 sm:px-6 lg:px-8 bg-black border-t border-zinc-800/50">
         <div className="container mx-auto max-w-5xl">
-          <h2 className={`text-2xl sm:text-3xl lg:text-4xl font-normal mb-4 text-center transition-all duration-500 leading-tight ${howItWorksPhase >= 1 ? 'lg:opacity-0 lg:translate-y-4' : ''} ${howItWorksPhase >= 3 ? 'lg:opacity-100 lg:translate-y-0' : ''} ${howItWorksPhase >= 1 ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>How It Works</h2>
-          <p className={`text-lg text-zinc-400 text-center mb-10 lg:mb-16 max-w-2xl mx-auto transition-all duration-500 delay-100 leading-relaxed ${howItWorksPhase >= 1 ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'} ${howItWorksPhase >= 3 ? 'lg:opacity-100 lg:translate-y-0' : 'lg:opacity-0 lg:translate-y-4'}`}>
+          <h2 className={`text-2xl sm:text-3xl lg:text-4xl font-normal mb-4 text-center transition-[transform,opacity] duration-500 leading-tight ${howItWorksPhase >= 1 ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'} ${howItWorksPhase >= 3 ? 'lg:opacity-100 lg:translate-y-0' : 'lg:opacity-0 lg:translate-y-4'}`}>How It Works</h2>
+          <p className={`text-lg text-zinc-400 text-center mb-10 lg:mb-16 max-w-2xl mx-auto transition-[transform,opacity] duration-500 delay-100 leading-relaxed ${howItWorksPhase >= 1 ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'} ${howItWorksPhase >= 3 ? 'lg:opacity-100 lg:translate-y-0' : 'lg:opacity-0 lg:translate-y-4'}`}>
             Amicus bridges clients and their lawyers — making every case tangible, fast-moving, and transparent.
           </p>
 
           {/* Gold accent divider under heading */}
-          <div className={`flex justify-center mb-8 lg:mb-12 transition-all duration-500 delay-150 ${howItWorksPhase >= 1 ? 'opacity-100' : 'opacity-0'} ${howItWorksPhase >= 3 ? 'lg:opacity-100' : 'lg:opacity-0'}`}>
+          <div className={`flex justify-center mb-8 lg:mb-12 transition-opacity duration-500 delay-150 ${howItWorksPhase >= 1 ? 'opacity-100' : 'opacity-0'} ${howItWorksPhase >= 3 ? 'lg:opacity-100' : 'lg:opacity-0'}`}>
             <div className="w-12 h-0.5 bg-gold rounded-full"></div>
           </div>
 
@@ -270,7 +219,7 @@ const Home = () => {
             {/* Desktop Layout */}
             <div className="hidden lg:flex items-center justify-center gap-0">
               {/* For Lawyers Card */}
-              <div className={`flex-1 max-w-sm bg-zinc-900/60 border border-zinc-800 rounded-2xl p-8 transition-all duration-500 ${howItWorksPhase >= 1 ? 'opacity-100' : 'opacity-0'} hover:border-gold/40 hover:bg-zinc-900/80`}>
+              <div className={`flex-1 max-w-sm bg-zinc-900/60 border border-zinc-800 rounded-2xl p-8 transition-[transform,opacity] duration-500 ${howItWorksPhase >= 1 ? 'opacity-100' : 'opacity-0'} hover:border-gold/40 hover:bg-zinc-900/80`}>
                 <div className="flex items-center gap-3 mb-5">
                   <div className="w-10 h-10 bg-gold/10 border border-gold/30 rounded-xl flex items-center justify-center">
                     <svg className="w-5 h-5 text-gold" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -279,7 +228,7 @@ const Home = () => {
                   </div>
                   <h3 className="text-xl font-medium text-white">For Lawyers</h3>
                 </div>
-                <div className={`transition-all duration-500 delay-200 ${howItWorksPhase >= 3 ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
+                <div className={`transition-[transform,opacity] duration-500 delay-200 ${howItWorksPhase >= 3 ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
                   <p className="text-zinc-400 mb-5 text-sm leading-relaxed">
                     A magnificent infrastructure to handle litigation faster.
                   </p>
@@ -301,12 +250,12 @@ const Home = () => {
               </div>
 
               {/* Left Connector */}
-              <div className={`w-16 flex items-center transition-all duration-700 ${howItWorksPhase >= 2 ? 'opacity-100' : 'opacity-0'}`}>
+              <div className={`w-16 flex items-center transition-opacity duration-700 ${howItWorksPhase >= 2 ? 'opacity-100' : 'opacity-0'}`}>
                 <div className="w-full border-t-2 border-dashed border-gold/50"></div>
               </div>
 
               {/* Center Logo */}
-              <div className={`flex-shrink-0 flex flex-col items-center transition-all duration-500 delay-100 ${howItWorksPhase >= 2 ? 'opacity-100 scale-100' : 'opacity-0 scale-90'}`}>
+              <div className={`flex-shrink-0 flex flex-col items-center transition-[transform,opacity] duration-500 delay-100 ${howItWorksPhase >= 2 ? 'opacity-100 scale-100' : 'opacity-0 scale-90'}`}>
                 <div className="w-24 h-24 rounded-2xl overflow-hidden shadow-xl shadow-black/40">
                   <img src={amicusALogo} alt="Amicus" className="w-full h-full object-cover" />
                 </div>
@@ -314,12 +263,12 @@ const Home = () => {
               </div>
 
               {/* Right Connector */}
-              <div className={`w-16 flex items-center transition-all duration-700 ${howItWorksPhase >= 2 ? 'opacity-100' : 'opacity-0'}`}>
+              <div className={`w-16 flex items-center transition-opacity duration-700 ${howItWorksPhase >= 2 ? 'opacity-100' : 'opacity-0'}`}>
                 <div className="w-full border-t-2 border-dashed border-gold/50"></div>
               </div>
 
               {/* For Clients Card */}
-              <div className={`flex-1 max-w-sm bg-zinc-900/60 border border-zinc-800 rounded-2xl p-8 transition-all duration-500 delay-100 ${howItWorksPhase >= 1 ? 'opacity-100' : 'opacity-0'} hover:border-gold/40 hover:bg-zinc-900/80`}>
+              <div className={`flex-1 max-w-sm bg-zinc-900/60 border border-zinc-800 rounded-2xl p-8 transition-[transform,opacity] duration-500 delay-100 ${howItWorksPhase >= 1 ? 'opacity-100' : 'opacity-0'} hover:border-gold/40 hover:bg-zinc-900/80`}>
                 <div className="flex items-center gap-3 mb-5">
                   <div className="w-10 h-10 bg-gold/10 border border-gold/30 rounded-xl flex items-center justify-center">
                     <svg className="w-5 h-5 text-gold" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -328,7 +277,7 @@ const Home = () => {
                   </div>
                   <h3 className="text-xl font-medium text-white">For Clients</h3>
                 </div>
-                <div className={`transition-all duration-500 delay-300 ${howItWorksPhase >= 3 ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
+                <div className={`transition-[transform,opacity] duration-500 delay-300 ${howItWorksPhase >= 3 ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
                   <p className="text-zinc-400 mb-5 text-sm leading-relaxed">
                     Cases become real with an interactive app.
                   </p>
@@ -353,7 +302,7 @@ const Home = () => {
             {/* Mobile Layout */}
             <div className="lg:hidden flex flex-col items-center gap-0">
               {/* For Lawyers Card - Phase 1 */}
-              <div className={`w-full max-w-sm bg-zinc-900/60 border border-zinc-800 rounded-2xl p-6 transition-all duration-500 ${howItWorksPhase >= 1 ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
+              <div className={`w-full max-w-sm bg-zinc-900/60 border border-zinc-800 rounded-2xl p-6 transition-[transform,opacity] duration-500 ${howItWorksPhase >= 1 ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
                 <div className="flex items-center gap-3 mb-4">
                   <div className="w-10 h-10 bg-gold/10 border border-gold/30 rounded-xl flex items-center justify-center">
                     <svg className="w-5 h-5 text-gold" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -371,10 +320,10 @@ const Home = () => {
               </div>
 
               {/* Mobile Connector - Phase 2 */}
-              <div className={`h-12 border-l-2 border-dashed border-gold/50 transition-all duration-500 delay-100 ${howItWorksPhase >= 2 ? 'opacity-100' : 'opacity-0'}`}></div>
+              <div className={`h-12 border-l-2 border-dashed border-gold/50 transition-opacity duration-500 delay-100 ${howItWorksPhase >= 2 ? 'opacity-100' : 'opacity-0'}`}></div>
 
               {/* Center Logo - Phase 2 (delayed) */}
-              <div className={`flex flex-col items-center transition-all duration-500 delay-200 ${howItWorksPhase >= 2 ? 'opacity-100 scale-100' : 'opacity-0 scale-90'}`}>
+              <div className={`flex flex-col items-center transition-[transform,opacity] duration-500 delay-200 ${howItWorksPhase >= 2 ? 'opacity-100 scale-100' : 'opacity-0 scale-90'}`}>
                 <div className="w-20 h-20 rounded-xl overflow-hidden shadow-lg shadow-black/40">
                   <img src={amicusALogo} alt="Amicus" className="w-full h-full object-cover" />
                 </div>
@@ -382,10 +331,10 @@ const Home = () => {
               </div>
 
               {/* Mobile Connector - Phase 3 */}
-              <div className={`h-6 border-l-2 border-dashed border-gold/50 transition-all duration-500 ${howItWorksPhase >= 3 ? 'opacity-100' : 'opacity-0'}`}></div>
+              <div className={`h-6 border-l-2 border-dashed border-gold/50 transition-opacity duration-500 ${howItWorksPhase >= 3 ? 'opacity-100' : 'opacity-0'}`}></div>
 
               {/* For Clients Card - Phase 3 (delayed) */}
-              <div className={`w-full max-w-sm bg-zinc-900/60 border border-zinc-800 rounded-2xl p-6 transition-all duration-500 delay-100 ${howItWorksPhase >= 3 ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
+              <div className={`w-full max-w-sm bg-zinc-900/60 border border-zinc-800 rounded-2xl p-6 transition-[transform,opacity] duration-500 delay-100 ${howItWorksPhase >= 3 ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
                 <div className="flex items-center gap-3 mb-4">
                   <div className="w-10 h-10 bg-gold/10 border border-gold/30 rounded-xl flex items-center justify-center">
                     <svg className="w-5 h-5 text-gold" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -405,7 +354,7 @@ const Home = () => {
           </div>
 
           {/* Shared Outcome - appears in phase 4 */}
-          <div className={`transition-all duration-700 ${howItWorksPhase >= 4 ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
+          <div className={`transition-[transform,opacity] duration-700 ${howItWorksPhase >= 4 ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
             <div className="bg-zinc-950 border border-zinc-800/50 rounded-lg p-8 text-center">
               <div className="flex items-center justify-center gap-2 mb-6">
                 <div className="w-8 h-px bg-gold/40"></div>
@@ -415,7 +364,7 @@ const Home = () => {
                 <div className="w-8 h-px bg-gold/40"></div>
               </div>
               <div className="grid grid-cols-1 md:grid-cols-3 gap-5 max-w-3xl mx-auto">
-                <div className={`flex flex-col items-center transition-all duration-500 delay-[100ms] ${howItWorksPhase >= 4 ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
+                <div className={`flex flex-col items-center transition-[transform,opacity] duration-500 delay-[100ms] ${howItWorksPhase >= 4 ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
                   <div className="w-11 h-11 bg-zinc-900 border border-gold/30 rounded-full flex items-center justify-center mb-3">
                     <svg className="w-5 h-5 text-gold" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M13 10V3L4 14h7v7l9-11h-7z" />
@@ -424,7 +373,7 @@ const Home = () => {
                   <p className="text-white font-medium mb-1 text-sm">Faster <span className="text-[#e0b660] italic">Forward</span></p>
                   <p className="text-xs text-zinc-500">Every case moves at the speed of technology</p>
                 </div>
-                <div className={`flex flex-col items-center transition-all duration-500 delay-[200ms] ${howItWorksPhase >= 4 ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
+                <div className={`flex flex-col items-center transition-[transform,opacity] duration-500 delay-[200ms] ${howItWorksPhase >= 4 ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
                   <div className="w-11 h-11 bg-zinc-900 border border-gold/30 rounded-full flex items-center justify-center mb-3">
                     <svg className="w-5 h-5 text-gold" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" />
@@ -433,7 +382,7 @@ const Home = () => {
                   <p className="text-white font-medium mb-1 text-sm"><span className="text-[#e0b660] italic">Instant</span> Updates</p>
                   <p className="text-xs text-zinc-500">Shared in real-time, never missed</p>
                 </div>
-                <div className={`flex flex-col items-center transition-all duration-500 delay-[300ms] ${howItWorksPhase >= 4 ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
+                <div className={`flex flex-col items-center transition-[transform,opacity] duration-500 delay-[300ms] ${howItWorksPhase >= 4 ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
                   <div className="w-11 h-11 bg-zinc-900 border border-gold/30 rounded-full flex items-center justify-center mb-3">
                     <svg className="w-5 h-5 text-gold" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
@@ -469,12 +418,12 @@ const Home = () => {
           </h2>
           <div className="flex flex-col sm:flex-row gap-6 justify-center">
             <Link to="/law-firms">
-              <Button size="lg" className="w-full sm:w-auto text-lg px-12 py-7 bg-white text-black hover:bg-zinc-200 transition-all duration-300">
+              <Button size="lg" className="w-full sm:w-auto text-lg px-12 py-7 bg-white text-black hover:bg-zinc-200 transition-transform duration-300">
                 Law Firms
               </Button>
             </Link>
             <Link to="/clients">
-              <Button size="lg" className="w-full sm:w-auto text-lg px-12 py-7 bg-white text-black hover:bg-zinc-200 transition-all duration-300">
+              <Button size="lg" className="w-full sm:w-auto text-lg px-12 py-7 bg-white text-black hover:bg-zinc-200 transition-transform duration-300">
                 Clients
               </Button>
             </Link>
@@ -492,6 +441,8 @@ const Home = () => {
           <p className="text-zinc-500">&copy; 2025 Amicus. All rights reserved.</p>
         </div>
       </footer>
-    </div>;
+    </div>
+  );
 };
+
 export default Home;
