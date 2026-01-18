@@ -63,12 +63,15 @@ const SlidePanel = memo(({
             {slide.description}
           </p>
         </div>
+        {/* Image container - shadow on static wrapper, not moving element */}
         <div className="relative w-full px-4 sm:px-0">
-          <div className="absolute inset-0 bg-blue-500/10 rounded-full pointer-events-none"></div>
+          {/* Static shadow layer - doesn't move with transform */}
+          <div className="absolute inset-0 rounded-sm sm:rounded-lg shadow-xl pointer-events-none" />
+          {/* Image without expensive effects */}
           <img
             src={slide.image}
             alt={slide.imageAlt}
-            className="relative rounded-sm sm:rounded-lg shadow-xl w-full"
+            className="relative rounded-sm sm:rounded-lg w-full"
             loading="eager"
           />
         </div>
@@ -272,7 +275,7 @@ const FeatureCarousel = () => {
   );
 
   return (
-    <section className="py-32 px-0 sm:px-8 lg:px-16 bg-gradient-to-b from-black to-zinc-950">
+    <section className="py-32 px-0 sm:px-8 lg:px-16 bg-gradient-to-b from-black to-zinc-950 contain-paint">
       <div className="container mx-auto max-w-6xl px-4 sm:px-6">
         <h2 className="text-3xl sm:text-5xl lg:text-6xl font-normal mb-8 sm:mb-16 text-center text-white font-lora">
           The New Architecture of Legal Work

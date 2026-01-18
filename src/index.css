@@ -135,6 +135,21 @@ All colors MUST be HSL.
   .scrollbar-hide::-webkit-scrollbar {
     display: none;
   }
+  
+  /* CSS containment for isolated sections - reduces paint/layout scope */
+  .contain-paint {
+    contain: layout paint style;
+  }
+  
+  /* Strict containment for completely isolated elements */
+  .contain-strict {
+    contain: strict;
+  }
+  
+  /* Content containment for size-aware sections */
+  .contain-content {
+    contain: content;
+  }
 }
 
 /* CSS-driven typewriter animation - no JS state updates during animation */

@@ -177,7 +177,7 @@ const Home = () => {
       </section>
 
       {/* Problem Section - Scroll-Locked Typography with Typewriter + Logo Reveal */}
-      <section ref={problemSectionRef} className="relative h-[300vh] bg-gradient-to-b from-black via-zinc-950 to-black">
+      <section ref={problemSectionRef} className="relative h-[300vh] bg-gradient-to-b from-black via-zinc-950 to-black contain-paint">
         <div className="sticky top-0 h-screen flex items-center justify-center px-4 sm:px-6 lg:px-8">
           {/* Typewriter Text - CSS-only opacity transition */}
           <div 
@@ -197,7 +197,7 @@ const Home = () => {
       </section>
 
       {/* Feature Carousel - The New Architecture */}
-      <div>
+      <div className="contain-paint">
         <FeatureCarousel />
       </div>
 
@@ -254,12 +254,16 @@ const Home = () => {
                 <div className="w-full border-t-2 border-dashed border-gold/50"></div>
               </div>
 
-              {/* Center Logo */}
-              <div className={`flex-shrink-0 flex flex-col items-center transition-[transform,opacity] duration-500 delay-100 ${howItWorksPhase >= 2 ? 'opacity-100 scale-100' : 'opacity-0 scale-90'}`}>
-                <div className="w-24 h-24 rounded-2xl overflow-hidden shadow-xl shadow-black/40">
-                  <img src={amicusALogo} alt="Amicus" className="w-full h-full object-cover" />
+              {/* Center Logo - shadow on static wrapper */}
+              <div className="flex-shrink-0 relative">
+                {/* Static shadow layer */}
+                <div className="absolute inset-0 w-24 h-24 rounded-2xl shadow-xl shadow-black/40 pointer-events-none" />
+                <div className={`flex flex-col items-center transition-[transform,opacity] duration-500 delay-100 ${howItWorksPhase >= 2 ? 'opacity-100 scale-100' : 'opacity-0 scale-90'}`}>
+                  <div className="w-24 h-24 rounded-2xl overflow-hidden">
+                    <img src={amicusALogo} alt="Amicus" className="w-full h-full object-cover" />
+                  </div>
+                  <img src={amicusGoldenASmall} alt="Amicus" className="w-10 h-auto mt-2" />
                 </div>
-                <img src={amicusGoldenASmall} alt="Amicus" className="w-10 h-auto mt-2" />
               </div>
 
               {/* Right Connector */}
@@ -322,12 +326,16 @@ const Home = () => {
               {/* Mobile Connector - Phase 2 */}
               <div className={`h-12 border-l-2 border-dashed border-gold/50 transition-opacity duration-500 delay-100 ${howItWorksPhase >= 2 ? 'opacity-100' : 'opacity-0'}`}></div>
 
-              {/* Center Logo - Phase 2 (delayed) */}
-              <div className={`flex flex-col items-center transition-[transform,opacity] duration-500 delay-200 ${howItWorksPhase >= 2 ? 'opacity-100 scale-100' : 'opacity-0 scale-90'}`}>
-                <div className="w-20 h-20 rounded-xl overflow-hidden shadow-lg shadow-black/40">
-                  <img src={amicusALogo} alt="Amicus" className="w-full h-full object-cover" />
+              {/* Center Logo - Phase 2 (delayed) - shadow on static wrapper */}
+              <div className="relative">
+                {/* Static shadow layer */}
+                <div className="absolute inset-0 w-20 h-20 rounded-xl shadow-lg shadow-black/40 pointer-events-none" />
+                <div className={`flex flex-col items-center transition-[transform,opacity] duration-500 delay-200 ${howItWorksPhase >= 2 ? 'opacity-100 scale-100' : 'opacity-0 scale-90'}`}>
+                  <div className="w-20 h-20 rounded-xl overflow-hidden">
+                    <img src={amicusALogo} alt="Amicus" className="w-full h-full object-cover" />
+                  </div>
+                  <img src={amicusGoldenASmall} alt="Amicus" className="w-[7.5rem] h-auto mt-1" />
                 </div>
-                <img src={amicusGoldenASmall} alt="Amicus" className="w-[7.5rem] h-auto mt-1" />
               </div>
 
               {/* Mobile Connector - Phase 3 */}
