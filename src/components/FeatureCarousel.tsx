@@ -116,17 +116,17 @@ const NavigationArrows = memo(({
 ));
 NavigationArrows.displayName = "NavigationArrows";
 
-// Mobile swipe hint component
+// Mobile swipe hint component - no backdrop-blur for performance
 const SwipeHint = memo(({ visible }: { visible: boolean }) => (
   <div 
     className={`absolute inset-0 pointer-events-none flex items-center justify-between px-2 transition-opacity duration-500 ${
       visible ? 'opacity-100' : 'opacity-0'
     }`}
   >
-    <div className="bg-black/40 backdrop-blur-sm rounded-full p-1.5 animate-pulse">
+    <div className="bg-black/60 rounded-full p-1.5 animate-pulse">
       <ChevronLeft className="h-4 w-4 text-white/70" />
     </div>
-    <div className="bg-black/40 backdrop-blur-sm rounded-full p-1.5 animate-pulse">
+    <div className="bg-black/60 rounded-full p-1.5 animate-pulse">
       <ChevronRight className="h-4 w-4 text-white/70" />
     </div>
   </div>
