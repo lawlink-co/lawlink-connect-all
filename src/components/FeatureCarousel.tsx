@@ -35,37 +35,50 @@ const slides: CarouselSlide[] = [
   }
 ];
 
-// Memoized slide content component - only re-renders when slide data changes
-const SlideContent = memo(({ slide }: { slide: CarouselSlide }) => (
-  <div className="space-y-4 sm:space-y-6 px-4 sm:px-0">
-    <h3 className="text-2xl sm:text-4xl font-normal text-white leading-tight">
-      {slide.title}
-    </h3>
-    <p className="text-base sm:text-xl text-zinc-400 leading-relaxed">
-      {slide.description}
-    </p>
-  </div>
-));
-SlideContent.displayName = "SlideContent";
+// Memoized slide panel - renders slide content with positioned transform
+const SlidePanel = memo(({ 
+  slide, 
+  position 
+}: { 
+  slide: CarouselSlide; 
+  position: 'prev' | 'active' | 'next';
+}) => {
+  const positionStyles: Record<string, string> = {
+    prev: 'translate-x-[-100%] opacity-0',
+    active: 'translate-x-0 opacity-100',
+    next: 'translate-x-[100%] opacity-0'
+  };
 
-// Memoized slide image component - only re-renders when image changes
-const SlideImage = memo(({ slide, preloadImages }: { slide: CarouselSlide; preloadImages: string[] }) => (
-  <>
-    <div className="absolute inset-0 bg-blue-500/10 rounded-full pointer-events-none"></div>
-    <img
-      src={slide.image}
-      alt={slide.imageAlt}
-      className="relative rounded-sm sm:rounded-lg shadow-xl w-full"
-    />
-    {/* Preload neighbor images */}
-    {preloadImages.map((src) => (
-      <link key={src} rel="preload" as="image" href={src} />
-    ))}
-  </>
-));
-SlideImage.displayName = "SlideImage";
+  return (
+    <div 
+      className={`absolute inset-0 transition-[transform,opacity] duration-300 ease-out will-change-transform ${positionStyles[position]}`}
+      aria-hidden={position !== 'active'}
+    >
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-12 items-center px-0 sm:px-4 h-full">
+        <div className="space-y-4 sm:space-y-6 px-4 sm:px-0">
+          <h3 className="text-2xl sm:text-4xl font-normal text-white leading-tight">
+            {slide.title}
+          </h3>
+          <p className="text-base sm:text-xl text-zinc-400 leading-relaxed">
+            {slide.description}
+          </p>
+        </div>
+        <div className="relative w-full px-4 sm:px-0">
+          <div className="absolute inset-0 bg-blue-500/10 rounded-full pointer-events-none"></div>
+          <img
+            src={slide.image}
+            alt={slide.imageAlt}
+            className="relative rounded-sm sm:rounded-lg shadow-xl w-full"
+            loading="eager"
+          />
+        </div>
+      </div>
+    </div>
+  );
+});
+SlidePanel.displayName = "SlidePanel";
 
-// Memoized navigation dot - only re-renders when active state changes
+// Memoized navigation dot
 const NavigationDot = memo(({ 
   index, 
   isActive, 
@@ -87,7 +100,7 @@ const NavigationDot = memo(({
 ));
 NavigationDot.displayName = "NavigationDot";
 
-// Memoized navigation arrows - never re-renders unless callbacks change
+// Memoized navigation arrows
 const NavigationArrows = memo(({ 
   onPrev, 
   onNext 
@@ -116,7 +129,7 @@ const NavigationArrows = memo(({
 ));
 NavigationArrows.displayName = "NavigationArrows";
 
-// Mobile swipe hint component - no backdrop-blur for performance
+// Mobile swipe hint component
 const SwipeHint = memo(({ visible }: { visible: boolean }) => (
   <div 
     className={`absolute inset-0 pointer-events-none flex items-center justify-between px-2 transition-opacity duration-500 ${
@@ -137,34 +150,29 @@ const FeatureCarousel = () => {
   const isMobile = useIsMobile();
   const prefersReducedMotion = useReducedMotion();
   const [selectedIndex, setSelectedIndex] = useState(0);
-  const [isTransitioning, setIsTransitioning] = useState(false);
   const [hasInteracted, setHasInteracted] = useState(false);
   const autoplayRef = useRef<NodeJS.Timeout | null>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
   
-  // Touch gesture refs
+  // Touch gesture state - refs to avoid state updates during swipe
   const touchStartX = useRef<number>(0);
   const touchStartY = useRef<number>(0);
+  const currentTranslateX = useRef<number>(0);
   const isSwiping = useRef<boolean>(false);
-
-  // Faster transition timing for snappier feel
-  const fadeOutDuration = prefersReducedMotion ? 0 : 200;
-  const fadeInDelay = prefersReducedMotion ? 0 : 50;
+  const isTransitionLocked = useRef<boolean>(false);
 
   const scrollTo = useCallback((index: number) => {
-    if (isTransitioning || index === selectedIndex) return;
+    if (isTransitionLocked.current || index === selectedIndex) return;
     
-    setIsTransitioning(true);
+    isTransitionLocked.current = true;
     setHasInteracted(true);
+    setSelectedIndex(index);
     
-    // After fade out completes, switch slides
+    // Unlock after transition completes
     setTimeout(() => {
-      setSelectedIndex(index);
-      // After a brief moment, end transition to fade in
-      setTimeout(() => {
-        setIsTransitioning(false);
-      }, fadeInDelay);
-    }, fadeOutDuration);
-  }, [isTransitioning, selectedIndex, fadeOutDuration, fadeInDelay]);
+      isTransitionLocked.current = false;
+    }, prefersReducedMotion ? 0 : 300);
+  }, [selectedIndex, prefersReducedMotion]);
 
   const scrollPrev = useCallback(() => {
     const newIndex = selectedIndex === 0 ? slides.length - 1 : selectedIndex - 1;
@@ -176,42 +184,63 @@ const FeatureCarousel = () => {
     scrollTo(newIndex);
   }, [selectedIndex, scrollTo]);
 
-  // Touch gesture handlers for mobile swipe
+  // Touch handlers - only update refs during gesture, state at end
   const handleTouchStart = useCallback((e: React.TouchEvent) => {
+    if (isTransitionLocked.current) return;
     touchStartX.current = e.touches[0].clientX;
     touchStartY.current = e.touches[0].clientY;
+    currentTranslateX.current = 0;
     isSwiping.current = false;
   }, []);
 
   const handleTouchMove = useCallback((e: React.TouchEvent) => {
+    if (isTransitionLocked.current) return;
+    
     const deltaX = e.touches[0].clientX - touchStartX.current;
     const deltaY = e.touches[0].clientY - touchStartY.current;
     
-    // If horizontal movement > vertical, it's a swipe
-    if (Math.abs(deltaX) > Math.abs(deltaY) && Math.abs(deltaX) > 10) {
+    // Determine if horizontal swipe
+    if (!isSwiping.current && Math.abs(deltaX) > Math.abs(deltaY) && Math.abs(deltaX) > 10) {
       isSwiping.current = true;
+    }
+    
+    // During swipe, update transform via ref (no state, no DOM mutation)
+    if (isSwiping.current && containerRef.current) {
+      currentTranslateX.current = deltaX;
+      // Use CSS custom property for transform - single DOM write
+      containerRef.current.style.setProperty('--swipe-offset', `${deltaX}px`);
     }
   }, []);
 
-  const handleTouchEnd = useCallback((e: React.TouchEvent) => {
-    const deltaX = e.changedTouches[0].clientX - touchStartX.current;
-    const swipeThreshold = 50;
+  const handleTouchEnd = useCallback(() => {
+    if (!isSwiping.current) return;
     
-    if (isSwiping.current && Math.abs(deltaX) > swipeThreshold) {
+    const swipeThreshold = 50;
+    const deltaX = currentTranslateX.current;
+    
+    // Reset custom property
+    if (containerRef.current) {
+      containerRef.current.style.setProperty('--swipe-offset', '0px');
+    }
+    
+    if (Math.abs(deltaX) > swipeThreshold) {
       if (deltaX > 0) {
-        scrollPrev(); // Swipe right = previous
+        scrollPrev();
       } else {
-        scrollNext(); // Swipe left = next
+        scrollNext();
       }
     }
+    
+    isSwiping.current = false;
+    currentTranslateX.current = 0;
   }, [scrollPrev, scrollNext]);
 
-  // Autoplay for mobile (pauses after interaction for better UX)
+  // Autoplay for mobile
   useEffect(() => {
     if (!isMobile) return;
     
     autoplayRef.current = setInterval(() => {
-      if (!isTransitioning) {
+      if (!isTransitionLocked.current) {
         const newIndex = selectedIndex === slides.length - 1 ? 0 : selectedIndex + 1;
         scrollTo(newIndex);
       }
@@ -222,19 +251,21 @@ const FeatureCarousel = () => {
         clearInterval(autoplayRef.current);
       }
     };
-  }, [isMobile, selectedIndex, isTransitioning, scrollTo]);
+  }, [isMobile, selectedIndex, scrollTo]);
 
-  // Memoize current slide to prevent object recreation
-  const currentSlide = useMemo(() => slides[selectedIndex], [selectedIndex]);
-
-  // Memoize preload images array
-  const preloadImages = useMemo(() => {
-    const prev = selectedIndex === 0 ? slides.length - 1 : selectedIndex - 1;
-    const next = selectedIndex === slides.length - 1 ? 0 : selectedIndex + 1;
-    return [slides[prev].image, slides[next].image];
+  // Compute virtualized slides: only active + neighbors
+  const virtualizedSlides = useMemo(() => {
+    const prevIndex = selectedIndex === 0 ? slides.length - 1 : selectedIndex - 1;
+    const nextIndex = selectedIndex === slides.length - 1 ? 0 : selectedIndex + 1;
+    
+    return [
+      { slide: slides[prevIndex], position: 'prev' as const, key: prevIndex },
+      { slide: slides[selectedIndex], position: 'active' as const, key: selectedIndex },
+      { slide: slides[nextIndex], position: 'next' as const, key: nextIndex },
+    ];
   }, [selectedIndex]);
 
-  // Memoize dot click handlers to prevent recreation
+  // Memoize dot click handlers
   const dotClickHandlers = useMemo(() => 
     slides.map((_, index) => () => scrollTo(index)),
     [scrollTo]
@@ -248,58 +279,37 @@ const FeatureCarousel = () => {
         </h2>
       </div>
 
-      {/* Full-width container for button positioning */}
       <div className="relative container mx-auto px-0 sm:px-0">
-        {/* Content container with max-width */}
         <div className="max-w-6xl mx-auto">
-          {/* Slide Content with fade animation and touch handlers */}
+          {/* Virtualized slide track - transform controlled via CSS variable during swipe */}
           <div 
-            className={`transition-opacity duration-200 ease-out ${
-              isTransitioning ? 'opacity-0' : 'opacity-100'
-            }`}
+            ref={containerRef}
+            className="relative overflow-hidden"
+            style={{ 
+              minHeight: '400px',
+              // CSS variable for swipe offset, read by child transforms
+              ['--swipe-offset' as string]: '0px'
+            }}
             onTouchStart={isMobile ? handleTouchStart : undefined}
             onTouchMove={isMobile ? handleTouchMove : undefined}
             onTouchEnd={isMobile ? handleTouchEnd : undefined}
           >
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-12 items-center px-0 sm:px-4">
-              <SlideContent slide={currentSlide} />
-              
-              <div className="relative w-full px-4 sm:px-0">
-                <SlideImage slide={currentSlide} preloadImages={preloadImages} />
-                
-                {/* Mobile swipe hint - shows chevrons until first interaction */}
-                {isMobile && <SwipeHint visible={!hasInteracted} />}
-                
-                {/* Mobile Navigation Dots - Inside each slide, below image */}
-                {isMobile && (
-                  <div className="flex flex-col items-center gap-2 mt-6">
-                    <div className="flex justify-center gap-2">
-                      {slides.map((_, dotIndex) => (
-                        <NavigationDot
-                          key={dotIndex}
-                          index={dotIndex}
-                          isActive={dotIndex === selectedIndex}
-                          onClick={dotClickHandlers[dotIndex]}
-                        />
-                      ))}
-                    </div>
-                    {/* Swipe hint text */}
-                    <p 
-                      className={`text-xs text-zinc-500 transition-opacity duration-500 ${
-                        hasInteracted ? 'opacity-0' : 'opacity-100'
-                      }`}
-                    >
-                      Swipe to explore
-                    </p>
-                  </div>
-                )}
-              </div>
-            </div>
+            {/* Only render active + neighbors - no mount/unmount during swipe */}
+            {virtualizedSlides.map(({ slide, position, key }) => (
+              <SlidePanel 
+                key={key} 
+                slide={slide} 
+                position={position}
+              />
+            ))}
+            
+            {/* Mobile swipe hint overlay */}
+            {isMobile && <SwipeHint visible={!hasInteracted} />}
           </div>
 
-          {/* Desktop Navigation Dots */}
-          {!isMobile && (
-            <div className="flex justify-center gap-2 mt-12">
+          {/* Navigation Dots */}
+          <div className="flex flex-col items-center gap-2 mt-6">
+            <div className="flex justify-center gap-2">
               {slides.map((_, index) => (
                 <NavigationDot
                   key={index}
@@ -309,7 +319,17 @@ const FeatureCarousel = () => {
                 />
               ))}
             </div>
-          )}
+            {/* Mobile swipe hint text */}
+            {isMobile && (
+              <p 
+                className={`text-xs text-zinc-500 transition-opacity duration-500 ${
+                  hasInteracted ? 'opacity-0' : 'opacity-100'
+                }`}
+              >
+                Swipe to explore
+              </p>
+            )}
+          </div>
         </div>
 
         <NavigationArrows onPrev={scrollPrev} onNext={scrollNext} />
