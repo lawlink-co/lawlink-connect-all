@@ -42,12 +42,7 @@ const Navigation = memo(() => {
           </div>
 
           {/* Mobile Navigation */}
-          <div className="md:hidden flex items-center space-x-3">
-            <Link to="/demo">
-              <Button size="sm" className="bg-primary hover:bg-primary/90 text-white">
-                Book a Demo
-              </Button>
-            </Link>
+          <div className="md:hidden flex items-center">
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
                 <Button variant="ghost" size="icon" className={`${isClientsPage ? 'text-black hover:bg-black/10' : 'text-white hover:bg-white/10'}`}>
