@@ -1,5 +1,5 @@
 import { ReactNode } from "react";
-import ModernNavigation from "./ModernNavigation";
+import Navigation from "./Navigation";
 
 interface LayoutProps {
   children: ReactNode;
@@ -8,7 +8,7 @@ interface LayoutProps {
 const Layout = ({ children }: LayoutProps) => {
   return (
     <>
-      <ModernNavigation />
+      <Navigation />
       {children}
     </>
   );

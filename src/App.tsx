@@ -11,6 +11,7 @@ import PageSkeleton from "./components/PageSkeleton";
 // Lazy load route components
 const Home = lazy(() => import("./pages/Home"));
 const NewLanding = lazy(() => import("./pages/NewLanding"));
+const OldLanding = lazy(() => import("./pages/OldLanding"));
 const LawFirms = lazy(() => import("./pages/LawFirms"));
 const Clients = lazy(() => import("./pages/Clients"));
 const Demo = lazy(() => import("./pages/Demo"));
@@ -38,17 +39,17 @@ const App = () => (
         <ScrollToTop />
         <Layout>
           <Suspense fallback={<PageSkeleton />}>
-            <Routes>
-              <Route path="/" element={<LawFirms />} />
-              <Route path="/about" element={<Home />} />
-              <Route path="/law-firms" element={<LawFirms />} />
-              <Route path="/new-landing" element={<NewLanding />} />
-              <Route path="/clients" element={<Clients />} />
-              <Route path="/demo" element={<Demo />} />
-              <Route path="/contact" element={<Contact />} />
-              {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
-              <Route path="*" element={<NotFound />} />
-            </Routes>
+        <Routes>
+              <Route path="/" element={<NewLanding />} />
+              <Route path="/home" element={<Home />} />
+              <Route path="/old-land" element={<OldLanding />} />
+          <Route path="/law-firms" element={<LawFirms />} />
+          <Route path="/clients" element={<Clients />} />
+          <Route path="/demo" element={<Demo />} />
+          <Route path="/contact" element={<Contact />} />
+          {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
+          <Route path="*" element={<NotFound />} />
+        </Routes>
           </Suspense>
         </Layout>
       </BrowserRouter>
