@@ -18,6 +18,13 @@ const Demo = lazy(() => import("./pages/Demo"));
 const Contact = lazy(() => import("./pages/Contact"));
 const NotFound = lazy(() => import("./pages/NotFound"));
 
+// Feature pages
+const CaseDashboard = lazy(() => import("./pages/features/CaseDashboard"));
+const ClientExperience = lazy(() => import("./pages/features/ClientExperience"));
+const AIDrafting = lazy(() => import("./pages/features/AIDrafting"));
+const Workflow = lazy(() => import("./pages/features/Workflow"));
+const Customization = lazy(() => import("./pages/features/Customization"));
+
 function ScrollToTop() {
   const { pathname } = useLocation();
 
@@ -47,6 +54,12 @@ const App = () => (
           <Route path="/clients" element={<Clients />} />
           <Route path="/demo" element={<Demo />} />
           <Route path="/contact" element={<Contact />} />
+          {/* Feature pages */}
+          <Route path="/features/case-dashboard" element={<CaseDashboard />} />
+          <Route path="/features/client-experience" element={<ClientExperience />} />
+          <Route path="/features/ai-drafting" element={<AIDrafting />} />
+          <Route path="/features/workflow" element={<Workflow />} />
+          <Route path="/features/customization" element={<Customization />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>

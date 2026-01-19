@@ -7,8 +7,9 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { Shield, Zap, Users, Bell, ChevronDown, Menu, X } from "lucide-react";
+import { Shield, Zap, Users, Settings, ChevronDown, Menu, X } from "lucide-react";
 import amicusLogo from "@/assets/amicus-logo.png";
+import amicusLogoBlack from "@/assets/amicus-logo-black.png";
 
 const Navigation = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -31,7 +32,7 @@ const Navigation = () => {
           {/* Logo - Left */}
           <Link to="/" className="flex items-center z-10">
             <img 
-              src={amicusLogo} 
+              src={isClientsPage ? amicusLogoBlack : amicusLogo} 
               alt="Amicus" 
               className="h-10 w-auto"
             />
@@ -51,38 +52,38 @@ const Navigation = () => {
               >
                 <DropdownMenuItem asChild>
                   <Link
-                    to="/law-firms"
-                    className={`flex items-center gap-2 cursor-pointer ${dropdownHover}`}
-                  >
-                    <Zap className="h-4 w-4 text-[#e0b660]" />
-                    <span>Draft in Seconds</span>
-                  </Link>
-                </DropdownMenuItem>
-                <DropdownMenuItem asChild>
-                  <Link
-                    to="/law-firms"
+                    to="/features/case-dashboard"
                     className={`flex items-center gap-2 cursor-pointer ${dropdownHover}`}
                   >
                     <Shield className="h-4 w-4 text-[#e0b660]" />
-                    <span>One Dashboard</span>
+                    <span>Case Dashboard</span>
                   </Link>
                 </DropdownMenuItem>
                 <DropdownMenuItem asChild>
                   <Link
-                    to="/clients"
+                    to="/features/client-experience"
                     className={`flex items-center gap-2 cursor-pointer ${dropdownHover}`}
                   >
                     <Users className="h-4 w-4 text-[#e0b660]" />
-                    <span>Client Portal</span>
+                    <span>Client Experience</span>
                   </Link>
                 </DropdownMenuItem>
                 <DropdownMenuItem asChild>
                   <Link
-                    to="/law-firms"
+                    to="/features/ai-drafting"
                     className={`flex items-center gap-2 cursor-pointer ${dropdownHover}`}
                   >
-                    <Bell className="h-4 w-4 text-[#e0b660]" />
-                    <span>Auto Updates</span>
+                    <Zap className="h-4 w-4 text-[#e0b660]" />
+                    <span>AI Drafting</span>
+                  </Link>
+                </DropdownMenuItem>
+                <DropdownMenuItem asChild>
+                  <Link
+                    to="/features/customization"
+                    className={`flex items-center gap-2 cursor-pointer ${dropdownHover}`}
+                  >
+                    <Settings className="h-4 w-4 text-[#e0b660]" />
+                    <span>Customization</span>
                   </Link>
                 </DropdownMenuItem>
               </DropdownMenuContent>
@@ -98,7 +99,7 @@ const Navigation = () => {
 
             {/* About Link */}
             <Link
-              to="/about"
+              to="/law-firms"
               className={`${textColor} ${textHoverColor} transition-colors`}
             >
               About
@@ -151,42 +152,42 @@ const Navigation = () => {
                 >
                   <DropdownMenuItem asChild>
                     <Link
-                      to="/law-firms"
-                      onClick={() => setMobileMenuOpen(false)}
-                      className={`flex items-center gap-2 cursor-pointer ${dropdownHover}`}
-                    >
-                      <Zap className="h-4 w-4 text-[#e0b660]" />
-                      <span>Draft in Seconds</span>
-                    </Link>
-                  </DropdownMenuItem>
-                  <DropdownMenuItem asChild>
-                    <Link
-                      to="/law-firms"
+                      to="/features/case-dashboard"
                       onClick={() => setMobileMenuOpen(false)}
                       className={`flex items-center gap-2 cursor-pointer ${dropdownHover}`}
                     >
                       <Shield className="h-4 w-4 text-[#e0b660]" />
-                      <span>One Dashboard</span>
+                      <span>Case Dashboard</span>
                     </Link>
                   </DropdownMenuItem>
                   <DropdownMenuItem asChild>
                     <Link
-                      to="/clients"
+                      to="/features/client-experience"
                       onClick={() => setMobileMenuOpen(false)}
                       className={`flex items-center gap-2 cursor-pointer ${dropdownHover}`}
                     >
                       <Users className="h-4 w-4 text-[#e0b660]" />
-                      <span>Client Portal</span>
+                      <span>Client Experience</span>
                     </Link>
                   </DropdownMenuItem>
                   <DropdownMenuItem asChild>
                     <Link
-                      to="/law-firms"
+                      to="/features/ai-drafting"
                       onClick={() => setMobileMenuOpen(false)}
                       className={`flex items-center gap-2 cursor-pointer ${dropdownHover}`}
                     >
-                      <Bell className="h-4 w-4 text-[#e0b660]" />
-                      <span>Auto Updates</span>
+                      <Zap className="h-4 w-4 text-[#e0b660]" />
+                      <span>AI Drafting</span>
+                    </Link>
+                  </DropdownMenuItem>
+                  <DropdownMenuItem asChild>
+                    <Link
+                      to="/features/customization"
+                      onClick={() => setMobileMenuOpen(false)}
+                      className={`flex items-center gap-2 cursor-pointer ${dropdownHover}`}
+                    >
+                      <Settings className="h-4 w-4 text-[#e0b660]" />
+                      <span>Customization</span>
                     </Link>
                   </DropdownMenuItem>
                 </DropdownMenuContent>
@@ -199,7 +200,7 @@ const Navigation = () => {
                 Clients
               </Link>
               <Link
-                to="/about"
+                to="/law-firms"
                 onClick={() => setMobileMenuOpen(false)}
                 className={`${textColor} ${textHoverColor} transition-colors`}
               >

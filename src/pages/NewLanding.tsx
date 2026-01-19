@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Check, Scale, Target, Users, Briefcase, Folder, MessageSquare, CheckSquare, ArrowRight } from "lucide-react";
 import draftingInterfaceImage from "@/assets/drafting-interface.png";
 import caseIntakeImage from "../assets/Case-intake.png";
+import customMiniImage from "@/assets/custom-mini.png";
 
 const NewLanding = () => {
   return (
@@ -58,20 +59,20 @@ const NewLanding = () => {
           {/* Desktop Timeline - Hidden on mobile */}
           <div className="hidden md:block">
             <div className="flex items-start justify-between relative">
-              {/* Stage 1: Intake */}
+              {/* Stage 1: Customization */}
               <div className="flex flex-col items-center text-center w-1/3 relative z-10">
-                <h3 className="text-white font-medium text-xl mb-5">Intake</h3>
+                <h3 className="text-white font-medium text-xl mb-5">Customization</h3>
                 <div className="aspect-[3/4] w-full max-w-[336px] mx-auto mb-6 rounded-lg overflow-hidden">
                   <img 
-                    src={caseIntakeImage} 
-                    alt="Case intake form interface"
+                    src={customMiniImage} 
+                    alt="Customization interface showing page builder with data fields, contact modules, and custom sections being arranged"
                     className="w-full h-full object-cover"
                   />
                 </div>
                 <p className="text-zinc-400 text-base mt-6 mb-4 px-3 font-normal">
-                  Capture facts, documents, and timelines in a structured intake that powers every document and update that follows.
+                  Build your case records from modular blocks - data fields, contacts, and repeatable items - arranged exactly how your firm tracks work.
                 </p>
-                <p className="text-zinc-500 text-sm font-normal">60% fewer onboarding emails</p>
+                <p className="text-zinc-500 text-sm font-normal">Fits your workflow from day one</p>
               </div>
 
               {/* Stage 2: Document Drafting */}
@@ -90,9 +91,9 @@ const NewLanding = () => {
                 <p className="text-zinc-500 text-sm font-normal">2+ hours saved per document</p>
               </div>
 
-              {/* Stage 3: Litigation */}
+              {/* Stage 3: Case Information */}
               <div className="flex flex-col items-center text-center w-1/3 relative z-10">
-                <h3 className="text-white font-medium text-xl mb-5">Litigation</h3>
+                <h3 className="text-white font-medium text-xl mb-5">Case Information</h3>
                 <div className="aspect-[3/4] w-full max-w-[336px] mx-auto mb-6 rounded-lg overflow-hidden">
                   <img 
                     src="/case-updates.png" 
@@ -110,22 +111,22 @@ const NewLanding = () => {
 
           {/* Mobile Cards - Visible on mobile, hidden on desktop */}
           <div className="md:hidden flex flex-col gap-8">
-            {/* Stage 1: Intake */}
+            {/* Stage 1: Customization */}
             <div className="bg-zinc-900/30 border border-zinc-800 rounded-lg p-6">
               <div className="flex gap-5">
                 <div className="flex-1">
-                  <h3 className="text-white font-medium text-lg mb-4">Intake</h3>
+                  <h3 className="text-white font-medium text-lg mb-4">Customization</h3>
                   <div className="aspect-[4/5] w-full mb-6 rounded-lg overflow-hidden">
                     <img 
-                      src={caseIntakeImage} 
-                      alt="Case intake form interface"
+                      src={customMiniImage} 
+                      alt="Customization interface showing page builder with data fields, contact modules, and custom sections being arranged"
                       className="w-full h-full object-cover"
                     />
                   </div>
                   <p className="text-zinc-400 text-base mt-6 mb-3 font-normal">
-                    Capture facts, documents, and timelines in a structured intake that powers every document and update that follows.
+                    Build your case records from modular blocks - data fields, contacts, and repeatable items - arranged exactly how your firm tracks work.
                   </p>
-                  <p className="text-zinc-500 text-sm font-normal">60% fewer onboarding emails</p>
+                  <p className="text-zinc-500 text-sm font-normal">Fits your workflow from day one</p>
                 </div>
               </div>
             </div>
@@ -150,11 +151,11 @@ const NewLanding = () => {
               </div>
             </div>
 
-            {/* Stage 3: Litigation */}
+            {/* Stage 3: Case Information */}
             <div className="bg-zinc-900/30 border border-zinc-800 rounded-lg p-6">
               <div className="flex gap-5">
                 <div className="flex-1">
-                  <h3 className="text-white font-medium text-lg mb-4">Litigation</h3>
+                  <h3 className="text-white font-medium text-lg mb-4">Case Information</h3>
                   <div className="aspect-[4/5] w-full mb-6 rounded-lg overflow-hidden">
                     <img 
                       src="/case-updates.png" 
@@ -390,7 +391,7 @@ const NewLanding = () => {
             {/* Right Column - Text */}
             <div className="order-1 lg:order-none">
               <div className="text-xs uppercase tracking-widest text-[#e0b660] mb-3">
-                YOUR WORKFLOW
+                CUSTOMIZATION
               </div>
               <h2 className="text-2xl md:text-3xl lg:text-4xl font-light text-white mb-4">
                 Built Around How Your Firm Actually Works
@@ -501,13 +502,6 @@ const NewLanding = () => {
               Book a Demo
             </Button>
           </Link>
-          
-          <a 
-            href="mailto:hello@amicuslegal.com" 
-            className="block text-zinc-500 text-sm mt-4 hover:text-zinc-300 transition-colors font-normal"
-          >
-            or email us at hello@amicuslegal.com
-          </a>
         </div>
       </section>
 
@@ -526,7 +520,7 @@ const NewLanding = () => {
               <Link to="/law-firms" className="text-zinc-400 text-sm hover:text-white transition-colors font-normal">
                 Features
               </Link>
-              <Link to="/about" className="text-zinc-400 text-sm hover:text-white transition-colors font-normal">
+              <Link to="/law-firms" className="text-zinc-400 text-sm hover:text-white transition-colors font-normal">
                 About
               </Link>
               <Link to="/contact" className="text-zinc-400 text-sm hover:text-white transition-colors font-normal">
