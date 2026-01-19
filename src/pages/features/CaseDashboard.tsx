@@ -236,9 +236,6 @@ const CaseDashboard = () => {
             {/* Right Side - Navigation Links */}
             <div className="flex items-center gap-6 flex-wrap">
               <Link to="/law-firms" className="text-zinc-400 text-sm hover:text-white transition-colors font-normal">
-                Features
-              </Link>
-              <Link to="/law-firms" className="text-zinc-400 text-sm hover:text-white transition-colors font-normal">
                 About
               </Link>
               <Link to="/contact" className="text-zinc-400 text-sm hover:text-white transition-colors font-normal">

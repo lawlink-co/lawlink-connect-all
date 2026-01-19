@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { Bell, MessageSquare, Eye, FileSearch, Download, MessageCircle, Calendar, Upload, Check } from "lucide-react";
+import { Bell, MessageSquare, Eye, FileSearch, Download, MessageCircle, Calendar, Upload, Check, Sparkles, ArrowUp } from "lucide-react";
 
 const ClientExperience = () => {
   return (
@@ -26,7 +26,7 @@ const ClientExperience = () => {
             </Link>
           </div>
 
-          {/* Right Column: 3 Stacked Benefit Cards */}
+          {/* Right Column: 4 Stacked Benefit Cards */}
           <div className="flex flex-col gap-4">
             {/* Card 1 */}
             <div className="bg-zinc-900/50 border border-zinc-800 p-6 rounded-lg hover:border-zinc-700 transition-all">
@@ -51,6 +51,17 @@ const ClientExperience = () => {
             </div>
 
             {/* Card 3 */}
+            <div className="bg-zinc-900/50 border border-zinc-800 p-6 rounded-lg hover:border-zinc-700 transition-all">
+              <div className="w-10 h-10 rounded-lg bg-zinc-800 flex items-center justify-center mb-4">
+                <Sparkles className="w-5 h-5 text-[#e0b660]" />
+              </div>
+              <h3 className="text-white font-medium text-lg mb-2">AI case assistant</h3>
+              <p className="text-zinc-400 text-sm leading-relaxed">
+                Clients ask questions in plain language and get immediate, case-specific answers — 24/7, without waiting for a callback.
+              </p>
+            </div>
+
+            {/* Card 4 */}
             <div className="bg-zinc-900/50 border border-zinc-800 p-6 rounded-lg hover:border-zinc-700 transition-all">
               <div className="w-10 h-10 rounded-lg bg-zinc-800 flex items-center justify-center mb-4">
                 <Eye className="w-5 h-5 text-[#e0b660]" />
@@ -222,17 +233,50 @@ const ClientExperience = () => {
 
         {/* Section B: Visual Left, Text Right */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-          {/* Left - Message Thread Widget */}
-          <div className="bg-zinc-900 border border-zinc-800 rounded-2xl p-6 max-w-sm mx-auto">
-            <div className="bg-zinc-800 rounded-lg p-3 mb-3 max-w-[80%]">
-              <p className="text-zinc-300 text-sm">
-                When is my deposition scheduled?
-              </p>
+          {/* Left - AI Chat Widget Mockup */}
+          <div className="bg-zinc-900 border border-zinc-800 rounded-2xl p-5 max-w-sm mx-auto">
+            {/* Header */}
+            <div className="flex items-center gap-3 mb-4 pb-4 border-b border-zinc-800">
+              <Sparkles className="w-5 h-5 text-[#e0b660]" />
+              <span className="text-white font-medium text-sm">Case Assistant</span>
+              <div className="w-2 h-2 rounded-full bg-green-500 ml-auto"></div>
             </div>
-            <div className="bg-[#e0b660]/20 rounded-lg p-3 max-w-[80%] ml-auto">
-              <p className="text-zinc-300 text-sm">
-                It's set for March 15th at 2pm. I've added it to your calendar in the portal.
-              </p>
+
+            {/* Chat messages */}
+            <div className="flex flex-col gap-3">
+              {/* Message 1 (from client - RIGHT side) */}
+              <div className="bg-zinc-800 rounded-lg rounded-br-none p-3 max-w-[85%] ml-auto">
+                <p className="text-zinc-300 text-sm">What's the status of my demand letter?</p>
+              </div>
+
+              {/* Message 2 (from AI - LEFT side) */}
+              <div className="bg-[#e0b660]/10 border border-[#e0b660]/20 rounded-lg rounded-bl-none p-3 max-w-[85%]">
+                <p className="text-zinc-300 text-sm">
+                  Your demand letter was sent to State Farm on January 15th. They have 30 days to respond, so you should expect to hear back by February 14th. I'll notify you as soon as we receive their response.
+                </p>
+              </div>
+
+              {/* Message 3 (from client - RIGHT side) */}
+              <div className="bg-zinc-800 rounded-lg rounded-br-none p-3 max-w-[85%] ml-auto">
+                <p className="text-zinc-300 text-sm">What happens after they respond?</p>
+              </div>
+
+              {/* Message 4 (from AI - LEFT side) */}
+              <div className="bg-[#e0b660]/10 border border-[#e0b660]/20 rounded-lg rounded-bl-none p-3 max-w-[85%]">
+                <p className="text-zinc-300 text-sm">
+                  Once they respond, your attorney Sarah will review their offer and discuss next steps with you. This usually involves either negotiating a higher amount or preparing to file a lawsuit.
+                </p>
+              </div>
+            </div>
+
+            {/* Input area */}
+            <div className="flex items-center gap-2 mt-4 pt-4 border-t border-zinc-800">
+              <div className="bg-zinc-800 rounded-lg px-4 py-2 flex-1">
+                <span className="text-zinc-500 text-sm">Ask about your case...</span>
+              </div>
+              <div className="w-8 h-8 rounded-lg bg-[#e0b660] flex items-center justify-center">
+                <ArrowUp className="w-5 h-5 text-black" />
+              </div>
             </div>
           </div>
 
@@ -293,9 +337,6 @@ const ClientExperience = () => {
 
             {/* Right Side - Navigation Links */}
             <div className="flex items-center gap-6 flex-wrap">
-              <Link to="/law-firms" className="text-zinc-400 text-sm hover:text-white transition-colors font-normal">
-                Features
-              </Link>
               <Link to="/law-firms" className="text-zinc-400 text-sm hover:text-white transition-colors font-normal">
                 About
               </Link>
