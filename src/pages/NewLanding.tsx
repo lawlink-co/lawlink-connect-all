@@ -278,14 +278,12 @@ const NewLanding = () => {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             {/* Left Column - Image Placeholder (Phone Mockup) */}
             <div className="order-2 lg:order-none">
-              <div className="relative max-w-sm mx-auto lg:mx-0">
-                <div className="aspect-[9/19] bg-zinc-900 rounded-3xl overflow-hidden">
-                  <img 
-                    src="/phone-stuff.png" 
-                    alt="Phone mockup showing client portal with case status, next steps, and message thread with attorney"
-                    className="w-full h-full object-contain"
-                  />
-                </div>
+              <div className="relative mx-auto lg:mx-0">
+                <img 
+                  src="/Untitled design (68).png" 
+                  alt="Phone mockup showing client portal with case status, next steps, and message thread with attorney"
+                  className="w-full h-auto"
+                />
               </div>
             </div>
 
@@ -335,25 +333,25 @@ const NewLanding = () => {
                 AI DRAFTING
               </div>
               <h2 className="text-2xl md:text-3xl lg:text-4xl font-light text-white mb-4">
-                First Drafts in Seconds. Your Templates. Your Voice.
+                First Drafts in Seconds.
               </h2>
               <p className="text-zinc-400 text-base mb-6 font-normal">
-                Generate demand letters, complaints, discovery requests, and motions using your firm's own templates and past work. Amicus learns your style—it's not generic AI output, it's YOUR documents, faster.
+                Create clean first drafts without starting from a blank page. Amicus handles the structure and fills in the details so your team can move straight to review and refinement.
               </p>
 
               {/* Bullet Points */}
               <div className="space-y-3">
                 <div className="flex items-start gap-3">
                   <Check className="h-5 w-5 text-[#e0b660] flex-shrink-0 mt-0.5" />
-                  <span className="text-zinc-400 text-base font-normal">Demand letters drafted in under 30 seconds</span>
+                  <span className="text-zinc-400 text-base font-normal">First drafts generated in seconds, not hours</span>
                 </div>
                 <div className="flex items-start gap-3">
                   <Check className="h-5 w-5 text-[#e0b660] flex-shrink-0 mt-0.5" />
-                  <span className="text-zinc-400 text-base font-normal">Uses your uploaded templates and prior pleadings</span>
+                  <span className="text-zinc-400 text-base font-normal">Consistent formatting without copy and paste</span>
                 </div>
                 <div className="flex items-start gap-3">
                   <Check className="h-5 w-5 text-[#e0b660] flex-shrink-0 mt-0.5" />
-                  <span className="text-zinc-400 text-base font-normal">Cites medical records and case facts automatically</span>
+                  <span className="text-zinc-400 text-base font-normal">Case details pulled in automatically</span>
                 </div>
                 <div className="flex items-start gap-3 mt-4">
                   <Check className="h-5 w-5 text-[#e0b660] flex-shrink-0 mt-0.5" />
@@ -363,10 +361,12 @@ const NewLanding = () => {
             </div>
 
             {/* Right Column - Image Placeholder */}
-            <div className="aspect-video bg-zinc-900 border-dashed border-zinc-700 rounded-lg flex items-center justify-center">
-              <p className="text-zinc-600 text-sm text-center p-8 font-normal">
-                Drafting Interface — Show document editor with AI-generated demand letter, 'Sources Used' panel visible on the side, and firm template selector
-              </p>
+            <div className="aspect-video rounded-lg overflow-hidden">
+              <img 
+                src="/drafting-fig.png" 
+                alt="Drafting interface showing document editor with AI-generated demand letter, Sources Used panel visible on the side, and firm template selector"
+                className="w-full h-full object-cover"
+              />
             </div>
           </div>
         </div>
@@ -378,10 +378,12 @@ const NewLanding = () => {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             {/* Left Column - Image Placeholder */}
             <div className="order-2 lg:order-none">
-              <div className="aspect-video bg-zinc-900 border-dashed border-zinc-700 rounded-lg flex items-center justify-center">
-                <p className="text-zinc-600 text-sm text-center p-8 font-normal">
-                  Customization Panel — Show settings interface with workflow builder, custom fields, template manager, and notification rules
-                </p>
+              <div className="aspect-video rounded-lg overflow-hidden">
+                <img
+                  src="/customization-stuff.png"
+                  alt="Customization panel showing workflow builder, custom fields, template manager, and notification rules"
+                  className="w-full h-full object-cover"
+                />
               </div>
             </div>
 
@@ -394,26 +396,26 @@ const NewLanding = () => {
                 Built Around How Your Firm Actually Works
               </h2>
               <p className="text-zinc-400 text-base mb-6 font-normal">
-                No two PI firms run the same way. Customize case stages, document templates, client update triggers, notification preferences, and CRM fields to match your exact process—not some generic workflow.
+                Every firm tracks cases differently. Amicus lets you shape the system around your process, including creating custom pages for whatever your team needs to track beyond the standard case view.
               </p>
 
               {/* Bullet Points */}
               <div className="space-y-3">
                 <div className="flex items-start gap-3">
                   <Check className="h-5 w-5 text-[#e0b660] flex-shrink-0 mt-0.5" />
-                  <span className="text-zinc-400 text-base font-normal">Define custom case stages and workflows by case type</span>
+                  <span className="text-zinc-400 text-base font-normal">Create custom pages for firm specific tracking and internal workflows</span>
                 </div>
                 <div className="flex items-start gap-3">
                   <Check className="h-5 w-5 text-[#e0b660] flex-shrink-0 mt-0.5" />
-                  <span className="text-zinc-400 text-base font-normal">Set your own triggers for client notifications</span>
+                  <span className="text-zinc-400 text-base font-normal">Customize the case layout and fields your team actually uses</span>
                 </div>
                 <div className="flex items-start gap-3">
                   <Check className="h-5 w-5 text-[#e0b660] flex-shrink-0 mt-0.5" />
-                  <span className="text-zinc-400 text-base font-normal">Add custom fields to track what matters to your firm</span>
+                  <span className="text-zinc-400 text-base font-normal">Set up stages that match how your cases progress</span>
                 </div>
                 <div className="flex items-start gap-3">
                   <Check className="h-5 w-5 text-[#e0b660] flex-shrink-0 mt-0.5" />
-                  <span className="text-zinc-400 text-base font-normal">Import and manage your own document templates</span>
+                  <span className="text-zinc-400 text-base font-normal">Keep documents and data organized the way your firm expects</span>
                 </div>
               </div>
             </div>
