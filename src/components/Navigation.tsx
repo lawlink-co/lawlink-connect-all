@@ -108,12 +108,6 @@ const Navigation = () => {
 
           {/* Right - Book Demo Button */}
           <div className="flex items-center gap-4 z-10">
-            <Link
-              to="/old-land"
-              className={`hidden md:block ${textColor} ${textHoverColor} transition-colors text-sm font-medium`}
-            >
-              Old Land
-            </Link>
             <div className="hidden md:block">
               <Link to="/demo">
                 <Button className="bg-[#e0b660] text-black hover:bg-[#d4a850] font-medium font-sans">
@@ -205,13 +199,6 @@ const Navigation = () => {
                 className={`${textColor} ${textHoverColor} transition-colors`}
               >
                 About
-              </Link>
-              <Link
-                to="/old-land"
-                onClick={() => setMobileMenuOpen(false)}
-                className={`${textColor} ${textHoverColor} transition-colors`}
-              >
-                Old Land
               </Link>
               <Link to="/demo" onClick={() => setMobileMenuOpen(false)}>
                 <Button className="w-full bg-[#e0b660] text-black hover:bg-[#d4a850] font-medium font-sans">
