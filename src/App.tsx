@@ -5,53 +5,37 @@ import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { DarkPageSkeleton, LightPageSkeleton } from "@/components/PageSkeleton";
+import Layout from "./components/Layout";
+import PageSkeleton from "./components/PageSkeleton";
 
 // Lazy load route components
 const Home = lazy(() => import("./pages/Home"));
+const NewLanding = lazy(() => import("./pages/NewLanding"));
+const OldLanding = lazy(() => import("./pages/OldLanding"));
 const LawFirms = lazy(() => import("./pages/LawFirms"));
 const Clients = lazy(() => import("./pages/Clients"));
 const Demo = lazy(() => import("./pages/Demo"));
 const Contact = lazy(() => import("./pages/Contact"));
 const NotFound = lazy(() => import("./pages/NotFound"));
 
+// Feature pages
+const CaseDashboard = lazy(() => import("./pages/features/CaseDashboard"));
+const ClientExperience = lazy(() => import("./pages/features/ClientExperience"));
+const AIDrafting = lazy(() => import("./pages/features/AIDrafting"));
+const Workflow = lazy(() => import("./pages/features/Workflow"));
+const Customization = lazy(() => import("./pages/features/Customization"));
+
 function ScrollToTop() {
   const { pathname } = useLocation();
 
   useEffect(() => {
-    window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
+    window.scrollTo(0, 0);
   }, [pathname]);
-
-  // Also scroll to top on initial mount (page reload)
-  useEffect(() => {
-    window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
-  }, []);
 
   return null;
 }
 
-const queryClient = new QueryClient({
-  defaultOptions: {
-    queries: {
-      // Data stays fresh for 5 minutes - no refetch during this window
-      staleTime: 5 * 60 * 1000,
-      // Keep unused data in cache for 30 minutes
-      gcTime: 30 * 60 * 1000,
-      // Don't refetch on window focus for static content
-      refetchOnWindowFocus: false,
-      // Don't refetch on reconnect unless stale
-      refetchOnReconnect: false,
-      // Don't refetch on mount if data exists and is fresh
-      refetchOnMount: false,
-      // Retry failed requests once
-      retry: 1,
-    },
-    mutations: {
-      // Retry mutations once on failure
-      retry: 1,
-    },
-  },
-});
+const queryClient = new QueryClient();
 
 const App = () => (
   <QueryClientProvider client={queryClient}>
@@ -60,39 +44,27 @@ const App = () => (
       <Sonner />
       <BrowserRouter>
         <ScrollToTop />
+        <Layout>
+          <Suspense fallback={<PageSkeleton />}>
         <Routes>
-          <Route path="/" element={
-            <Suspense fallback={<DarkPageSkeleton />}>
-              <Home />
-            </Suspense>
-          } />
-          <Route path="/law-firms" element={
-            <Suspense fallback={<DarkPageSkeleton />}>
-              <LawFirms />
-            </Suspense>
-          } />
-          <Route path="/clients" element={
-            <Suspense fallback={<LightPageSkeleton />}>
-              <Clients />
-            </Suspense>
-          } />
-          <Route path="/demo" element={
-            <Suspense fallback={<DarkPageSkeleton />}>
-              <Demo />
-            </Suspense>
-          } />
-          <Route path="/contact" element={
-            <Suspense fallback={<DarkPageSkeleton />}>
-              <Contact />
-            </Suspense>
-          } />
+              <Route path="/" element={<NewLanding />} />
+              <Route path="/home" element={<Home />} />
+              <Route path="/old-land" element={<OldLanding />} />
+          <Route path="/law-firms" element={<LawFirms />} />
+          <Route path="/clients" element={<Clients />} />
+          <Route path="/demo" element={<Demo />} />
+          <Route path="/contact" element={<Contact />} />
+          {/* Feature pages */}
+          <Route path="/features/case-dashboard" element={<CaseDashboard />} />
+          <Route path="/features/client-experience" element={<ClientExperience />} />
+          <Route path="/features/ai-drafting" element={<AIDrafting />} />
+          <Route path="/features/workflow" element={<Workflow />} />
+          <Route path="/features/customization" element={<Customization />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
-          <Route path="*" element={
-            <Suspense fallback={<DarkPageSkeleton />}>
-              <NotFound />
-            </Suspense>
-          } />
+          <Route path="*" element={<NotFound />} />
         </Routes>
+          </Suspense>
+        </Layout>
       </BrowserRouter>
     </TooltipProvider>
   </QueryClientProvider>

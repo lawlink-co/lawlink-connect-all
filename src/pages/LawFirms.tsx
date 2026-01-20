@@ -3,7 +3,6 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { CheckCircle2, Shield, Lock, Database, Briefcase, FileText, MessageCircle, Settings } from "lucide-react";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import Navigation from "@/components/Navigation";
 import ScrollRevealImages from "@/components/ScrollRevealImages";
 import HLSVideo from "@/components/HLSVideo";
 import { useEffect, useRef, useState, memo, useMemo } from "react";
@@ -78,8 +77,6 @@ const LawFirms = () => {
     return () => observer.disconnect();
   }, [observerOptions]);
   return <div className="min-h-screen bg-black text-white font-caslon">
-      <Navigation />
-      
       {/* Hero Section */}
       <section className="min-h-screen flex items-center justify-center px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-black via-zinc-950 to-black">
         <div className="container mx-auto max-w-5xl text-center">

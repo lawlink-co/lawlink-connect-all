@@ -7,7 +7,6 @@ import { Label } from "@/components/ui/label";
 import { useToast } from "@/hooks/use-toast";
 import { supabase } from "@/integrations/supabase/client";
 import { Mail, Phone, Send, ArrowLeft } from "lucide-react";
-import Navigation from "@/components/Navigation";
 
 // Memoized static contact info sidebar - never needs to re-render
 const ContactInfoSidebar = memo(() => (
@@ -122,8 +121,6 @@ const Contact = () => {
 
   return (
     <div className="min-h-screen bg-black text-foreground dark">
-      <Navigation />
-
       {/* Hero Section */}
       <section className="pt-32 pb-16 px-4 sm:px-6 lg:px-8">
         <div className="container mx-auto max-w-6xl">

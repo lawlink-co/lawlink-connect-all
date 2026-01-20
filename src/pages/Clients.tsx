@@ -1,8 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { MessageSquare, Bell, FileSearch, Shield, Smartphone, Clock, Check, Calendar, Briefcase } from "lucide-react";
-import Navigation from "@/components/Navigation";
-import clientHeaderPhone from "@/assets/client-hero-phone.png";
+import clientHeaderPhone from "@/assets/client-header-phone.png";
 import caseNotification from "@/assets/case-notification-v2.png";
 import phoneFrame from "@/assets/phone-frame.svg";
 import clientApp1 from "@/assets/client-app-1.png";
@@ -11,9 +10,8 @@ import clientApp3 from "@/assets/client-app-3.png";
 import caseIconLeft from "@/assets/case-icon-left.svg";
 import caseIconRight from "@/assets/case-icon-right.svg";
 import casePhoneCenter from "@/assets/case-phone-center.png";
-import { useEffect, useRef, useState, memo, useCallback, useMemo } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useIsMobile } from "@/hooks/use-mobile";
-import { useReducedMotion } from "@/hooks/use-reduced-motion";
 
 const caseHubSlides = [
   { image: clientApp1, alt: "Amicus app - medical treatment" },
@@ -21,52 +19,8 @@ const caseHubSlides = [
   { image: clientApp3, alt: "Amicus app - attorney chat" },
 ];
 
-// Memoized slide image - only re-renders when visibility/opacity changes
-const CarouselSlideImage = memo(({ 
-  src, 
-  alt, 
-  isActive 
-}: { 
-  src: string; 
-  alt: string; 
-  isActive: boolean;
-}) => (
-  <img
-    src={src}
-    alt={alt}
-    className={`absolute left-1/2 -translate-x-1/2 h-[304px] sm:h-[384px] w-auto transition-opacity duration-1000 ease-in-out will-change-[opacity] ${
-      isActive ? 'opacity-100' : 'opacity-0'
-    }`}
-  />
-));
-CarouselSlideImage.displayName = "CarouselSlideImage";
-
-// Memoized navigation dot
-const CarouselDot = memo(({ 
-  index, 
-  isActive, 
-  onClick 
-}: { 
-  index: number; 
-  isActive: boolean; 
-  onClick: () => void;
-}) => (
-  <button
-    onClick={onClick}
-    className={`h-2 rounded-full transition-[transform,opacity] duration-300 ${
-      isActive
-        ? "w-8 bg-primary"
-        : "w-2 bg-gray-300 hover:bg-gray-400"
-    }`}
-    aria-label={`Go to slide ${index + 1}`}
-  />
-));
-CarouselDot.displayName = "CarouselDot";
-
-const CaseHubCarousel = memo(() => {
+const CaseHubCarousel = () => {
   const [activeIndex, setActiveIndex] = useState(0);
-  const touchStartX = useRef<number | null>(null);
-  const touchEndX = useRef<number | null>(null);
 
   // Auto-transition every 4 seconds
   useEffect(() => {
@@ -74,49 +28,6 @@ const CaseHubCarousel = memo(() => {
       setActiveIndex((prev) => (prev + 1) % caseHubSlides.length);
     }, 4000);
     return () => clearInterval(interval);
-  }, []);
-
-  // Virtualized rendering: only mount active slide and immediate neighbors
-  const visibleIndices = useMemo(() => {
-    const prev = activeIndex === 0 ? caseHubSlides.length - 1 : activeIndex - 1;
-    const next = activeIndex === caseHubSlides.length - 1 ? 0 : activeIndex + 1;
-    return [prev, activeIndex, next];
-  }, [activeIndex]);
-
-  // Memoize dot click handlers
-  const dotClickHandlers = useMemo(() => 
-    caseHubSlides.map((_, index) => () => setActiveIndex(index)),
-    []
-  );
-
-  // Touch handlers for swipe navigation
-  const handleTouchStart = useCallback((e: React.TouchEvent) => {
-    touchStartX.current = e.touches[0].clientX;
-    touchEndX.current = null;
-  }, []);
-
-  const handleTouchMove = useCallback((e: React.TouchEvent) => {
-    touchEndX.current = e.touches[0].clientX;
-  }, []);
-
-  const handleTouchEnd = useCallback(() => {
-    if (touchStartX.current === null || touchEndX.current === null) return;
-    
-    const diff = touchStartX.current - touchEndX.current;
-    const minSwipeDistance = 50;
-
-    if (Math.abs(diff) > minSwipeDistance) {
-      if (diff > 0) {
-        // Swipe left - go to next
-        setActiveIndex((prev) => (prev + 1) % caseHubSlides.length);
-      } else {
-        // Swipe right - go to previous
-        setActiveIndex((prev) => (prev === 0 ? caseHubSlides.length - 1 : prev - 1));
-      }
-    }
-    
-    touchStartX.current = null;
-    touchEndX.current = null;
   }, []);
 
   return (
@@ -127,36 +38,32 @@ const CaseHubCarousel = memo(() => {
           Everything you need in one app
         </h2>
         
-        {/* Virtualized Fade Image Container - only renders active + neighbors */}
-        <div 
-          className="relative flex items-center justify-center h-[320px] sm:h-[400px] touch-pan-y"
-          onTouchStart={handleTouchStart}
-          onTouchMove={handleTouchMove}
-          onTouchEnd={handleTouchEnd}
-        >
-          {caseHubSlides.map((slide, index) => {
-            // Only mount slides that are visible (active + prev/next)
-            if (!visibleIndices.includes(index)) return null;
-            
-            return (
-              <CarouselSlideImage
-                key={index}
-                src={slide.image}
-                alt={slide.alt}
-                isActive={index === activeIndex}
-              />
-            );
-          })}
+        {/* Fade Image Container */}
+        <div className="relative flex items-center justify-center h-[320px] sm:h-[400px]">
+          {caseHubSlides.map((slide, index) => (
+            <img
+              key={index}
+              src={slide.image}
+              alt={slide.alt}
+              className={`absolute left-1/2 -translate-x-1/2 h-[304px] sm:h-[384px] w-auto transition-opacity duration-1000 ease-in-out ${
+                index === activeIndex ? 'opacity-100' : 'opacity-0'
+              }`}
+            />
+          ))}
         </div>
 
         {/* Navigation Dots */}
         <div className="flex justify-center gap-2 mt-8">
           {caseHubSlides.map((_, index) => (
-            <CarouselDot
+            <button
               key={index}
-              index={index}
-              isActive={index === activeIndex}
-              onClick={dotClickHandlers[index]}
+              onClick={() => setActiveIndex(index)}
+              className={`h-2 rounded-full transition-all duration-300 ${
+                index === activeIndex
+                  ? "w-8 bg-primary"
+                  : "w-2 bg-gray-300 hover:bg-gray-400"
+              }`}
+              aria-label={`Go to slide ${index + 1}`}
             />
           ))}
         </div>
@@ -167,73 +74,29 @@ const CaseHubCarousel = memo(() => {
       </div>
     </section>
   );
-});
-CaseHubCarousel.displayName = "CaseHubCarousel";
+};
 
-// Memoized static icon component - uses img directly without wrapper
-const AnimatedIcon = memo(({ 
-  src, 
-  alt, 
-  isVisible, 
-  position 
-}: { 
-  src: string; 
-  alt: string; 
-  isVisible: boolean; 
-  position: 'left' | 'right';
-}) => {
-  const positionClasses = position === 'left'
-    ? isVisible ? 'left-0 sm:left-[22%] opacity-100' : 'left-1/2 -translate-x-1/2 opacity-0'
-    : isVisible ? 'right-0 sm:right-[22%] opacity-100' : 'right-1/2 translate-x-1/2 opacity-0';
-
-  return (
-    <img 
-      src={src} 
-      alt={alt} 
-      className={`absolute z-10 transition-[transform,opacity] duration-700 ease-out will-change-transform w-[80px] sm:w-[120px] h-auto ${positionClasses}`}
-    />
-  );
-});
-AnimatedIcon.displayName = "AnimatedIcon";
-
-// Memoized center phone component - uses img directly without wrapper
-const CenterPhone = memo(({ src, alt, isVisible }: { src: string; alt: string; isVisible: boolean }) => (
-  <img 
-    src={src} 
-    alt={alt} 
-    className={`relative z-20 transition-[transform,opacity] duration-700 ease-out will-change-transform w-[132px] sm:w-[198px] h-auto ${
-      isVisible ? 'opacity-100 scale-100' : 'opacity-0 scale-50'
-    }`}
-  />
-));
-CenterPhone.displayName = "CenterPhone";
-
-const AllCasesSection = memo(() => {
+const AllCasesSection = () => {
   const [isVisible, setIsVisible] = useState(false);
   const [phoneAnimationComplete, setPhoneAnimationComplete] = useState(false);
   const sectionRef = useRef<HTMLDivElement>(null);
-  const prefersReducedMotion = useReducedMotion();
-
-  // Memoize observer options to prevent recreation on each render
-  const observerOptions = useMemo(() => ({
-    threshold: 0.3,
-    rootMargin: '-10% 0px -10% 0px'
-  }), []);
 
   useEffect(() => {
     const observer = new IntersectionObserver(([entry]) => {
       if (entry.isIntersecting) {
         setIsVisible(true);
-        // Skip animation delay when reduced motion is preferred
-        const delay = prefersReducedMotion ? 0 : 800;
-        setTimeout(() => setPhoneAnimationComplete(true), delay);
+        // Trigger card animations after phone animation completes (800ms)
+        setTimeout(() => setPhoneAnimationComplete(true), 800);
       }
-    }, observerOptions);
+    }, {
+      threshold: 0.3,
+      rootMargin: '-10% 0px -10% 0px'
+    });
     if (sectionRef.current) {
       observer.observe(sectionRef.current);
     }
     return () => observer.disconnect();
-  }, [prefersReducedMotion, observerOptions]);
+  }, []);
 
   return (
     <section ref={sectionRef} className="py-24 px-4 sm:px-6 lg:px-8 bg-gray-50">
@@ -245,26 +108,53 @@ const AllCasesSection = memo(() => {
         
         {/* Icons Animation Container */}
         <div className="relative flex items-center justify-center h-[300px] sm:h-[400px]">
-          <AnimatedIcon 
-            src={caseIconLeft} 
-            alt="Case document" 
-            isVisible={phoneAnimationComplete} 
-            position="left" 
-          />
-          <CenterPhone 
-            src={casePhoneCenter} 
-            alt="Amicus app showing multiple cases" 
-            isVisible={isVisible} 
-          />
-          <AnimatedIcon 
-            src={caseIconRight} 
-            alt="Case files" 
-            isVisible={phoneAnimationComplete} 
-            position="right" 
-          />
+          {/* Left Icon */}
+          <div 
+            className={`absolute z-10 transition-all duration-700 ease-out ${
+              phoneAnimationComplete 
+                ? 'left-0 sm:left-[22%] opacity-100' 
+                : 'left-1/2 -translate-x-1/2 opacity-0'
+            }`}
+          >
+            <img 
+              src={caseIconLeft} 
+              alt="Case document" 
+              className="w-[80px] sm:w-[120px] h-auto drop-shadow-xl"
+            />
+          </div>
+
+          {/* Center Phone - Fade in while expanding */}
+          <div 
+            className={`relative z-20 transition-all duration-700 ease-out ${
+              isVisible 
+                ? 'opacity-100 scale-100' 
+                : 'opacity-0 scale-50'
+            }`}
+          >
+            <img 
+              src={casePhoneCenter} 
+              alt="Amicus app showing multiple cases" 
+              className="w-[132px] sm:w-[198px] h-auto drop-shadow-2xl"
+            />
+          </div>
+
+          {/* Right Icon */}
+          <div 
+            className={`absolute z-10 transition-all duration-700 ease-out ${
+              phoneAnimationComplete 
+                ? 'right-0 sm:right-[22%] opacity-100' 
+                : 'right-1/2 translate-x-1/2 opacity-0'
+            }`}
+          >
+            <img 
+              src={caseIconRight} 
+              alt="Case files" 
+              className="w-[80px] sm:w-[120px] h-auto drop-shadow-xl"
+            />
+          </div>
         </div>
         
-        <p className={`text-xl sm:text-2xl text-gray-700 max-w-3xl mx-auto leading-relaxed mt-8 transition-[transform,opacity] duration-700 ${
+        <p className={`text-xl sm:text-2xl text-gray-700 max-w-3xl mx-auto leading-relaxed mt-8 transition-all duration-700 ${
           phoneAnimationComplete ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
         }`}>
           Ditch the scattered paperwork and endless folders. Amicus brings all your cases together — with appointments, deadlines, and updates for each — always at your fingertips.
@@ -272,63 +162,47 @@ const AllCasesSection = memo(() => {
       </div>
     </section>
   );
-});
-AllCasesSection.displayName = "AllCasesSection";
+};
 const Clients = () => {
   const [notificationVisible, setNotificationVisible] = useState(false);
   const notificationSectionRef = useRef<HTMLDivElement>(null);
   const isMobile = useIsMobile();
-  
-  // Memoize observer options based on isMobile to prevent recreation
-  const observerOptions = useMemo(() => ({
-    threshold: isMobile ? 0.2 : 0.5,
-    rootMargin: isMobile ? '0px' : '-20% 0px -20% 0px'
-  }), [isMobile]);
   
   useEffect(() => {
     const observer = new IntersectionObserver(([entry]) => {
       if (entry.isIntersecting) {
         setNotificationVisible(true);
       }
-    }, observerOptions);
+    }, {
+      threshold: isMobile ? 0.2 : 0.5,
+      rootMargin: isMobile ? '0px' : '-20% 0px -20% 0px'
+    });
     if (notificationSectionRef.current) {
       observer.observe(notificationSectionRef.current);
     }
     return () => observer.disconnect();
-  }, [observerOptions]);
+  }, [isMobile]);
   return <div className="min-h-screen bg-white font-sans [&_h1]:font-sans [&_h2]:font-sans [&_h3]:font-sans [&_h4]:font-sans [&_p]:font-sans">
-      <Navigation />
-      
       {/* Hero Section */}
       <section className="pt-32 pb-24 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-blue-50 via-white to-indigo-50">
         <div className="container mx-auto max-w-6xl">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-center">
-            <div className="space-y-4 lg:space-y-8 animate-fade-in-slow flex flex-col">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+            <div className="space-y-8 animate-fade-in-slow">
               <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold text-gray-900 leading-tight">
                 Cases Become Real<br />With Amicus.
               </h1>
-              <p className="text-xl sm:text-2xl text-gray-700 leading-relaxed">
+              <p className="text-2xl sm:text-3xl text-gray-700 leading-relaxed">
                 An interactive app that delivers real updates, real context, and real clarity.
               </p>
-              
-              {/* Image - shows here on mobile only, between text and button */}
-              <div className="relative animate-scale-in flex items-center justify-center lg:hidden mt-4 mb-2">
-                <div className="absolute inset-0 bg-primary/5 rounded-full"></div>
-                <img src={clientHeaderPhone} alt="Amicus mobile app interface" className="relative mx-auto h-[400px] w-auto object-contain drop-shadow-lg" />
-              </div>
-              
-              <div className="flex justify-center sm:justify-start">
-                <a href="tel:2125882922">
-                  <Button size="lg" className="text-lg px-10 py-7 bg-primary text-white hover:bg-primary/90 transition-all duration-300 hover:scale-105 shadow-lg">
-                    Find an Amicus Lawyer
-                  </Button>
-                </a>
-              </div>
+              <a href="tel:2125882922">
+                <Button size="lg" className="text-lg px-10 py-7 bg-primary text-white hover:bg-primary/90 transition-all duration-300 hover:scale-105 shadow-lg">
+                  Find an Amicus Lawyer
+                </Button>
+              </a>
             </div>
-            {/* Image - shows here on desktop only */}
-            <div className="relative animate-scale-in hidden lg:flex items-center justify-center h-full">
-              <div className="absolute inset-0 bg-primary/5 rounded-full"></div>
-              <img src={clientHeaderPhone} alt="Amicus mobile app interface" className="relative mx-auto h-[425px] lg:h-[510px] w-auto object-contain drop-shadow-lg" />
+            <div className="relative animate-scale-in flex items-center justify-center h-full">
+              <div className="absolute inset-0 bg-primary/10 blur-3xl rounded-full"></div>
+              <img src={clientHeaderPhone} alt="Amicus mobile app interface" className="relative mx-auto h-[425px] lg:h-[510px] w-auto object-contain drop-shadow-2xl" />
             </div>
           </div>
         </div>
@@ -405,14 +279,14 @@ const Clients = () => {
               {/* Phone Frame */}
               <img src={phoneFrame} alt="Phone frame" className="w-full h-auto" />
               
-              {/* Notification - Positioned at top of phone, animates with transform */}
-              <div className={`absolute left-1/2 -translate-x-1/2 top-[8%] w-[97%] transition-[transform,opacity] duration-700 ease-out ${notificationVisible ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-[14%]'}`}>
-                <img src={caseNotification} alt="Case update notification" className="w-full scale-[1.14]" />
+              {/* Notification - Positioned at top of phone, animates down */}
+              <div className={`absolute left-1/2 -translate-x-1/2 w-[97%] transition-all duration-700 ease-out ${notificationVisible ? 'opacity-100 top-[8%]' : 'opacity-0 -top-[6%]'}`}>
+                <img src={caseNotification} alt="Case update notification" className="w-full scale-[1.14] drop-shadow-2xl" />
               </div>
             </div>
             
             {/* Text Content */}
-            <div className={`mt-16 max-w-3xl text-center transition-[transform,opacity] duration-700 delay-300 ease-out ${notificationVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
+            <div className={`mt-16 max-w-3xl text-center transition-all duration-700 delay-300 ease-out ${notificationVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
               <p className="text-xl sm:text-2xl text-gray-700 leading-relaxed">
                 A micro-view of every case reveals progress as it happens — every filing, every motion, every development delivered in clear, understandable language.
               </p>
@@ -490,7 +364,7 @@ const Clients = () => {
           </p>
           
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto mb-16">
-            <div className="text-center bg-white/5 rounded-2xl p-8 border border-white/10">
+            <div className="text-center bg-white/5 backdrop-blur-sm rounded-2xl p-8 border border-white/10">
               <div className="w-16 h-16 bg-primary/20 rounded-full flex items-center justify-center mx-auto mb-4">
                 <Shield className="w-8 h-8 text-primary" />
               </div>
@@ -498,7 +372,7 @@ const Clients = () => {
               <p className="text-gray-400">Every message, document, and update encrypted in transit and at rest. Data stays private.</p>
             </div>
             
-            <div className="text-center bg-white/5 rounded-2xl p-8 border border-white/10">
+            <div className="text-center bg-white/5 backdrop-blur-sm rounded-2xl p-8 border border-white/10">
               <div className="w-16 h-16 bg-primary/20 rounded-full flex items-center justify-center mx-auto mb-4">
                 <Check className="w-8 h-8 text-primary" />
               </div>
@@ -506,7 +380,7 @@ const Clients = () => {
               <p className="text-gray-400">Amicus respects and preserves the confidentiality of all attorney-client communications. No exceptions.</p>
             </div>
             
-            <div className="text-center bg-white/5 rounded-2xl p-8 border border-white/10">
+            <div className="text-center bg-white/5 backdrop-blur-sm rounded-2xl p-8 border border-white/10">
               <div className="w-16 h-16 bg-primary/20 rounded-full flex items-center justify-center mx-auto mb-4">
                 <Check className="w-8 h-8 text-primary" />
               </div>
@@ -516,7 +390,7 @@ const Clients = () => {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-            <div className="text-center bg-white/5 rounded-2xl p-8 border border-white/10">
+            <div className="text-center bg-white/5 backdrop-blur-sm rounded-2xl p-8 border border-white/10">
               <div className="w-16 h-16 bg-primary/20 rounded-full flex items-center justify-center mx-auto mb-4">
                 <Check className="w-8 h-8 text-primary" />
               </div>
@@ -524,7 +398,7 @@ const Clients = () => {
               <p className="text-gray-400">Built on enterprise-grade cloud infrastructure with SOC 2 compliance and continuous security monitoring.</p>
             </div>
             
-            <div className="text-center bg-white/5 rounded-2xl p-8 border border-white/10">
+            <div className="text-center bg-white/5 backdrop-blur-sm rounded-2xl p-8 border border-white/10">
               <div className="w-16 h-16 bg-primary/20 rounded-full flex items-center justify-center mx-auto mb-4">
                 <Check className="w-8 h-8 text-primary" />
               </div>
