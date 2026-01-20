@@ -39,16 +39,6 @@ const ClientExperience = () => {
               </p>
             </div>
 
-            {/* Card 2 */}
-            <div className="bg-zinc-900/50 border border-zinc-800 p-6 rounded-lg hover:border-zinc-700 transition-all">
-              <div className="w-10 h-10 rounded-lg bg-zinc-800 flex items-center justify-center mb-4">
-                <MessageSquare className="w-5 h-5 text-[#e0b660]" />
-              </div>
-              <h3 className="text-white font-medium text-lg mb-2">Secure messaging</h3>
-              <p className="text-zinc-400 text-sm leading-relaxed">
-                Clients message your team directly through the portal. Every conversation stays tied to the case, not scattered across inboxes.
-              </p>
-            </div>
 
             {/* Card 3 */}
             <div className="bg-zinc-900/50 border border-zinc-800 p-6 rounded-lg hover:border-zinc-700 transition-all">
