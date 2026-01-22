@@ -16,7 +16,7 @@ const NewLanding = () => {
           muted
           loop
           playsInline
-          className="absolute inset-0 w-full h-full object-cover z-0 opacity-60 hidden md:block"
+          className="absolute inset-0 w-full h-full object-cover z-0 opacity-60"
           onError={(e) => {
             console.error('Video failed to load:', e);
             const video = e.target as HTMLVideoElement;
