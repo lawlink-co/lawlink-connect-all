@@ -4,6 +4,7 @@ import { Check, Scale, Target, Users, Briefcase, Folder, MessageSquare, CheckSqu
 import draftingInterfaceImage from "@/assets/drafting-interface.png";
 import caseIntakeImage from "../assets/Case-intake.png";
 import customMiniImage from "@/assets/custom-mini.png";
+import everyCasePlatformImage from "@/assets/every-case-one-platform.png";
 
 const NewLanding = () => {
   return (
@@ -262,11 +263,11 @@ const NewLanding = () => {
             </div>
 
             {/* Right Column - Image Placeholder */}
-            <div className="aspect-video rounded-lg overflow-hidden">
+            <div className="rounded-lg overflow-hidden">
               <img 
-                src="/dashboard-screenshot.png" 
-                alt="Dashboard screenshot showing main case list view with status columns, filters, and activity feed"
-                className="w-full h-full object-cover"
+                src={everyCasePlatformImage} 
+                alt="Case dashboard showing Johnson v. Metro Transit case with case information, recent activity timeline, and case documents"
+                className="w-full h-auto object-contain"
               />
             </div>
           </div>
