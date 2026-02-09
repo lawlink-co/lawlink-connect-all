@@ -15,7 +15,12 @@
     "include": [
       "/",
       "/features",
+      "/features/case-dashboard",
+      "/features/client-experience",
+      "/features/ai-drafting",
+      "/features/customization",
       "/clients",
+      "/law-firms",
       "/about",
       "/book-demo"
     ],
@@ -28,7 +33,10 @@
     "minifyHtml": {
       "collapseWhitespace": false,
       "removeComments": false
-    }
+    },
+    "fixWebpackChunksIssue": false,
+    "removeStyleTags": false,
+    "removeScriptTags": false
   },
   "dependencies": {
     "@hookform/resolvers": "^3.10.0",
@@ -76,6 +84,7 @@
     "react": "^18.3.1",
     "react-day-picker": "^8.10.1",
     "react-dom": "^18.3.1",
+    "react-helmet-async": "^2.0.5",
     "react-hook-form": "^7.61.1",
     "react-resizable-panels": "^2.1.9",
     "react-router-dom": "^6.30.1",

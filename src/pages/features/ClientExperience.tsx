@@ -1,24 +1,31 @@
 import { Link } from "react-router-dom";
+import { Helmet } from "react-helmet-async";
 import { Button } from "@/components/ui/button";
 import { Bell, MessageSquare, Eye, FileSearch, Download, MessageCircle, Calendar, Upload, Check, Sparkles, ArrowUp } from "lucide-react";
 
 const ClientExperience = () => {
   return (
-    <div className="min-h-screen bg-black text-white pt-24">
-      {/* Section 1: Hero (Two-Column Layout) */}
-      <section className="max-w-6xl mx-auto px-6 md:px-8 py-16">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
-          {/* Left Column */}
-          <div>
-            <div className="text-xs uppercase tracking-widest text-[#e0b660] mb-4">
-              CLIENT EXPERIENCE
-            </div>
-            <h1 className="text-4xl md:text-5xl font-light text-white mb-6 leading-tight">
-              Keep Clients Informed. Without the Phone Calls.
-            </h1>
-            <p className="text-zinc-400 text-lg mb-8 font-normal">
-              Give clients a portal to check their case, view documents, and message your team. Automatic updates mean they always know what's happening — without calling the office.
-            </p>
+    <>
+      <Helmet>
+        <title>Client Experience - Automated Communication Portal | Amicus</title>
+        <meta name="description" content="Automated client communication and self-service portal for personal injury firms. Keep clients informed with real-time updates, reduce status calls by 60%." />
+        <link rel="canonical" href="https://amicusai.com/features/client-experience" />
+      </Helmet>
+      <div className="min-h-screen bg-black text-white pt-24">
+        {/* Section 1: Hero (Two-Column Layout) */}
+        <section className="max-w-6xl mx-auto px-6 md:px-8 py-16">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
+            {/* Left Column */}
+            <div>
+              <div className="text-xs uppercase tracking-widest text-[#e0b660] mb-4">
+                CLIENT EXPERIENCE
+              </div>
+              <h1 className="text-4xl md:text-5xl font-light text-white mb-6 leading-tight">
+                Client Experience - Automated Communication and Self-Service Portal
+              </h1>
+              <p className="text-zinc-400 text-lg mb-8 font-normal">
+                Keep clients informed automatically when real case events happen. Amicus turns case activity into clear, plain-language updates delivered directly to clients through their secure portal. When you file a complaint, add medical records, or update case stage, clients receive notifications explaining what happened and what comes next. Clients can access key documents, review their case timeline, and message your team—all without needing to call the office for routine updates. Fewer interruptions from status calls means your team can focus on moving cases forward. Estimated reduction: 60% fewer routine status calls.
+              </p>
             <Link to="/demo">
               <Button className="bg-[#e0b660] text-black font-medium px-8 py-3 rounded hover:bg-[#c9a050] transition-colors">
                 Book a Demo
@@ -327,13 +334,13 @@ const ClientExperience = () => {
 
             {/* Right Side - Navigation Links */}
             <div className="flex items-center gap-6 flex-wrap">
-              <Link to="/law-firms" className="text-zinc-400 text-sm hover:text-white transition-colors font-normal">
+              <Link to="/about" className="text-zinc-400 text-sm hover:text-white transition-colors font-normal">
                 About
               </Link>
               <Link to="/contact" className="text-zinc-400 text-sm hover:text-white transition-colors font-normal">
                 Contact
               </Link>
-              <Link to="/demo" className="text-[#e0b660] text-sm hover:text-[#c9a050] transition-colors font-normal">
+              <Link to="/book-demo" className="text-[#e0b660] text-sm hover:text-[#c9a050] transition-colors font-normal">
                 Book a Demo
               </Link>
             </div>
@@ -347,7 +354,28 @@ const ClientExperience = () => {
           </div>
         </div>
       </footer>
-    </div>
+        {/* Internal Linking Section */}
+        <section className="max-w-6xl mx-auto px-6 md:px-8 py-12 border-t border-zinc-800">
+          <div className="text-center mb-8">
+            <h2 className="text-xl font-light text-white mb-4">Explore More Features</h2>
+            <div className="flex flex-wrap justify-center gap-4">
+              <Link to="/features/case-dashboard" className="text-[#e0b660] hover:text-[#c9a050] text-sm transition-colors">
+                Case Dashboard →
+              </Link>
+              <Link to="/features/ai-drafting" className="text-[#e0b660] hover:text-[#c9a050] text-sm transition-colors">
+                AI Document Drafting →
+              </Link>
+              <Link to="/features/customization" className="text-[#e0b660] hover:text-[#c9a050] text-sm transition-colors">
+                Customization →
+              </Link>
+              <Link to="/features" className="text-[#e0b660] hover:text-[#c9a050] text-sm transition-colors">
+                All Features →
+              </Link>
+            </div>
+          </div>
+        </section>
+      </div>
+    </>
   );
 };
 

@@ -1,3 +1,4 @@
+import { Helmet } from "react-helmet-async";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { MessageSquare, Bell, FileSearch, Shield, Smartphone, Clock, Check, Calendar, Briefcase } from "lucide-react";
@@ -182,15 +183,22 @@ const Clients = () => {
     }
     return () => observer.disconnect();
   }, [isMobile]);
-  return <div className="min-h-screen bg-white font-sans [&_h1]:font-sans [&_h2]:font-sans [&_h3]:font-sans [&_h4]:font-sans [&_p]:font-sans">
-      {/* Hero Section */}
-      <section className="pt-32 pb-24 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-blue-50 via-white to-indigo-50">
-        <div className="container mx-auto max-w-6xl">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-            <div className="space-y-8 animate-fade-in-slow">
-              <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold text-gray-900 leading-tight">
-                Cases Become Real<br />With Amicus.
-              </h1>
+  return (
+    <>
+      <Helmet>
+        <title>Client Portal - Keep PI Clients Informed and Engaged | Amicus</title>
+        <meta name="description" content="Client portal for personal injury law firms. Keep clients informed with automated updates, case visibility, and self-service access. Reduce status calls by 60%." />
+        <link rel="canonical" href="https://amicusai.com/clients" />
+      </Helmet>
+      <div className="min-h-screen bg-white font-sans [&_h1]:font-sans [&_h2]:font-sans [&_h3]:font-sans [&_h4]:font-sans [&_p]:font-sans">
+        {/* Hero Section */}
+        <section className="pt-32 pb-24 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-blue-50 via-white to-indigo-50">
+          <div className="container mx-auto max-w-6xl">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+              <div className="space-y-8 animate-fade-in-slow">
+                <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold text-gray-900 leading-tight">
+                  Client Portal - Keep Personal Injury Clients Informed and Engaged
+                </h1>
               <p className="text-2xl sm:text-3xl text-gray-700 leading-relaxed">
                 An interactive app that delivers real updates, real context, and real clarity.
               </p>
@@ -434,6 +442,8 @@ const Clients = () => {
           <p className="text-gray-500">&copy; 2025 Amicus. All rights reserved.</p>
         </div>
       </footer>
-    </div>;
+      </div>
+    </>
+  );
 };
 export default Clients;

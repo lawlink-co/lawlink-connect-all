@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import { Helmet } from "react-helmet-async";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { CheckCircle2, Shield, Lock, Database, Briefcase, FileText, MessageCircle, Settings } from "lucide-react";
@@ -76,17 +77,20 @@ const LawFirms = () => {
     }
     return () => observer.disconnect();
   }, [observerOptions]);
-  return <div className="min-h-screen bg-black text-white font-caslon">
-      {/* Hero Section */}
-      <section className="min-h-screen flex items-center justify-center px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-black via-zinc-950 to-black">
-        <div className="container mx-auto max-w-5xl text-center">
-          <h1 className="text-[2.625rem] sm:text-6xl lg:text-7xl xl:text-7xl font-light leading-tight tracking-wide mb-8">
-            <div className="flex flex-col gap-1 sm:gap-2">
-              <span className="opacity-0 animate-fade-in" style={ANIMATION_STYLES.delay0}>Push Cases,</span>
-              <span className="opacity-0 animate-fade-in" style={ANIMATION_STYLES.delay500}>Draft Briefs,</span>
-              <span className="opacity-0 animate-fade-in" style={ANIMATION_STYLES.delay1000}>Keep Clients Satisfied.</span>
-            </div>
-          </h1>
+  return (
+    <>
+      <Helmet>
+        <title>CRM Software Built for Personal Injury Law Firms | Amicus</title>
+        <meta name="description" content="CRM software designed specifically for personal injury law firms. Case management, AI document drafting, client communication, and workflow automation for PI litigation." />
+        <link rel="canonical" href="https://amicusai.com/law-firms" />
+      </Helmet>
+      <div className="min-h-screen bg-black text-white font-caslon">
+        {/* Hero Section */}
+        <section className="min-h-screen flex items-center justify-center px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-black via-zinc-950 to-black">
+          <div className="container mx-auto max-w-5xl text-center">
+            <h1 className="text-[2.625rem] sm:text-6xl lg:text-7xl xl:text-7xl font-light leading-tight tracking-wide mb-8">
+              CRM Software Built for Personal Injury Law Firms
+            </h1>
           <p className="text-2xl sm:text-3xl text-white font-light mb-4 opacity-0 animate-fade-in" style={ANIMATION_STYLES.delay1500}>
             All On One Platform.
           </p>
@@ -437,6 +441,8 @@ const LawFirms = () => {
           <p>&copy; 2025 Amicus. All rights reserved.</p>
         </div>
       </footer>
-    </div>;
+      </div>
+    </>
+  );
 };
 export default LawFirms;

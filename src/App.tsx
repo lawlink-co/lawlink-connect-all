@@ -1,5 +1,6 @@
 import { useEffect, Suspense, lazy } from "react";
 import { useLocation } from "react-router-dom";
+import { HelmetProvider } from "react-helmet-async";
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -19,11 +20,13 @@ const Contact = lazy(() => import("./pages/Contact"));
 const NotFound = lazy(() => import("./pages/NotFound"));
 
 // Feature pages
+const FeaturesOverview = lazy(() => import("./pages/FeaturesOverview"));
 const CaseDashboard = lazy(() => import("./pages/features/CaseDashboard"));
 const ClientExperience = lazy(() => import("./pages/features/ClientExperience"));
 const AIDrafting = lazy(() => import("./pages/features/AIDrafting"));
 const Workflow = lazy(() => import("./pages/features/Workflow"));
 const Customization = lazy(() => import("./pages/features/Customization"));
+const About = lazy(() => import("./pages/About"));
 
 function ScrollToTop() {
   const { pathname } = useLocation();
@@ -38,23 +41,27 @@ function ScrollToTop() {
 const queryClient = new QueryClient();
 
 const App = () => (
-  <QueryClientProvider client={queryClient}>
-    <TooltipProvider>
-      <Toaster />
-      <Sonner />
-      <BrowserRouter>
-        <ScrollToTop />
-        <Layout>
-          <Suspense fallback={<PageSkeleton />}>
-        <Routes>
+  <HelmetProvider>
+    <QueryClientProvider client={queryClient}>
+      <TooltipProvider>
+        <Toaster />
+        <Sonner />
+        <BrowserRouter>
+          <ScrollToTop />
+          <Layout>
+            <Suspense fallback={<PageSkeleton />}>
+          <Routes>
               <Route path="/" element={<NewLanding />} />
               <Route path="/home" element={<Home />} />
               <Route path="/old-land" element={<OldLanding />} />
           <Route path="/law-firms" element={<LawFirms />} />
           <Route path="/clients" element={<Clients />} />
           <Route path="/demo" element={<Demo />} />
+          <Route path="/book-demo" element={<Demo />} />
+          <Route path="/about" element={<About />} />
           <Route path="/contact" element={<Contact />} />
           {/* Feature pages */}
+          <Route path="/features" element={<FeaturesOverview />} />
           <Route path="/features/case-dashboard" element={<CaseDashboard />} />
           <Route path="/features/client-experience" element={<ClientExperience />} />
           <Route path="/features/ai-drafting" element={<AIDrafting />} />
@@ -62,12 +69,13 @@ const App = () => (
           <Route path="/features/customization" element={<Customization />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
-        </Routes>
-          </Suspense>
-        </Layout>
-      </BrowserRouter>
-    </TooltipProvider>
-  </QueryClientProvider>
+          </Routes>
+            </Suspense>
+          </Layout>
+        </BrowserRouter>
+      </TooltipProvider>
+    </QueryClientProvider>
+  </HelmetProvider>
 );
 
 export default App;

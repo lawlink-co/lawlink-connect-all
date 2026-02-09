@@ -1,23 +1,30 @@
 import { Link } from "react-router-dom";
+import { Helmet } from "react-helmet-async";
 import { Button } from "@/components/ui/button";
 import { LayoutDashboard, Filter, Clock, List, Activity, CheckSquare, Calendar, Users, Search, X, Check } from "lucide-react";
 
 const CaseDashboard = () => {
   return (
-    <div className="min-h-screen bg-black text-white pt-24">
-      {/* Section 1: Hero (Two-Column Layout) */}
-      <section className="max-w-6xl mx-auto px-6 md:px-8 py-16">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
-          {/* Left Column */}
-          <div>
-            <div className="text-xs uppercase tracking-widest text-[#e0b660] mb-4">
-              CASE DASHBOARD
-            </div>
-            <h1 className="text-4xl md:text-5xl font-light text-white mb-6 leading-tight">
-              Every Case. One Screen. Zero Guesswork.
-            </h1>
+    <>
+      <Helmet>
+        <title>Case Dashboard - CRM for Personal Injury Firms | Amicus</title>
+        <meta name="description" content="Centralized case dashboard for personal injury firms. Track client cases, deadlines, and communication history in one unified CRM view. Save 8+ hours weekly." />
+        <link rel="canonical" href="https://amicusai.com/features/case-dashboard" />
+      </Helmet>
+      <div className="min-h-screen bg-black text-white pt-24">
+        {/* Section 1: Hero (Two-Column Layout) */}
+        <section className="max-w-6xl mx-auto px-6 md:px-8 py-16">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
+            {/* Left Column */}
+            <div>
+              <div className="text-xs uppercase tracking-widest text-[#e0b660] mb-4">
+                CASE DASHBOARD
+              </div>
+              <h1 className="text-4xl md:text-5xl font-light text-white mb-6 leading-tight">
+                Case Dashboard - Centralized Client and Case Tracking for PI Firms
+              </h1>
             <p className="text-zinc-400 text-lg mb-8 font-normal">
-              See every active matter, its current stage, pending tasks, and recent activity — all in one view. Stop hunting through emails and spreadsheets to find out where a case stands.
+              Track every active case with real-time visibility into stage progression, upcoming deadlines, and recent activity in one unified dashboard. Built specifically for personal injury workflows, the case dashboard centralizes client case tracking, deadline management, and communication history. No more jumping between apps or digging through spreadsheets to find case status. Filter by attorney, case stage, or priority level. Know which clients need updates at a glance. The dashboard is customizable to match your firm's specific PI workflows—whether you handle motor vehicle accidents, slip and falls, medical malpractice, or premises liability. Estimated time saved: 8+ hours per week on case lookups and internal follow-ups.
             </p>
             <Link to="/demo">
               <Button className="bg-[#e0b660] text-black font-medium px-8 py-3 rounded hover:bg-[#c9a050] transition-colors">
@@ -223,6 +230,27 @@ const CaseDashboard = () => {
         </Link>
       </section>
 
+        {/* Internal Linking Section */}
+        <section className="max-w-6xl mx-auto px-6 md:px-8 py-12 border-t border-zinc-800">
+          <div className="text-center mb-8">
+            <h2 className="text-xl font-light text-white mb-4">Explore More Features</h2>
+            <div className="flex flex-wrap justify-center gap-4">
+              <Link to="/features/client-experience" className="text-[#e0b660] hover:text-[#c9a050] text-sm transition-colors">
+                Client Experience →
+              </Link>
+              <Link to="/features/ai-drafting" className="text-[#e0b660] hover:text-[#c9a050] text-sm transition-colors">
+                AI Document Drafting →
+              </Link>
+              <Link to="/features/customization" className="text-[#e0b660] hover:text-[#c9a050] text-sm transition-colors">
+                Customization →
+              </Link>
+              <Link to="/features" className="text-[#e0b660] hover:text-[#c9a050] text-sm transition-colors">
+                All Features →
+              </Link>
+            </div>
+          </div>
+        </section>
+
       {/* Footer */}
       <footer className="bg-black border-t border-zinc-900 py-12 px-6 md:px-8">
         <div className="max-w-6xl mx-auto">
@@ -235,13 +263,13 @@ const CaseDashboard = () => {
 
             {/* Right Side - Navigation Links */}
             <div className="flex items-center gap-6 flex-wrap">
-              <Link to="/law-firms" className="text-zinc-400 text-sm hover:text-white transition-colors font-normal">
+              <Link to="/about" className="text-zinc-400 text-sm hover:text-white transition-colors font-normal">
                 About
               </Link>
               <Link to="/contact" className="text-zinc-400 text-sm hover:text-white transition-colors font-normal">
                 Contact
               </Link>
-              <Link to="/demo" className="text-[#e0b660] text-sm hover:text-[#c9a050] transition-colors font-normal">
+              <Link to="/book-demo" className="text-[#e0b660] text-sm hover:text-[#c9a050] transition-colors font-normal">
                 Book a Demo
               </Link>
             </div>
@@ -255,7 +283,8 @@ const CaseDashboard = () => {
           </div>
         </div>
       </footer>
-    </div>
+      </div>
+    </>
   );
 };
 

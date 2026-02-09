@@ -1,24 +1,31 @@
 import { Link } from "react-router-dom";
+import { Helmet } from "react-helmet-async";
 import { Button } from "@/components/ui/button";
 import { Puzzle, Layers, Sliders, TextCursor, Users, LayoutGrid, X, Check } from "lucide-react";
 
 const Customization = () => {
   return (
-    <div className="min-h-screen bg-black text-white pt-24">
-      {/* Section 1: Hero (Two-Column Layout) */}
-      <section className="max-w-6xl mx-auto px-6 md:px-8 py-16">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
-          {/* Left Column */}
-          <div>
-            <div className="text-xs uppercase tracking-widest text-[#e0b660] mb-4">
-              CUSTOMIZATION
-            </div>
-            <h1 className="text-4xl md:text-5xl font-light text-white mb-6 leading-tight">
-              Your Firm. Your Process. Your CRM.
-            </h1>
-            <p className="text-zinc-400 text-lg mb-8 font-normal">
-              Amicus is built on modular building blocks — data fields, contacts, and items — that you arrange to match exactly how your firm tracks cases. No rigid templates. No workarounds.
-            </p>
+    <>
+      <Helmet>
+        <title>CRM Customization - Build Your PI Workflow System | Amicus</title>
+        <meta name="description" content="Customizable CRM for personal injury firms. Build your system around your PI workflow with custom fields, pages, and data structures. No developers required." />
+        <link rel="canonical" href="https://amicusai.com/features/customization" />
+      </Helmet>
+      <div className="min-h-screen bg-black text-white pt-24">
+        {/* Section 1: Hero (Two-Column Layout) */}
+        <section className="max-w-6xl mx-auto px-6 md:px-8 py-16">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
+            {/* Left Column */}
+            <div>
+              <div className="text-xs uppercase tracking-widest text-[#e0b660] mb-4">
+                CUSTOMIZATION
+              </div>
+              <h1 className="text-4xl md:text-5xl font-light text-white mb-6 leading-tight">
+                CRM Customization - Build Your System Around Your PI Workflow
+              </h1>
+              <p className="text-zinc-400 text-lg mb-8 font-normal">
+                Unlike generic legal practice management software, Amicus was designed from the ground up around the specific workflows, pain points, and demands of personal injury litigation. Customizable case pages let you add the data fields, contact types, and document categories your firm actually tracks—insurance adjusters, policy limits, medical providers, lien holders, expert witnesses. Structure cases to match real PI workflows, not force your practice into someone else's generic template. No implementation teams required. No extra fees for customization. The platform adapts to how your firm works.
+              </p>
             <Link to="/demo">
               <Button className="bg-[#e0b660] text-black font-medium px-8 py-3 rounded hover:bg-[#c9a050] transition-colors">
                 Book a Demo
@@ -277,7 +284,7 @@ const Customization = () => {
               <Link to="/contact" className="text-zinc-400 text-sm hover:text-white transition-colors font-normal">
                 Contact
               </Link>
-              <Link to="/demo" className="text-[#e0b660] text-sm hover:text-[#c9a050] transition-colors font-normal">
+              <Link to="/book-demo" className="text-[#e0b660] text-sm hover:text-[#c9a050] transition-colors font-normal">
                 Book a Demo
               </Link>
             </div>
@@ -291,7 +298,28 @@ const Customization = () => {
           </div>
         </div>
       </footer>
-    </div>
+        {/* Internal Linking Section */}
+        <section className="max-w-6xl mx-auto px-6 md:px-8 py-12 border-t border-zinc-800">
+          <div className="text-center mb-8">
+            <h2 className="text-xl font-light text-white mb-4">Explore More Features</h2>
+            <div className="flex flex-wrap justify-center gap-4">
+              <Link to="/features/case-dashboard" className="text-[#e0b660] hover:text-[#c9a050] text-sm transition-colors">
+                Case Dashboard →
+              </Link>
+              <Link to="/features/client-experience" className="text-[#e0b660] hover:text-[#c9a050] text-sm transition-colors">
+                Client Experience →
+              </Link>
+              <Link to="/features/ai-drafting" className="text-[#e0b660] hover:text-[#c9a050] text-sm transition-colors">
+                AI Document Drafting →
+              </Link>
+              <Link to="/features" className="text-[#e0b660] hover:text-[#c9a050] text-sm transition-colors">
+                All Features →
+              </Link>
+            </div>
+          </div>
+        </section>
+      </div>
+    </>
   );
 };
 

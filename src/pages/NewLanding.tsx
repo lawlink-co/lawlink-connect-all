@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import { Helmet } from "react-helmet-async";
 import { Button } from "@/components/ui/button";
 import { Check, Scale, Target, Users, Briefcase, Folder, MessageSquare, CheckSquare, ArrowRight } from "lucide-react";
 import draftingInterfaceImage from "@/assets/drafting-interface.png";
@@ -8,9 +9,15 @@ import everyCasePlatformImage from "@/assets/every-case-one-platform.png";
 
 const NewLanding = () => {
   return (
-    <div className="min-h-screen bg-black text-white scroll-smooth">
-      {/* Hero Section */}
-      <section className="relative overflow-hidden pt-32 pb-28 px-6 md:px-8 border-b border-zinc-800/50" style={{ minHeight: '77vh' }}>
+    <>
+      <Helmet>
+        <title>Amicus - AI-Powered Client Relation Manager for PI Law Firms</title>
+        <meta name="description" content="AI-powered case management platform for personal injury law firms. Push cases forward, draft documents in seconds, keep clients satisfied. All-in-one CRM for PI litigation." />
+        <link rel="canonical" href="https://amicusai.com/" />
+      </Helmet>
+      <div className="min-h-screen bg-black text-white scroll-smooth">
+        {/* Hero Section */}
+        <section className="relative overflow-hidden pt-32 pb-28 px-6 md:px-8 border-b border-zinc-800/50" style={{ minHeight: '77vh' }}>
         {/* Background video - hidden on mobile */}
         <video
           autoPlay
@@ -39,9 +46,7 @@ const NewLanding = () => {
         {/* Hero content */}
         <div className="relative z-10 max-w-6xl mx-auto text-center flex flex-col justify-center" style={{ minHeight: 'calc(77vh - 8rem)' }}>
           <h1 className="text-3xl md:text-5xl lg:text-6xl font-light tracking-normal text-white">
-            Push Cases,<br />
-            Draft Briefs,<br />
-            Keep Clients Satisfied.
+            AI-Powered Client Relation Manager Built for Personal Injury Law Firms
           </h1>
           <p className="text-lg md:text-xl text-zinc-300 max-w-2xl mx-auto mt-8 font-normal">
             From drafting to client updates, every part of your practice on one platform.
@@ -541,7 +546,8 @@ const NewLanding = () => {
           </div>
         </div>
       </footer>
-    </div>
+      </div>
+    </>
   );
 };
 

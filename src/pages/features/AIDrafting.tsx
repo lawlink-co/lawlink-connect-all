@@ -1,24 +1,31 @@
 import { Link } from "react-router-dom";
+import { Helmet } from "react-helmet-async";
 import { Button } from "@/components/ui/button";
 import { FileText, PenLine, Database, Clock, FileCheck, Search, Gavel, ArrowDown } from "lucide-react";
 
 const AIDrafting = () => {
   return (
-    <div className="min-h-screen bg-black text-white pt-24">
-      {/* Section 1: Hero (Two-Column Layout) */}
-      <section className="max-w-6xl mx-auto px-6 md:px-8 py-16">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
-          {/* Left Column */}
-          <div>
-            <div className="text-xs uppercase tracking-widest text-[#e0b660] mb-4">
-              AI DRAFTING
-            </div>
-            <h1 className="text-4xl md:text-5xl font-light text-white mb-6 leading-tight">
-              First Drafts in Seconds. Not Hours.
-            </h1>
-            <p className="text-zinc-400 text-lg mb-8 font-normal">
-              Generate demand letters, complaints, and motions using your firm's templates and prior work. The AI writes like you — because it learns from you.
-            </p>
+    <>
+      <Helmet>
+        <title>AI Document Drafting - Generate Legal Docs from CRM | Amicus</title>
+        <meta name="description" content="AI document drafting for personal injury firms. Generate demand letters, complaints, and motions in seconds using case data and firm templates. Save 2+ hours per document." />
+        <link rel="canonical" href="https://amicusai.com/features/ai-drafting" />
+      </Helmet>
+      <div className="min-h-screen bg-black text-white pt-24">
+        {/* Section 1: Hero (Two-Column Layout) */}
+        <section className="max-w-6xl mx-auto px-6 md:px-8 py-16">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
+            {/* Left Column */}
+            <div>
+              <div className="text-xs uppercase tracking-widest text-[#e0b660] mb-4">
+                AI DRAFTING
+              </div>
+              <h1 className="text-4xl md:text-5xl font-light text-white mb-6 leading-tight">
+                AI Document Drafting - Generate Legal Documents from CRM Data
+              </h1>
+              <p className="text-zinc-400 text-lg mb-8 font-normal">
+                Generate first drafts of demand letters, complaints, and motions in seconds instead of hours. Amicus pulls case details automatically from your structured case information—plaintiff data, defendant information, incident facts, medical records, and damages calculations—then applies your firm's templates and formatting preferences. First drafts are generated in seconds, not hours, allowing your team to move straight to review and refinement rather than starting from a blank page. Consistent formatting across all documents. Estimated time saved: 2+ hours per document.
+              </p>
             <Link to="/demo">
               <Button className="bg-[#e0b660] text-black font-medium px-8 py-3 rounded hover:bg-[#c9a050] transition-colors">
                 Book a Demo
@@ -247,7 +254,7 @@ const AIDrafting = () => {
               <Link to="/contact" className="text-zinc-400 text-sm hover:text-white transition-colors font-normal">
                 Contact
               </Link>
-              <Link to="/demo" className="text-[#e0b660] text-sm hover:text-[#c9a050] transition-colors font-normal">
+              <Link to="/book-demo" className="text-[#e0b660] text-sm hover:text-[#c9a050] transition-colors font-normal">
                 Book a Demo
               </Link>
             </div>
@@ -261,7 +268,28 @@ const AIDrafting = () => {
           </div>
         </div>
       </footer>
-    </div>
+        {/* Internal Linking Section */}
+        <section className="max-w-6xl mx-auto px-6 md:px-8 py-12 border-t border-zinc-800">
+          <div className="text-center mb-8">
+            <h2 className="text-xl font-light text-white mb-4">Explore More Features</h2>
+            <div className="flex flex-wrap justify-center gap-4">
+              <Link to="/features/case-dashboard" className="text-[#e0b660] hover:text-[#c9a050] text-sm transition-colors">
+                Case Dashboard →
+              </Link>
+              <Link to="/features/client-experience" className="text-[#e0b660] hover:text-[#c9a050] text-sm transition-colors">
+                Client Experience →
+              </Link>
+              <Link to="/features/customization" className="text-[#e0b660] hover:text-[#c9a050] text-sm transition-colors">
+                Customization →
+              </Link>
+              <Link to="/features" className="text-[#e0b660] hover:text-[#c9a050] text-sm transition-colors">
+                All Features →
+              </Link>
+            </div>
+          </div>
+        </section>
+      </div>
+    </>
   );
 };
 
