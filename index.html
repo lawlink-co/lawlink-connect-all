@@ -35,7 +35,52 @@
   </head>
 
   <body>
-    <div id="root"></div>
+    <div id="root">
+      <!-- Fallback content for crawlers - React will replace this on load -->
+      <header>
+        <nav>
+          <h1>Amicus</h1>
+          <ul>
+            <li><a href="/features">Features</a></li>
+            <li><a href="/clients">Clients</a></li>
+            <li><a href="/about">About</a></li>
+          </ul>
+        </nav>
+      </header>
+      
+      <main>
+        <section>
+          <h1>Push Cases, Draft Briefs, Keep Clients Satisfied</h1>
+          <p>AI-powered case management software for personal injury law firms. From drafting to client updates, every part of your practice on one platform.</p>
+          <p>Amicus centralizes case management, document drafting, and client communication for plaintiff-side personal injury litigation.</p>
+        </section>
+
+        <section>
+          <h2>Case Dashboard</h2>
+          <p>Track every case, deadline, and task in one centralized dashboard. Built specifically for personal injury workflows.</p>
+        </section>
+
+        <section>
+          <h2>AI Document Drafting</h2>
+          <p>Generate demand letters, complaints, and motions in seconds using your case data and firm templates.</p>
+        </section>
+
+        <section>
+          <h2>Client Communication</h2>
+          <p>Keep clients updated automatically with real-time case status and document access without constant phone calls.</p>
+        </section>
+
+        <section>
+          <h2>Built for Personal Injury Firms</h2>
+          <p>Customizable case tracking, automated client updates, and AI-powered drafting designed around how PI firms actually work.</p>
+        </section>
+      </main>
+
+      <footer>
+        <p>Amicus Legal Technologies - Built for plaintiff-side personal injury</p>
+        <p><a href="/contact">Contact</a> | <a href="/book-demo">Book a Demo</a></p>
+      </footer>
+    </div>
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>
