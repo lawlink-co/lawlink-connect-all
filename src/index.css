@@ -1,0 +1,163 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
+All colors MUST be HSL.
+*/
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 0 0% 0%;
+    --card: 0 0% 100%;
+    --card-foreground: 0 0% 0%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 0 0% 0%;
+    --primary: 220 80% 55%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 0 0% 85%;
+    --secondary-foreground: 0 0% 0%;
+    --muted: 0 0% 96%;
+    --muted-foreground: 0 0% 40%;
+    --accent: 217 91% 60%;
+    --accent-foreground: 0 0% 100%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 0 0% 90%;
+    --input: 0 0% 90%;
+    --ring: 225 12% 30%;
+    --radius: 0.5rem;
+    --sidebar-background: 0 0% 98%;
+    --sidebar-foreground: 240 5.3% 26.1%;
+    --sidebar-primary: 240 5.9% 10%;
+    --sidebar-primary-foreground: 0 0% 98%;
+    --sidebar-accent: 240 4.8% 95.9%;
+    --sidebar-accent-foreground: 240 5.9% 10%;
+    --sidebar-border: 220 13% 91%;
+    --sidebar-ring: 225 12% 30%;
+    
+    /* Gradients for cinematic feel */
+    --gradient-dark: linear-gradient(180deg, hsl(0, 0%, 0%) 0%, hsl(0, 0%, 10%) 100%);
+    --gradient-charcoal: linear-gradient(135deg, hsl(0, 0%, 5%) 0%, hsl(220, 15%, 8%) 100%);
+    --gradient-light: linear-gradient(180deg, hsl(220, 50%, 98%) 0%, hsl(210, 100%, 97%) 100%);
+    --silver: 0 0% 75%;
+    
+    /* Gold accent for emphasis - #e0b660 */
+    --gold: 40 68% 63%;
+    --gold-foreground: 0 0% 0%;
+    
+    /* Animation speeds - use transform and opacity only */
+    --transition-smooth: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-slow: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .dark {
+    --background: 0 0% 0%;
+    --foreground: 0 0% 100%;
+    --card: 0 0% 5%;
+    --card-foreground: 0 0% 100%;
+    --popover: 0 0% 5%;
+    --popover-foreground: 0 0% 100%;
+    --primary: 225 12% 30%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 42 68% 63%;
+    --secondary-foreground: 0 0% 0%;
+    --muted: 0 0% 10%;
+    --muted-foreground: 0 0% 65%;
+    --accent: 42 68% 63%;
+    --accent-foreground: 0 0% 0%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 0 0% 15%;
+    --input: 0 0% 15%;
+    --ring: 42 68% 63%;
+    --sidebar-background: 240 5.9% 10%;
+    --sidebar-foreground: 240 4.8% 95.9%;
+    --sidebar-primary: 42 68% 63%;
+    --sidebar-primary-foreground: 0 0% 0%;
+    --sidebar-accent: 240 3.7% 15.9%;
+    --sidebar-accent-foreground: 240 4.8% 95.9%;
+    --sidebar-border: 240 3.7% 15.9%;
+    --sidebar-ring: 42 68% 63%;
+    
+    /* Gold accent for emphasis - #e0b660 */
+    --gold: 40 68% 63%;
+    --gold-foreground: 0 0% 0%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground font-body;
+    overflow-x: hidden;
+  }
+
+  /* Primary serif for headings - elegant display font */
+  .font-display {
+    font-family: 'Playfair Display', Georgia, serif;
+  }
+
+  /* Secondary serif for body text - highly readable */
+  .font-body {
+    font-family: 'Libre Baskerville', 'Times New Roman', Times, serif;
+  }
+
+  /* Tertiary serif for accents and quotes */
+  .font-accent {
+    font-family: 'Cormorant Garamond', 'Times New Roman', Times, serif;
+  }
+
+  /* Keep original serif class for backwards compatibility */
+  .font-serif {
+    font-family: 'Times New Roman', Times, serif;
+  }
+
+  h1, h2, h3 {
+    @apply font-display;
+  }
+
+  h4, h5, h6 {
+    @apply font-body;
+  }
+}
+
+@layer utilities {
+  /* Hide scrollbar for swipeable elements */
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+/* Reduced motion preferences - disable/simplify non-essential animations */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  /* Keep essential opacity transitions but make them instant */
+  .transition-opacity,
+  .transition-\[opacity\],
+  .transition-\[transform\,opacity\] {
+    transition-duration: 0.01ms !important;
+  }
+
+  /* Disable will-change hints when motion is reduced */
+  .will-change-transform,
+  .will-change-\[opacity\] {
+    will-change: auto !important;
+  }
+}

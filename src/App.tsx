@@ -1,0 +1,81 @@
+import { useEffect, Suspense, lazy } from "react";
+import { useLocation } from "react-router-dom";
+import { HelmetProvider } from "react-helmet-async";
+import { Toaster } from "@/components/ui/toaster";
+import { Toaster as Sonner } from "@/components/ui/sonner";
+import { TooltipProvider } from "@/components/ui/tooltip";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Layout from "./components/Layout";
+import PageSkeleton from "./components/PageSkeleton";
+
+// Lazy load route components
+const Home = lazy(() => import("./pages/Home"));
+const NewLanding = lazy(() => import("./pages/NewLanding"));
+const OldLanding = lazy(() => import("./pages/OldLanding"));
+const LawFirms = lazy(() => import("./pages/LawFirms"));
+const Clients = lazy(() => import("./pages/Clients"));
+const Demo = lazy(() => import("./pages/Demo"));
+const Contact = lazy(() => import("./pages/Contact"));
+const NotFound = lazy(() => import("./pages/NotFound"));
+
+// Feature pages
+const FeaturesOverview = lazy(() => import("./pages/FeaturesOverview"));
+const CaseDashboard = lazy(() => import("./pages/features/CaseDashboard"));
+const ClientExperience = lazy(() => import("./pages/features/ClientExperience"));
+const AIDrafting = lazy(() => import("./pages/features/AIDrafting"));
+const Workflow = lazy(() => import("./pages/features/Workflow"));
+const Customization = lazy(() => import("./pages/features/Customization"));
+const About = lazy(() => import("./pages/About"));
+
+function ScrollToTop() {
+  const { pathname } = useLocation();
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [pathname]);
+
+  return null;
+}
+
+const queryClient = new QueryClient();
+
+const App = () => (
+  <HelmetProvider>
+    <QueryClientProvider client={queryClient}>
+      <TooltipProvider>
+        <Toaster />
+        <Sonner />
+        <BrowserRouter>
+          <ScrollToTop />
+          <Layout>
+            <Suspense fallback={<PageSkeleton />}>
+          <Routes>
+              <Route path="/" element={<NewLanding />} />
+              <Route path="/home" element={<Home />} />
+              <Route path="/old-land" element={<OldLanding />} />
+          <Route path="/law-firms" element={<LawFirms />} />
+          <Route path="/clients" element={<Clients />} />
+          <Route path="/demo" element={<Demo />} />
+          <Route path="/book-demo" element={<Demo />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/contact" element={<Contact />} />
+          {/* Feature pages */}
+          <Route path="/features" element={<FeaturesOverview />} />
+          <Route path="/features/case-dashboard" element={<CaseDashboard />} />
+          <Route path="/features/client-experience" element={<ClientExperience />} />
+          <Route path="/features/ai-drafting" element={<AIDrafting />} />
+          <Route path="/features/workflow" element={<Workflow />} />
+          <Route path="/features/customization" element={<Customization />} />
+          {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
+          <Route path="*" element={<NotFound />} />
+          </Routes>
+            </Suspense>
+          </Layout>
+        </BrowserRouter>
+      </TooltipProvider>
+    </QueryClientProvider>
+  </HelmetProvider>
+);
+
+export default App;
