@@ -92,8 +92,15 @@ All colors MUST be HSL.
     @apply border-border;
   }
 
+  /* Dark first paint: no white flash before React or on dark pages (Clients, NewLanding, etc.) */
+  html {
+    background-color: #000;
+  }
+
   body {
-    @apply bg-background text-foreground font-body;
+    background-color: #000;
+    color: #fff;
+    font-family: 'Libre Baskerville', 'Times New Roman', Times, serif;
     overflow-x: hidden;
   }
 

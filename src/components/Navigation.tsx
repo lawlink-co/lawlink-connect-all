@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
@@ -9,21 +9,18 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { Shield, Zap, Users, Settings, ChevronDown, Menu, X } from "lucide-react";
 import amicusLogo from "@/assets/amicus-logo.png";
-import amicusLogoBlack from "@/assets/amicus-logo-black.png";
 
 const Navigation = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const location = useLocation();
-  const isClientsPage = location.pathname === "/clients";
-  
-  // Text colors based on page
-  const textColor = isClientsPage ? "text-gray-700" : "text-zinc-400";
-  const textHoverColor = isClientsPage ? "hover:text-gray-900" : "hover:text-white";
-  const borderColor = isClientsPage ? "border-gray-200" : "border-white/10";
-  const bgColor = isClientsPage ? "bg-white/95" : "bg-black/80";
-  const dropdownBg = isClientsPage ? "bg-white border-gray-200" : "bg-zinc-900 border-zinc-800";
-  const dropdownText = isClientsPage ? "text-gray-900" : "text-white";
-  const dropdownHover = isClientsPage ? "hover:bg-gray-50" : "hover:bg-zinc-800";
+
+  // Dark nav (matches NewLanding, Clients, and other dark pages)
+  const textColor = "text-zinc-400";
+  const textHoverColor = "hover:text-white";
+  const borderColor = "border-white/10";
+  const bgColor = "bg-black/80";
+  const dropdownBg = "bg-zinc-900 border-zinc-800";
+  const dropdownText = "text-white";
+  const dropdownHover = "hover:bg-zinc-800";
 
   return (
     <nav className={`fixed top-0 left-0 right-0 z-50 ${bgColor} backdrop-blur-sm border-b ${borderColor}`}>
@@ -32,7 +29,7 @@ const Navigation = () => {
           {/* Logo - Left */}
           <Link to="/" className="flex items-center z-10">
             <img 
-              src={isClientsPage ? amicusLogoBlack : amicusLogo} 
+              src={amicusLogo} 
               alt="Amicus" 
               className="h-10 w-auto"
             />
