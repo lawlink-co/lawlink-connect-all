@@ -3,6 +3,10 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
+  "reactSnap": {
+    "source": "dist",
+    "destination": "dist"
+  },
   "scripts": {
     "dev": "vite",
     "build": "vite build",
